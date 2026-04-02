@@ -17,7 +17,7 @@ pub fn demo_card(props: &DemoCardProps) -> Html {
     let badge_html = if !d.badge_image.is_empty() {
         html! {
             <img
-                src={format!("/images/{}", d.badge_image)}
+                src={format!("images/{}?ts=1775170317225", d.badge_image)}
                 alt={d.name}
                 class="demo-card-badge"
             />

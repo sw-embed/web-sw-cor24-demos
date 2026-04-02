@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Software Wrighter Lab -- COR24 Tools & Demos</title>
     <link rel="icon" href="favicon.ico">
     
     <link rel="stylesheet" href="/web-sw-cor24-demos/theme-cd6da9b93d922681.css" integrity="sha384-ZqoeLLZ+pyIFH4HAuLp3nHR3tQsYGzvxRwuXXAM/pVD3QQjSlNQfzzzu6SszyY5R"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/layout-1fb798d6c783653d.css" integrity="sha384-WFoRYpX0ktGEavUuYoI0iz+eCTRD7V0whyBxNajlfkROQCVZFC+J4Qx1EgTlnQHd"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/components-e714b69169a1e86e.css" integrity="sha384-F0nBOTQlPkgiy4Obp2GDre3QkS56M/itgiTCEqrJTw1Xq6a65EGl+l+2JTCbQY6j"/>
-    <link rel="stylesheet" href="/web-sw-cor24-demos/isa-4f4a60ae277fa1c7.css" integrity="sha384-aWf9QFKfUvTyi3K0D2wQmvEPQMRzNOwYQ3jcG7VZM7xe+6KGha/0njq2dcHsJ9dJ"/>
+    <link rel="stylesheet" href="/web-sw-cor24-demos/isa-212c2b482c638265.css" integrity="sha384-CWtcKX4XMggCDg+Kx4h330lwjBhBQaIlAFNP5qPsXJeQ75WgmONVruVeidOrK0SI"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/hardware-d81f370e94426489.css" integrity="sha384-C5SoavlDTw8jpVmBdMWYLVu32rFbEcviQo/cOLOX2ptzixApcjbPgZFV1lsxkt+f"/>
     
     
 <script type="module">
-import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-ab0d16a22f6b3fe9.js';
-const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-ab0d16a22f6b3fe9_bg.wasm' });
+import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-e7efc303ecb43ce6.js';
+const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-e7efc303ecb43ce6_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -24,7 +27,7 @@ window.wasmBindings = bindings;
 dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
 </script>
-<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-ab0d16a22f6b3fe9.js" crossorigin="anonymous" integrity="sha384-wk6fa6KKjYsUTyK8O92m0vHE2bqTUtdO8Th5bzTJswWe6ifymnBOd0Fx0/olZ2ug"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-ab0d16a22f6b3fe9_bg.wasm" crossorigin="anonymous" integrity="sha384-/txqqy6Vup2R0z+kwqpMF68r4T0HAnH1yHXi2qS5deZGB15Ov1KTX7JjXImJ0Tqu" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-e7efc303ecb43ce6.js" crossorigin="anonymous" integrity="sha384-zUz0B3aC8BZjfnkF6Y7in5MTcGteANO1Z3je2qDPJnvodwXGnJoPJycxa7S7+ZTh"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-e7efc303ecb43ce6_bg.wasm" crossorigin="anonymous" integrity="sha384-TTEFYTlWuq6n/jf6X2m37Uj0dKVk/RCOL6HlBvI2E8B8v6Y9RHW3Yu7UrEVf/w9V" as="fetch" type="application/wasm"></head>
 <body>
 </body>
 </html>

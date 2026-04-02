@@ -137,7 +137,7 @@ static CATEGORIES: [Category; 7] = [
                 has_live_demo: true,
                 is_this_site: false,
                 source_label: "C Source",
-                badge_image: "sw-pl-badge.png",
+                badge_image: "sw-pl-badge2.png",
             },
             DemoEntry {
                 name: "Native C Compiler",
@@ -230,7 +230,7 @@ static CATEGORIES: [Category; 7] = [
                 has_live_demo: false,
                 is_this_site: false,
                 source_label: "C Source",
-                badge_image: "sws-badge.png",
+                badge_image: "sws-badge2.png",
             },
         ],
     },

@@ -36,7 +36,7 @@ pub fn header(props: &HeaderProps) -> Html {
         <header class="site-header">
             <div class="header-inner">
                 <a href="#/" class="header-brand">
-                    <img src="/web-sw-cor24-demos/images/sw-lab-logo.jpg" alt="Software Wrighter Lab" class="brand-logo" />
+                    <img src="images/sw-lab-logo.jpg?ts=1775170317225" alt="Software Wrighter Lab" class="brand-logo" />
                     <span class="brand-text">{"Software Wrighter Lab"}</span>
                 </a>
                 <button class="hamburger" onclick={&props.toggle_menu} aria-label="Toggle menu">
