@@ -57,14 +57,15 @@ If anything fails, fix the underlying problem -- NEVER suppress, allow, or work 
 10. If Phase B made code changes, re-run Phase A steps 1-4 (fmt, clippy, test, wasm check).
     Fix any regressions. Commit if needed.
 
-#### Phase B++: UI build verification (MANDATORY)
+#### Phase B++: UI build + smoke test verification (MANDATORY)
 11. `./scripts/build.sh` -- Full Trunk release build. This catches template errors,
     broken html! macro usage, and other issues that `cargo check --target wasm32-unknown-unknown`
     does NOT catch. Fix any build failures.
-12. **Ask the user to review the UI** -- After a successful build, present the build
-    success to the user and ask them to review the UI at `./scripts/serve.sh` (or by
-    opening the built dist/ in a browser). Do NOT proceed to commit until the user
-    approves. If the user reports visual issues, fix them and rebuild.
+12. `./scripts/ui-test.sh` -- Playwright smoke tests against the built dist/. Serves
+    dist/ on a local HTTP server and runs headless Chromium tests covering page load,
+    navigation, content rendering, and mobile responsiveness. First run installs
+    playwright + chromium automatically (deps in scripts/ui-test/). Fix any test
+    failures before proceeding.
 
 #### Phase C: Push
 13. **Commit** the UI build fixes (if any).
@@ -153,6 +154,8 @@ Edition 2024 for all Rust code. Never suppress warnings.
 ```bash
 ./scripts/serve.sh             # Dev server with hot reload
 ./scripts/build-pages.sh       # Release build to pages/ for GitHub Pages
+./scripts/build.sh             # Release build to dist/
+./scripts/ui-test.sh           # Playwright smoke tests against dist/
 cargo clippy --all-targets --all-features -- -D warnings  # Lint
 cargo fmt --all                # Format
 cargo check --target wasm32-unknown-unknown  # Full WASM check
@@ -261,4 +264,6 @@ sw-checklist issues separately.
 9. Commit the sw-checklist fixes (separate commit if Phase A was already committed)
 10. If step 9 made code changes, re-run steps 1-4 (fmt, clippy, test, wasm check).
     Fix any regressions. Commit if needed.
-11. `git push` -- Every completed step must be pushed to GitHub
+11. `./scripts/build.sh` -- Full Trunk release build. Fix any build failures.
+12. `./scripts/ui-test.sh` -- Playwright smoke tests. Fix any test failures.
+13. `git push` -- Every completed step must be pushed to GitHub

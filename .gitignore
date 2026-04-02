@@ -1,2 +1,6 @@
-/target
 /dist
+/target
+/work
+/scripts/ui-test/node_modules
+/scripts/ui-test/test-results
+/scripts/ui-test/playwright-report

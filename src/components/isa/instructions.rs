@@ -48,7 +48,7 @@ fn category_block(cat: &InstrCategory) -> Html {
     let instrs = instructions_by_category(cat);
     let count = instrs.len();
     html! {
-        <details class="instr-category" open=true>
+        <details class="instr-category" id={cat.id()} open=true>
             <summary class="instr-category-summary">
                 <span class="instr-category-name">{cat.label()}</span>
                 <span class="instr-category-count">{count}{" instruction"}{if count != 1 { "s" } else { "" }}</span>

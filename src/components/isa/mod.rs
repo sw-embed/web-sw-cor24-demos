@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::data::isa::IsaSection;
+use crate::data::isa::{InstrCategory, IsaSection};
 
 use instructions::InstructionsSection;
 use registers::RegistersSection;
@@ -8,21 +8,46 @@ use registers::RegistersSection;
 mod instructions;
 mod registers;
 
+fn instruction_category_links() -> Html {
+    html! {
+        <ul class="isa-sidebar-sublist">
+            {InstrCategory::all().iter().map(|cat| {
+                html! {
+                    <li>
+                        <a href={format!("#{}", cat.id())} class="isa-sidebar-sublink">
+                            {cat.label()}
+                        </a>
+                    </li>
+                }
+            }).collect::<Html>()}
+        </ul>
+    }
+}
+
+fn section_link(section: &IsaSection) -> Html {
+    let id = section.id();
+    let label = section.label();
+    let children = if *section == IsaSection::Instructions {
+        html! { {instruction_category_links()} }
+    } else {
+        html! {}
+    };
+    html! {
+        <li>
+            <a href={format!("#{}", id)} class="isa-sidebar-link">
+                {label}
+            </a>
+            {children}
+        </li>
+    }
+}
+
 fn sidebar_nav() -> Html {
     html! {
         <nav class="isa-sidebar">
             <h3 class="isa-sidebar-title">{"Sections"}</h3>
             <ul class="isa-sidebar-list">
-                {IsaSection::all().iter().map(|section| {
-                    let id = section.id();
-                    html! {
-                        <li>
-                            <a href={format!("#{}", id)} class="isa-sidebar-link">
-                                {section.label()}
-                            </a>
-                        </li>
-                    }
-                }).collect::<Html>()}
+                {IsaSection::all().iter().map(section_link).collect::<Html>()}
             </ul>
             <div class="isa-sidebar-note">
                 <p class="isa-cell-size">{"24-bit word size (3 bytes)"}</p>

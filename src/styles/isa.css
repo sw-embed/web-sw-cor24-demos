@@ -91,6 +91,36 @@
     color: var(--color-accent);
 }
 
+.isa-sidebar-sublist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    padding-left: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+@media (max-width: 767px) {
+    .isa-sidebar-sublist {
+        display: none;
+    }
+}
+
+.isa-sidebar-sublink {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--color-text-dim);
+    padding: 0.15rem 0;
+    text-decoration: none;
+    transition: color 0.15s ease;
+    opacity: 0.8;
+}
+
+.isa-sidebar-sublink:hover {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
 .isa-sidebar-note {
     margin-top: 0.75rem;
     padding-top: 0.5rem;
