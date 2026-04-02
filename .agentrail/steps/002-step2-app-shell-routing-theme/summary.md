@@ -1,0 +1,1 @@
+Built app shell with hash-based routing, responsive header with hamburger menu, footer, Catppuccin Mocha themed CSS (layout.css, components.css), and placeholder page stubs for all 5 routes (Home, ISA, Demos, Toolchain, Ecosystem). All quality gates pass: fmt, clippy, test, wasm check, sw-checklist 0 FAIL.

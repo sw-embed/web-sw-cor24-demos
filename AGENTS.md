@@ -30,10 +30,37 @@ agentrail begin
 ### 3. WORK (do what the step prompt says)
 Do NOT ask "want me to proceed?" or "shall I start?". The step prompt IS your instruction. Execute it directly.
 
-### 4. COMMIT (after the work is done)
-Commit your code changes with git. All pre-commit quality gates must pass before committing.
+### 4. PRE-COMMIT QUALITY GATE (MANDATORY -- every step, no exceptions)
+Every completed saga step must be high quality, documented, and pushed to GitHub.
+If anything fails, fix the underlying problem -- NEVER suppress, allow, or work around a check.
 
-### 5. COMPLETE (LAST thing, after committing)
+#### Phase A: Rust quality + documentation
+1. `cargo fmt --all` -- Format all Rust code
+2. `cargo clippy --all-targets --all-features -- -D warnings` -- Zero warnings.
+   If clippy reports a warning, fix the code. Do NOT add `#[allow(...)]` or
+   change the clippy invocation. The underlying problem must be resolved.
+3. `cargo test` -- All tests pass. Fix any failures before proceeding.
+4. `cargo check --target wasm32-unknown-unknown` -- WASM compilation check
+5. Review staged files with `git status` -- No build artifacts, no unintended files
+6. Verify documentation is up-to-date -- if code changed affected public APIs,
+   components, or behavior, update relevant doc comments and any docs/ files
+7. **Commit** the formatted, clippy-clean, test-passing, documented code now.
+
+#### Phase B: sw-checklist conformance
+8. `sw-checklist` -- Fix all FAIL and WARN items to avoid tech-debt accumulation.
+   You may commit the Phase A code before fixing sw-checklist issues.
+   If you have questions about how to fix a specific FAIL/WARN, ask for help.
+   Re-run `sw-checklist` after fixes to confirm clean.
+9. **Commit** the sw-checklist fixes.
+
+#### Phase B+: Re-verify if code changed
+10. If Phase B made code changes, re-run Phase A steps 1-4 (fmt, clippy, test, wasm check).
+    Fix any regressions. Commit if needed.
+
+#### Phase C: Push
+11. `git push` -- Every completed step must be pushed to GitHub
+
+### 5. COMPLETE (LAST thing, after committing and pushing)
 ```bash
 agentrail complete --summary "what you accomplished" \
   --reward 1 \
@@ -166,11 +193,25 @@ Running bare `trunk serve` or `trunk build` with wrong flags breaks the build.
 
 ## Pre-Commit Quality Gate (MANDATORY)
 
-Every commit must pass this sequence:
+Every commit must pass this sequence. Split into two commits if sw-checklist
+issues are found: commit the clean Rust code first, then fix and commit
+sw-checklist issues separately.
 
-1. `cargo test` -- All tests pass
-2. `cargo clippy --all-targets --all-features -- -D warnings` -- Zero warnings
-3. `cargo fmt --all` -- Code formatted
+1. `cargo fmt --all` -- Format all Rust code
+2. `cargo clippy --all-targets --all-features -- -D warnings` -- Zero warnings.
+   If clippy reports a warning, fix the code. Do NOT add `#[allow(...)]` or
+   change the clippy invocation. The underlying problem must be resolved.
+3. `cargo test` -- All tests pass. Fix any failures before proceeding.
 4. `cargo check --target wasm32-unknown-unknown` -- WASM compilation check
-5. Review staged files with `git status` -- No build artifacts
-6. Commit with clear descriptive message
+5. Review staged files with `git status` -- No build artifacts, no unintended files
+6. Verify documentation is up-to-date -- if code changed affected public APIs,
+   components, or behavior, update relevant doc comments and any docs/ files
+7. Commit with a clear descriptive message summarizing what was done and why
+8. `sw-checklist` -- Fix all FAIL and WARN items to avoid tech-debt accumulation.
+   You may commit the Phase A code before fixing sw-checklist issues.
+   If you have questions about how to fix a specific FAIL/WARN, ask for help.
+   Re-run `sw-checklist` after fixes to confirm clean.
+9. Commit the sw-checklist fixes (separate commit if Phase A was already committed)
+10. If step 9 made code changes, re-run steps 1-4 (fmt, clippy, test, wasm check).
+    Fix any regressions. Commit if needed.
+11. `git push` -- Every completed step must be pushed to GitHub

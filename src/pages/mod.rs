@@ -2,19 +2,7 @@ use yew::prelude::*;
 
 #[function_component(HomePage)]
 pub fn home_page() -> Html {
-    html! {
-        <section class="page-section">
-            <div class="hero">
-                <h1 class="hero-title">{"COR24 Ecosystem"}</h1>
-                <p class="hero-subtitle">
-                    {"A complete 24-bit computing platform: ISA, toolchain, languages, and live browser demos."}
-                </p>
-            </div>
-            <div class="placeholder">
-                <p>{"Home page content coming in the next step."}</p>
-            </div>
-        </section>
-    }
+    html! { <crate::components::home::HomePage /> }
 }
 
 #[function_component(IsaPage)]
