@@ -36,8 +36,8 @@ pub fn header(props: &HeaderProps) -> Html {
         <header class="site-header">
             <div class="header-inner">
                 <a href="#/" class="header-brand">
-                    <span class="brand-icon">{"\u{2699}"}</span>
-                    <span class="brand-text">{"COR24 Ecosystem"}</span>
+                    <img src="/web-sw-cor24-demos/images/sw-lab-logo.jpg" alt="Software Wrighter Lab" class="brand-logo" />
+                    <span class="brand-text">{"Software Wrighter Lab"}</span>
                 </a>
                 <button class="hamburger" onclick={&props.toggle_menu} aria-label="Toggle menu">
                     <span class={classes!("hamburger-line", props.menu_open.then_some("hamburger-open"))}></span>

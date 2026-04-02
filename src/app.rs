@@ -12,6 +12,7 @@ pub enum Route {
     Demos,
     Toolchain,
     Ecosystem,
+    Hardware,
 }
 
 impl Route {
@@ -21,6 +22,7 @@ impl Route {
             "demos" => Self::Demos,
             "toolchain" => Self::Toolchain,
             "ecosystem" => Self::Ecosystem,
+            "hardware" => Self::Hardware,
             _ => Self::Home,
         }
     }
@@ -32,6 +34,7 @@ impl Route {
             Self::Demos => "demos",
             Self::Toolchain => "toolchain",
             Self::Ecosystem => "ecosystem",
+            Self::Hardware => "hardware",
         }
     }
 
@@ -42,6 +45,7 @@ impl Route {
             Self::Demos => "Demos",
             Self::Toolchain => "Toolchain",
             Self::Ecosystem => "Ecosystem",
+            Self::Hardware => "Hardware",
         }
     }
 
@@ -52,6 +56,7 @@ impl Route {
             Self::Demos,
             Self::Toolchain,
             Self::Ecosystem,
+            Self::Hardware,
         ]
     }
 }
@@ -75,6 +80,7 @@ fn route_page(route: &Route) -> Html {
         Route::Demos => html! { <pages::DemosPage /> },
         Route::Toolchain => html! { <pages::ToolchainPage /> },
         Route::Ecosystem => html! { <pages::EcosystemPage /> },
+        Route::Hardware => html! { <pages::HardwarePage /> },
     }
 }
 

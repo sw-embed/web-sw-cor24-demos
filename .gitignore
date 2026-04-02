@@ -4,3 +4,5 @@
 /scripts/ui-test/node_modules
 /scripts/ui-test/test-results
 /scripts/ui-test/playwright-report
+*.wasm
+!pages/*.wasm

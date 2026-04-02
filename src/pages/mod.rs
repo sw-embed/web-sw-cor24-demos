@@ -45,3 +45,8 @@ pub fn ecosystem_page() -> Html {
         </section>
     }
 }
+
+#[function_component(HardwarePage)]
+pub fn hardware_page() -> Html {
+    html! { <crate::components::hardware::HardwarePage /> }
+}
