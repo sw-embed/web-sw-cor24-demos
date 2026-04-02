@@ -9,6 +9,7 @@ pub struct DemoEntry {
     pub is_this_site: bool,
     pub source_label: &'static str,
     pub badge_image: &'static str,
+    pub repo: &'static str,
 }
 
 #[derive(Clone, PartialEq, Debug)]
@@ -33,7 +34,7 @@ impl DemoEntry {
     }
 
     pub fn repo_url(&self) -> String {
-        format!("https://github.com/sw-embed/{}", self.slug)
+        format!("https://github.com/sw-embed/{}", self.repo)
     }
 }
 
@@ -55,6 +56,7 @@ static CATEGORIES: [Category; 7] = [
             is_this_site: false,
             source_label: "Rust Source",
             badge_image: "",
+            repo: "sw-cor24-emulator",
         }],
     },
     Category {
@@ -71,6 +73,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "Rust Source",
                 badge_image: "asm-badge.png",
+                repo: "sw-cor24-emulator",
             },
             DemoEntry {
                 name: "Tiny C Compiler",
@@ -82,6 +85,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "Rust Source",
                 badge_image: "c-badge.png",
+                repo: "sw-cor24-x-tinyc",
             },
             DemoEntry {
                 name: "Rust MSP430 Translator",
@@ -93,6 +97,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "Rust Source",
                 badge_image: "rust-gear-logo-red.png",
+                repo: "sw-cor24-rust",
             },
         ],
     },
@@ -110,6 +115,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C Source",
                 badge_image: "apl-sw-badge.png",
+                repo: "sw-cor24-apl",
             },
             DemoEntry {
                 name: "Forth Debugger",
@@ -121,6 +127,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C & Forth Source",
                 badge_image: "forth-badge.png",
+                repo: "sw-cor24-forth",
             },
             DemoEntry {
                 name: "Macro Lisp",
@@ -132,6 +139,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C & Lisp Source",
                 badge_image: "lisp-badge.png",
+                repo: "sw-cor24-macrolisp",
             },
         ],
     },
@@ -149,6 +157,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C Source",
                 badge_image: "sw-pl-badge2.png",
+                repo: "sw-cor24-plsw",
             },
             DemoEntry {
                 name: "Native C Compiler",
@@ -160,6 +169,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C Source",
                 badge_image: "c-badge.png",
+                repo: "sw-cor24-c-compiler",
             },
         ],
     },
@@ -176,6 +186,7 @@ static CATEGORIES: [Category; 7] = [
             is_this_site: false,
             source_label: "COR24 Asm & Rust Source",
             badge_image: "",
+            repo: "sw-cor24-pcode",
         }],
     },
     Category {
@@ -192,6 +203,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C Source",
                 badge_image: "pascal-badge.png",
+                repo: "sw-cor24-pascal",
             },
             DemoEntry {
                 name: "BASIC Interpreter",
@@ -203,6 +215,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "Pascal Source",
                 badge_image: "basic-badge.png",
+                repo: "sw-cor24-basic",
             },
         ],
     },
@@ -220,6 +233,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "Planned",
                 badge_image: "",
+                repo: "sw-cor24-debugger",
             },
             DemoEntry {
                 name: "Resident Monitor",
@@ -231,6 +245,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C & Asm Source",
                 badge_image: "",
+                repo: "sw-cor24-monitor",
             },
             DemoEntry {
                 name: "SWS Scripting",
@@ -242,6 +257,7 @@ static CATEGORIES: [Category; 7] = [
                 is_this_site: false,
                 source_label: "C Source",
                 badge_image: "sws-badge2.png",
+                repo: "sw-cor24-script",
             },
         ],
     },
