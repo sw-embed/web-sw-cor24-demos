@@ -1,0 +1,176 @@
+# AGENTS.md
+
+This file provides guidance to AI coding agents (opencode, Claude Code, Gemini CLI, etc.) when working with code in this repository. It is the agentrail equivalent of a CLAUDE.md file.
+
+## Project: web-sw-cor24-demos -- COR24 Ecosystem Landing Page & Documentation Hub
+
+Browser-based landing page and documentation hub for the entire COR24 ecosystem. Built with Rust, Yew 0.21, and WebAssembly via Trunk. Deployed to GitHub Pages.
+
+This is the single entry point for all COR24 live demos, ISA documentation, and tooling references. It provides:
+- Directory of all live web demos with links and descriptions
+- Comprehensive COR24 ISA documentation (registers, instruction set, memory map, calling conventions)
+- Documentation for every tool in the sw-embed ecosystem (cross-compilers, assemblers, interpreters, VM, monitor, etc.)
+- Links to all GitHub repositories
+
+## CRITICAL: AgentRail Session Protocol (MUST follow exactly)
+
+Every agent session follows this 6-step loop. Do NOT skip or reorder steps.
+
+### 1. START (do this FIRST, before anything else)
+```bash
+agentrail next
+```
+Read the output carefully. It contains your current step, prompt, plan context, and any relevant skills/trajectories.
+
+### 2. BEGIN (immediately after reading the next output)
+```bash
+agentrail begin
+```
+
+### 3. WORK (do what the step prompt says)
+Do NOT ask "want me to proceed?" or "shall I start?". The step prompt IS your instruction. Execute it directly.
+
+### 4. COMMIT (after the work is done)
+Commit your code changes with git. All pre-commit quality gates must pass before committing.
+
+### 5. COMPLETE (LAST thing, after committing)
+```bash
+agentrail complete --summary "what you accomplished" \
+  --reward 1 \
+  --actions "tools and approach used"
+```
+- If the step failed: `--reward -1 --failure-mode "what went wrong"`
+- If the saga is finished: add `--done`
+
+### 6. STOP (after complete, DO NOT continue working)
+Do NOT make further code changes after running `agentrail complete`.
+Any changes after complete are untracked and invisible to the next session.
+Future work belongs in the NEXT step, not this one.
+
+## Key Rules
+
+- **Do NOT skip steps** -- the next session depends on accurate tracking
+- **Do NOT ask for permission** -- the step prompt is the instruction
+- **Do NOT continue working** after `agentrail complete`
+- **Commit before complete** -- always commit first, then record completion
+
+## Useful Commands
+
+```bash
+agentrail status          # Current saga state
+agentrail history         # All completed steps
+agentrail plan            # View the plan
+agentrail next            # Current step + context
+```
+
+## Related Projects
+
+All COR24 repos live under `~/github/sw-embed/` as siblings. This landing page documents ALL of them.
+
+### Foundation
+- `sw-cor24-emulator` -- COR24 assembler and emulator (Rust)
+- `sw-cor24-x-assembler` -- Cross-assembler library (Rust)
+- `sw-cor24-assembler` -- Native assembler (C, runs on COR24)
+- `sw-cor24-project` -- Ecosystem hub/portal (docs only)
+
+### Cross-compilers (run on host)
+- `sw-cor24-x-tinyc` -- Tiny C cross-compiler (Rust)
+- `sw-cor24-rust` -- Rust-to-COR24 pipeline
+
+### P-code system
+- `sw-cor24-pcode` -- P-code VM (COR24 asm), assembler (Rust), linker (Rust)
+- `sw-cor24-x-pc-aotc` -- P-code AOT compiler (p-code to COR24 native)
+- `sw-cor24-pascal` -- Pascal compiler (C) + runtime
+
+### Languages (native, run on COR24)
+- `sw-cor24-macrolisp` -- Tiny Macro Lisp (C)
+- `sw-cor24-forth` -- Forth (COR24 assembly)
+- `sw-cor24-apl` -- APL interpreter (C)
+- `sw-cor24-basic` -- BASIC interpreter (C)
+- `sw-cor24-fortran` -- Fortran compiler (C)
+- `sw-cor24-plsw` -- PL/SW compiler (C, PL/I-inspired)
+- `sw-cor24-script` -- SWS scripting language (C, Tcl-like)
+
+### System software
+- `sw-cor24-monitor` -- Resident monitor/service processor (COR24 asm + C)
+- `sw-cor24-debugger` -- Source-level debugger (planned)
+
+### Web UIs (live browser demos)
+- `web-sw-cor24-assembler` -- COR24 assembly IDE
+- `web-sw-cor24-pcode` -- P-code VM debugger
+- `web-sw-cor24-tinyc` -- Tiny C compiler
+- `web-sw-cor24-macrolisp` -- Lisp REPL
+- `web-sw-cor24-pascal` -- Pascal demos
+- `web-sw-cor24-apl` -- APL environment
+- `web-sw-cor24-forth` -- Forth debugger
+- `web-sw-cor24-plsw` -- PL/SW development environment
+- `web-sw-cor24-demos` -- THIS REPO (landing page)
+
+### GitHub Pages URLs
+All live demos are at: `https://sw-embed.github.io/<repo-name>/`
+
+## Build
+
+Edition 2024 for all Rust code. Never suppress warnings.
+
+```bash
+./scripts/serve.sh             # Dev server with hot reload
+./scripts/build-pages.sh       # Release build to pages/ for GitHub Pages
+cargo clippy --all-targets --all-features -- -D warnings  # Lint
+cargo fmt --all                # Format
+cargo check --target wasm32-unknown-unknown  # Full WASM check
+```
+
+**CRITICAL: NEVER run `trunk` commands directly.** Always use the shell scripts.
+Running bare `trunk serve` or `trunk build` with wrong flags breaks the build.
+
+## Deployment
+
+- `trunk build --release` outputs to `dist/` (gitignored)
+- `./scripts/build-pages.sh` builds to `dist/` then rsyncs to `pages/` (tracked)
+- `pages/.nojekyll` is committed once and never regenerated
+- GitHub Actions (`.github/workflows/pages.yml`) deploys `pages/` on push to main
+- Live URL: https://sw-embed.github.io/web-sw-cor24-demos/
+
+## Architecture
+
+- **Trunk** builds the WASM binary and serves it
+- **Yew 0.21** CSR framework for the UI (Component trait, Msg enum, html! macro)
+- **wasm-bindgen** + **web-sys** for browser APIs
+- **Catppuccin Mocha** dark theme (consistent with all other web-sw-cor24-* demos)
+- **pages/** directory committed to git, deployed via GitHub Pages
+- No path dependencies on other sw-embed repos (this is a documentation-only site)
+
+## Key Conventions
+
+- Monospace font stack: JetBrains Mono, Fira Code, Cascadia Code
+- CSS custom properties for Catppuccin Mocha colors
+- Responsive design for desktop and mobile
+- No JavaScript outside of WASM bootstrap
+- Release profile: `opt-level = "z"`, `lto = true` for minimal WASM size
+- File size limit: 500 lines per file (prefer 200-300)
+- Function size limit: 50 lines (prefer 10-30)
+
+## Available Task Types
+
+- `rust-project-init` -- Scaffold Cargo.toml, src/, Trunk config, scripts/
+- `yew-component` -- Build a Yew Component (html!, Msg enum, update/view)
+- `wasm-build` -- Configure wasm-bindgen, web-sys features, Trunk pipeline
+- `css-styling` -- Catppuccin Mocha theme, responsive layout, typography
+- `content` -- Add documentation content (ISA docs, tool descriptions, demos)
+- `integration` -- Wire up navigation, routing, links to live demos
+- `feature` -- Add UI feature (search, filtering, interactive diagrams)
+- `bug-fix` -- Fix a defect
+- `docs` -- Documentation updates
+- `pre-commit` -- Run full pre-commit quality gate
+
+## Pre-Commit Quality Gate (MANDATORY)
+
+Every commit must pass this sequence:
+
+1. `cargo test` -- All tests pass
+2. `cargo clippy --all-targets --all-features -- -D warnings` -- Zero warnings
+3. `cargo fmt --all` -- Code formatted
+4. `cargo check --target wasm32-unknown-unknown` -- WASM compilation check
+5. Review staged files with `git status` -- No build artifacts
+6. Commit with clear descriptive message
