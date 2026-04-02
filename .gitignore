@@ -1,8 +1,8 @@
 /dist
 /target
 /work
-/scripts/ui-test/node_modules
-/scripts/ui-test/test-results
-/scripts/ui-test/playwright-report
 *.wasm
 !pages/*.wasm
+/package.json
+/package-lock.json
+/node_modules

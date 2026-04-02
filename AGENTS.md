@@ -57,19 +57,14 @@ If anything fails, fix the underlying problem -- NEVER suppress, allow, or work 
 10. If Phase B made code changes, re-run Phase A steps 1-4 (fmt, clippy, test, wasm check).
     Fix any regressions. Commit if needed.
 
-#### Phase B++: UI build + smoke test verification (MANDATORY)
+#### Phase B++: UI build verification (MANDATORY)
 11. `./scripts/build.sh` -- Full Trunk release build. This catches template errors,
     broken html! macro usage, and other issues that `cargo check --target wasm32-unknown-unknown`
     does NOT catch. Fix any build failures.
-12. `./scripts/ui-test.sh` -- Playwright smoke tests against the built dist/. Serves
-    dist/ on a local HTTP server and runs headless Chromium tests covering page load,
-    navigation, content rendering, and mobile responsiveness. First run installs
-    playwright + chromium automatically (deps in scripts/ui-test/). Fix any test
-    failures before proceeding.
 
 #### Phase C: Push
-13. **Commit** the UI build fixes (if any).
-14. `git push` -- Every completed step must be pushed to GitHub
+12. **Commit** the UI build fixes (if any).
+13. `git push` -- Every completed step must be pushed to GitHub
 
 ### 5. COMPLETE (LAST thing, after committing and pushing)
 ```bash
@@ -93,10 +88,13 @@ Future work belongs in the NEXT step, not this one.
 - **Commit before complete** -- always commit first, then record completion
 - **NO Python** -- do not use Python for anything in this project. No venvs,
   no pip, no python3 scripts. This is a Rust/WASM project. Period.
+- **NO npm / NO node_modules / NO package.json** -- do not use npm, node packages,
+  or any JavaScript package manager. No package.json, no package-lock.json,
+  no node_modules/. This is a Rust/WASM project. Use only Rust, HTML, CSS,
+  and minimal hand-written JS where Rust absolutely cannot be used.
 - **Only use scripts/*.sh to build and serve** -- never run `trunk` commands
-  directly. Never use `python3 -m http.server` or any other ad-hoc server.
-  All build, serve, and test operations go through the shell scripts in
-  scripts/.
+  directly. Never use ad-hoc servers. All build and serve operations go
+  through the shell scripts in scripts/.
 
 ## Useful Commands
 
@@ -161,7 +159,6 @@ Edition 2024 for all Rust code. Never suppress warnings.
 ./scripts/serve.sh             # Dev server with hot reload
 ./scripts/build-pages.sh       # Release build to pages/ for GitHub Pages
 ./scripts/build.sh             # Release build to dist/
-./scripts/ui-test.sh           # Playwright smoke tests against dist/
 cargo clippy --all-targets --all-features -- -D warnings  # Lint
 cargo fmt --all                # Format
 cargo check --target wasm32-unknown-unknown  # Full WASM check
@@ -271,5 +268,4 @@ sw-checklist issues separately.
 10. If step 9 made code changes, re-run steps 1-4 (fmt, clippy, test, wasm check).
     Fix any regressions. Commit if needed.
 11. `./scripts/build.sh` -- Full Trunk release build. Fix any build failures.
-12. `./scripts/ui-test.sh` -- Playwright smoke tests. Fix any test failures.
-13. `git push` -- Every completed step must be pushed to GitHub
+12. `git push` -- Every completed step must be pushed to GitHub
