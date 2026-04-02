@@ -48,7 +48,7 @@ A single, authoritative landing page for the COR24 ecosystem that serves as the 
 
 ### FR-3: ISA Reference
 - Browsable sections for:
-  - Registers (r0-r7 with roles and constraints)
+  - Registers (r0-r2 general-purpose, fp, sp, z, iv, ir with roles and constraints)
   - Instruction set (all 49 mnemonics with encoding)
   - Memory map (SRAM, EBR, I/O addresses)
   - Addressing modes

@@ -80,7 +80,7 @@ The ISA docs are organized as Rust structs holding static data, rendered by Yew 
 | Section | Content |
 |---------|---------|
 | Overview | COR24 history, design philosophy, makerlisp.com link |
-| Registers | r0-r7, roles, constraints, calling convention |
+| Registers | r0-r2 (GP), fp, sp, z, iv, ir -- roles, constraints, calling convention |
 | Instruction Set | All 49 mnemonics, encoding formats, variable-length instructions |
 | Memory Map | SRAM (1 MB), EBR stack (8 KB), I/O addresses (UART, LED/switch) |
 | Addressing Modes | Immediate, register, absolute, indexed, stack |

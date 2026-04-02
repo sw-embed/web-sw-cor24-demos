@@ -37,7 +37,7 @@
 ### Step 4: ISA Page Shell + Registers
 - Create ISA page component with sidebar navigation
 - Create isa data module (data/isa.rs) with register definitions
-- Create RegistersSection component with table of r0-r7
+- Create RegistersSection component with table of r0-r2, fp, sp, z, iv, ir
 - Include register constraints (which regs can be load/ALU destinations)
 - Verify: register table renders with all 8 registers documented
 
