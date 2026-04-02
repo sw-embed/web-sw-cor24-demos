@@ -2,11 +2,20 @@ use yew::prelude::*;
 
 use crate::data::isa::{InstrCategory, IsaSection};
 
-use instructions::InstructionsSection;
-use registers::RegistersSection;
-
+mod addressing_modes;
+mod calling_conv;
 mod instructions;
+mod interrupts;
+mod io_table;
+mod memory_map;
 mod registers;
+
+use addressing_modes::AddressingModesSection;
+use calling_conv::CallingConventionsSection;
+use instructions::InstructionsSection;
+use interrupts::InterruptsSection;
+use memory_map::MemoryMapSection;
+use registers::RegistersSection;
 
 fn instruction_category_links() -> Html {
     html! {
@@ -71,30 +80,10 @@ pub fn isa_page() -> Html {
                 <div class="isa-content">
                     <RegistersSection />
                     <InstructionsSection />
-                    <section id="memory-map" class="isa-section">
-                        <h2 class="section-heading">{"Memory Map"}</h2>
-                        <div class="placeholder">
-                            <p>{"Memory map documentation coming soon."}</p>
-                        </div>
-                    </section>
-                    <section id="calling-conventions" class="isa-section">
-                        <h2 class="section-heading">{"Calling Conventions"}</h2>
-                        <div class="placeholder">
-                            <p>{"Calling conventions documentation coming soon."}</p>
-                        </div>
-                    </section>
-                    <section id="addressing-modes" class="isa-section">
-                        <h2 class="section-heading">{"Addressing Modes"}</h2>
-                        <div class="placeholder">
-                            <p>{"Addressing modes documentation coming soon."}</p>
-                        </div>
-                    </section>
-                    <section id="interrupts" class="isa-section">
-                        <h2 class="section-heading">{"Interrupts"}</h2>
-                        <div class="placeholder">
-                            <p>{"Interrupt handling documentation coming soon."}</p>
-                        </div>
-                    </section>
+                    <MemoryMapSection />
+                    <CallingConventionsSection />
+                    <AddressingModesSection />
+                    <InterruptsSection />
                 </div>
             </div>
         </div>
