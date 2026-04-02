@@ -9,6 +9,7 @@ cd "$PROJECT_DIR"
 mkdir -p pages
 touch pages/.nojekyll
 trunk build --release --public-url /web-sw-cor24-demos/
+cp -r images/ dist/images/
 rsync -a --delete --exclude='.nojekyll' dist/ pages/
 
 echo "=== Done ==="

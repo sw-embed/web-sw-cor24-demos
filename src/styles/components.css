@@ -463,7 +463,27 @@
 .card-links {
     display: flex;
     gap: 0.75rem;
+}
+
+.card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     margin-top: 0.75rem;
+}
+
+.demo-card-badge {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+    .demo-card-badge {
+        height: 36px;
+    }
 }
 
 .card-link {

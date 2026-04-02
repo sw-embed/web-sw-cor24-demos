@@ -14,6 +14,18 @@ pub fn demo_card(props: &DemoCardProps) -> Html {
     let status_label = demos::status_label(&d.status);
     let show_live = d.has_live_demo && !d.is_this_site;
 
+    let badge_html = if !d.badge_image.is_empty() {
+        html! {
+            <img
+                src={format!("/images/{}", d.badge_image)}
+                alt={d.name}
+                class="demo-card-badge"
+            />
+        }
+    } else {
+        html! {}
+    };
+
     html! {
         <div class={classes!("demo-card", "card")}>
             <div class="demo-card-header">
@@ -26,17 +38,20 @@ pub fn demo_card(props: &DemoCardProps) -> Html {
                     html! { <span class={classes!("tag", demos::tag_class(tag))}>{*tag}</span> }
                 }).collect::<Html>()}
             </div>
-            <div class="card-links">
-                if d.is_this_site {
-                    <span class="card-link card-link-current">{"You are here"}</span>
-                } else if show_live {
-                    <a href={d.live_url()} target="_blank" rel="noopener noreferrer" class="card-link">
-                        {"Try Live"}
+            <div class="card-footer">
+                <div class="card-links">
+                    if d.is_this_site {
+                        <span class="card-link card-link-current">{"You are here"}</span>
+                    } else if show_live {
+                        <a href={d.live_url()} target="_blank" rel="noopener noreferrer" class="card-link">
+                            {"Try Live"}
+                        </a>
+                    }
+                    <a href={d.repo_url()} target="_blank" rel="noopener noreferrer" class="card-link">
+                        {d.source_label}
                     </a>
-                }
-                <a href={d.repo_url()} target="_blank" rel="noopener noreferrer" class="card-link">
-                    {"Source"}
-                </a>
+                </div>
+                {badge_html}
             </div>
         </div>
     }

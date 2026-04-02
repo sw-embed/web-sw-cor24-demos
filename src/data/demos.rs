@@ -7,6 +7,8 @@ pub struct DemoEntry {
     pub tags: &'static [&'static str],
     pub has_live_demo: bool,
     pub is_this_site: bool,
+    pub source_label: &'static str,
+    pub badge_image: &'static str,
 }
 
 #[derive(Clone, PartialEq, Debug)]
@@ -51,6 +53,8 @@ static CATEGORIES: [Category; 7] = [
             tags: &["Emulator", "Assembler"],
             has_live_demo: false,
             is_this_site: false,
+            source_label: "Rust Source",
+            badge_image: "",
         }],
     },
     Category {
@@ -65,6 +69,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["IDE", "Assembler"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "Rust Source",
+                badge_image: "asm-badge.png",
             },
             DemoEntry {
                 name: "Tiny C Compiler",
@@ -74,6 +80,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Compiler", "C"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "Rust Source",
+                badge_image: "c-badge.png",
             },
         ],
     },
@@ -89,6 +97,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Interpreter", "APL"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "C Source",
+                badge_image: "apl-sw-badge.png",
             },
             DemoEntry {
                 name: "Forth Debugger",
@@ -98,6 +108,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Interpreter", "Forth"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "C & Forth Source",
+                badge_image: "forth-badge.png",
             },
             DemoEntry {
                 name: "Macro Lisp",
@@ -107,6 +119,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Interpreter", "Lisp"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "C & Lisp Source",
+                badge_image: "lisp-badge.png",
             },
         ],
     },
@@ -122,6 +136,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Compiler", "PL/SW"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "C Source",
+                badge_image: "sw-pl-badge.png",
             },
             DemoEntry {
                 name: "Native C Compiler",
@@ -131,6 +147,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Compiler", "C"],
                 has_live_demo: false,
                 is_this_site: false,
+                source_label: "C Source",
+                badge_image: "c-badge.png",
             },
         ],
     },
@@ -145,6 +163,8 @@ static CATEGORIES: [Category; 7] = [
             tags: &["VM", "Debugger"],
             has_live_demo: true,
             is_this_site: false,
+            source_label: "COR24 Asm & Rust Source",
+            badge_image: "",
         }],
     },
     Category {
@@ -159,6 +179,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Compiler", "Pascal"],
                 has_live_demo: true,
                 is_this_site: false,
+                source_label: "C Source",
+                badge_image: "pascal-badge.png",
             },
             DemoEntry {
                 name: "BASIC Interpreter",
@@ -168,6 +190,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Interpreter", "BASIC"],
                 has_live_demo: false,
                 is_this_site: false,
+                source_label: "Pascal Source",
+                badge_image: "basic-badge.png",
             },
         ],
     },
@@ -183,6 +207,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Debugger"],
                 has_live_demo: false,
                 is_this_site: false,
+                source_label: "Planned",
+                badge_image: "",
             },
             DemoEntry {
                 name: "Resident Monitor",
@@ -192,6 +218,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["System", "Monitor"],
                 has_live_demo: false,
                 is_this_site: false,
+                source_label: "C & Asm Source",
+                badge_image: "",
             },
             DemoEntry {
                 name: "SWS Scripting",
@@ -201,6 +229,8 @@ static CATEGORIES: [Category; 7] = [
                 tags: &["Interpreter", "Scripting"],
                 has_live_demo: false,
                 is_this_site: false,
+                source_label: "C Source",
+                badge_image: "sws-badge.png",
             },
         ],
     },
