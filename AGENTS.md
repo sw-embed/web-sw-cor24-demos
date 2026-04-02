@@ -91,6 +91,12 @@ Future work belongs in the NEXT step, not this one.
 - **Do NOT ask for permission** -- the step prompt is the instruction
 - **Do NOT continue working** after `agentrail complete`
 - **Commit before complete** -- always commit first, then record completion
+- **NO Python** -- do not use Python for anything in this project. No venvs,
+  no pip, no python3 scripts. This is a Rust/WASM project. Period.
+- **Only use scripts/*.sh to build and serve** -- never run `trunk` commands
+  directly. Never use `python3 -m http.server` or any other ad-hoc server.
+  All build, serve, and test operations go through the shell scripts in
+  scripts/.
 
 ## Useful Commands
 

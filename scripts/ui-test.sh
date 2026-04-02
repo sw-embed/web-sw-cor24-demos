@@ -27,9 +27,9 @@ trap cleanup EXIT
 
 ln -sfn . dist/web-sw-cor24-demos
 
-python3 -m http.server "$PORT" --directory dist &
+npx serve dist/ -l "$PORT" -s &
 SERVER_PID=$!
-sleep 1
+sleep 2
 
 export UI_TEST_BASE="http://localhost:${PORT}"
 export UI_TEST_PUBLIC_URL="${PUBLIC_URL}"
