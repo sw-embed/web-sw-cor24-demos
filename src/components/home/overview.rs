@@ -27,8 +27,8 @@ pub fn overview_section() -> Html {
                         <span class="fact-label">{"SRAM address space"}</span>
                     </div>
                     <div class="fact-item">
-                        <span class="fact-value">{"8 KB"}</span>
-                        <span class="fact-label">{"EBR stack memory"}</span>
+                        <span class="fact-value">{"3 KB"}</span>
+                        <span class="fact-label">{"EBR stack (3K/8K emulator)"}</span>
                     </div>
                     <div class="fact-item">
                         <span class="fact-value">{"1-4 B"}</span>

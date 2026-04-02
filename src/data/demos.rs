@@ -5,14 +5,24 @@ pub struct DemoEntry {
     pub description: &'static str,
     pub status: DemoStatus,
     pub tags: &'static [&'static str],
+    pub has_live_demo: bool,
     pub is_this_site: bool,
 }
 
 #[derive(Clone, PartialEq, Debug)]
 pub enum DemoStatus {
     Active,
-    Beta,
-    Planned,
+    Wip,
+    Testing,
+    Design,
+    LongTerm,
+}
+
+#[derive(Clone, PartialEq, Debug, yew::Properties)]
+pub struct Category {
+    pub id: &'static str,
+    pub label: &'static str,
+    pub items: &'static [DemoEntry],
 }
 
 impl DemoEntry {
@@ -25,82 +35,174 @@ impl DemoEntry {
     }
 }
 
-pub fn all_demos() -> &'static [DemoEntry] {
-    &DEMO_ENTRIES
+pub fn all_categories() -> &'static [Category] {
+    &CATEGORIES
 }
 
-static DEMO_ENTRIES: [DemoEntry; 9] = [
-    DemoEntry {
-        name: "Assembly IDE",
-        slug: "web-sw-cor24-assembler",
-        description: "Full COR24 assembly IDE with syntax highlighting, real-time assembly, and register view.",
-        status: DemoStatus::Active,
-        tags: &["IDE", "Assembler"],
-        is_this_site: false,
+static CATEGORIES: [Category; 7] = [
+    Category {
+        id: "emulator",
+        label: "Emulator",
+        items: &[DemoEntry {
+            name: "COR24 Emulator",
+            slug: "sw-cor24-emulator",
+            description: "Assembler and emulator for the COR24 processor. Runs COR24 binaries on the host.",
+            status: DemoStatus::Active,
+            tags: &["Emulator", "Assembler"],
+            has_live_demo: false,
+            is_this_site: false,
+        }],
     },
-    DemoEntry {
-        name: "P-code VM",
-        slug: "web-sw-cor24-pcode",
-        description: "Interactive P-code virtual machine debugger with instruction stepping and stack visualization.",
-        status: DemoStatus::Active,
-        tags: &["Debugger", "VM"],
-        is_this_site: false,
+    Category {
+        id: "cross-tools",
+        label: "Cross-Assembler / Cross-Compiler",
+        items: &[
+            DemoEntry {
+                name: "Assembly IDE",
+                slug: "web-sw-cor24-assembler",
+                description: "Full COR24 assembly IDE with syntax highlighting, real-time assembly, and register view.",
+                status: DemoStatus::Active,
+                tags: &["IDE", "Assembler"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "Tiny C Compiler",
+                slug: "web-sw-cor24-tinyc",
+                description: "Tiny C cross-compiler (tc24r). Compile C code to COR24 assembly in the browser.",
+                status: DemoStatus::Active,
+                tags: &["Compiler", "C"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+        ],
     },
-    DemoEntry {
-        name: "Tiny C Compiler",
-        slug: "web-sw-cor24-tinyc",
-        description: "Tiny C cross-compiler for COR24. Compile C code to COR24 assembly in the browser.",
-        status: DemoStatus::Active,
-        tags: &["Compiler", "C"],
-        is_this_site: false,
+    Category {
+        id: "repls",
+        label: "REPLs",
+        items: &[
+            DemoEntry {
+                name: "APL Environment",
+                slug: "web-sw-cor24-apl",
+                description: "APL interpreter with live array operations. Explore APL's concise array notation.",
+                status: DemoStatus::Active,
+                tags: &["Interpreter", "APL"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "Forth Debugger",
+                slug: "web-sw-cor24-forth",
+                description: "Forth language debugger with dictionary browsing, stack inspection, and word definitions.",
+                status: DemoStatus::Active,
+                tags: &["Interpreter", "Forth"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "Macro Lisp",
+                slug: "web-sw-cor24-macrolisp",
+                description: "Tiny Macro Lisp REPL. Write and evaluate Lisp expressions that run on COR24 hardware.",
+                status: DemoStatus::Active,
+                tags: &["Interpreter", "Lisp"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+        ],
     },
-    DemoEntry {
-        name: "Macro Lisp",
-        slug: "web-sw-cor24-macrolisp",
-        description: "Tiny Macro Lisp REPL. Write and evaluate Lisp expressions that run on COR24 hardware.",
-        status: DemoStatus::Active,
-        tags: &["Interpreter", "Lisp"],
-        is_this_site: false,
+    Category {
+        id: "native-compilers",
+        label: "Native Compilers",
+        items: &[
+            DemoEntry {
+                name: "PL/SW IDE",
+                slug: "web-sw-cor24-plsw",
+                description: "PL/SW development environment for the PL/I-inspired PL/SW language running on COR24.",
+                status: DemoStatus::Active,
+                tags: &["Compiler", "PL/SW"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "Native C Compiler",
+                slug: "sw-cor24-c-compiler",
+                description: "Native C compiler that runs on COR24 hardware. Long-term goal for self-hosted C.",
+                status: DemoStatus::LongTerm,
+                tags: &["Compiler", "C"],
+                has_live_demo: false,
+                is_this_site: false,
+            },
+        ],
     },
-    DemoEntry {
-        name: "Pascal Demos",
-        slug: "web-sw-cor24-pascal",
-        description: "Pascal compiler demos. Compile Pascal source to P-code and COR24 assembly.",
-        status: DemoStatus::Active,
-        tags: &["Compiler", "Pascal"],
-        is_this_site: false,
+    Category {
+        id: "pcode-vm",
+        label: "P-code VM & Tools",
+        items: &[DemoEntry {
+            name: "P-code VM Debugger",
+            slug: "web-sw-cor24-pcode",
+            description: "Interactive P-code virtual machine debugger with instruction stepping and stack visualization.",
+            status: DemoStatus::Active,
+            tags: &["VM", "Debugger"],
+            has_live_demo: true,
+            is_this_site: false,
+        }],
     },
-    DemoEntry {
-        name: "APL Environment",
-        slug: "web-sw-cor24-apl",
-        description: "APL interpreter with live array operations. Explore APL's concise array notation.",
-        status: DemoStatus::Active,
-        tags: &["Interpreter", "APL"],
-        is_this_site: false,
+    Category {
+        id: "pcode-languages",
+        label: "P-code Languages",
+        items: &[
+            DemoEntry {
+                name: "Pascal Compiler",
+                slug: "web-sw-cor24-pascal",
+                description: "Pascal compiler. Compile Pascal source to P-code and COR24 assembly.",
+                status: DemoStatus::Active,
+                tags: &["Compiler", "Pascal"],
+                has_live_demo: true,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "BASIC Interpreter",
+                slug: "sw-cor24-basic",
+                description: "BASIC interpreter for COR24. Work in progress.",
+                status: DemoStatus::Wip,
+                tags: &["Interpreter", "BASIC"],
+                has_live_demo: false,
+                is_this_site: false,
+            },
+        ],
     },
-    DemoEntry {
-        name: "Forth Debugger",
-        slug: "web-sw-cor24-forth",
-        description: "Forth language debugger with dictionary browsing, stack inspection, and word definitions.",
-        status: DemoStatus::Active,
-        tags: &["Debugger", "Forth"],
-        is_this_site: false,
-    },
-    DemoEntry {
-        name: "PL/SW IDE",
-        slug: "web-sw-cor24-plsw",
-        description: "PL/SW development environment for the PL/I-inspired PL/SW language running on COR24.",
-        status: DemoStatus::Active,
-        tags: &["IDE", "Compiler"],
-        is_this_site: false,
-    },
-    DemoEntry {
-        name: "Ecosystem Hub",
-        slug: "web-sw-cor24-demos",
-        description: "This landing page. Documentation hub and directory for the entire COR24 ecosystem.",
-        status: DemoStatus::Active,
-        tags: &["Docs"],
-        is_this_site: true,
+    Category {
+        id: "misc",
+        label: "Miscellaneous",
+        items: &[
+            DemoEntry {
+                name: "Source-Level Debugger",
+                slug: "sw-cor24-debugger",
+                description: "Source-level debugger for COR24. Currently in design phase.",
+                status: DemoStatus::Design,
+                tags: &["Debugger"],
+                has_live_demo: false,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "Resident Monitor",
+                slug: "sw-cor24-monitor",
+                description: "Resident monitor and service processor. Assembly + C, currently in testing.",
+                status: DemoStatus::Testing,
+                tags: &["System", "Monitor"],
+                has_live_demo: false,
+                is_this_site: false,
+            },
+            DemoEntry {
+                name: "SWS Scripting",
+                slug: "sw-cor24-script",
+                description: "SWS scripting language (Tcl-like). Currently in testing.",
+                status: DemoStatus::Testing,
+                tags: &["Interpreter", "Scripting"],
+                has_live_demo: false,
+                is_this_site: false,
+            },
+        ],
     },
 ];
 
@@ -111,8 +213,10 @@ pub fn tag_class(tag: &str) -> &'static str {
         "Interpreter" => "tag-interpreter",
         "Debugger" => "tag-debugger",
         "VM" => "tag-vm",
+        "Emulator" => "tag-vm",
         "Docs" => "tag-docs",
-        "C" | "Lisp" | "Pascal" | "APL" | "Forth" => "tag-lang",
+        "System" | "Monitor" | "Scripting" => "tag-default",
+        "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" => "tag-lang",
         _ => "tag-default",
     }
 }
@@ -120,16 +224,20 @@ pub fn tag_class(tag: &str) -> &'static str {
 pub fn status_badge_class(status: &DemoStatus) -> &'static str {
     match status {
         DemoStatus::Active => "badge-active",
-        DemoStatus::Beta => "badge-beta",
-        DemoStatus::Planned => "badge-planned",
+        DemoStatus::Wip => "badge-wip",
+        DemoStatus::Testing => "badge-testing",
+        DemoStatus::Design => "badge-design",
+        DemoStatus::LongTerm => "badge-longterm",
     }
 }
 
 pub fn status_label(status: &DemoStatus) -> &'static str {
     match status {
         DemoStatus::Active => "Active",
-        DemoStatus::Beta => "Beta",
-        DemoStatus::Planned => "Planned",
+        DemoStatus::Wip => "WIP",
+        DemoStatus::Testing => "Testing",
+        DemoStatus::Design => "Design",
+        DemoStatus::LongTerm => "Long-term",
     }
 }
 
@@ -138,66 +246,96 @@ mod tests {
     use super::*;
 
     #[test]
-    fn demo_count_is_nine() {
-        assert_eq!(all_demos().len(), 9);
+    fn category_count() {
+        assert_eq!(all_categories().len(), 7);
     }
 
     #[test]
-    fn all_demos_have_required_fields() {
-        for d in all_demos() {
-            assert!(!d.name.is_empty(), "demo name is empty");
-            assert!(d.slug.starts_with("web-sw-cor24-"), "bad slug: {}", d.slug);
-            assert!(
-                !d.description.is_empty(),
-                "description empty for {}",
-                d.name
-            );
-            assert!(!d.tags.is_empty(), "no tags for {}", d.name);
-        }
+    fn category_labels_ordered() {
+        let labels: Vec<&str> = all_categories().iter().map(|c| c.label).collect();
+        assert_eq!(
+            labels,
+            vec![
+                "Emulator",
+                "Cross-Assembler / Cross-Compiler",
+                "REPLs",
+                "Native Compilers",
+                "P-code VM & Tools",
+                "P-code Languages",
+                "Miscellaneous",
+            ]
+        );
     }
 
     #[test]
-    fn live_urls_valid() {
-        for d in all_demos() {
-            let url = d.live_url();
-            assert!(url.starts_with("https://sw-embed.github.io/"));
-            assert!(url.ends_with('/'));
+    fn all_entries_have_required_fields() {
+        for cat in all_categories() {
+            for d in cat.items {
+                assert!(!d.name.is_empty(), "name empty in {}", cat.label);
+                assert!(!d.slug.is_empty(), "slug empty for {}", d.name);
+                assert!(
+                    !d.description.is_empty(),
+                    "description empty for {}",
+                    d.name
+                );
+                assert!(!d.tags.is_empty(), "no tags for {}", d.name);
+            }
         }
     }
 
     #[test]
     fn repo_urls_valid() {
-        for d in all_demos() {
-            let url = d.repo_url();
-            assert!(url.starts_with("https://github.com/sw-embed/"));
+        for cat in all_categories() {
+            for d in cat.items {
+                let url = d.repo_url();
+                assert!(
+                    url.starts_with("https://github.com/sw-embed/"),
+                    "bad repo url for {}: {}",
+                    d.name,
+                    url
+                );
+            }
         }
     }
 
     #[test]
-    fn this_site_flag() {
-        let hub = all_demos().iter().find(|d| d.slug == "web-sw-cor24-demos");
-        assert!(hub.is_some());
-        assert!(hub.unwrap().is_this_site);
-        assert_eq!(all_demos().iter().filter(|d| !d.is_this_site).count(), 8);
+    fn live_urls_valid() {
+        for cat in all_categories() {
+            for d in cat.items {
+                if d.has_live_demo && !d.is_this_site {
+                    let url = d.live_url();
+                    assert!(
+                        url.starts_with("https://sw-embed.github.io/"),
+                        "bad live url for {}: {}",
+                        d.name,
+                        url
+                    );
+                }
+            }
+        }
     }
 
     #[test]
-    fn tag_class_known() {
+    fn status_helpers() {
+        assert_eq!(status_label(&DemoStatus::Active), "Active");
+        assert_eq!(status_label(&DemoStatus::Wip), "WIP");
+        assert_eq!(status_label(&DemoStatus::Testing), "Testing");
+        assert_eq!(status_label(&DemoStatus::Design), "Design");
+        assert_eq!(status_label(&DemoStatus::LongTerm), "Long-term");
+    }
+
+    #[test]
+    fn tag_class_coverage() {
         assert_eq!(tag_class("IDE"), "tag-ide");
         assert_eq!(tag_class("Compiler"), "tag-compiler");
         assert_eq!(tag_class("Interpreter"), "tag-interpreter");
         assert_eq!(tag_class("Debugger"), "tag-debugger");
         assert_eq!(tag_class("VM"), "tag-vm");
         assert_eq!(tag_class("Docs"), "tag-docs");
-        assert_eq!(tag_class("C"), "tag-lang");
-        assert_eq!(tag_class("Assembler"), "tag-compiler");
+        assert_eq!(tag_class("BASIC"), "tag-lang");
+        assert_eq!(tag_class("PL/SW"), "tag-lang");
+        assert_eq!(tag_class("Emulator"), "tag-vm");
+        assert_eq!(tag_class("Monitor"), "tag-default");
         assert_eq!(tag_class("Unknown"), "tag-default");
-    }
-
-    #[test]
-    fn status_helpers() {
-        assert_eq!(DemoStatus::Active.as_str(), "Active");
-        assert_eq!(status_badge_class(&DemoStatus::Beta), "badge-beta");
-        assert_eq!(status_label(&DemoStatus::Planned), "Planned");
     }
 }
