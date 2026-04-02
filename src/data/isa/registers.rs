@@ -1,7 +1,6 @@
 #[derive(Clone, PartialEq, Debug)]
 pub struct RegisterInfo {
     pub name: &'static str,
-    pub alias: &'static str,
     pub number: u8,
     pub purpose: &'static str,
     pub can_load_dest: bool,
@@ -11,14 +10,13 @@ pub struct RegisterInfo {
     pub notes: &'static str,
 }
 
-pub fn all_registers() -> &'static [RegisterInfo; 8] {
+pub fn all_registers() -> &'static [RegisterInfo; 7] {
     &REGISTERS
 }
 
-static REGISTERS: [RegisterInfo; 8] = [
+static REGISTERS: [RegisterInfo; 7] = [
     RegisterInfo {
         name: "r0",
-        alias: "-",
         number: 0,
         purpose: "General purpose, return value",
         can_load_dest: true,
@@ -29,7 +27,6 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "r1",
-        alias: "-",
         number: 1,
         purpose: "General purpose, link register (jal target)",
         can_load_dest: true,
@@ -40,7 +37,6 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "r2",
-        alias: "-",
         number: 2,
         purpose: "General purpose",
         can_load_dest: true,
@@ -51,7 +47,6 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "fp",
-        alias: "-",
         number: 3,
         purpose: "Frame pointer for stack-frame locals",
         can_load_dest: false,
@@ -62,7 +57,6 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "sp",
-        alias: "-",
         number: 4,
         purpose: "Stack pointer (grows downward)",
         can_load_dest: false,
@@ -72,19 +66,7 @@ static REGISTERS: [RegisterInfo; 8] = [
         notes: "Init 0xFEEC00; add imm8 target only; not load/store base",
     },
     RegisterInfo {
-        name: "z",
-        alias: "c",
-        number: 5,
-        purpose: "Hardwired zero / condition flag",
-        can_load_dest: false,
-        can_alu_dest: false,
-        can_push_pop: false,
-        can_base_reg: false,
-        notes: "Readable in compares (ceq r0, z); 'c' alias reads condition flag via mov",
-    },
-    RegisterInfo {
         name: "iv",
-        alias: "-",
         number: 6,
         purpose: "Interrupt vector (ISR address)",
         can_load_dest: false,
@@ -95,7 +77,6 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "ir",
-        alias: "-",
         number: 7,
         purpose: "Interrupt return (saved PC)",
         can_load_dest: false,
@@ -112,18 +93,15 @@ mod tests {
 
     #[test]
     fn register_count() {
-        assert_eq!(all_registers().len(), 8);
+        assert_eq!(all_registers().len(), 7);
     }
 
     #[test]
-    fn register_numbers_sequential() {
-        for (i, reg) in all_registers().iter().enumerate() {
-            assert_eq!(
-                reg.number as usize, i,
-                "register number mismatch at index {}",
-                i
-            );
-        }
+    fn register_numbers_unique() {
+        let mut nums: Vec<u8> = all_registers().iter().map(|r| r.number).collect();
+        nums.sort();
+        let unique: std::collections::HashSet<_> = nums.iter().copied().collect();
+        assert_eq!(nums.len(), unique.len(), "duplicate register numbers");
     }
 
     #[test]
