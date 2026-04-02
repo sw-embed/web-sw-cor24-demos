@@ -7,14 +7,7 @@ pub fn home_page() -> Html {
 
 #[function_component(IsaPage)]
 pub fn isa_page() -> Html {
-    html! {
-        <section class="page-section">
-            <h1>{"COR24 ISA Documentation"}</h1>
-            <div class="placeholder">
-                <p>{"ISA documentation coming soon."}</p>
-            </div>
-        </section>
-    }
+    html! { <crate::components::isa::IsaPage /> }
 }
 
 #[function_component(DemosPage)]
