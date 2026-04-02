@@ -1,8 +1,11 @@
 use yew::prelude::*;
 
 use crate::data::isa::IsaSection;
+
+use instructions::InstructionsSection;
 use registers::RegistersSection;
 
+mod instructions;
 mod registers;
 
 fn sidebar_nav() -> Html {
@@ -42,12 +45,7 @@ pub fn isa_page() -> Html {
                 {sidebar_nav()}
                 <div class="isa-content">
                     <RegistersSection />
-                    <section id="instructions" class="isa-section">
-                        <h2 class="section-heading">{"Instruction Set"}</h2>
-                        <div class="placeholder">
-                            <p>{"Instruction set documentation coming in next step."}</p>
-                        </div>
-                    </section>
+                    <InstructionsSection />
                     <section id="memory-map" class="isa-section">
                         <h2 class="section-heading">{"Memory Map"}</h2>
                         <div class="placeholder">
