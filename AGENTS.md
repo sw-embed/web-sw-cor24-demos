@@ -57,8 +57,18 @@ If anything fails, fix the underlying problem -- NEVER suppress, allow, or work 
 10. If Phase B made code changes, re-run Phase A steps 1-4 (fmt, clippy, test, wasm check).
     Fix any regressions. Commit if needed.
 
+#### Phase B++: UI build verification (MANDATORY)
+11. `./scripts/build.sh` -- Full Trunk release build. This catches template errors,
+    broken html! macro usage, and other issues that `cargo check --target wasm32-unknown-unknown`
+    does NOT catch. Fix any build failures.
+12. **Ask the user to review the UI** -- After a successful build, present the build
+    success to the user and ask them to review the UI at `./scripts/serve.sh` (or by
+    opening the built dist/ in a browser). Do NOT proceed to commit until the user
+    approves. If the user reports visual issues, fix them and rebuild.
+
 #### Phase C: Push
-11. `git push` -- Every completed step must be pushed to GitHub
+13. **Commit** the UI build fixes (if any).
+14. `git push` -- Every completed step must be pushed to GitHub
 
 ### 5. COMPLETE (LAST thing, after committing and pushing)
 ```bash
@@ -168,6 +178,45 @@ Running bare `trunk serve` or `trunk build` with wrong flags breaks the build.
 - **pages/** directory committed to git, deployed via GitHub Pages
 - No path dependencies on other sw-embed repos (this is a documentation-only site)
 
+## CRITICAL: Scaling Rules -- Always Split, Never Consolidate
+
+When a module, crate, or component grows too large, the answer is ALWAYS to split
+and distribute, never to consolidate or merge. The goal is a loosely-coupled,
+modular, testable architecture with small, focused, easy-to-maintain units.
+
+### Scaling Hierarchy (bottom-up)
+
+| Signal | Action |
+|--------|--------|
+| Too many functions in a module | Add a new module and distribute functions across it |
+| Too many modules in a crate | Add a new workspace crate and move modules into it |
+| Too many crates in a workspace | Add a new top-level component directory |
+
+### Component Architecture
+
+- Top-level repo root contains `./scripts/` (build-all, serve) and `./components/`
+- `./components/` exists when there are 2 or more components
+- Each component is its own directory under `./components/`
+- Each component is a Cargo workspace with up to 5 crates
+- Crates within a component share a focused domain (e.g., data, rendering, routing)
+
+### Code Style (enforced by sw-checklist)
+
+- **File size limit**: 500 lines per file (prefer 200-300)
+- **Function size limit**: 50 lines (prefer 10-30)
+- **Module function count**: max 7 functions per module (warn at 4)
+- **Crate module count**: max 7 modules per crate (warn at 5)
+- **Pure functions**: prefer stateless pure functions that take composed structs
+- **Separate test modules**: every module with logic gets a `#[cfg(test)] mod tests`
+- **Composed structs**: pass data as typed structs, not loose tuples or many params
+
+### Anti-patterns (NEVER do these)
+
+- Do NOT merge modules to reduce module count -- split into crates instead
+- Do NOT inline helper functions to reduce function count -- extract to new modules
+- Do NOT add `#[allow(...)]` to suppress warnings -- fix the underlying issue
+- Do NOT flatten namespaces to "simplify" -- prefer deep, focused module trees
+
 ## Key Conventions
 
 - Monospace font stack: JetBrains Mono, Fira Code, Cascadia Code
@@ -175,8 +224,6 @@ Running bare `trunk serve` or `trunk build` with wrong flags breaks the build.
 - Responsive design for desktop and mobile
 - No JavaScript outside of WASM bootstrap
 - Release profile: `opt-level = "z"`, `lto = true` for minimal WASM size
-- File size limit: 500 lines per file (prefer 200-300)
-- Function size limit: 50 lines (prefer 10-30)
 
 ## Available Task Types
 
