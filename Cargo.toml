@@ -1,0 +1,27 @@
+[package]
+name = "web-sw-cor24-demos"
+version = "0.1.0"
+edition = "2024"
+authors = ["Michael A Wright"]
+license = "MIT"
+description = "COR24 Ecosystem Landing Page & Documentation Hub"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+yew = { version = "0.21", features = ["csr"] }
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = [
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "History",
+    "ScrollIntoViewOptions",
+] }
+console_error_panic_hook = "0.1"
+
+[profile.release]
+opt-level = "z"
+lto = true
