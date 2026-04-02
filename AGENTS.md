@@ -95,6 +95,9 @@ Future work belongs in the NEXT step, not this one.
 - **Only use scripts/*.sh to build and serve** -- never run `trunk` commands
   directly. Never use ad-hoc servers. All build and serve operations go
   through the shell scripts in scripts/.
+- **ISA register naming** -- COR24 registers are named, not numbered. Use
+  fp, sp, z, ir, iv (not r3, r4, r5, r6, r7). The ISA documentation must
+  never expose raw register numbers above r2.
 
 ## Useful Commands
 

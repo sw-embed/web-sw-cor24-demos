@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Software Wrighter Lab -- COR24 Tools & Demos</title>
     <link rel="icon" href="favicon.ico">
+    
     <link rel="stylesheet" href="/web-sw-cor24-demos/theme-cd6da9b93d922681.css" integrity="sha384-ZqoeLLZ+pyIFH4HAuLp3nHR3tQsYGzvxRwuXXAM/pVD3QQjSlNQfzzzu6SszyY5R"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/layout-1fb798d6c783653d.css" integrity="sha384-WFoRYpX0ktGEavUuYoI0iz+eCTRD7V0whyBxNajlfkROQCVZFC+J4Qx1EgTlnQHd"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/components-e714b69169a1e86e.css" integrity="sha384-F0nBOTQlPkgiy4Obp2GDre3QkS56M/itgiTCEqrJTw1Xq6a65EGl+l+2JTCbQY6j"/>
@@ -13,8 +14,8 @@
     
     
 <script type="module">
-import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-674d521b1ae7dbf2.js';
-const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-674d521b1ae7dbf2_bg.wasm' });
+import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-542162a31782ac95.js';
+const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-542162a31782ac95_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -23,7 +24,7 @@ window.wasmBindings = bindings;
 dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
 </script>
-<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-674d521b1ae7dbf2.js" crossorigin="anonymous" integrity="sha384-wk6fa6KKjYsUTyK8O92m0vHE2bqTUtdO8Th5bzTJswWe6ifymnBOd0Fx0/olZ2ug"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-674d521b1ae7dbf2_bg.wasm" crossorigin="anonymous" integrity="sha384-R2MSC9/OrYkjkilA3t3CMLohvMlWACtZudKTrofZeZx9PrVjmUKjm1sr9G5ru5Ps" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-542162a31782ac95.js" crossorigin="anonymous" integrity="sha384-wk6fa6KKjYsUTyK8O92m0vHE2bqTUtdO8Th5bzTJswWe6ifymnBOd0Fx0/olZ2ug"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-542162a31782ac95_bg.wasm" crossorigin="anonymous" integrity="sha384-znLBEdsGdX7o8WP8vcCqdO60DuITxgplh2sTYDdBMrt/ZshA01KXutwox3w709qm" as="fetch" type="application/wasm"></head>
 <body>
 </body>
 </html>

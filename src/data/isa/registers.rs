@@ -51,7 +51,7 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "fp",
-        alias: "r3",
+        alias: "-",
         number: 3,
         purpose: "Frame pointer for stack-frame locals",
         can_load_dest: false,
@@ -62,7 +62,7 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "sp",
-        alias: "r4",
+        alias: "-",
         number: 4,
         purpose: "Stack pointer (grows downward)",
         can_load_dest: false,
@@ -73,7 +73,7 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "z",
-        alias: "r5 / c",
+        alias: "c",
         number: 5,
         purpose: "Hardwired zero / condition flag",
         can_load_dest: false,
@@ -84,7 +84,7 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "iv",
-        alias: "r6",
+        alias: "-",
         number: 6,
         purpose: "Interrupt vector (ISR address)",
         can_load_dest: false,
@@ -95,7 +95,7 @@ static REGISTERS: [RegisterInfo; 8] = [
     },
     RegisterInfo {
         name: "ir",
-        alias: "r7",
+        alias: "-",
         number: 7,
         purpose: "Interrupt return (saved PC)",
         can_load_dest: false,

@@ -93,7 +93,7 @@ fn constraints_details() -> Html {
                     {" sets interrupt vector."}
                 </li>
                 <li>
-                    <strong>{"z / c (r5):"}</strong>
+                    <strong>{"z / c:"}</strong>
                     {" Hardwired zero. "}
                     <code>{"mov r0, c"}</code>
                     {" reads condition flag (set by ceq/cls/clu)."}

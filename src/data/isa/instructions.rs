@@ -124,7 +124,7 @@ static INSTRUCTIONS: [InstructionInfo; 34] = [
         operands: "Ra, imm24",
         size: 4,
         category: InstrCategory::Load,
-        description: "Load address: Ra = imm24 (24-bit LE). Ra=r7 encodes jmp imm24",
+        description: "Load address: Ra = imm24 (24-bit LE). Ra=ir encodes jmp imm24",
     },
     InstructionInfo {
         mnemonic: "lc",
@@ -222,7 +222,7 @@ static INSTRUCTIONS: [InstructionInfo; 34] = [
         operands: "(Ra)",
         size: 1,
         category: InstrCategory::CallReturn,
-        description: "Jump register: PC = Ra. jmp (r7) also clears interrupt-in-service",
+        description: "Jump register: PC = Ra. jmp (ir) also clears interrupt-in-service",
     },
     InstructionInfo {
         mnemonic: "push",

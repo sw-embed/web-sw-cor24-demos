@@ -71,7 +71,7 @@ fn spec_table() -> Html {
                     <tr><td>{"SRAM"}</td><td>{"1 MB on-board"}</td></tr>
                     <tr><td>{"EBR"}</td><td>{"3 KB embedded block RAM (stack)"}</td></tr>
                     <tr><td>{"I/O"}</td><td>{"UART, GPIO (SPI/I2C), button, LED"}</td></tr>
-                    <tr><td>{"Interrupts"}</td><td>{"UART RX interrupt, auto-entry via jal r7,(r6)"}</td></tr>
+                    <tr><td>{"Interrupts"}</td><td>{"UART RX interrupt, auto-entry via jal (iv)"}</td></tr>
                     <tr><td>{"Condition flags"}</td><td>{"Single C flag (set by compare, tested by branch)"}</td></tr>
                 </tbody>
             </table>
