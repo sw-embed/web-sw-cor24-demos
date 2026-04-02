@@ -159,6 +159,7 @@ Edition 2024 for all Rust code. Never suppress warnings.
 ./scripts/serve.sh             # Dev server with hot reload
 ./scripts/build-pages.sh       # Release build to pages/ for GitHub Pages
 ./scripts/build.sh             # Release build to dist/
+./scripts/ui-test.sh           # playwright-cli smoke tests + screenshots
 cargo clippy --all-targets --all-features -- -D warnings  # Lint
 cargo fmt --all                # Format
 cargo check --target wasm32-unknown-unknown  # Full WASM check
