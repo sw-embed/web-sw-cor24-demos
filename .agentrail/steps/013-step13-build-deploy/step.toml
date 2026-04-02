@@ -1,0 +1,12 @@
+number = 13
+slug = "step13-build-deploy"
+status = "pending"
+description = """
+Phase 7, Step 13: Build + Deploy
+
+Final build, quality gate, and deployment.
+..."""
+role = "production"
+context_files = []
+created_at = "2026-04-02T10:37:42"
+task_type = "pre-commit"

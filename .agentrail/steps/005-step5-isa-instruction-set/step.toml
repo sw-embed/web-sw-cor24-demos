@@ -1,0 +1,11 @@
+number = 5
+slug = "step5-isa-instruction-set"
+status = "pending"
+description = """
+Phase 3, Step 5: ISA Instruction Set
+
+Add the complete COR24 instruction set ..."""
+role = "production"
+context_files = []
+created_at = "2026-04-02T10:36:46"
+task_type = "content"

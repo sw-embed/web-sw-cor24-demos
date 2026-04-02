@@ -1,0 +1,12 @@
+number = 1
+slug = "step1-project-scaffold"
+status = "completed"
+description = """
+Phase 1, Step 1: Rust/Yew/Trunk Project Init
+
+Set up the complete project sca..."""
+role = "production"
+context_files = []
+created_at = "2026-04-02T10:36:16"
+completed_at = "2026-04-02T10:42:00"
+task_type = "rust-project-init"

@@ -1,0 +1,11 @@
+number = 11
+slug = "step11-ecosystem-page"
+status = "pending"
+description = """
+Phase 6, Step 11: Ecosystem Page + Repository Map
+
+Build the ecosystem overvi..."""
+role = "production"
+context_files = []
+created_at = "2026-04-02T10:37:28"
+task_type = "content"
