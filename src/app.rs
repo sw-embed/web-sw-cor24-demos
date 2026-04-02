@@ -2,7 +2,7 @@ use wasm_bindgen::JsCast;
 use wasm_bindgen::closure::Closure;
 use yew::prelude::*;
 
-use crate::components::{footer::Footer, header::Header};
+use crate::components::chrome::{Footer, Header};
 use crate::pages;
 
 #[derive(Clone, PartialEq, Debug)]
@@ -56,7 +56,7 @@ impl Route {
     }
 }
 
-fn navigate_to(target: Route) {
+pub fn navigate_to(target: Route) {
     let path = target.path();
     let hash = if path.is_empty() {
         "#".to_string()

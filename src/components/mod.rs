@@ -1,3 +1,2 @@
-pub mod footer;
-pub mod header;
+pub mod chrome;
 pub mod home;
