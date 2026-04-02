@@ -5,6 +5,11 @@ pub fn home_page() -> Html {
     html! { <crate::components::home::HomePage /> }
 }
 
+#[function_component(AboutPage)]
+pub fn about_page() -> Html {
+    html! { <crate::components::about::AboutPage /> }
+}
+
 #[function_component(IsaPage)]
 pub fn isa_page() -> Html {
     html! { <crate::components::isa::IsaPage /> }

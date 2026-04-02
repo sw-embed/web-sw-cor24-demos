@@ -4,7 +4,7 @@ use yew::prelude::*;
 pub fn hero_section() -> Html {
     html! {
         <div class="hero">
-            <h1 class="hero-title">{"COR24 Ecosystem"}</h1>
+            <h1 class="hero-title">{"Software Wrighter COR24 Tools Project"}</h1>
             <p class="hero-tagline">{"24-bit RISC for FPGA embedded systems"}</p>
             <p class="hero-desc">
                 {"A complete computing platform — from ISA specification and silicon synthesis \

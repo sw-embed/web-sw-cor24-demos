@@ -83,6 +83,17 @@ static CATEGORIES: [Category; 7] = [
                 source_label: "Rust Source",
                 badge_image: "c-badge.png",
             },
+            DemoEntry {
+                name: "Rust MSP430 Translator",
+                slug: "web-sw-cor24-rust",
+                description: "Experimental Rust-to-COR24 pipeline. Compile a subset of Rust via MSP430 translation to COR24 assembly.",
+                status: DemoStatus::Wip,
+                tags: &["Compiler", "Rust"],
+                has_live_demo: true,
+                is_this_site: false,
+                source_label: "Rust Source",
+                badge_image: "rust-gear-logo-red.png",
+            },
         ],
     },
     Category {
@@ -246,7 +257,7 @@ pub fn tag_class(tag: &str) -> &'static str {
         "Emulator" => "tag-vm",
         "Docs" => "tag-docs",
         "System" | "Monitor" | "Scripting" => "tag-default",
-        "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" => "tag-lang",
+        "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" | "Rust" => "tag-lang",
         _ => "tag-default",
     }
 }

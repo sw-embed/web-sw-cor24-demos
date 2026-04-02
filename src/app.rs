@@ -8,6 +8,7 @@ use crate::pages;
 #[derive(Clone, PartialEq, Debug)]
 pub enum Route {
     Home,
+    About,
     Isa,
     Demos,
     Toolchain,
@@ -18,6 +19,7 @@ pub enum Route {
 impl Route {
     pub fn from_hash(hash: &str) -> Self {
         match hash.trim_start_matches('#').trim_start_matches('/') {
+            "about" => Self::About,
             "isa" => Self::Isa,
             "demos" => Self::Demos,
             "toolchain" => Self::Toolchain,
@@ -30,6 +32,7 @@ impl Route {
     pub fn path(&self) -> &'static str {
         match self {
             Self::Home => "",
+            Self::About => "about",
             Self::Isa => "isa",
             Self::Demos => "demos",
             Self::Toolchain => "toolchain",
@@ -41,6 +44,7 @@ impl Route {
     pub fn label(&self) -> &'static str {
         match self {
             Self::Home => "Home",
+            Self::About => "About",
             Self::Isa => "ISA",
             Self::Demos => "Demos",
             Self::Toolchain => "Toolchain",
@@ -52,6 +56,7 @@ impl Route {
     pub fn all() -> &'static [Route] {
         &[
             Self::Home,
+            Self::About,
             Self::Isa,
             Self::Demos,
             Self::Toolchain,
@@ -76,6 +81,7 @@ pub fn navigate_to(target: Route) {
 fn route_page(route: &Route) -> Html {
     match route {
         Route::Home => html! { <pages::HomePage /> },
+        Route::About => html! { <pages::AboutPage /> },
         Route::Isa => html! { <pages::IsaPage /> },
         Route::Demos => html! { <pages::DemosPage /> },
         Route::Toolchain => html! { <pages::ToolchainPage /> },
