@@ -29,10 +29,15 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
     "n/a"
 }
 
-static COLUMNS: [LangColumn; 8] = [
+static COLUMNS: [LangColumn; 9] = [
     LangColumn {
         id: "apl",
         label: "APL",
+        default_collapsed: false,
+    },
+    LangColumn {
+        id: "a24",
+        label: "a24",
         default_collapsed: false,
     },
     LangColumn {
@@ -78,6 +83,7 @@ static ROWS: [IdiomRow; 5] = [
         label: "Arithmetic",
         cells: &[
             ("apl", "X + Y \u{00d7} Z"),
+            ("a24", "LDA A, X\n  ADD A, Y\n  MUL B, Z\n  STA X"),
             ("basic", "X = A + B * C"),
             ("forth", "X Y + Z *"),
             ("fortran", "n/a"),
@@ -92,6 +98,7 @@ static ROWS: [IdiomRow; 5] = [
         label: "Assignment",
         cells: &[
             ("apl", "X \u{2190} 42"),
+            ("a24", "LDA #42\n  STA X"),
             ("basic", "LET X = 42"),
             ("forth", "42 VARIABLE X"),
             ("fortran", "n/a"),
@@ -106,6 +113,7 @@ static ROWS: [IdiomRow; 5] = [
         label: "Booleans",
         cells: &[
             ("apl", "X > 0"),
+            ("a24", "LDA X\n  CMP #0"),
             ("basic", "X > 0"),
             ("forth", "X 0 >"),
             ("fortran", "n/a"),
@@ -120,6 +128,7 @@ static ROWS: [IdiomRow; 5] = [
         label: "Conditionals",
         cells: &[
             ("apl", "\u{2192}(X>0) 'yes' 'no'"),
+            ("a24", "LDA X\n  CMP #0\n  BNE yes\n  ; no path"),
             ("basic", "IF X > 0 THEN PRINT \"yes\""),
             ("forth", "X 0 > IF CR .\" yes\" THEN"),
             ("fortran", "n/a"),
@@ -134,6 +143,7 @@ static ROWS: [IdiomRow; 5] = [
         label: "I/O (switch, LED)",
         cells: &[
             ("apl", "n/a"),
+            ("a24", "IN 1\n  CMP #1\n  BNE skip\n  LDA #1\n  OUT 2"),
             ("basic", "IF IN(1) = 1 THEN OUT 2, 1"),
             ("forth", "IN@ IF 2 OUT@ THEN"),
             ("fortran", "n/a"),
@@ -151,7 +161,7 @@ mod tests {
 
     #[test]
     fn column_count() {
-        assert_eq!(columns().len(), 8);
+        assert_eq!(columns().len(), 9);
     }
 
     #[test]
