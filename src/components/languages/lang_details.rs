@@ -1,6 +1,22 @@
+use wasm_bindgen::JsCast;
+use web_sys::HtmlElement;
 use yew::prelude::*;
 
 use crate::data::lang_descriptions;
+
+fn scroll_to(section_id: &str) -> Callback<MouseEvent> {
+    let id = section_id.to_string();
+    Callback::from(move |e: MouseEvent| {
+        e.prevent_default();
+        if let Some(window) = web_sys::window()
+            && let Some(doc) = window.document()
+            && let Some(el) = doc.get_element_by_id(&id)
+        {
+            let el: &HtmlElement = el.dyn_ref().unwrap();
+            el.scroll_into_view();
+        }
+    })
+}
 
 #[function_component(LangOverview)]
 pub fn lang_overview() -> Html {
@@ -19,12 +35,13 @@ pub fn lang_overview() -> Html {
                 </thead>
                 <tbody>
                     {summaries.iter().map(|s| {
+                        let onclick = scroll_to(s.section_id);
                         html! {
                             <tr>
                                 <td class="lang-overview-name">
-                                    <a href={format!("#{}", s.section_id)} class="lang-anchor">
+                                    <button class="lang-link-btn" onclick={onclick}>
                                         {s.label}
-                                    </a>
+                                    </button>
                                 </td>
                                 <td class="lang-overview-inspired">{s.inspired_by}</td>
                                 <td class="lang-overview-desc">{s.one_liner}</td>
@@ -45,12 +62,13 @@ pub fn lang_details() -> Html {
         <div class="lang-details">
             <h2>{"Language Details"}</h2>
             {details.iter().map(|d| {
+                let onclick = scroll_to(d.section_id);
                 html! {
                     <section class="lang-detail-section" id={d.section_id}>
                         <h3 class="lang-detail-title">
-                            <a href={format!("#{}", d.section_id)} class="lang-anchor">
+                            <button class="lang-link-btn" onclick={onclick}>
                                 {d.label}
-                            </a>
+                            </button>
                             <span class="lang-detail-inspired-by">
                                 {format!(" ({})", d.inspired_by)}
                             </span>
