@@ -2,7 +2,7 @@ use wasm_bindgen::JsCast;
 use web_sys::{Event, HtmlInputElement, HtmlSelectElement, InputEvent};
 use yew::prelude::*;
 
-use super::filter_bar::{CategoryFilter, FilterState, StatusFilter};
+use super::filter_bar::{FilterState, LanguageFilter, StatusFilter};
 
 pub fn on_search(filter: &yew::UseStateHandle<FilterState>) -> Callback<InputEvent> {
     let filter = filter.clone();
@@ -13,15 +13,15 @@ pub fn on_search(filter: &yew::UseStateHandle<FilterState>) -> Callback<InputEve
     })
 }
 
-pub fn on_category(filter: &yew::UseStateHandle<FilterState>) -> Callback<Event> {
+pub fn on_language(filter: &yew::UseStateHandle<FilterState>) -> Callback<Event> {
     let filter = filter.clone();
     Callback::from(move |e: Event| {
         let mut f = (*filter).clone();
         let val = select_value(&e);
-        f.category = if val == "all" {
-            CategoryFilter::All
+        f.language = if val == "all" {
+            LanguageFilter::All
         } else {
-            CategoryFilter::Specific(val)
+            LanguageFilter::Specific(val)
         };
         filter.set(f);
     })
