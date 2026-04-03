@@ -109,30 +109,35 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
         <div class="lang-glyph-section">
             <h4>{"Latin \u{2192} APL Glyph \u{2192} Keyword Mapping"}</h4>
             <p class="lang-glyph-note">
-                {"APL uses concise Unicode glyphs. COR24 APL uses ASCII keyword equivalents (latin column). \
-                   The web UI can display either form via the prettification toggle. \
-                   Symbols with a slash have dual meanings: monadic (prefix) and dyadic (infix)."}
+                {"APL operators have different meanings depending on valence (number of arguments). \
+                   0 args = niladic (read system state), 1 arg = monadic (prefix), 2 args = dyadic (infix)."}
             </p>
-            <table class="lang-glyph-table">
-                <thead>
-                    <tr>
-                        <th>{"Latin"}</th>
-                        <th>{"APL Glyph"}</th>
-                        <th>{"Meaning"}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {entries.iter().map(|row| {
-                        html! {
-                            <tr>
-                                <td><code>{row.latin}</code></td>
-                                <td class="lang-glyph-char">{row.glyph}</td>
-                                <td>{row.meaning}</td>
-                            </tr>
-                        }
-                    }).collect::<Html>()}
-                </tbody>
-            </table>
+            <div class="lang-glyph-scroll">
+                <table class="lang-glyph-table">
+                    <thead>
+                        <tr>
+                            <th>{"Latin"}</th>
+                            <th>{"Glyph"}</th>
+                            <th>{"Niladic"}</th>
+                            <th>{"Monadic"}</th>
+                            <th>{"Dyadic"}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entries.iter().map(|row| {
+                            html! {
+                                <tr>
+                                    <td><code>{row.latin}</code></td>
+                                    <td class="lang-glyph-char">{row.glyph}</td>
+                                    <td>{row.niladic}</td>
+                                    <td>{row.monadic}</td>
+                                    <td>{row.dyadic}</td>
+                                </tr>
+                            }
+                        }).collect::<Html>()}
+                    </tbody>
+                </table>
+            </div>
         </div>
     }
 }
