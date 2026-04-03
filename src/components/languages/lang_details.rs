@@ -12,7 +12,8 @@ pub fn lang_overview() -> Html {
             <table class="lang-overview-table">
                 <thead>
                     <tr>
-                        <th>{"Language"}</th>
+                        <th>{"COR24 Language"}</th>
+                        <th>{"Inspired by"}</th>
                         <th>{"Description"}</th>
                     </tr>
                 </thead>
@@ -25,6 +26,7 @@ pub fn lang_overview() -> Html {
                                         {s.label}
                                     </a>
                                 </td>
+                                <td class="lang-overview-inspired">{s.inspired_by}</td>
                                 <td class="lang-overview-desc">{s.one_liner}</td>
                             </tr>
                         }
@@ -46,7 +48,12 @@ pub fn lang_details() -> Html {
                 html! {
                     <section class="lang-detail-section" id={d.section_id}>
                         <h3 class="lang-detail-title">
-                            <a href={format!("#{}", d.section_id)} class="lang-anchor">{d.label}</a>
+                            <a href={format!("#{}", d.section_id)} class="lang-anchor">
+                                {d.label}
+                            </a>
+                            <span class="lang-detail-inspired-by">
+                                {format!(" ({})", d.inspired_by)}
+                            </span>
                         </h3>
                         <div class="lang-detail-body">
                             <p><strong>{"History: "}</strong>{d.history}</p>

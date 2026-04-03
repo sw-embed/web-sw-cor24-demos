@@ -1361,6 +1361,13 @@
     font-weight: 600;
     color: var(--color-accent);
     white-space: nowrap;
+    width: 7rem;
+}
+
+.lang-overview-inspired {
+    color: var(--color-text-dim);
+    font-style: italic;
+    white-space: nowrap;
     width: 6rem;
 }
 
@@ -1406,6 +1413,12 @@
     font-size: 1.1rem;
     color: var(--color-accent);
     margin-bottom: 0.5rem;
+}
+
+.lang-detail-inspired-by {
+    color: var(--color-text-dim);
+    font-weight: 400;
+    font-style: italic;
 }
 
 .lang-detail-body p {
