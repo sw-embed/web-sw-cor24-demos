@@ -63,7 +63,7 @@ fn main() {
 
     let out = generate(&rows);
     let project_root = find_project_root();
-    let dest = project_root.join("src/data/status_generated.rs");
+    let dest = project_root.join("src/data/status/generated.rs");
     std::fs::write(&dest, &out).expect("failed to write output");
     println!("Generated {}", dest.display());
 }
@@ -78,9 +78,9 @@ fn gh(args: &[&str]) -> String {
 fn fetch_issues(repo: &str) -> u32 {
     let out = gh(&[
         "api",
-        &format!("repos/{ORG}/{repo}"),
+        &format!("repos/{ORG}/{repo}/issues?state=open&per_page=100"),
         "--jq",
-        ".open_issues_count",
+        "length",
     ]);
     out.parse().unwrap_or(0)
 }
