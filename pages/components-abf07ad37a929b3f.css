@@ -738,3 +738,242 @@
     color: var(--color-accent);
     font-weight: 500;
 }
+
+.status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.status-green {
+    background-color: rgba(166, 227, 161, 0.15);
+    color: var(--color-green);
+}
+
+.status-yellow {
+    background-color: rgba(249, 226, 175, 0.15);
+    color: var(--color-yellow);
+}
+
+.status-orange {
+    background-color: rgba(250, 179, 135, 0.15);
+    color: var(--color-peach);
+}
+
+.status-red {
+    background-color: rgba(243, 139, 168, 0.15);
+    color: var(--color-red);
+}
+
+.status-neutral {
+    background-color: rgba(147, 153, 178, 0.15);
+    color: var(--color-text-dim);
+}
+
+.status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-table {
+    font-size: 0.85rem;
+}
+
+.status-group-row {
+    border-top: 2px solid var(--color-border);
+}
+
+.status-group-row:first-child {
+    border-top: none;
+}
+
+.status-group-cell {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-surface);
+}
+
+.status-col {
+    text-align: center;
+    width: 5rem;
+}
+
+.status-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.status-repo code {
+    font-weight: 600;
+    color: var(--color-accent);
+    font-size: 0.82rem;
+}
+
+.status-desc {
+    font-size: 0.82rem;
+    color: var(--color-text-dim);
+    max-width: 18rem;
+}
+
+.status-link {
+    font-size: 1rem;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.15s ease;
+}
+
+.status-link:hover {
+    opacity: 1;
+}
+
+.status-dash {
+    color: var(--color-border);
+}
+
+.status-issues-link {
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.status-issues-link:hover {
+    color: var(--color-accent);
+}
+
+.status-loading {
+    color: var(--color-text-dim);
+    font-style: italic;
+}
+
+.demos-intro {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.demos-filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.demos-search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.demos-search-input:focus {
+    border-color: var(--color-accent);
+}
+
+.demos-search-input::placeholder {
+    color: var(--color-text-dim);
+}
+
+.demos-select {
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.demos-select:focus {
+    border-color: var(--color-accent);
+}
+
+.demos-count {
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1.25rem;
+}
+
+.demos-count-num {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.demos-count-total {
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+.demos-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.demos-empty-text {
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    margin-bottom: 1rem;
+}
+
+.demos-clear-btn {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--border-radius);
+    background-color: transparent;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.demos-clear-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+@media (max-width: 767px) {
+    .demos-filter-bar {
+        flex-direction: column;
+    }
+
+    .demos-search-input {
+        min-width: unset;
+    }
+}
+
+@media (max-width: 767px) {
+    .status-desc {
+        max-width: none;
+        font-size: 0.78rem;
+    }
+
+    .status-col {
+        width: auto;
+    }
+}
