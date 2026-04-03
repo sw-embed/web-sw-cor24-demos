@@ -142,7 +142,7 @@ static ROWS: [IdiomRow; 5] = [
         id: "io",
         label: "I/O (switch, LED)",
         cells: &[
-            ("apl", "qled <- qsw\nqsw"),
+            ("apl", "'MMIO' SVO 242\nSW <- MMIO[0]\nMMIO[0] <- LED"),
             ("a24", "IN 1\n  CMP #1\n  BNE skip\n  LDA #1\n  OUT 2"),
             ("basic", "IF IN(1) = 1 THEN OUT 2, 1"),
             ("forth", "IN@ IF 2 OUT@ THEN"),
