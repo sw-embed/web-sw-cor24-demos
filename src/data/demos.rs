@@ -11,6 +11,7 @@ pub struct DemoEntry {
     pub badge_image: &'static str,
     pub repo: &'static str,
     pub group_id: &'static str,
+    pub live_url_override: Option<&'static str>,
 }
 
 #[derive(Clone, PartialEq, Debug)]
@@ -31,7 +32,11 @@ pub struct Category {
 
 impl DemoEntry {
     pub fn live_url(&self) -> String {
-        format!("https://sw-embed.github.io/{}/", self.slug)
+        if let Some(override_url) = self.live_url_override {
+            override_url.to_string()
+        } else {
+            format!("https://sw-embed.github.io/{}/", self.slug)
+        }
     }
 
     pub fn repo_url(&self) -> String {
@@ -77,6 +82,7 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "asm-badge.png",
                 repo: "sw-cor24-emulator",
                 group_id: "cross-tools",
+                live_url_override: None,
             },
             DemoEntry {
                 name: "COR24 Emulator",
@@ -90,6 +96,7 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "",
                 repo: "sw-cor24-emulator",
                 group_id: "cross-tools",
+                live_url_override: None,
             },
             DemoEntry {
                 name: "P-code VM Debugger",
@@ -103,6 +110,7 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "",
                 repo: "sw-cor24-pcode",
                 group_id: "cross-tools",
+                live_url_override: None,
             },
             DemoEntry {
                 name: "Source-Level Debugger",
@@ -116,6 +124,7 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "",
                 repo: "sw-cor24-debugger",
                 group_id: "cross-tools",
+                live_url_override: None,
             },
             DemoEntry {
                 name: "Resident Monitor",
@@ -129,6 +138,7 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "",
                 repo: "sw-cor24-monitor",
                 group_id: "cross-tools",
+                live_url_override: None,
             },
         ],
     },
@@ -147,6 +157,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "apl-sw-badge.png",
             repo: "sw-cor24-apl",
             group_id: "apl",
+            live_url_override: None,
         }],
     },
     Category {
@@ -164,6 +175,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "basic-badge.png",
             repo: "sw-cor24-basic",
             group_id: "basic",
+            live_url_override: None,
         }],
     },
     Category {
@@ -181,6 +193,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "c-badge.png",
             repo: "sw-cor24-c-compiler",
             group_id: "c",
+            live_url_override: None,
         }],
     },
     Category {
@@ -198,6 +211,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "forth-badge.png",
             repo: "sw-cor24-forth",
             group_id: "forth",
+            live_url_override: None,
         }],
     },
     Category {
@@ -215,6 +229,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "",
             repo: "sw-cor24-fortran",
             group_id: "fortran",
+            live_url_override: None,
         }],
     },
     Category {
@@ -232,6 +247,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "lisp-badge.png",
             repo: "sw-cor24-macrolisp",
             group_id: "lisp",
+            live_url_override: None,
         }],
     },
     Category {
@@ -249,6 +265,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "pascal-badge.png",
             repo: "sw-cor24-pascal",
             group_id: "pascal",
+            live_url_override: None,
         }],
     },
     Category {
@@ -266,6 +283,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "sw-pl-badge2.png",
             repo: "sw-cor24-plsw",
             group_id: "plsw",
+            live_url_override: None,
         }],
     },
     Category {
@@ -274,7 +292,7 @@ static CATEGORIES: [Category; 11] = [
         items: &[DemoEntry {
             name: "Rust MSP430 Translator",
             slug: "web-sw-cor24-rust",
-            description: "Experimental Rust-to-COR24 pipeline. Compile a subset of Rust via MSP430 translation to COR24 assembly.",
+            description: "Experimental Rust-to-COR24 pipeline. Compile a subset of Rust via MSP430 translation to COR24 assembly. (Rust tab)",
             status: DemoStatus::Wip,
             tags: &["Compiler", "Rust"],
             has_live_demo: true,
@@ -283,6 +301,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "rust-gear-logo-red.png",
             repo: "sw-cor24-rust",
             group_id: "rust",
+            live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
         }],
     },
     Category {
@@ -300,6 +319,7 @@ static CATEGORIES: [Category; 11] = [
             badge_image: "sws-badge2.png",
             repo: "sw-cor24-script",
             group_id: "sws",
+            live_url_override: None,
         }],
     },
 ];
