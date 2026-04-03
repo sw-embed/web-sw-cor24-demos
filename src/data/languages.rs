@@ -82,7 +82,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "arithmetic",
         label: "Arithmetic",
         cells: &[
-            ("apl", "X + Y \u{00d7} Z"),
+            ("apl", "X + Y * Z"),
             ("a24", "LDA A, X\n  ADD A, Y\n  MUL B, Z\n  STA X"),
             ("basic", "X = A + B * C"),
             ("forth", "X Y + Z *"),
@@ -97,7 +97,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "assignment",
         label: "Assignment",
         cells: &[
-            ("apl", "X \u{2190} 42"),
+            ("apl", "X <- 42"),
             ("a24", "LDA #42\n  STA X"),
             ("basic", "LET X = 42"),
             ("forth", "42 VARIABLE X"),
@@ -157,7 +157,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "conditionals",
         label: "Conditionals",
         cells: &[
-            ("apl", "\u{2192}(X>0) 'yes' 'no'"),
+            ("apl", "goto (X > 0) / 'yes' 'no'"),
             ("a24", "LDA X\n  CMP #0\n  BNE yes\n  ; no path"),
             ("basic", "IF X > 0 THEN PRINT \"yes\""),
             ("forth", "X 0 > IF CR .\" yes\" THEN"),
@@ -202,7 +202,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "io",
         label: "I/O (switch, LED)",
         cells: &[
-            ("apl", "'MMIO' SVO 242\nSW <- MMIO[0]\nMMIO[0] <- LED"),
+            ("apl", "'MMIO' qsvo 242\nSW <- MMIO[0]\nMMIO[0] <- LED"),
             ("a24", "IN 1\n  CMP #1\n  BNE skip\n  LDA #1\n  OUT 2"),
             ("basic", "IF IN(1) = 1 THEN OUT 2, 1"),
             ("forth", "IN@ IF 2 OUT@ THEN"),

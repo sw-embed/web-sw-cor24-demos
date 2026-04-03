@@ -91,10 +91,48 @@ pub fn lang_details() -> Html {
                                     </ul>
                                 </div>
                             </div>
+                            {render_glyph_table(d.glyph_table)}
                         </div>
                     </section>
                 }
             }).collect::<Html>()}
+        </div>
+    }
+}
+
+fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>) -> Html {
+    let entries = match table {
+        Some(t) => t,
+        None => return html! {},
+    };
+    html! {
+        <div class="lang-glyph-section">
+            <h4>{"Latin \u{2192} APL Glyph \u{2192} Keyword Mapping"}</h4>
+            <p class="lang-glyph-note">
+                {"APL uses concise Unicode glyphs. COR24 APL uses ASCII keyword equivalents (latin column). \
+                   The web UI can display either form via the prettification toggle. \
+                   Symbols with a slash have dual meanings: monadic (prefix) and dyadic (infix)."}
+            </p>
+            <table class="lang-glyph-table">
+                <thead>
+                    <tr>
+                        <th>{"Latin"}</th>
+                        <th>{"APL Glyph"}</th>
+                        <th>{"Meaning"}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {entries.iter().map(|row| {
+                        html! {
+                            <tr>
+                                <td><code>{row.latin}</code></td>
+                                <td class="lang-glyph-char">{row.glyph}</td>
+                                <td>{row.meaning}</td>
+                            </tr>
+                        }
+                    }).collect::<Html>()}
+                </tbody>
+            </table>
         </div>
     }
 }

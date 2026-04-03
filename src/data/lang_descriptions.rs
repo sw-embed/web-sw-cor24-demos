@@ -17,6 +17,13 @@ pub fn all_details() -> &'static [LangDetail] {
 }
 
 #[derive(Clone, PartialEq, Debug)]
+pub struct GlyphRow {
+    pub latin: &'static str,
+    pub glyph: &'static str,
+    pub meaning: &'static str,
+}
+
+#[derive(Clone, PartialEq, Debug)]
 pub struct LangDetail {
     pub id: &'static str,
     pub label: &'static str,
@@ -27,6 +34,7 @@ pub struct LangDetail {
     pub usage: &'static str,
     pub pros: &'static [&'static str],
     pub cons: &'static [&'static str],
+    pub glyph_table: Option<&'static [GlyphRow]>,
 }
 
 static SUMMARIES: [LangSummary; 9] = [
@@ -104,6 +112,139 @@ static SUMMARIES: [LangSummary; 9] = [
     },
 ];
 
+static APL_GLYPH_TABLE: [GlyphRow; 26] = [
+    GlyphRow {
+        latin: "<-",
+        glyph: "\u{2190}",
+        meaning: "assignment",
+    },
+    GlyphRow {
+        latin: "*",
+        glyph: "\u{00d7}",
+        meaning: "multiply",
+    },
+    GlyphRow {
+        latin: "/",
+        glyph: "\u{00f7}",
+        meaning: "divide",
+    },
+    GlyphRow {
+        latin: "_",
+        glyph: "\u{00af}",
+        meaning: "high minus (negative prefix)",
+    },
+    GlyphRow {
+        latin: "rho",
+        glyph: "\u{2374}",
+        meaning: "shape-of / reshape",
+    },
+    GlyphRow {
+        latin: "iota",
+        glyph: "\u{2373}",
+        meaning: "index-gen",
+    },
+    GlyphRow {
+        latin: "take",
+        glyph: "\u{2191}",
+        meaning: "take",
+    },
+    GlyphRow {
+        latin: "drop",
+        glyph: "\u{2193}",
+        meaning: "drop",
+    },
+    GlyphRow {
+        latin: "goto",
+        glyph: "\u{2192}",
+        meaning: "branch",
+    },
+    GlyphRow {
+        latin: "rev",
+        glyph: "\u{233d}",
+        meaning: "reverse",
+    },
+    GlyphRow {
+        latin: "cat",
+        glyph: ",",
+        meaning: "ravel / catenate",
+    },
+    GlyphRow {
+        latin: "and",
+        glyph: "\u{2227}",
+        meaning: "and",
+    },
+    GlyphRow {
+        latin: "or",
+        glyph: "\u{2228}",
+        meaning: "or",
+    },
+    GlyphRow {
+        latin: "not",
+        glyph: "\u{223c}",
+        meaning: "complement",
+    },
+    GlyphRow {
+        latin: "compress",
+        glyph: "/",
+        meaning: "replicate / compress",
+    },
+    GlyphRow {
+        latin: "ceil",
+        glyph: "\u{2308}",
+        meaning: "ceiling / max",
+    },
+    GlyphRow {
+        latin: "floor",
+        glyph: "\u{230a}",
+        meaning: "floor / min",
+    },
+    GlyphRow {
+        latin: "del",
+        glyph: "\u{2207}",
+        meaning: "definition (del)",
+    },
+    GlyphRow {
+        latin: "pick",
+        glyph: "\u{2283}",
+        meaning: "disclose / pick",
+    },
+    GlyphRow {
+        latin: "roll",
+        glyph: "?",
+        meaning: "roll",
+    },
+    GlyphRow {
+        latin: "fmt",
+        glyph: "\u{2355}",
+        meaning: "format",
+    },
+    GlyphRow {
+        latin: "#",
+        glyph: "\u{235d}",
+        meaning: "comment (NB.)",
+    },
+    GlyphRow {
+        latin: "qled",
+        glyph: "\u{2395}LED",
+        meaning: "quad LED",
+    },
+    GlyphRow {
+        latin: "qsw",
+        glyph: "\u{2395}SW",
+        meaning: "quad switch",
+    },
+    GlyphRow {
+        latin: "qsvo",
+        glyph: "\u{2395}SVO",
+        meaning: "quad shared-variable-offer",
+    },
+    GlyphRow {
+        latin: "qout",
+        glyph: "\u{2395}\u{2190}",
+        meaning: "quad output",
+    },
+];
+
 static DETAILS: [LangDetail; 9] = [
     LangDetail {
         id: "apl",
@@ -123,6 +264,7 @@ static DETAILS: [LangDetail; 9] = [
             "Integer-only arithmetic",
             "Steep learning curve for glyph syntax",
         ],
+        glyph_table: Some(&APL_GLYPH_TABLE),
     },
     LangDetail {
         id: "a24",
@@ -142,6 +284,7 @@ static DETAILS: [LangDetail; 9] = [
             "No abstraction or type safety",
             "Manual register and memory management",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "basic",
@@ -161,6 +304,7 @@ static DETAILS: [LangDetail; 9] = [
             "Limited to 26 scalar variables (A-Z)",
             "No user-defined functions",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "forth",
@@ -180,6 +324,7 @@ static DETAILS: [LangDetail; 9] = [
             "No type safety",
             "Difficult to read complex programs",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "fortran",
@@ -199,6 +344,7 @@ static DETAILS: [LangDetail; 9] = [
             "Verbose syntax for simple tasks",
             "Limited string handling",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "lisp",
@@ -218,6 +364,7 @@ static DETAILS: [LangDetail; 9] = [
             "Performance overhead from GC",
             "Integer-only on COR24 (no floating point)",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "pascal",
@@ -237,6 +384,7 @@ static DETAILS: [LangDetail; 9] = [
             "Limited string support",
             "No pointer types",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "plsw",
@@ -256,6 +404,7 @@ static DETAILS: [LangDetail; 9] = [
             "Steeper learning curve than BASIC/SWS",
             "Type declarations add verbosity",
         ],
+        glyph_table: None,
     },
     LangDetail {
         id: "sws",
@@ -275,5 +424,6 @@ static DETAILS: [LangDetail; 9] = [
             "No local variable scope",
             "Interpreted execution is slower than compiled",
         ],
+        glyph_table: None,
     },
 ];

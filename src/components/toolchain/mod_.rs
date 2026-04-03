@@ -2,11 +2,11 @@ use yew::prelude::*;
 
 use super::category::CategorySection;
 use super::pipelines;
-use crate::data::tools;
+use super::sections;
 
 #[function_component(ToolchainPage)]
 pub fn toolchain_page() -> Html {
-    let groups = tools::all_groups();
+    let groups = crate::data::tools::all_groups();
 
     html! {
         <div class="page-section">
@@ -28,6 +28,8 @@ pub fn toolchain_page() -> Html {
                     {pipelines::render_all_pipelines()}
                 </div>
             </section>
+            {sections::render_tc24r_constraints()}
+            {sections::render_demo_links()}
             <section class="toolchain-section">
                 <h2 class="toolchain-section-title">{"BASIC on COR24"}</h2>
                 <p class="toolchain-section-desc">

@@ -1,0 +1,11 @@
+{
+  "task_type": "feature",
+  "state": {
+    "number": 7,
+    "step": "step7-full-demos-page"
+  },
+  "action": "Created shared DemoCard component, built DemosPage with filter bar (search input, category dropdown, status dropdown, count indicator, empty state), added planned demo entries, split component for sw-checklist compliance, ran full quality gate (fmt, clippy, test, wasm check, trunk build), pushed to GitHub",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-04-02T17:23:26"
+}

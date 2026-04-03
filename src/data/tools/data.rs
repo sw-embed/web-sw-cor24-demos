@@ -11,7 +11,7 @@ pub fn all_tools() -> Vec<ToolEntry> {
         .collect()
 }
 
-static GROUPS: [ToolGroup; 3] = [
+static GROUPS: [ToolGroup; 5] = [
     ToolGroup {
         id: "foundation",
         label: "Foundation",
@@ -136,6 +136,121 @@ static GROUPS: [ToolGroup; 3] = [
             },
         ],
     },
+    ToolGroup {
+        id: "native-languages",
+        label: "Native Languages",
+        description: "Programming languages and interpreters that run directly on COR24 hardware. \
+         Written in C or COR24 assembly, these are the software that the COR24 platform was built to host.",
+        items: &[
+            ToolEntry {
+                name: "Tiny Macro Lisp",
+                repo: "sw-cor24-macrolisp",
+                description: "Lisp-1 interpreter with lexical scoping, defmacro, closures, and garbage \
+                 collection. A self-contained Lisp environment running on COR24 hardware.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-macrolisp/"),
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "Forth Interpreter",
+                repo: "sw-cor24-forth",
+                description: "Direct-threaded code (DTC) Forth interpreter. Clean-room implementation \
+                 written in COR24 assembly with dictionary browsing and stack inspection.",
+                language: ToolLanguage::Assembly,
+                target: ToolTarget::Cor24,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-forth/"),
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "APL Interpreter (apl-sw)",
+                repo: "sw-cor24-apl",
+                description: "APL interpreter with integer-only arithmetic, rank <= 2 arrays, and \
+                 ASCII surface syntax (Latin keywords). Supports live array operations.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-apl/"),
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "BASIC Interpreter",
+                repo: "sw-cor24-basic",
+                description: "BASIC interpreter for COR24. Supports classic BASIC constructs: line \
+                 numbers, GOTO/GOSUB, PRINT, INPUT, FOR/NEXT loops, and string variables.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "Fortran Compiler",
+                repo: "sw-cor24-fortran",
+                description: "Fortran compiler targeting COR24. Translates Fortran source to COR24 \
+                 assembly. Supports numeric computation and formatted I/O.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "PL/SW Compiler",
+                repo: "sw-cor24-plsw",
+                description: "PL/I-inspired systems programming language compiler. Supports structured \
+                 programming, record types, and low-level hardware access on COR24.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-plsw/"),
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "SWS Scripting Language",
+                repo: "sw-cor24-script",
+                description: "Tcl-like scripting language for shell and editor automation on COR24. \
+                 Provides string processing, control flow, and integration with the monitor.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+        ],
+    },
+    ToolGroup {
+        id: "system-software",
+        label: "System Software",
+        description: "Low-level system software for the COR24 platform: the resident monitor that boots \
+         at address zero, and the planned source-level debugger.",
+        items: &[
+            ToolEntry {
+                name: "Resident Monitor",
+                repo: "sw-cor24-monitor",
+                description: "Boots at address 0 and provides program invocation, I/O services, and the \
+                 system ABI. Written in COR24 assembly with C extensions for complex services.",
+                language: ToolLanguage::Mixed("Assembly + C"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::SystemSoftware,
+            },
+            ToolEntry {
+                name: "Source-Level Debugger",
+                repo: "sw-cor24-debugger",
+                description: "Planned source-level debugger for COR24. Will support stepping through \
+                 assembly and high-level source, with register and memory inspection.",
+                language: ToolLanguage::Mixed("Assembly + C"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::SystemSoftware,
+            },
+        ],
+    },
 ];
 
 #[cfg(test)]
@@ -143,23 +258,15 @@ mod tests {
     use super::*;
 
     #[test]
-    fn group_count() {
-        assert_eq!(all_groups().len(), 3);
-    }
-
-    #[test]
-    fn foundation_tools_count() {
-        assert_eq!(all_groups()[0].items.len(), 4);
-    }
-
-    #[test]
-    fn cross_compiler_count() {
-        assert_eq!(all_groups()[1].items.len(), 2);
-    }
-
-    #[test]
-    fn pcode_count() {
-        assert_eq!(all_groups()[2].items.len(), 3);
+    fn counts() {
+        let g = all_groups();
+        assert_eq!(g.len(), 5);
+        assert_eq!(g[0].items.len(), 4);
+        assert_eq!(g[1].items.len(), 2);
+        assert_eq!(g[2].items.len(), 3);
+        assert_eq!(g[3].items.len(), 7);
+        assert_eq!(g[4].items.len(), 2);
+        assert_eq!(all_tools().len(), 18);
     }
 
     #[test]
