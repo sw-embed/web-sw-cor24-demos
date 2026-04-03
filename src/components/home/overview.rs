@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::app::{Route, navigate_to};
+use crate::app::{navigate_to, Route};
 
 fn nav_callback(route: Route) -> Callback<MouseEvent> {
     Callback::from(move |_: MouseEvent| navigate_to(route.clone()))
@@ -39,7 +39,6 @@ pub fn overview_section() -> Html {
                     <button class="btn btn-secondary" onclick={nav_callback(Route::Isa)}>{"ISA Documentation"}</button>
                     <button class="btn btn-secondary" onclick={nav_callback(Route::Demos)}>{"Browse Demos"}</button>
                     <button class="btn btn-secondary" onclick={nav_callback(Route::Toolchain)}>{"Toolchain"}</button>
-                    <button class="btn btn-secondary" onclick={nav_callback(Route::Ecosystem)}>{"Ecosystem Map"}</button>
                 </div>
             </div>
         </section>

@@ -30,18 +30,6 @@ pub fn toolchain_page() -> Html {
     html! { <crate::components::toolchain::ToolchainPage /> }
 }
 
-#[function_component(EcosystemPage)]
-pub fn ecosystem_page() -> Html {
-    html! {
-        <section class="page-section">
-            <h1>{"Ecosystem Overview"}</h1>
-            <div class="placeholder">
-                <p>{"Ecosystem map coming soon."}</p>
-            </div>
-        </section>
-    }
-}
-
 #[function_component(HardwarePage)]
 pub fn hardware_page() -> Html {
     html! { <crate::components::hardware::HardwarePage /> }

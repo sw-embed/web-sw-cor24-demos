@@ -28,6 +28,20 @@ pub fn toolchain_page() -> Html {
                     {pipelines::render_all_pipelines()}
                 </div>
             </section>
+            <section class="toolchain-section">
+                <h2 class="toolchain-section-title">{"BASIC on COR24"}</h2>
+                <p class="toolchain-section-desc">
+                    {"The COR24 software stack, from a simple \"Hello, World\" in BASIC \
+                     down through the layers to hardware."}
+                </p>
+                <div class="basic-stack-container">
+                    <img
+                        src="images/cargo-container-stack.jpg"
+                        alt="COR24 software stack: Hello World, BASIC, Pascal, P-code VM, Assembler, Emulator, COR24 ISA"
+                        class="basic-stack-img"
+                    />
+                </div>
+            </section>
         </div>
     }
 }

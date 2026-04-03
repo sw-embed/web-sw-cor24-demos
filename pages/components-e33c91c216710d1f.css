@@ -1186,3 +1186,16 @@
         padding: 0.2rem 0.4rem;
     }
 }
+
+/* ── BASIC Stack Image ── */
+
+.basic-stack-container {
+    margin-top: 0.75rem;
+}
+
+.basic-stack-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+}
