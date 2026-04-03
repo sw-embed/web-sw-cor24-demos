@@ -6,6 +6,7 @@ pub struct ToolEntry {
     pub language: ToolLanguage,
     pub target: ToolTarget,
     pub has_web_ui: bool,
+    pub live_url_override: Option<&'static str>,
     pub category: ToolCategory,
 }
 

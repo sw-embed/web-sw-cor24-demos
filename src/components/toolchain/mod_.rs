@@ -1,6 +1,7 @@
 use yew::prelude::*;
 
 use super::category::CategorySection;
+use super::pipelines;
 use crate::data::tools;
 
 #[function_component(ToolchainPage)]
@@ -18,6 +19,15 @@ pub fn toolchain_page() -> Html {
             {groups.iter().map(|g| {
                 html! { <CategorySection group={(*g).clone()} /> }
             }).collect::<Html>()}
+            <section class="toolchain-section">
+                <h2 class="toolchain-section-title">{"Compilation Pipelines"}</h2>
+                <p class="toolchain-section-desc">
+                    {"How source code flows through the COR24 toolchain to produce executable binaries."}
+                </p>
+                <div class="pipeline-list">
+                    {pipelines::render_all_pipelines()}
+                </div>
+            </section>
         </div>
     }
 }

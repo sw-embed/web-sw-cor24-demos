@@ -6,10 +6,13 @@ impl ToolEntry {
     }
 
     pub fn demo_url(&self) -> Option<String> {
-        if self.has_web_ui {
-            Some(format!("https://sw-embed.github.io/{}/", self.repo))
+        if !self.has_web_ui {
+            return None;
+        }
+        if let Some(override_url) = self.live_url_override {
+            Some(override_url.to_string())
         } else {
-            None
+            Some(format!("https://sw-embed.github.io/{}/", self.repo))
         }
     }
 }
