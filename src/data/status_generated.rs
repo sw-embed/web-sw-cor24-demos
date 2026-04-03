@@ -26,7 +26,7 @@ pub fn issue_counts() -> &'static [(&'static str, u32)] {
         ("web-sw-cor24-tinyc", 0),
         ("web-sw-cor24-macrolisp", 0),
         ("web-sw-cor24-pascal", 0),
-        ("web-sw-cor24-apl", 0),
+        ("web-sw-cor24-apl", 1),
         ("web-sw-cor24-forth", 0),
         ("web-sw-cor24-plsw", 0),
         ("web-sw-cor24-rust", 0),

@@ -45,7 +45,7 @@ echo "    &["
 for entry in "${REPOS[@]}"; do
     repo="${entry%%:*}"
     group="${entry##*:}"
-    count=$(gh api "repos/sw-embed/$repo" --jq '.open_issues_count' 2>/dev/null || echo "0")
+    count=$(gh api "repos/sw-embed/$repo/issues?state=open&per_page=100" --jq 'length' 2>/dev/null || echo "0")
     if ! [[ "$count" =~ ^[0-9]+$ ]]; then
         count="0"
     fi
