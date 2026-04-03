@@ -2,6 +2,7 @@ use std::collections::HashSet;
 
 use yew::prelude::*;
 
+use super::lang_details::{LangDetails, LangOverview};
 use crate::data::languages;
 
 #[function_component(LanguagesPage)]
@@ -39,6 +40,7 @@ pub fn languages_page() -> Html {
                 {"Compare idioms across all COR24 languages side by side. \
                   Click any column header to collapse or expand it."}
             </p>
+            <LangOverview />
             <div class="lang-table-scroll">
                 <table class="lang-table">
                     <thead>
@@ -65,6 +67,7 @@ pub fn languages_page() -> Html {
                     </tbody>
                 </table>
             </div>
+            <LangDetails />
         </div>
     }
 }

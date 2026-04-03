@@ -1315,3 +1315,149 @@
     padding: 0.4rem 0.2rem;
     text-align: center;
 }
+
+/* ── Language Overview Table ── */
+
+.lang-overview {
+    margin-bottom: 2.5rem;
+}
+
+.lang-overview h2 {
+    font-size: 1.3rem;
+    color: var(--color-text-bright);
+    margin-bottom: 0.75rem;
+}
+
+.lang-overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.lang-overview-table th {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: left;
+    background-color: var(--color-surface-alt, rgba(49, 50, 68, 0.8));
+    color: var(--color-text-bright);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.lang-overview-table td {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--color-border-dim);
+    color: var(--color-text);
+}
+
+.lang-overview-table tr:last-child td {
+    border-bottom: none;
+}
+
+.lang-overview-name {
+    font-weight: 600;
+    color: var(--color-accent);
+    white-space: nowrap;
+    width: 6rem;
+}
+
+.lang-overview-desc {
+    color: var(--color-text-dim);
+    line-height: 1.4;
+}
+
+.lang-anchor {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lang-anchor:hover {
+    text-decoration: underline;
+}
+
+/* ── Language Detail Sections ── */
+
+.lang-details {
+    margin-top: 3rem;
+}
+
+.lang-details h2 {
+    font-size: 1.3rem;
+    color: var(--color-text-bright);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.4rem;
+}
+
+.lang-detail-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border-dim);
+}
+
+.lang-detail-section:last-child {
+    border-bottom: none;
+}
+
+.lang-detail-title {
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.lang-detail-body p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 0.6rem;
+}
+
+.lang-detail-pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.lang-detail-pros,
+.lang-detail-cons {
+    font-size: 0.82rem;
+}
+
+.lang-detail-pros strong,
+.lang-detail-cons strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.lang-detail-pros {
+    color: var(--color-green);
+}
+
+.lang-detail-pros ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.lang-detail-cons {
+    color: var(--color-red);
+}
+
+.lang-detail-cons ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .lang-detail-pros-cons {
+        grid-template-columns: 1fr;
+    }
+}

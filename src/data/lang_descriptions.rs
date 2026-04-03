@@ -1,0 +1,263 @@
+#[derive(Clone, PartialEq, Debug)]
+pub struct LangSummary {
+    pub id: &'static str,
+    pub label: &'static str,
+    pub one_liner: &'static str,
+    pub repo: &'static str,
+    pub section_id: &'static str,
+}
+
+pub fn summaries() -> &'static [LangSummary] {
+    &SUMMARIES
+}
+
+pub fn detail(id: &str) -> Option<&'static LangDetail> {
+    DETAILS.iter().find(|d| d.id == id)
+}
+
+pub fn all_details() -> &'static [LangDetail] {
+    &DETAILS
+}
+
+#[derive(Clone, PartialEq, Debug)]
+pub struct LangDetail {
+    pub id: &'static str,
+    pub label: &'static str,
+    pub section_id: &'static str,
+    pub history: &'static str,
+    pub purpose: &'static str,
+    pub usage: &'static str,
+    pub pros: &'static [&'static str],
+    pub cons: &'static [&'static str],
+}
+
+static SUMMARIES: [LangSummary; 9] = [
+    LangSummary {
+        id: "apl",
+        label: "APL",
+        one_liner: "Array-oriented language with concise notation for vector/matrix operations",
+        repo: "sw-cor24-apl",
+        section_id: "lang-apl",
+    },
+    LangSummary {
+        id: "a24",
+        label: "Assembler",
+        one_liner: "COR24 native assembly language, the foundation all compilers target",
+        repo: "sw-cor24-assembler",
+        section_id: "lang-assembler",
+    },
+    LangSummary {
+        id: "basic",
+        label: "BASIC",
+        one_liner: "Classic beginner-friendly language with line-numbered imperative style",
+        repo: "sw-cor24-basic",
+        section_id: "lang-basic",
+    },
+    LangSummary {
+        id: "forth",
+        label: "Forth",
+        one_liner: "Stack-based extensible language running via direct threaded code",
+        repo: "sw-cor24-forth",
+        section_id: "lang-forth",
+    },
+    LangSummary {
+        id: "fortran",
+        label: "Fortran",
+        one_liner: "Numeric computing language; COR24 port planned for scientific workloads",
+        repo: "sw-cor24-fortran",
+        section_id: "lang-fortran",
+    },
+    LangSummary {
+        id: "lisp",
+        label: "Lisp",
+        one_liner: "Macro Lisp with first-class functions, closures, and mark-sweep GC",
+        repo: "sw-cor24-macrolisp",
+        section_id: "lang-lisp",
+    },
+    LangSummary {
+        id: "pascal",
+        label: "Pascal",
+        one_liner: "Structured language compiling to P-code; strong typing with procedures",
+        repo: "sw-cor24-pascal",
+        section_id: "lang-pascal",
+    },
+    LangSummary {
+        id: "plsw",
+        label: "PL/SW",
+        one_liner: "PL/I-inspired systems language with rich types, pointers, and inline ASM",
+        repo: "sw-cor24-plsw",
+        section_id: "lang-plsw",
+    },
+    LangSummary {
+        id: "sws",
+        label: "SWS",
+        one_liner: "Tcl-like scripting language for quick automation and glue code",
+        repo: "sw-cor24-script",
+        section_id: "lang-sws",
+    },
+];
+
+static DETAILS: [LangDetail; 9] = [
+    LangDetail {
+        id: "apl",
+        label: "APL",
+        section_id: "lang-apl",
+        history: "Originally created by Kenneth Iverson in the 1960s as a concise mathematical notation for teaching and computation. COR24 APL uses ASCII surface syntax with lowercase keywords (rho, iota, take, drop) and uppercase user identifiers, adapted for the constrained COR24 environment.",
+        purpose: "Array-oriented computation. APL excels at expressing operations on entire vectors and matrices in a single line, making it ideal for linear algebra, data transformation, and numeric exploration.",
+        usage: "Write expressions directly in the REPL; results display automatically. Vectors are first-class: 2 3 rho iota 6 creates a 2x3 matrix. Shared variables (SVO) provide hardware I/O access.",
+        pros: &[
+            "Extremely concise for array operations",
+            "No boilerplate; results print automatically",
+            "Powerful reduction and scan operators",
+        ],
+        cons: &[
+            "No user-defined functions (deferred)",
+            "Integer-only arithmetic",
+            "Steep learning curve for glyph syntax",
+        ],
+    },
+    LangDetail {
+        id: "a24",
+        label: "Assembler",
+        section_id: "lang-assembler",
+        history: "The COR24 assembler (as24) is the native language of the processor. Written in C, it runs directly on COR24 hardware as part of the self-hosting toolchain. The cross-assembler (x-assembler) provides a Rust API for host-side assembly.",
+        purpose: "Direct hardware control and maximum performance. Every higher-level language ultimately targets this layer. Understanding assembly is essential for systems programming, debugging, and runtime development on COR24.",
+        usage: "Write .s source files with mnemonic instructions (LDA, STA, ADD, CMP, BNE, JSR, etc.), assemble with as24, and run the resulting binary in the emulator or on hardware.",
+        pros: &[
+            "Complete hardware control",
+            "Zero runtime overhead",
+            "Foundation for all other languages",
+        ],
+        cons: &[
+            "Verbose for complex logic",
+            "No abstraction or type safety",
+            "Manual register and memory management",
+        ],
+    },
+    LangDetail {
+        id: "basic",
+        label: "BASIC",
+        section_id: "lang-basic",
+        history: "Beginner's All-purpose Symbolic Instruction Code, created in 1964 at Dartmouth College. The COR24 port follows classic line-numbered BASIC style, compiled to P-code via the Pascal compiler toolchain.",
+        purpose: "An accessible entry point for programming on COR24. BASIC's simple English-like syntax makes it approachable for beginners while still supporting structured programming constructs like FOR/NEXT loops and GOSUB/RETURN.",
+        usage: "Write programs with line numbers, use LET for assignment, PRINT for output, FOR/NEXT for loops, and IF/THEN for conditionals. GOSUB/RETURN provides simple subroutine support.",
+        pros: &[
+            "Easy to learn and read",
+            "Immediate feedback in interactive mode",
+            "Familiar to generations of programmers",
+        ],
+        cons: &[
+            "No local variables or scope",
+            "Limited to 26 scalar variables (A-Z)",
+            "No user-defined functions",
+        ],
+    },
+    LangDetail {
+        id: "forth",
+        label: "Forth",
+        section_id: "lang-forth",
+        history: "Created by Charles Moore in the 1970s, Forth is a stack-based language known for its extreme extensibility. The COR24 implementation uses direct threaded code on native hardware, with over 2600 lines of definitions.",
+        purpose: "Interactive systems programming and hardware exploration. Forth's word-based architecture lets you extend the language itself at runtime, making it ideal for building domain-specific vocabularies for hardware control.",
+        usage: "Define words with colon definitions (: SQUARE DUP * ;), test them immediately in the REPL. Use BEGIN..WHILE..REPEAT for loops, IF..THEN..ELSE for conditionals. IN@ and OUT@ provide hardware I/O.",
+        pros: &[
+            "Extremely fast compilation and execution",
+            "Infinitely extensible at runtime",
+            "Minimal memory footprint",
+        ],
+        cons: &[
+            "Stack-based paradigm is unfamiliar",
+            "No type safety",
+            "Difficult to read complex programs",
+        ],
+    },
+    LangDetail {
+        id: "fortran",
+        label: "Fortran",
+        section_id: "lang-fortran",
+        history: "Formula Translation, the first high-level language (1957). The COR24 port is in the design phase, planned to compile Fortran source to COR24 assembly for scientific and numeric computing workloads.",
+        purpose: "Scientific and engineering computation. Fortran excels at numeric-heavy programs, matrix operations, and simulations where performance on constrained hardware matters.",
+        usage: "Planned. Will support variable declarations, DO loops, IF/THEN/ELSE, subroutine and function definitions, and array operations targeting COR24 assembly output.",
+        pros: &[
+            "Optimized for numeric computation",
+            "Well-suited to COR24's integer architecture",
+            "Mature language with proven patterns",
+        ],
+        cons: &[
+            "Not yet implemented on COR24",
+            "Verbose syntax for simple tasks",
+            "Limited string handling",
+        ],
+    },
+    LangDetail {
+        id: "lisp",
+        label: "Lisp",
+        section_id: "lang-lisp",
+        history: "List Processing, created by John McCarthy in 1958. The COR24 Macro Lisp implementation provides first-class functions, closures, macros with quasiquote, and a conservative mark-sweep garbage collector, compiled to native COR24 assembly.",
+        purpose: "Symbolic computation and metaprogramming. Lisp's homoiconic structure (code is data) makes it uniquely powerful for writing programs that write programs, building interpreters, and exploring recursive algorithms.",
+        usage: "Define functions with defun, use lambda for anonymous functions. Built-in list operations (cons, car, cdr), higher-order functions (map, filter, reduce), and macros (defmacro) for metaprogramming. peek/poke and set-leds for hardware I/O.",
+        pros: &[
+            "First-class functions and closures",
+            "Macros and quasiquote for metaprogramming",
+            "Mark-sweep GC handles memory automatically",
+        ],
+        cons: &[
+            "Parenthesis-heavy syntax",
+            "Performance overhead from GC",
+            "Integer-only on COR24 (no floating point)",
+        ],
+    },
+    LangDetail {
+        id: "pascal",
+        label: "Pascal",
+        section_id: "lang-pascal",
+        history: "Created by Niklaus Wirth in 1970 as a teaching language emphasizing structured programming. The COR24 compiler (p24p) is written in C and compiles Pascal source to P-code bytecode, executed by the P-code VM on COR24.",
+        purpose: "Structured systems programming with strong typing. Pascal enforces good practices with explicit variable declarations, typed procedures and functions, and clear block structure.",
+        usage: "Declare variables with var blocks, define procedures and functions with typed parameters. Use for..to/downto, while, and repeat..until for loops. Compiles to .spc P-code, linked and assembled for the P-code VM.",
+        pros: &[
+            "Strong typing catches errors early",
+            "Clean structured syntax",
+            "Compiles to portable P-code bytecode",
+        ],
+        cons: &[
+            "P-code layer adds runtime overhead",
+            "Limited string support",
+            "No pointer types",
+        ],
+    },
+    LangDetail {
+        id: "plsw",
+        label: "PL/SW",
+        section_id: "lang-plsw",
+        history: "PL/SW is a PL/I-inspired language designed specifically for the COR24 ecosystem. It combines PL/I's rich type system with systems programming features like inline assembly, pointers, and level-based data declarations.",
+        purpose: "Systems-level programming with high-level abstractions. PL/SW targets the gap between low-level assembly and high-level languages, providing rich types (BIT, BYTE, WORD, INT, CHAR, PTR) alongside direct hardware access.",
+        usage: "Declare variables with DCL and type specifiers. Use PROC/END for procedures, DO WHILE and counted DO for loops. Inline ASM blocks (ASM DO; ... END;) provide direct hardware control. MACRODEF and ?MACRO() for metaprogramming.",
+        pros: &[
+            "Rich type system (6 types)",
+            "Inline assembly for hardware access",
+            "Macro system with GEN blocks",
+        ],
+        cons: &[
+            "Complex syntax for simple tasks",
+            "Steeper learning curve than BASIC/SWS",
+            "Type declarations add verbosity",
+        ],
+    },
+    LangDetail {
+        id: "sws",
+        label: "SWS",
+        section_id: "lang-sws",
+        history: "SWS is a Tcl-like scripting language designed for quick automation and glue code on COR24. Implemented in C and compiled to COR24 assembly via tc24r, it provides dynamic typing with integer and string values.",
+        purpose: "Rapid scripting and automation. SWS fills the role of shell scripting on COR24: quick one-liners, configuration, glue code between subsystems, and interactive testing of hardware interfaces.",
+        usage: "Use set/expr for variables and expressions, if/while for control flow, echo for output, and proc for procedure definitions. Tcl-style substitution with $var and [expr {...}] for embedded expressions.",
+        pros: &[
+            "Quick to write and test interactively",
+            "Dynamic typing is flexible",
+            "Tcl-style substitution is powerful",
+        ],
+        cons: &[
+            "No user-defined functions yet (v0.1)",
+            "No local variable scope",
+            "Interpreted execution is slower than compiled",
+        ],
+    },
+];
