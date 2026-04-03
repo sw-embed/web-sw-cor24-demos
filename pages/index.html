@@ -17,8 +17,8 @@
     
     
 <script type="module">
-import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-5a80d009570a7b7b.js';
-const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-5a80d009570a7b7b_bg.wasm' });
+import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-e2a2e1238b50d409.js';
+const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-e2a2e1238b50d409_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -27,7 +27,7 @@ window.wasmBindings = bindings;
 dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
 </script>
-<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-5a80d009570a7b7b.js" crossorigin="anonymous" integrity="sha384-FtnPjU3t7zM8B8qILlaR16lMaAEaXFIh2UMJoOoS4wu8EYV+wK95rj4PEWNek77A"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-5a80d009570a7b7b_bg.wasm" crossorigin="anonymous" integrity="sha384-gYOfwt2QPQCirgjAQnTDiosyVdUlZ1hTo0D6gXngef1U8ATRi26qAMJCvuLfnsOw" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-e2a2e1238b50d409.js" crossorigin="anonymous" integrity="sha384-FtnPjU3t7zM8B8qILlaR16lMaAEaXFIh2UMJoOoS4wu8EYV+wK95rj4PEWNek77A"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-e2a2e1238b50d409_bg.wasm" crossorigin="anonymous" integrity="sha384-h4jCpdxv6gNk5hiMpTFk2A+oucgh8urLB4oA327WGvIV+N5rRPr5vlYApweX26GG" as="fetch" type="application/wasm"></head>
 <body>
 </body>
 </html>
