@@ -37,7 +37,7 @@ static COLUMNS: [LangColumn; 9] = [
     },
     LangColumn {
         id: "a24",
-        label: "a24",
+        label: "Assembler",
         default_collapsed: false,
     },
     LangColumn {
