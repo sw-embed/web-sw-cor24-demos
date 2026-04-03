@@ -6,3 +6,4 @@ pub mod home;
 pub mod isa;
 pub mod shared;
 pub mod status;
+pub mod toolchain;

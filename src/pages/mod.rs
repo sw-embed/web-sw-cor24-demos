@@ -27,14 +27,7 @@ pub fn demos_page() -> Html {
 
 #[function_component(ToolchainPage)]
 pub fn toolchain_page() -> Html {
-    html! {
-        <section class="page-section">
-            <h1>{"Toolchain Documentation"}</h1>
-            <div class="placeholder">
-                <p>{"Toolchain docs coming soon."}</p>
-            </div>
-        </section>
-    }
+    html! { <crate::components::toolchain::ToolchainPage /> }
 }
 
 #[function_component(EcosystemPage)]
