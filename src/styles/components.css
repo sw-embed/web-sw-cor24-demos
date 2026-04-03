@@ -1199,3 +1199,119 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
 }
+
+/* ── Language Comparison Table ── */
+
+.lang-intro {
+    color: var(--color-text-dim);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 72ch;
+}
+
+.lang-table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background-color: var(--color-surface);
+}
+
+.lang-table {
+    border-collapse: collapse;
+    width: max-content;
+    min-width: 100%;
+}
+
+.lang-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.lang-th {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: left;
+    background-color: var(--color-surface-alt, rgba(49, 50, 68, 0.8));
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
+    color: var(--color-text-bright);
+}
+
+.lang-th-label {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background-color: var(--color-surface-alt, rgba(49, 50, 68, 0.9));
+    min-width: 6rem;
+    border-right: 2px solid var(--color-border);
+}
+
+.lang-th-code {
+    min-width: 10rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.lang-col-collapsed {
+    width: 3rem !important;
+    min-width: 3rem !important;
+    max-width: 3rem !important;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    font-size: 0.65rem;
+    text-align: center;
+}
+
+.lang-col-expandable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.lang-col-expandable:hover {
+    background-color: rgba(137, 180, 250, 0.1);
+}
+
+.lang-col-toggle {
+    margin-right: 0.3rem;
+    font-size: 0.6rem;
+    opacity: 0.7;
+}
+
+.lang-td-label {
+    padding: 0.6rem 0.8rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-border-dim);
+    border-right: 2px solid var(--color-border);
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--color-surface);
+}
+
+.lang-td-code {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--color-border-dim);
+    white-space: pre;
+    font-size: 0.82rem;
+}
+
+.lang-td-code code {
+    font-family: var(--font-mono);
+    color: var(--color-text);
+    background: none;
+    padding: 0;
+    font-size: inherit;
+}
+
+.lang-td-code.lang-col-collapsed {
+    padding: 0.4rem 0.2rem;
+    text-align: center;
+}

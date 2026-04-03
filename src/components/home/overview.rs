@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::app::{navigate_to, Route};
+use crate::app::{Route, navigate_to};
 
 fn nav_callback(route: Route) -> Callback<MouseEvent> {
     Callback::from(move |_: MouseEvent| navigate_to(route.clone()))

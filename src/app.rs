@@ -13,6 +13,7 @@ pub enum Route {
     Isa,
     Demos,
     Toolchain,
+    Languages,
     Hardware,
 }
 
@@ -24,6 +25,7 @@ impl Route {
             "isa" => Self::Isa,
             "demos" => Self::Demos,
             "toolchain" => Self::Toolchain,
+            "languages" => Self::Languages,
             "hardware" => Self::Hardware,
             _ => Self::Home,
         }
@@ -37,6 +39,7 @@ impl Route {
             Self::Isa => "isa",
             Self::Demos => "demos",
             Self::Toolchain => "toolchain",
+            Self::Languages => "languages",
             Self::Hardware => "hardware",
         }
     }
@@ -49,6 +52,7 @@ impl Route {
             Self::Isa => "ISA",
             Self::Demos => "Demos",
             Self::Toolchain => "Toolchain",
+            Self::Languages => "Languages",
             Self::Hardware => "Hardware",
         }
     }
@@ -61,6 +65,7 @@ impl Route {
             Self::Isa,
             Self::Demos,
             Self::Toolchain,
+            Self::Languages,
             Self::Hardware,
         ]
     }
@@ -86,6 +91,7 @@ fn route_page(route: &Route) -> Html {
         Route::Isa => html! { <pages::IsaPage /> },
         Route::Demos => html! { <pages::DemosPage /> },
         Route::Toolchain => html! { <pages::ToolchainPage /> },
+        Route::Languages => html! { <pages::LanguagesPage /> },
         Route::Hardware => html! { <pages::HardwarePage /> },
     }
 }

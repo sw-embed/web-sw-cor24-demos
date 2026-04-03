@@ -30,6 +30,11 @@ pub fn toolchain_page() -> Html {
     html! { <crate::components::toolchain::ToolchainPage /> }
 }
 
+#[function_component(LanguagesPage)]
+pub fn languages_page() -> Html {
+    html! { <crate::components::languages::LanguagesPage /> }
+}
+
 #[function_component(HardwarePage)]
 pub fn hardware_page() -> Html {
     html! { <crate::components::hardware::HardwarePage /> }

@@ -4,6 +4,7 @@ pub mod demos;
 pub mod hardware;
 pub mod home;
 pub mod isa;
+pub mod languages;
 pub mod shared;
 pub mod status;
 pub mod toolchain;
