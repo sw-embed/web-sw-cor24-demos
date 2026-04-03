@@ -142,7 +142,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "comments",
         label: "Comments",
         cells: &[
-            ("apl", ";; inline comment"),
+            ("apl", "comment this is text"),
             ("a24", "; comment"),
             ("basic", "REM this is a comment"),
             ("forth", "\\ line comment"),
@@ -238,7 +238,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "print",
         label: "Print",
         cells: &[
-            ("apl", "qout 42"),
+            ("apl", "qout assign 42"),
             ("a24", "LDA #42\n  OUT 0"),
             ("basic", "PRINT \"Hello\""),
             ("forth", ".\" Hello\" CR"),
