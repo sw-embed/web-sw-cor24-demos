@@ -36,8 +36,8 @@ pub fn toolchain_page() -> Html {
                 </p>
                 <div class="basic-stack-container">
                     <img
-                        src="images/cargo-container-stack.jpg"
-                        alt="COR24 software stack: Hello World, BASIC, Pascal, P-code VM, Assembler, Emulator, COR24 ISA"
+                        src="images/cargo-container-stack-with-cranes.jpg"
+                        alt="COR24 software stack: Hello World, BASIC, Pascal, P-code VM, Assembler, Emulator, COR24 ISA, with C and Rust cranes building the stack"
                         class="basic-stack-img"
                     />
                 </div>
