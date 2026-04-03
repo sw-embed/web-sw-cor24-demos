@@ -977,3 +977,119 @@
         width: auto;
     }
 }
+
+/* ── Toolchain ── */
+
+.toolchain-intro {
+    color: var(--color-text-dim);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 72ch;
+}
+
+.toolchain-section {
+    margin-bottom: 2.5rem;
+}
+
+.toolchain-section-title {
+    font-size: 1.4rem;
+    color: var(--color-text-bright);
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.4rem;
+}
+
+.toolchain-section-desc {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+}
+
+@media (max-width: 767px) {
+    .tool-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tool-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tool-card-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.tool-badge-rust {
+    background-color: rgba(222, 98, 42, 0.15);
+    color: #de622a;
+    border: 1px solid rgba(222, 98, 42, 0.3);
+}
+
+.tool-badge-c {
+    background-color: rgba(85, 130, 200, 0.15);
+    color: #5582c8;
+    border: 1px solid rgba(85, 130, 200, 0.3);
+}
+
+.tool-badge-asm {
+    background-color: rgba(166, 130, 200, 0.15);
+    color: #a682c8;
+    border: 1px solid rgba(166, 130, 200, 0.3);
+}
+
+.tool-badge-mixed {
+    background-color: rgba(180, 142, 100, 0.15);
+    color: #b48e64;
+    border: 1px solid rgba(180, 142, 100, 0.3);
+}
+
+.tool-badge-docs {
+    background-color: rgba(130, 170, 130, 0.15);
+    color: #82aa82;
+    border: 1px solid rgba(130, 170, 130, 0.3);
+}
+
+.tool-badge-host {
+    background-color: rgba(137, 180, 250, 0.15);
+    color: #89b4fa;
+    border: 1px solid rgba(137, 180, 250, 0.3);
+}
+
+.tool-badge-cor24 {
+    background-color: rgba(166, 227, 161, 0.15);
+    color: #a6e3a1;
+    border: 1px solid rgba(166, 227, 161, 0.3);
+}
+
+.tool-badge-emu {
+    background-color: rgba(249, 226, 175, 0.15);
+    color: #f9e2af;
+    border: 1px solid rgba(249, 226, 175, 0.3);
+}
+
+.tool-badge-docs {
+    background-color: rgba(130, 170, 130, 0.15);
+    color: #82aa82;
+    border: 1px solid rgba(130, 170, 130, 0.3);
+}
