@@ -147,7 +147,7 @@ static ROWS: [IdiomRow; 5] = [
             ("basic", "IF IN(1) = 1 THEN OUT 2, 1"),
             ("forth", "IN@ IF 2 OUT@ THEN"),
             ("fortran", "n/a"),
-            ("lisp", "n/a"),
+            ("lisp", "(if (s2-pressed?)\n  (begin (set-leds 0)...))"),
             ("pascal", "Port[1] := Port[2]"),
             ("plsw", "n/a"),
             ("sws", "set led [expr {[read switch]}]"),
