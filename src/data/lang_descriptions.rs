@@ -114,11 +114,6 @@ static SUMMARIES: [LangSummary; 9] = [
 
 static APL_GLYPH_TABLE: [GlyphRow; 26] = [
     GlyphRow {
-        latin: "<-",
-        glyph: "\u{2190}",
-        meaning: "assignment",
-    },
-    GlyphRow {
         latin: "*",
         glyph: "\u{00d7}",
         meaning: "multiply",
@@ -134,14 +129,109 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         meaning: "high minus (negative prefix)",
     },
     GlyphRow {
-        latin: "rho",
-        glyph: "\u{2374}",
-        meaning: "shape-of / reshape",
+        latin: "and",
+        glyph: "\u{2227}",
+        meaning: "and",
+    },
+    GlyphRow {
+        latin: "assign",
+        glyph: "\u{2190}",
+        meaning: "assignment",
+    },
+    GlyphRow {
+        latin: "cat",
+        glyph: ",",
+        meaning: "ravel / catenate",
+    },
+    GlyphRow {
+        latin: "ceil",
+        glyph: "\u{2308}",
+        meaning: "ceiling / max",
+    },
+    GlyphRow {
+        latin: "comment",
+        glyph: "\u{235d}",
+        meaning: "comment (NB.)",
+    },
+    GlyphRow {
+        latin: "compress",
+        glyph: "/",
+        meaning: "replicate / compress",
+    },
+    GlyphRow {
+        latin: "del",
+        glyph: "\u{2207}",
+        meaning: "definition (del)",
+    },
+    GlyphRow {
+        latin: "floor",
+        glyph: "\u{230a}",
+        meaning: "floor / min",
+    },
+    GlyphRow {
+        latin: "fmt",
+        glyph: "\u{2355}",
+        meaning: "format",
+    },
+    GlyphRow {
+        latin: "goto",
+        glyph: "\u{2192}",
+        meaning: "branch",
     },
     GlyphRow {
         latin: "iota",
         glyph: "\u{2373}",
         meaning: "index-gen",
+    },
+    GlyphRow {
+        latin: "not",
+        glyph: "\u{223c}",
+        meaning: "complement",
+    },
+    GlyphRow {
+        latin: "or",
+        glyph: "\u{2228}",
+        meaning: "or",
+    },
+    GlyphRow {
+        latin: "pick",
+        glyph: "\u{2283}",
+        meaning: "disclose / pick",
+    },
+    GlyphRow {
+        latin: "qled",
+        glyph: "\u{2395}LED",
+        meaning: "quad LED",
+    },
+    GlyphRow {
+        latin: "qout",
+        glyph: "\u{2395}\u{2190}",
+        meaning: "quad output",
+    },
+    GlyphRow {
+        latin: "qsvo",
+        glyph: "\u{2395}SVO",
+        meaning: "quad shared-variable-offer",
+    },
+    GlyphRow {
+        latin: "qsw",
+        glyph: "\u{2395}SW",
+        meaning: "quad switch",
+    },
+    GlyphRow {
+        latin: "rev",
+        glyph: "\u{233d}",
+        meaning: "reverse",
+    },
+    GlyphRow {
+        latin: "rho",
+        glyph: "\u{2374}",
+        meaning: "shape-of / reshape",
+    },
+    GlyphRow {
+        latin: "roll",
+        glyph: "?",
+        meaning: "roll",
     },
     GlyphRow {
         latin: "take",
@@ -152,96 +242,6 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         latin: "drop",
         glyph: "\u{2193}",
         meaning: "drop",
-    },
-    GlyphRow {
-        latin: "goto",
-        glyph: "\u{2192}",
-        meaning: "branch",
-    },
-    GlyphRow {
-        latin: "rev",
-        glyph: "\u{233d}",
-        meaning: "reverse",
-    },
-    GlyphRow {
-        latin: "cat",
-        glyph: ",",
-        meaning: "ravel / catenate",
-    },
-    GlyphRow {
-        latin: "and",
-        glyph: "\u{2227}",
-        meaning: "and",
-    },
-    GlyphRow {
-        latin: "or",
-        glyph: "\u{2228}",
-        meaning: "or",
-    },
-    GlyphRow {
-        latin: "not",
-        glyph: "\u{223c}",
-        meaning: "complement",
-    },
-    GlyphRow {
-        latin: "compress",
-        glyph: "/",
-        meaning: "replicate / compress",
-    },
-    GlyphRow {
-        latin: "ceil",
-        glyph: "\u{2308}",
-        meaning: "ceiling / max",
-    },
-    GlyphRow {
-        latin: "floor",
-        glyph: "\u{230a}",
-        meaning: "floor / min",
-    },
-    GlyphRow {
-        latin: "del",
-        glyph: "\u{2207}",
-        meaning: "definition (del)",
-    },
-    GlyphRow {
-        latin: "pick",
-        glyph: "\u{2283}",
-        meaning: "disclose / pick",
-    },
-    GlyphRow {
-        latin: "roll",
-        glyph: "?",
-        meaning: "roll",
-    },
-    GlyphRow {
-        latin: "fmt",
-        glyph: "\u{2355}",
-        meaning: "format",
-    },
-    GlyphRow {
-        latin: "#",
-        glyph: "\u{235d}",
-        meaning: "comment (NB.)",
-    },
-    GlyphRow {
-        latin: "qled",
-        glyph: "\u{2395}LED",
-        meaning: "quad LED",
-    },
-    GlyphRow {
-        latin: "qsw",
-        glyph: "\u{2395}SW",
-        meaning: "quad switch",
-    },
-    GlyphRow {
-        latin: "qsvo",
-        glyph: "\u{2395}SVO",
-        meaning: "quad shared-variable-offer",
-    },
-    GlyphRow {
-        latin: "qout",
-        glyph: "\u{2395}\u{2190}",
-        meaning: "quad output",
     },
 ];
 

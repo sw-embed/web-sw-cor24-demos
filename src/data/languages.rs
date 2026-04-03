@@ -97,7 +97,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "assignment",
         label: "Assignment",
         cells: &[
-            ("apl", "X <- 42"),
+            ("apl", "X assign 42"),
             ("a24", "LDA #42\n  STA X"),
             ("basic", "LET X = 42"),
             ("forth", "42 VARIABLE X"),
@@ -202,7 +202,10 @@ static ROWS: [IdiomRow; 11] = [
         id: "io",
         label: "I/O (switch, LED)",
         cells: &[
-            ("apl", "'MMIO' qsvo 242\nSW <- MMIO[0]\nMMIO[0] <- LED"),
+            (
+                "apl",
+                "'MMIO' qsvo 242\nSW assign MMIO[0]\nMMIO[0] assign LED",
+            ),
             ("a24", "IN 1\n  CMP #1\n  BNE skip\n  LDA #1\n  OUT 2"),
             ("basic", "IF IN(1) = 1 THEN OUT 2, 1"),
             ("forth", "IN@ IF 2 OUT@ THEN"),
@@ -217,7 +220,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "loops",
         label: "Loops",
         cells: &[
-            ("apl", "LOOP: [] <- I\nI <- I - 1\ngoto (I)/LOOP"),
+            ("apl", "LOOP: [] assign I\nI assign I - 1\ngoto (I)/LOOP"),
             (
                 "a24",
                 "LDA #0\n  STA I\nLP: OUT I\n  INC I\n  CMP #10\n  BNE LP",
@@ -235,7 +238,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "print",
         label: "Print",
         cells: &[
-            ("apl", "[] <- 42"),
+            ("apl", "qout 42"),
             ("a24", "LDA #42\n  OUT 0"),
             ("basic", "PRINT \"Hello\""),
             ("forth", ".\" Hello\" CR"),
