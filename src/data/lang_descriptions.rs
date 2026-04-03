@@ -26,6 +26,13 @@ pub struct GlyphRow {
 }
 
 #[derive(Clone, PartialEq, Debug)]
+pub struct KeywordRow {
+    pub keyword: &'static str,
+    pub glyph: &'static str,
+    pub usage: &'static str,
+}
+
+#[derive(Clone, PartialEq, Debug)]
 pub struct LangDetail {
     pub id: &'static str,
     pub label: &'static str,
@@ -37,6 +44,7 @@ pub struct LangDetail {
     pub pros: &'static [&'static str],
     pub cons: &'static [&'static str],
     pub glyph_table: Option<&'static [GlyphRow]>,
+    pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
 static SUMMARIES: [LangSummary; 9] = [
@@ -114,7 +122,7 @@ static SUMMARIES: [LangSummary; 9] = [
     },
 ];
 
-static APL_GLYPH_TABLE: [GlyphRow; 26] = [
+static APL_GLYPH_TABLE: [GlyphRow; 18] = [
     GlyphRow {
         latin: "*",
         glyph: "\u{00d7}",
@@ -133,7 +141,7 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         latin: "_",
         glyph: "\u{00af}",
         niladic: "N/A",
-        monadic: "negative (negate each element)",
+        monadic: "negate each element",
         dyadic: "N/A",
     },
     GlyphRow {
@@ -142,13 +150,6 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         niladic: "N/A",
         monadic: "N/A",
         dyadic: "bitwise AND",
-    },
-    GlyphRow {
-        latin: "assign",
-        glyph: "\u{2190}",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "assignment",
     },
     GlyphRow {
         latin: "cat",
@@ -165,25 +166,11 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         dyadic: "ceiling / max",
     },
     GlyphRow {
-        latin: "comment",
-        glyph: "\u{235d}",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "N/A",
-    },
-    GlyphRow {
         latin: "compress",
         glyph: "/",
         niladic: "N/A",
         monadic: "N/A",
         dyadic: "boolean compress (select)",
-    },
-    GlyphRow {
-        latin: "del",
-        glyph: "\u{2207}",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "N/A",
     },
     GlyphRow {
         latin: "floor",
@@ -197,13 +184,6 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         glyph: "\u{2355}",
         niladic: "N/A",
         monadic: "format (int to char vector)",
-        dyadic: "N/A",
-    },
-    GlyphRow {
-        latin: "goto",
-        glyph: "\u{2192}",
-        niladic: "N/A",
-        monadic: "N/A",
         dyadic: "N/A",
     },
     GlyphRow {
@@ -233,34 +213,6 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
         niladic: "N/A",
         monadic: "N/A",
         dyadic: "index (pick element)",
-    },
-    GlyphRow {
-        latin: "qled",
-        glyph: "\u{2395}LED",
-        niladic: "read LED state",
-        monadic: "N/A",
-        dyadic: "N/A",
-    },
-    GlyphRow {
-        latin: "quad",
-        glyph: "\u{2395}\u{2190}",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "output (print)",
-    },
-    GlyphRow {
-        latin: "qsvo",
-        glyph: "\u{2395}SVO",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "shared-variable-offer",
-    },
-    GlyphRow {
-        latin: "qsw",
-        glyph: "\u{2395}SW",
-        niladic: "read switch state",
-        monadic: "N/A",
-        dyadic: "N/A",
     },
     GlyphRow {
         latin: "rev",
@@ -299,6 +251,49 @@ static APL_GLYPH_TABLE: [GlyphRow; 26] = [
     },
 ];
 
+static APL_KEYWORD_TABLE: [KeywordRow; 8] = [
+    KeywordRow {
+        keyword: "assign",
+        glyph: "\u{2190}",
+        usage: "Assignment: NAME assign EXPR",
+    },
+    KeywordRow {
+        keyword: "comment",
+        glyph: "\u{235d}",
+        usage: "Line or inline comment: comment text here",
+    },
+    KeywordRow {
+        keyword: "del",
+        glyph: "\u{2207}",
+        usage: "Function definition: del FN(A) ...",
+    },
+    KeywordRow {
+        keyword: "goto",
+        glyph: "\u{2192}",
+        usage: "Branch to label: goto LABEL",
+    },
+    KeywordRow {
+        keyword: "qled",
+        glyph: "\u{2395}LED",
+        usage: "LED output (write-only): qled assign 0 or 1",
+    },
+    KeywordRow {
+        keyword: "quad",
+        glyph: "\u{2395}\u{2190}",
+        usage: "Output: quad assign EXPR (print to UART)",
+    },
+    KeywordRow {
+        keyword: "qsvo",
+        glyph: "\u{2395}SVO",
+        usage: "Shared-variable offer: NAME qsvo ADDR",
+    },
+    KeywordRow {
+        keyword: "qsw",
+        glyph: "\u{2395}SW",
+        usage: "Switch input (read-only): read via qsvo",
+    },
+];
+
 static DETAILS: [LangDetail; 9] = [
     LangDetail {
         id: "apl",
@@ -319,6 +314,7 @@ static DETAILS: [LangDetail; 9] = [
             "Steep learning curve for glyph syntax",
         ],
         glyph_table: Some(&APL_GLYPH_TABLE),
+        keyword_table: Some(&APL_KEYWORD_TABLE),
     },
     LangDetail {
         id: "a24",
@@ -339,6 +335,7 @@ static DETAILS: [LangDetail; 9] = [
             "Manual register and memory management",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "basic",
@@ -359,6 +356,7 @@ static DETAILS: [LangDetail; 9] = [
             "No user-defined functions",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "forth",
@@ -379,6 +377,7 @@ static DETAILS: [LangDetail; 9] = [
             "Difficult to read complex programs",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "fortran",
@@ -399,6 +398,7 @@ static DETAILS: [LangDetail; 9] = [
             "Limited string handling",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "lisp",
@@ -419,6 +419,7 @@ static DETAILS: [LangDetail; 9] = [
             "Integer-only on COR24 (no floating point)",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "pascal",
@@ -439,6 +440,7 @@ static DETAILS: [LangDetail; 9] = [
             "No pointer types",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "plsw",
@@ -459,6 +461,7 @@ static DETAILS: [LangDetail; 9] = [
             "Type declarations add verbosity",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
     LangDetail {
         id: "sws",
@@ -479,5 +482,6 @@ static DETAILS: [LangDetail; 9] = [
             "Interpreted execution is slower than compiled",
         ],
         glyph_table: None,
+        keyword_table: None,
     },
 ];

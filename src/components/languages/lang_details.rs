@@ -92,6 +92,7 @@ pub fn lang_details() -> Html {
                                 </div>
                             </div>
                             {render_glyph_table(d.glyph_table)}
+                            {render_keyword_table(d.keyword_table)}
                         </div>
                     </section>
                 }
@@ -107,7 +108,7 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
     };
     html! {
         <div class="lang-glyph-section">
-            <h4>{"Latin \u{2192} APL Glyph \u{2192} Keyword Mapping"}</h4>
+            <h4>{"Operators (by Valence)"}</h4>
             <p class="lang-glyph-note">
                 {"APL operators have different meanings depending on valence (number of arguments). \
                    0 args = niladic (read system state), 1 arg = monadic (prefix), 2 args = dyadic (infix)."}
@@ -138,6 +139,42 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
                     </tbody>
                 </table>
             </div>
+        </div>
+    }
+}
+
+fn render_keyword_table(table: Option<&[crate::data::lang_descriptions::KeywordRow]>) -> Html {
+    let entries = match table {
+        Some(t) => t,
+        None => return html! {},
+    };
+    html! {
+        <div class="lang-glyph-section">
+            <h4>{"Keywords and System Operations"}</h4>
+            <p class="lang-glyph-note">
+                {"Non-function keywords: assignment, comments, branching, and hardware I/O. \
+                   These are not operators and do not follow the niladic/monadic/dyadic valence model."}
+            </p>
+            <table class="lang-glyph-table">
+                <thead>
+                    <tr>
+                        <th>{"Keyword"}</th>
+                        <th>{"Glyph"}</th>
+                        <th>{"Usage"}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {entries.iter().map(|row| {
+                        html! {
+                            <tr>
+                                <td><code>{row.keyword}</code></td>
+                                <td class="lang-glyph-char">{row.glyph}</td>
+                                <td>{row.usage}</td>
+                            </tr>
+                        }
+                    }).collect::<Html>()}
+                </tbody>
+            </table>
         </div>
     }
 }
