@@ -238,7 +238,7 @@ static ROWS: [IdiomRow; 11] = [
         id: "print",
         label: "Print",
         cells: &[
-            ("apl", "qout assign 42"),
+            ("apl", "quad assign 42"),
             ("a24", "LDA #42\n  OUT 0"),
             ("basic", "PRINT \"Hello\""),
             ("forth", ".\" Hello\" CR"),
