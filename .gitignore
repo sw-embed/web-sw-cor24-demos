@@ -1,6 +1,7 @@
 /dist
 /target
 /work
+/tools/gen-status/target
 *.wasm
 !pages/*.wasm
 /package.json
