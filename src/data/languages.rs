@@ -77,7 +77,7 @@ static COLUMNS: [LangColumn; 9] = [
     },
 ];
 
-static ROWS: [IdiomRow; 9] = [
+static ROWS: [IdiomRow; 11] = [
     IdiomRow {
         id: "arithmetic",
         label: "Arithmetic",
@@ -124,6 +124,21 @@ static ROWS: [IdiomRow; 9] = [
         ],
     },
     IdiomRow {
+        id: "calling",
+        label: "Calling a function",
+        cells: &[
+            ("apl", "n/a (deferred)"),
+            ("a24", "JSR SQUARE"),
+            ("basic", "GOSUB 100"),
+            ("forth", "5 SQUARE"),
+            ("fortran", "n/a"),
+            ("lisp", "(sq 5)"),
+            ("pascal", "Y := Sq(5);"),
+            ("plsw", "CALL Square(5);"),
+            ("sws", "n/a (v0.1)"),
+        ],
+    },
+    IdiomRow {
         id: "comments",
         label: "Comments",
         cells: &[
@@ -151,6 +166,21 @@ static ROWS: [IdiomRow; 9] = [
             ("pascal", "IF X > 0 THEN\n  WriteLn('yes');"),
             ("plsw", "IF X > 0 THEN\n  DISPLAY('yes');"),
             ("sws", "if {$X > 0} {puts yes}"),
+        ],
+    },
+    IdiomRow {
+        id: "error-handling",
+        label: "Error handling",
+        cells: &[
+            ("apl", "; error halts\n; REPL recovers"),
+            ("a24", "; no runtime errors\n; undefined = 0"),
+            ("basic", "; syntax error\n; line number shown"),
+            ("forth", "CATCH THROW"),
+            ("fortran", "n/a"),
+            ("lisp", "; runtime error\n; error message shown"),
+            ("pascal", "; runtime error\n; halted with message"),
+            ("plsw", "ON ERROR GOTO lbl"),
+            ("sws", "catch { script } err {\n  echo $err\n}"),
         ],
     },
     IdiomRow {
@@ -229,7 +259,7 @@ mod tests {
 
     #[test]
     fn row_count() {
-        assert_eq!(rows().len(), 9);
+        assert_eq!(rows().len(), 11);
     }
 
     #[test]
