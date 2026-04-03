@@ -1,0 +1,11 @@
+{
+  "task_type": "content",
+  "state": {
+    "number": 6,
+    "step": "step6-isa-memory-calling"
+  },
+  "action": "Read sw-cor24-emulator source (state.rs, executor.rs, assembler.rs, CLAUDE.md) for authoritative memory layout and ISA details; created typed data structs; built Yew components with tables, visual diagrams, and code examples; split memory_map into io_table sub-module to stay under 7-function limit; added 200+ lines of CSS; all 25 tests pass, clippy clean, WASM check passes, trunk build succeeds",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-04-02T15:28:37"
+}

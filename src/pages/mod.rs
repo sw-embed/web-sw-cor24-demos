@@ -10,6 +10,11 @@ pub fn about_page() -> Html {
     html! { <crate::components::about::AboutPage /> }
 }
 
+#[function_component(StatusPage)]
+pub fn status_page() -> Html {
+    html! { <crate::components::status::StatusPage /> }
+}
+
 #[function_component(IsaPage)]
 pub fn isa_page() -> Html {
     html! { <crate::components::isa::IsaPage /> }
@@ -17,14 +22,7 @@ pub fn isa_page() -> Html {
 
 #[function_component(DemosPage)]
 pub fn demos_page() -> Html {
-    html! {
-        <section class="page-section">
-            <h1>{"Live Web Demos"}</h1>
-            <div class="placeholder">
-                <p>{"Demos directory coming soon."}</p>
-            </div>
-        </section>
-    }
+    html! { <crate::components::demos::DemosPage /> }
 }
 
 #[function_component(ToolchainPage)]

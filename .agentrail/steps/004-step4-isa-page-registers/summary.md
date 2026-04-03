@@ -1,0 +1,1 @@
+Created ISA documentation page shell with sidebar navigation and complete register documentation for all 8 COR24 registers (r0-r7). Register data extracted from emulator source with constraint matrix showing load/ALU/push/base register permissions. IsaSection enum provides sidebar nav structure for future ISA sections. ISA styles extracted to separate isa.css.

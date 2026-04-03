@@ -42,7 +42,78 @@ pub fn all_categories() -> &'static [Category] {
     &CATEGORIES
 }
 
-static CATEGORIES: [Category; 7] = [
+pub fn all_demos() -> Vec<DemoEntry> {
+    all_categories()
+        .iter()
+        .flat_map(|c| c.items.iter().cloned())
+        .collect()
+}
+
+pub fn all_tags() -> Vec<&'static str> {
+    let mut tags: Vec<&'static str> = all_demos()
+        .iter()
+        .flat_map(|d| d.tags.iter().copied())
+        .collect();
+    tags.sort();
+    tags.dedup();
+    tags
+}
+
+static CATEGORIES: [Category; 8] = [
+    Category {
+        id: "web-planned",
+        label: "Web Demos (Planned)",
+        items: &[
+            DemoEntry {
+                name: "Source-Level Debugger",
+                slug: "web-sw-cor24-debugger",
+                description: "Browser-based source-level debugger for COR24. Step through code, inspect registers and memory.",
+                status: DemoStatus::Design,
+                tags: &["Debugger", "IDE"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "Planned",
+                badge_image: "",
+                repo: "sw-cor24-debugger",
+            },
+            DemoEntry {
+                name: "BASIC Interpreter",
+                slug: "web-sw-cor24-basic",
+                description: "BASIC interpreter running in the browser. Write and run BASIC programs on the COR24 platform.",
+                status: DemoStatus::Design,
+                tags: &["Interpreter", "BASIC"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "Planned",
+                badge_image: "basic-badge.png",
+                repo: "sw-cor24-basic",
+            },
+            DemoEntry {
+                name: "Fortran Compiler",
+                slug: "web-sw-cor24-fortran",
+                description: "Fortran compiler web interface. Compile Fortran to COR24 assembly in the browser.",
+                status: DemoStatus::Design,
+                tags: &["Compiler", "Fortran"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "Planned",
+                badge_image: "",
+                repo: "sw-cor24-fortran",
+            },
+            DemoEntry {
+                name: "SWS Scripting Environment",
+                slug: "web-sw-cor24-script",
+                description: "SWS scripting language (Tcl-like) web REPL. Interactive scripting for COR24 in the browser.",
+                status: DemoStatus::Design,
+                tags: &["Interpreter", "Scripting"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "Planned",
+                badge_image: "sws-badge2.png",
+                repo: "sw-cor24-script",
+            },
+        ],
+    },
     Category {
         id: "emulator",
         label: "Emulator",
@@ -304,7 +375,7 @@ mod tests {
 
     #[test]
     fn category_count() {
-        assert_eq!(all_categories().len(), 7);
+        assert_eq!(all_categories().len(), 8);
     }
 
     #[test]
@@ -313,6 +384,7 @@ mod tests {
         assert_eq!(
             labels,
             vec![
+                "Web Demos (Planned)",
                 "Emulator",
                 "Cross-Assembler / Cross-Compiler",
                 "REPLs",

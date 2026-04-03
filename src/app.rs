@@ -9,6 +9,7 @@ use crate::pages;
 pub enum Route {
     Home,
     About,
+    Status,
     Isa,
     Demos,
     Toolchain,
@@ -20,6 +21,7 @@ impl Route {
     pub fn from_hash(hash: &str) -> Self {
         match hash.trim_start_matches('#').trim_start_matches('/') {
             "about" => Self::About,
+            "status" => Self::Status,
             "isa" => Self::Isa,
             "demos" => Self::Demos,
             "toolchain" => Self::Toolchain,
@@ -33,6 +35,7 @@ impl Route {
         match self {
             Self::Home => "",
             Self::About => "about",
+            Self::Status => "status",
             Self::Isa => "isa",
             Self::Demos => "demos",
             Self::Toolchain => "toolchain",
@@ -45,6 +48,7 @@ impl Route {
         match self {
             Self::Home => "Home",
             Self::About => "About",
+            Self::Status => "Status",
             Self::Isa => "ISA",
             Self::Demos => "Demos",
             Self::Toolchain => "Toolchain",
@@ -57,6 +61,7 @@ impl Route {
         &[
             Self::Home,
             Self::About,
+            Self::Status,
             Self::Isa,
             Self::Demos,
             Self::Toolchain,
@@ -82,6 +87,7 @@ fn route_page(route: &Route) -> Html {
     match route {
         Route::Home => html! { <pages::HomePage /> },
         Route::About => html! { <pages::AboutPage /> },
+        Route::Status => html! { <pages::StatusPage /> },
         Route::Isa => html! { <pages::IsaPage /> },
         Route::Demos => html! { <pages::DemosPage /> },
         Route::Toolchain => html! { <pages::ToolchainPage /> },

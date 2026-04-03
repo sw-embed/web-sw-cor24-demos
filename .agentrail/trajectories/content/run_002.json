@@ -1,0 +1,11 @@
+{
+  "task_type": "content",
+  "state": {
+    "number": 4,
+    "step": "step4-isa-page-registers"
+  },
+  "action": "Read sw-cor24-emulator source (encode.rs, executor.rs, assembler.rs, register.rs) to extract authoritative register constraints; created data/isa module with RegisterInfo struct and IsaSection enum; built IsaPage component with sticky sidebar navigation; built RegistersSection with constraint table, legend, and details panel; extracted ISA styles to isa.css; wired into app router",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-04-02T12:38:56"
+}
