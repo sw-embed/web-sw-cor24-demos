@@ -32,37 +32,37 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
 static COLUMNS: [LangColumn; 9] = [
     LangColumn {
         id: "apl",
-        label: "APL",
+        label: "apl-sw",
         default_collapsed: false,
     },
     LangColumn {
         id: "a24",
-        label: "Assembler",
+        label: "a24-sw",
         default_collapsed: false,
     },
     LangColumn {
         id: "basic",
-        label: "BASIC",
+        label: "basic-sw",
         default_collapsed: false,
     },
     LangColumn {
         id: "forth",
-        label: "Forth",
+        label: "forth-sw",
         default_collapsed: false,
     },
     LangColumn {
         id: "fortran",
-        label: "Fortran",
+        label: "fortran-sw",
         default_collapsed: true,
     },
     LangColumn {
         id: "lisp",
-        label: "Lisp",
+        label: "macrolisp-sw",
         default_collapsed: false,
     },
     LangColumn {
         id: "pascal",
-        label: "Pascal",
+        label: "pascal-sw",
         default_collapsed: false,
     },
     LangColumn {
@@ -72,7 +72,7 @@ static COLUMNS: [LangColumn; 9] = [
     },
     LangColumn {
         id: "sws",
-        label: "SWS",
+        label: "sws",
         default_collapsed: false,
     },
 ];
