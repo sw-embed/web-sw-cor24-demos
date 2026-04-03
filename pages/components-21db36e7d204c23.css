@@ -1106,3 +1106,83 @@
     color: #82aa82;
     border: 1px solid rgba(130, 170, 130, 0.3);
 }
+
+/* ── Pipeline Diagrams ── */
+
+.pipeline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pipeline {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.25rem;
+}
+
+.pipeline-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+.pipeline-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0.25rem 0;
+}
+
+.pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.pipeline-file {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--color-green);
+    font-weight: 600;
+    background-color: rgba(166, 227, 161, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.35rem;
+    border: 1px solid rgba(166, 227, 161, 0.2);
+    white-space: nowrap;
+}
+
+.pipeline-label {
+    font-size: 0.7rem;
+    color: var(--color-text-dim);
+    white-space: nowrap;
+}
+
+.pipeline-arrow {
+    font-size: 1.2rem;
+    color: var(--color-text-dim);
+    margin: 0 0.4rem;
+    flex-shrink: 0;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 767px) {
+    .pipeline-flow {
+        gap: 0;
+    }
+
+    .pipeline-arrow {
+        margin: 0 0.2rem;
+        font-size: 1rem;
+    }
+
+    .pipeline-file {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
