@@ -77,7 +77,7 @@ static COLUMNS: [LangColumn; 9] = [
     },
 ];
 
-static ROWS: [IdiomRow; 5] = [
+static ROWS: [IdiomRow; 9] = [
     IdiomRow {
         id: "arithmetic",
         label: "Arithmetic",
@@ -124,6 +124,21 @@ static ROWS: [IdiomRow; 5] = [
         ],
     },
     IdiomRow {
+        id: "comments",
+        label: "Comments",
+        cells: &[
+            ("apl", ";; inline comment"),
+            ("a24", "; comment"),
+            ("basic", "REM this is a comment"),
+            ("forth", "\\ line comment"),
+            ("fortran", "n/a"),
+            ("lisp", "; inline comment"),
+            ("pascal", "{ comment }"),
+            ("plsw", "/* comment */"),
+            ("sws", "# comment"),
+        ],
+    },
+    IdiomRow {
         id: "conditionals",
         label: "Conditionals",
         cells: &[
@@ -136,6 +151,21 @@ static ROWS: [IdiomRow; 5] = [
             ("pascal", "IF X > 0 THEN\n  WriteLn('yes');"),
             ("plsw", "IF X > 0 THEN\n  DISPLAY('yes');"),
             ("sws", "if {$X > 0} {puts yes}"),
+        ],
+    },
+    IdiomRow {
+        id: "functions",
+        label: "Functions",
+        cells: &[
+            ("apl", "n/a (deferred)"),
+            ("a24", "n/a"),
+            ("basic", "GOSUB 100\n  ... \n100 RETURN"),
+            ("forth", ": SQUARE DUP * ;"),
+            ("fortran", "n/a"),
+            ("lisp", "(defun sq (x)\n  (* x x))"),
+            ("pascal", "function Sq(X: integer)\n  : integer;"),
+            ("plsw", "PROC Square;\n  DCL X INT;\n  ... END;"),
+            ("sws", "n/a (v0.1)"),
         ],
     },
     IdiomRow {
@@ -153,6 +183,39 @@ static ROWS: [IdiomRow; 5] = [
             ("sws", "set led [expr {[read switch]}]"),
         ],
     },
+    IdiomRow {
+        id: "loops",
+        label: "Loops",
+        cells: &[
+            ("apl", "LOOP: [] <- I\nI <- I - 1\ngoto (I)/LOOP"),
+            (
+                "a24",
+                "LDA #0\n  STA I\nLP: OUT I\n  INC I\n  CMP #10\n  BNE LP",
+            ),
+            ("basic", "FOR I = 1 TO 10\n  PRINT I\nNEXT I"),
+            ("forth", "10 0 DO I . LOOP"),
+            ("fortran", "n/a"),
+            ("lisp", "(dotimes (i 10)\n  (print i))"),
+            ("pascal", "for I := 1 to 10 do\n  WriteLn(I);"),
+            ("plsw", "DO I = 1 TO 10;\n  DISPLAY(I);\nEND;"),
+            ("sws", "set i 0\nwhile {$i < 10} {\n  puts $i; incr i\n}"),
+        ],
+    },
+    IdiomRow {
+        id: "print",
+        label: "Print",
+        cells: &[
+            ("apl", "[] <- 42"),
+            ("a24", "LDA #42\n  OUT 0"),
+            ("basic", "PRINT \"Hello\""),
+            ("forth", ".\" Hello\" CR"),
+            ("fortran", "n/a"),
+            ("lisp", "(print 42)"),
+            ("pascal", "WriteLn('Hello');"),
+            ("plsw", "DISPLAY('Hello');"),
+            ("sws", "echo Hello"),
+        ],
+    },
 ];
 
 #[cfg(test)]
@@ -166,7 +229,7 @@ mod tests {
 
     #[test]
     fn row_count() {
-        assert_eq!(rows().len(), 5);
+        assert_eq!(rows().len(), 9);
     }
 
     #[test]
