@@ -121,7 +121,7 @@ static SUMMARIES: [LangSummary; 9] = [
     },
 ];
 
-static APL_GLYPH_TABLE: [GlyphRow; 18] = [
+static APL_GLYPH_TABLE: [GlyphRow; 28] = [
     GlyphRow {
         latin: "*",
         glyph: "\u{00d7}",
@@ -129,10 +129,58 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
         dyadic: "multiply",
     },
     GlyphRow {
+        latin: "+",
+        glyph: "+",
+        monadic: "N/A",
+        dyadic: "add",
+    },
+    GlyphRow {
+        latin: "-",
+        glyph: "\u{2212}",
+        monadic: "negate",
+        dyadic: "subtract",
+    },
+    GlyphRow {
         latin: "/",
         glyph: "\u{00f7}",
         monadic: "N/A",
         dyadic: "divide",
+    },
+    GlyphRow {
+        latin: "=",
+        glyph: "=",
+        monadic: "N/A",
+        dyadic: "equal (0 or 1)",
+    },
+    GlyphRow {
+        latin: "<",
+        glyph: "<",
+        monadic: "N/A",
+        dyadic: "less than (0 or 1)",
+    },
+    GlyphRow {
+        latin: ">",
+        glyph: ">",
+        monadic: "N/A",
+        dyadic: "greater than (0 or 1)",
+    },
+    GlyphRow {
+        latin: "<=",
+        glyph: "\u{2264}",
+        monadic: "N/A",
+        dyadic: "less than or equal (0 or 1)",
+    },
+    GlyphRow {
+        latin: ">=",
+        glyph: "\u{2265}",
+        monadic: "N/A",
+        dyadic: "greater than or equal (0 or 1)",
+    },
+    GlyphRow {
+        latin: "!=",
+        glyph: "\u{2260}",
+        monadic: "N/A",
+        dyadic: "not equal (0 or 1)",
     },
     GlyphRow {
         latin: "_",
@@ -145,6 +193,12 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
         glyph: "\u{2227}",
         monadic: "N/A",
         dyadic: "bitwise AND",
+    },
+    GlyphRow {
+        latin: "cap",
+        glyph: "\u{2229}",
+        monadic: "N/A",
+        dyadic: "intersection",
     },
     GlyphRow {
         latin: "cat",
@@ -163,6 +217,12 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
         glyph: "/",
         monadic: "N/A",
         dyadic: "boolean compress (select)",
+    },
+    GlyphRow {
+        latin: "cup",
+        glyph: "\u{222a}",
+        monadic: "unique (remove duplicates)",
+        dyadic: "union",
     },
     GlyphRow {
         latin: "drop",
@@ -232,7 +292,7 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
     },
 ];
 
-static APL_KEYWORD_TABLE: [KeywordRow; 8] = [
+static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     KeywordRow {
         keyword: "assign",
         glyph: "\u{2190}",
@@ -254,9 +314,19 @@ static APL_KEYWORD_TABLE: [KeywordRow; 8] = [
         usage: "Branch to label: goto LABEL",
     },
     KeywordRow {
+        keyword: "qio",
+        glyph: "\u{2395}IO",
+        usage: "Index origin: qio (read), qio assign 0 or 1",
+    },
+    KeywordRow {
         keyword: "qled",
         glyph: "\u{2395}LED",
         usage: "LED output (write-only): qled assign 0 or 1",
+    },
+    KeywordRow {
+        keyword: "qrl",
+        glyph: "\u{2395}RL",
+        usage: "PRNG seed: qrl (read), qrl assign N",
     },
     KeywordRow {
         keyword: "quad",
