@@ -1272,57 +1272,31 @@
     color: var(--color-accent);
 }
 
-/* ── Live Demo List ── */
+/* ── Implementation Details ── */
 
-.toolchain-demo-list {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    padding: 1rem 1.25rem;
+.impl-detail {
+    margin-bottom: 0.85rem;
 }
 
-.toolchain-demo-heading {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-text-bright);
-    margin: 0 0 0.5rem;
-}
-
-.toolchain-demo-heading:first-child {
-    margin-top: 0;
-}
-
-.toolchain-demo-heading:not(:first-child) {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-border-dim);
-}
-
-.toolchain-demo-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.toolchain-demo-ul li {
+.impl-detail h4 {
     font-size: 0.85rem;
-    line-height: 1.8;
-    color: var(--color-text);
-}
-
-.toolchain-demo-ul li::before {
-    content: "\u{2192} ";
-    color: var(--color-accent);
     font-weight: 600;
+    color: var(--color-green);
+    margin: 0 0 0.25rem;
 }
 
-.toolchain-demo-planned li {
-    color: var(--color-text-dim);
+.impl-detail p {
+    font-size: 0.84rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
 }
 
-.toolchain-demo-planned li::before {
-    color: var(--color-text-dim);
-    content: "\u{2022} ";
+.impl-detail code {
+    font-size: 0.82rem;
+    background-color: rgba(166, 227, 161, 0.1);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
 }
 
 /* ── Language Comparison Table ── */

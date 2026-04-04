@@ -1,35 +1,23 @@
 use yew::prelude::*;
 
-use super::category::CategorySection;
 use super::pipelines;
 use super::sections;
 
 #[function_component(ToolchainPage)]
 pub fn toolchain_page() -> Html {
-    let groups = crate::data::tools::all_groups();
-
     html! {
         <div class="page-section">
             <h1>{"Toolchain Documentation"}</h1>
             <p class="toolchain-intro">
-                {"Every tool in the COR24 ecosystem, organized by category. \
-                  From the core assembler and emulator to cross-compilers, native languages, \
-                  and system software."}
+                {"How COR24 tools are built and used. Implementation details for the \
+                 emulator, P-code VM, garbage collector, Forth runtime, and web UIs."}
             </p>
-            {groups.iter().map(|g| {
-                html! { <CategorySection group={(*g).clone()} /> }
-            }).collect::<Html>()}
-            <section class="toolchain-section">
-                <h2 class="toolchain-section-title">{"Compilation Pipelines"}</h2>
-                <p class="toolchain-section-desc">
-                    {"How source code flows through the COR24 toolchain to produce executable binaries."}
-                </p>
-                <div class="pipeline-list">
-                    {pipelines::render_all_pipelines()}
-                </div>
-            </section>
+            {pipelines::render_all_pipelines()}
+            {sections::render_pcode_vm()}
+            {sections::render_lisp_gc()}
+            {sections::render_forth_dtc()}
+            {sections::render_web_ui()}
             {sections::render_tc24r_constraints()}
-            {sections::render_demo_links()}
             <section class="toolchain-section">
                 <h2 class="toolchain-section-title">{"BASIC on COR24"}</h2>
                 <p class="toolchain-section-desc">
