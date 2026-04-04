@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/web-sw-cor24-demos/theme-cd6da9b93d922681.css" integrity="sha384-ZqoeLLZ+pyIFH4HAuLp3nHR3tQsYGzvxRwuXXAM/pVD3QQjSlNQfzzzu6SszyY5R"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/layout-1fb798d6c783653d.css" integrity="sha384-WFoRYpX0ktGEavUuYoI0iz+eCTRD7V0whyBxNajlfkROQCVZFC+J4Qx1EgTlnQHd"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/components-ab02d257ff313549.css" integrity="sha384-nTS6pAV7tDYZlfaup6raWksekIvbi743+lW6gtxHLsOlrXfH42th6/DyGZQ0iuva"/>
-    <link rel="stylesheet" href="/web-sw-cor24-demos/isa-2e25301ed28f0024.css" integrity="sha384-vD4S9P5yc0+lfPxlrDlwqW3SXO+1miOOTzVnp5yXTRu7g2LXsFExUo6gnI87a2L9"/>
+    <link rel="stylesheet" href="/web-sw-cor24-demos/isa-1702b3ce97277c0f.css" integrity="sha384-Kn7XLDi/r+wtUcLoyiLR9qymAEj68eqef9/jeufx2A1kgakSmKoBdoyrLq51VECR"/>
     <link rel="stylesheet" href="/web-sw-cor24-demos/hardware-d81f370e94426489.css" integrity="sha384-C5SoavlDTw8jpVmBdMWYLVu32rFbEcviQo/cOLOX2ptzixApcjbPgZFV1lsxkt+f"/>
     
     
 <script type="module">
-import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-7ae2bde1d920ab9c.js';
-const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-7ae2bde1d920ab9c_bg.wasm' });
+import init, * as bindings from '/web-sw-cor24-demos/web-sw-cor24-demos-c25630129a01e2fa.js';
+const wasm = await init({ module_or_path: '/web-sw-cor24-demos/web-sw-cor24-demos-c25630129a01e2fa_bg.wasm' });
 
 
 window.wasmBindings = bindings;
@@ -27,7 +27,7 @@ window.wasmBindings = bindings;
 dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
 
 </script>
-<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-7ae2bde1d920ab9c.js" crossorigin="anonymous" integrity="sha384-pln+SjAUgATPnl6SHxP9qG7d7Gg63bHLE4x4LOHkYhE+geateyfp5bRyW4kYvnn1"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-7ae2bde1d920ab9c_bg.wasm" crossorigin="anonymous" integrity="sha384-gQV92Q84txOKJYEceDy/Tnyv/kLaIwVf8ieJyH7D5xP8n7ocaqq2+mTbAbDP8qnp" as="fetch" type="application/wasm"></head>
+<link rel="modulepreload" href="/web-sw-cor24-demos/web-sw-cor24-demos-c25630129a01e2fa.js" crossorigin="anonymous" integrity="sha384-pln+SjAUgATPnl6SHxP9qG7d7Gg63bHLE4x4LOHkYhE+geateyfp5bRyW4kYvnn1"><link rel="preload" href="/web-sw-cor24-demos/web-sw-cor24-demos-c25630129a01e2fa_bg.wasm" crossorigin="anonymous" integrity="sha384-Fd+YpMXF9AmV3Mk19AVbLUg8KklcVMUsSD8dB/Qmm85qdM4S6M4vN/h0vXvL1DeY" as="fetch" type="application/wasm"></head>
 <body>
 </body>
 </html>
