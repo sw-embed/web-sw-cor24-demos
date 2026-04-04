@@ -852,6 +852,20 @@
     font-style: italic;
 }
 
+.gaps-section {
+    margin-top: 2rem;
+}
+
+.gaps-priority-col {
+    width: 5rem;
+    text-align: center;
+}
+
+.gaps-priority-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .demos-intro {
     font-size: 1rem;
     color: var(--color-text-dim);

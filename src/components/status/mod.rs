@@ -137,6 +137,38 @@ pub fn status_page() -> Html {
             </p>
             {legend()}
             {status_table()}
+
+            <section class="gaps-section">
+                <h2 class="section-heading">{"Gaps"}</h2>
+                <div class="isa-table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="gaps-priority-col">{"Priority"}</th>
+                                <th>{"Gap"}</th>
+                                <th>{"Details"}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="gaps-priority-cell">{status_badge(&crate::data::status::StatusLevel::Orange, "High")}</td>
+                                <td>{"Software floating-point library"}</td>
+                                <td>{"No hardware FPU. A software FP library is needed to support APL numeric features, the FORTRAN compiler, and scientific computing workloads."}</td>
+                            </tr>
+                            <tr>
+                                <td class="gaps-priority-cell">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</td>
+                                <td>{"Missing web UI demos"}</td>
+                                <td>{"Many native-language and system components lack browser-based demos (BASIC, Fortran, SWS, Debugger, Monitor, etc.)."}</td>
+                            </tr>
+                            <tr>
+                                <td class="gaps-priority-cell">{status_badge(&crate::data::status::StatusLevel::Red, "Wishlist")}</td>
+                                <td>{"Native COR24 C compiler"}</td>
+                                <td>{"tc24r runs on the host. A native C compiler running on COR24 itself would enable self-hosted C development (far future)."}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     }
 }
