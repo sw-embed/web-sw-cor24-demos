@@ -11,8 +11,9 @@ fn makerlisp_links() -> Vec<MakerLispLink> {
         MakerLispLink {
             label: "COR24 Soft CPU",
             url: "https://www.makerlisp.com/cor24-soft-cpu-for-fpga",
-            description: "The COR24 CPU architecture -- 24-bit RISC designed for FPGA embedded systems. \
-                Runs at 101 MHz on Lattice MachXO2 FPGAs.",
+            description:
+                "The COR24 CPU architecture -- 24-bit RISC designed for FPGA embedded systems. \
+                Runs at 101 MHz on Lattice MachXO FPGAs.",
         },
         MakerLispLink {
             label: "COR24 Dev Board",
@@ -23,7 +24,8 @@ fn makerlisp_links() -> Vec<MakerLispLink> {
         MakerLispLink {
             label: "Technical Information",
             url: "https://www.makerlisp.com/download",
-            description: "Datasheets, Verilog source, pinouts, and technical documentation for the \
+            description:
+                "Datasheets, Verilog source, pinouts, and technical documentation for the \
                 COR24 CPU and development board.",
         },
         MakerLispLink {
@@ -67,7 +69,7 @@ fn spec_table() -> Html {
                     <tr><td>{"Registers"}</td><td>{"8 x 24-bit (3 GP, 5 special)"}</td></tr>
                     <tr><td>{"Instruction sizes"}</td><td>{"1, 2, or 4 bytes (variable-length)"}</td></tr>
                     <tr><td>{"Clock speed"}</td><td>{"101 MHz"}</td></tr>
-                    <tr><td>{"FPGA"}</td><td>{"Lattice MachXO2 (LFE5U-25F)"}</td></tr>
+                    <tr><td>{"FPGA"}</td><td><a href="https://www.latticesemi.com/en/Products/FPGAandCPLD/MachXO" target="_blank" rel="noopener noreferrer">{"Lattice MachXO (LCMXO2280C-5TN144C)"}</a></td></tr>
                     <tr><td>{"SRAM"}</td><td>{"1 MB on-board"}</td></tr>
                     <tr><td>{"EBR"}</td><td>{"3 KB embedded block RAM (stack)"}</td></tr>
                     <tr><td>{"I/O"}</td><td>{"UART, GPIO (SPI/I2C), button, LED"}</td></tr>
@@ -88,8 +90,9 @@ pub fn hardware_page() -> Html {
             <p class="isa-intro">
                 {"COR24 is a 24-bit RISC soft CPU designed by "}
                 <a href="https://www.makerlisp.com" target="_blank" rel="noopener noreferrer">{"MakerLisp"}</a>
-                {" for FPGA-based embedded systems. The CPU runs on a Lattice MachXO2 FPGA at 101 MHz, \
-                with 1 MB SRAM and a development board exposing UART, GPIO, and user I/O."}
+                {" for FPGA-based embedded systems. The CPU runs on a "}
+                <a href="https://www.latticesemi.com/en/Products/FPGAandCPLD/MachXO" target="_blank" rel="noopener noreferrer">{"Lattice MachXO"}</a>
+                {" FPGA at 101 MHz, with 1 MB SRAM and a development board exposing UART, GPIO, and user I/O."}
             </p>
 
             <section class="hw-section">

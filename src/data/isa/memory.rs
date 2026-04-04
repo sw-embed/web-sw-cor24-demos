@@ -54,7 +54,8 @@ static REGIONS: [MemoryRegion; 6] = [
         end: 0xFEFFFF,
         size: "8 KB window",
         region_type: MemoryType::Stack,
-        description: "Embedded Block RAM. 3 KB populated on MachXO2. Stack grows down from 0xFEEC00.",
+        description:
+            "Embedded Block RAM. 3 KB populated on MachXO. Stack grows down from 0xFEEC00.",
     },
     MemoryRegion {
         name: "Reserved",
@@ -115,14 +116,16 @@ static IO_REGISTERS: [IoRegister; 4] = [
         address: 0xFF0100,
         size: 1,
         read_write: "R/W",
-        description: "UART data. Write = transmit byte. Read = receive byte (auto-acknowledges RX).",
+        description:
+            "UART data. Write = transmit byte. Read = receive byte (auto-acknowledges RX).",
     },
     IoRegister {
         name: "IO_UARTSTAT",
         address: 0xFF0101,
         size: 1,
         read_write: "R",
-        description: "UART status. Bit 0: RX ready, bit 1: CTS, bit 2: RX overflow, bit 7: TX busy.",
+        description:
+            "UART status. Bit 0: RX ready, bit 1: CTS, bit 2: RX overflow, bit 7: TX busy.",
     },
 ];
 

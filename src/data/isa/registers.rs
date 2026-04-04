@@ -16,14 +16,14 @@ pub fn all_registers() -> &'static [RegisterInfo; 9] {
 
 static REGISTERS: [RegisterInfo; 9] = [
     RegisterInfo {
-        name: "r0a",
-        purpose: "DEBUG TEST ROW A",
-        is_gp: true,
-        can_load_dest: true,
-        can_alu_dest: true,
-        can_push_pop: true,
-        can_base_reg: true,
-        notes: "This row proves the first row renders",
+        name: "-",
+        purpose: "-",
+        is_gp: false,
+        can_load_dest: false,
+        can_alu_dest: false,
+        can_push_pop: false,
+        can_base_reg: false,
+        notes: "-",
     },
     RegisterInfo {
         name: "r0",

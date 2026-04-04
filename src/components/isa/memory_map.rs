@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::data::isa::{MemoryType, all_regions};
+use crate::data::isa::{all_regions, MemoryType};
 
 use super::io_table::{hex, io_table};
 
@@ -113,8 +113,9 @@ pub fn memory_map_section() -> Html {
             <h2 class="section-heading">{"Memory Map"}</h2>
             <p class="isa-intro">
                 {"COR24 has a 24-bit address space (16 MB). The lower 1 MB is SRAM for code and data. \
-                The EBR region near the top of the address space provides the hardware stack (3 KB on \
-                MachXO2, 8 KB window). I/O registers are memory-mapped in the last 64 KB."}
+                The EBR region near the top of the address space provides the hardware stack (3 KB on "}
+                <a href="https://www.latticesemi.com/en/Products/FPGAandCPLD/MachXO" target="_blank" rel="noopener noreferrer">{"MachXO"}</a>
+                {", 8 KB window). I/O registers are memory-mapped in the last 64 KB."}
             </p>
             {visual_map()}
             {memory_table()}
