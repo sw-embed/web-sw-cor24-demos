@@ -111,7 +111,7 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
             <h4>{"Operators (by Valence)"}</h4>
             <p class="lang-glyph-note">
                 {"APL operators have different meanings depending on valence (number of arguments). \
-                   0 args = niladic (read system state), 1 arg = monadic (prefix), 2 args = dyadic (infix)."}
+                   1 arg = monadic (prefix), 2 args = dyadic (infix)."}
             </p>
             <div class="lang-glyph-scroll">
                 <table class="lang-glyph-table">
@@ -119,7 +119,6 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
                         <tr>
                             <th>{"Latin"}</th>
                             <th>{"Glyph"}</th>
-                            <th>{"Niladic"}</th>
                             <th>{"Monadic"}</th>
                             <th>{"Dyadic"}</th>
                         </tr>
@@ -130,7 +129,6 @@ fn render_glyph_table(table: Option<&[crate::data::lang_descriptions::GlyphRow]>
                                 <tr>
                                     <td><code>{row.latin}</code></td>
                                     <td class="lang-glyph-char">{row.glyph}</td>
-                                    <td>{row.niladic}</td>
                                     <td>{row.monadic}</td>
                                     <td>{row.dyadic}</td>
                                 </tr>
