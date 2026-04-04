@@ -11,10 +11,14 @@ fn constraint_mark(ok: bool) -> Html {
 }
 
 fn register_row(r: &isa::RegisterInfo) -> Html {
-    let name_class = if r.is_gp { "" } else { "reg-special" };
+    let name_html = if r.is_gp {
+        html! { <code>{r.name}</code> }
+    } else {
+        html! { <code class="reg-special">{r.name}</code> }
+    };
     html! {
         <tr>
-            <td><code class={name_class}>{r.name}</code></td>
+            <td>{name_html}</td>
             <td>{r.purpose}</td>
             <td class="constraint-cell">{constraint_mark(r.can_load_dest)}</td>
             <td class="constraint-cell">{constraint_mark(r.can_alu_dest)}</td>
