@@ -181,10 +181,8 @@
     text-align: center;
 }
 
-.reg-number {
-    font-family: var(--font-mono);
+.reg-special {
     color: var(--color-text-dim);
-    text-align: center;
 }
 
 .notes-cell {

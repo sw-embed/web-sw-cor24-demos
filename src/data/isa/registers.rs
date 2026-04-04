@@ -1,8 +1,8 @@
 #[derive(Clone, PartialEq, Debug)]
 pub struct RegisterInfo {
     pub name: &'static str,
-    pub number: u8,
     pub purpose: &'static str,
+    pub is_gp: bool,
     pub can_load_dest: bool,
     pub can_alu_dest: bool,
     pub can_push_pop: bool,
@@ -10,65 +10,75 @@ pub struct RegisterInfo {
     pub notes: &'static str,
 }
 
-pub fn all_registers() -> &'static [RegisterInfo; 7] {
+pub fn all_registers() -> &'static [RegisterInfo; 8] {
     &REGISTERS
 }
 
-static REGISTERS: [RegisterInfo; 7] = [
+static REGISTERS: [RegisterInfo; 8] = [
     RegisterInfo {
         name: "r0",
-        number: 0,
         purpose: "General purpose, return value",
+        is_gp: true,
         can_load_dest: true,
         can_alu_dest: true,
         can_push_pop: true,
         can_base_reg: true,
-        notes: "Work register (W) in Forth calling convention",
+        notes: "Register number 0 in opcodes; work register (W) in Forth",
     },
     RegisterInfo {
         name: "r1",
-        number: 1,
         purpose: "General purpose, link register (jal target)",
+        is_gp: true,
         can_load_dest: true,
         can_alu_dest: true,
         can_push_pop: true,
         can_base_reg: true,
-        notes: "RSP in Forth calling convention; jal always saves return address here",
+        notes: "Register number 1 in opcodes; jal always saves return address here",
     },
     RegisterInfo {
         name: "r2",
-        number: 2,
         purpose: "General purpose",
+        is_gp: true,
         can_load_dest: true,
         can_alu_dest: true,
         can_push_pop: true,
         can_base_reg: true,
-        notes: "IP (instruction pointer) in Forth calling convention",
+        notes: "Register number 2 in opcodes; IP (instruction pointer) in Forth",
     },
     RegisterInfo {
         name: "fp",
-        number: 3,
         purpose: "Frame pointer for stack-frame locals",
+        is_gp: false,
         can_load_dest: false,
         can_alu_dest: false,
         can_push_pop: true,
         can_base_reg: true,
-        notes: "Only base register for EBR stack indexing; cannot be ALU dest",
+        notes: "Only base register for EBR stack indexing; cannot be ALU dest or read by mov",
     },
     RegisterInfo {
         name: "sp",
-        number: 4,
         purpose: "Stack pointer (grows downward)",
+        is_gp: false,
         can_load_dest: false,
         can_alu_dest: false,
         can_push_pop: false,
         can_base_reg: false,
-        notes: "Init 0xFEEC00; add imm8 target only; not load/store base",
+        notes: "Init 0xFEEC00; add imm8 target only; not load/store base; cannot be pushed",
+    },
+    RegisterInfo {
+        name: "z",
+        purpose: "Constant zero (not a register)",
+        is_gp: false,
+        can_load_dest: false,
+        can_alu_dest: false,
+        can_push_pop: false,
+        can_base_reg: false,
+        notes: "Hardwired zero; used as source operand (e.g. ceq r0, z); cannot be written",
     },
     RegisterInfo {
         name: "iv",
-        number: 6,
         purpose: "Interrupt vector (ISR address)",
+        is_gp: false,
         can_load_dest: false,
         can_alu_dest: false,
         can_push_pop: false,
@@ -77,13 +87,13 @@ static REGISTERS: [RegisterInfo; 7] = [
     },
     RegisterInfo {
         name: "ir",
-        number: 7,
         purpose: "Interrupt return (saved PC)",
+        is_gp: false,
         can_load_dest: false,
         can_alu_dest: false,
         can_push_pop: false,
         can_base_reg: false,
-        notes: "CPU saves PC here on interrupt; jmp (ir) returns and clears intis",
+        notes: "CPU saves PC here on interrupt; jmp (ir) returns and clears interrupt",
     },
 ];
 
@@ -93,25 +103,16 @@ mod tests {
 
     #[test]
     fn register_count() {
-        assert_eq!(all_registers().len(), 7);
-    }
-
-    #[test]
-    fn register_numbers_unique() {
-        let mut nums: Vec<u8> = all_registers().iter().map(|r| r.number).collect();
-        nums.sort();
-        let unique: std::collections::HashSet<_> = nums.iter().copied().collect();
-        assert_eq!(nums.len(), unique.len(), "duplicate register numbers");
+        assert_eq!(all_registers().len(), 8);
     }
 
     #[test]
     fn only_gp_registers_are_load_dests() {
         for reg in all_registers().iter() {
-            let is_gp = matches!(reg.number, 0..=2);
             assert_eq!(
-                reg.can_load_dest, is_gp,
-                "load dest mismatch for {} (number {})",
-                reg.name, reg.number
+                reg.can_load_dest, reg.is_gp,
+                "load dest mismatch for {}",
+                reg.name
             );
         }
     }
@@ -119,11 +120,10 @@ mod tests {
     #[test]
     fn only_gp_registers_are_alu_dests() {
         for reg in all_registers().iter() {
-            let is_gp = matches!(reg.number, 0..=2);
             assert_eq!(
-                reg.can_alu_dest, is_gp,
-                "ALU dest mismatch for {} (number {})",
-                reg.name, reg.number
+                reg.can_alu_dest, reg.is_gp,
+                "ALU dest mismatch for {}",
+                reg.name
             );
         }
     }

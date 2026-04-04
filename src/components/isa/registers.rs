@@ -11,10 +11,10 @@ fn constraint_mark(ok: bool) -> Html {
 }
 
 fn register_row(r: &isa::RegisterInfo) -> Html {
+    let name_class = if r.is_gp { "" } else { "reg-special" };
     html! {
         <tr>
-            <td><code>{r.name}</code></td>
-            <td class="reg-number">{r.number}</td>
+            <td><code class={name_class}>{r.name}</code></td>
             <td>{r.purpose}</td>
             <td class="constraint-cell">{constraint_mark(r.can_load_dest)}</td>
             <td class="constraint-cell">{constraint_mark(r.can_alu_dest)}</td>
@@ -33,7 +33,6 @@ fn register_table() -> Html {
                 <thead>
                     <tr>
                         <th>{"Register"}</th>
-                        <th>{"#"}</th>
                         <th>{"Purpose"}</th>
                         <th class="constraint-col">{"Load"}</th>
                         <th class="constraint-col">{"ALU"}</th>
@@ -73,7 +72,7 @@ fn constraints_details() -> Html {
                 <li><strong>{"Load dest (lb/lbu/lw/la/lc):"}</strong>{" r0, r1, r2 only."}</li>
                 <li><strong>{"ALU dest (add/sub/mul/and/or/xor/shifts):"}</strong>{" r0, r1, r2 only."}</li>
                 <li><strong>{"add immediate:"}</strong>{" r0, r1, r2, sp (sp is the only special case)."}</li>
-                <li><strong>{"Push/pop:"}</strong>{" r0, r1, r2, fp. sp, iv, ir cannot be pushed."}</li>
+                <li><strong>{"Push/pop:"}</strong>{" r0, r1, r2, fp. sp, iv, ir, z cannot be pushed."}</li>
                 <li><strong>{"Base register (load/store):"}</strong>{" r0, r1, r2, fp. sp NOT valid."}</li>
                 <li>
                     <strong>{"Jump targets (jmp):"}</strong>
@@ -103,17 +102,17 @@ fn zero_and_flag_section() -> Html {
                 {"The symbol "}
                 <code>{"z"}</code>
                 {" represents a hardwired constant zero. When used as a source operand \
-                (e.g., in compare instructions like "}
+                 (e.g., in compare instructions like "}
                 <code>{"ceq r0, z"}</code>
                 {"), it provides the value 0. It is not a register \u{2014} there is no \
-                physical register r5 that can be read or written."}
+                 physical register that can be read or written."}
             </p>
             <h3>{"Condition Flag (c)"}</h3>
             <p class="isa-detail-text">
                 {"The symbol "}
                 <code>{"c"}</code>
                 {" represents a single condition flag. It is set by compare instructions \
-                "}
+                 "}
                 <code>{"ceq"}</code>
                 {", "}
                 <code>{"cls"}</code>
@@ -124,7 +123,7 @@ fn zero_and_flag_section() -> Html {
                 {" (branch if true) and "}
                 <code>{"brf"}</code>
                 {" (branch if false). The condition can also be read as a 0/1 value \
-                with "}
+                 with "}
                 <code>{"mov r0, c"}</code>
                 {". The flag is not a register and is unrelated to "}
                 <code>{"z"}</code>
@@ -140,12 +139,11 @@ pub fn registers_section() -> Html {
         <section id="registers" class="isa-section">
             <h2 class="section-heading">{"Registers"}</h2>
             <p class="isa-intro">
-                {"COR24 has 7 registers. Only r0, r1, and r2 are general-purpose: \
-                they are the only registers that can be load or ALU destinations. The frame pointer \
-                (fp) serves as the base register for stack-relative load/store. The stack pointer \
-                (sp) can only be adjusted via add immediate. Registers iv and ir handle interrupts. \
-                Additionally, the symbols z and c provide a constant zero and a condition flag, \
-                respectively \u{2014} neither is a register."}
+                {"COR24 has 7 registers and 2 special symbols. Only r0, r1, and r2 are \
+                 general-purpose (register numbers 0, 1, 2 in opcodes). All other registers \
+                 are referenced only by name: fp (frame pointer), sp (stack pointer), \
+                 iv (interrupt vector), ir (interrupt return). The symbol z provides a \
+                 constant zero and c provides a condition flag \u{2014} neither is a register."}
             </p>
             {register_table()}
             {constraint_legend()}
