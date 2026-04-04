@@ -47,6 +47,17 @@ pub fn demo_card(props: &DemoCardProps) -> Html {
                             {"Try Live"}
                         </a>
                     }
+                    {
+                        if let Some(url) = d.secondary_live_url {
+                            html! {
+                                <a href={url} target="_blank" rel="noopener noreferrer" class="card-link card-link-secondary">
+                                    {d.secondary_live_label}
+                                </a>
+                            }
+                        } else {
+                            html! {}
+                        }
+                    }
                     <a href={d.repo_url()} target="_blank" rel="noopener noreferrer" class="card-link">
                         {d.source_label}
                     </a>

@@ -12,6 +12,8 @@ pub struct DemoEntry {
     pub repo: &'static str,
     pub group_id: &'static str,
     pub live_url_override: Option<&'static str>,
+    pub secondary_live_url: Option<&'static str>,
+    pub secondary_live_label: &'static str,
 }
 
 #[derive(Clone, PartialEq, Debug)]
@@ -82,7 +84,9 @@ static CATEGORIES: [Category; 11] = [
                 badge_image: "asm-badge.png",
                 repo: "sw-cor24-emulator",
                 group_id: "cross-tools",
-                live_url_override: None,
+                live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
+                secondary_live_url: Some("https://sw-embed.github.io/web-sw-cor24-assembler/"),
+                secondary_live_label: "Assembler-Only Port",
             },
             DemoEntry {
                 name: "COR24 Emulator",
@@ -97,6 +101,8 @@ static CATEGORIES: [Category; 11] = [
                 repo: "sw-cor24-emulator",
                 group_id: "cross-tools",
                 live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
             },
             DemoEntry {
                 name: "P-code VM Debugger",
@@ -111,6 +117,8 @@ static CATEGORIES: [Category; 11] = [
                 repo: "sw-cor24-pcode",
                 group_id: "cross-tools",
                 live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
             },
             DemoEntry {
                 name: "Source-Level Debugger",
@@ -125,6 +133,8 @@ static CATEGORIES: [Category; 11] = [
                 repo: "sw-cor24-debugger",
                 group_id: "cross-tools",
                 live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
             },
             DemoEntry {
                 name: "Resident Monitor",
@@ -139,6 +149,8 @@ static CATEGORIES: [Category; 11] = [
                 repo: "sw-cor24-monitor",
                 group_id: "cross-tools",
                 live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
             },
             DemoEntry {
                 name: "yocto-ed",
@@ -153,6 +165,8 @@ static CATEGORIES: [Category; 11] = [
                 repo: "sw-cor24-yocto-ed",
                 group_id: "cross-tools",
                 live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
             },
         ],
     },
@@ -172,6 +186,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-apl",
             group_id: "apl",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -190,6 +206,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-basic",
             group_id: "basic",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -208,6 +226,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-c-compiler",
             group_id: "c",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -226,6 +246,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-forth",
             group_id: "forth",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -244,6 +266,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-fortran",
             group_id: "fortran",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -262,6 +286,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-macrolisp",
             group_id: "lisp",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -280,6 +306,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-pascal",
             group_id: "pascal",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -298,6 +326,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-plsw",
             group_id: "plsw",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -316,6 +346,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-rust",
             group_id: "rust",
             live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
     Category {
@@ -334,6 +366,8 @@ static CATEGORIES: [Category; 11] = [
             repo: "sw-cor24-script",
             group_id: "sws",
             live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
         }],
     },
 ];
