@@ -154,10 +154,10 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
-                name: "Forth Interpreter",
+                name: "Forth IDE",
                 repo: "sw-cor24-forth",
-                description: "Direct-threaded code (DTC) Forth interpreter. Clean-room implementation \
-                 written in COR24 assembly with dictionary browsing and stack inspection.",
+                description: "Direct-threaded code (DTC) Forth interpreter with interactive IDE. \
+                 Clean-room implementation written in COR24 assembly with dictionary browsing and stack inspection.",
                 language: ToolLanguage::Assembly,
                 target: ToolTarget::Cor24,
                 has_web_ui: true,
