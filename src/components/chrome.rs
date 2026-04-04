@@ -12,7 +12,7 @@ pub struct HeaderProps {
 }
 
 fn nav_items(props: &HeaderProps) -> Html {
-    Route::all()
+    Route::nav_items()
         .iter()
         .map(|r| {
             let is_active = *r == props.current_route;

@@ -10,21 +10,11 @@ pub struct RegisterInfo {
     pub notes: &'static str,
 }
 
-pub fn all_registers() -> &'static [RegisterInfo; 9] {
+pub fn all_registers() -> &'static [RegisterInfo; 8] {
     &REGISTERS
 }
 
-static REGISTERS: [RegisterInfo; 9] = [
-    RegisterInfo {
-        name: "-",
-        purpose: "-",
-        is_gp: false,
-        can_load_dest: false,
-        can_alu_dest: false,
-        can_push_pop: false,
-        can_base_reg: false,
-        notes: "-",
-    },
+static REGISTERS: [RegisterInfo; 8] = [
     RegisterInfo {
         name: "r0",
         purpose: "General purpose, return value",
@@ -113,7 +103,7 @@ mod tests {
 
     #[test]
     fn register_count() {
-        assert_eq!(all_registers().len(), 9);
+        assert_eq!(all_registers().len(), 8);
     }
 
     #[test]

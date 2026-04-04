@@ -53,15 +53,14 @@ impl Route {
         }
     }
 
-    pub fn all() -> &'static [Route] {
+    pub fn nav_items() -> &'static [Route] {
         &[
-            Self::Home,
-            Self::About,
             Self::Status,
             Self::Isa,
             Self::Toolchain,
             Self::Languages,
             Self::Hardware,
+            Self::About,
         ]
     }
 }

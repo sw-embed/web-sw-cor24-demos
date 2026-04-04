@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::data::status::{all_projects, github_issues_url, github_repo_url, r#generated_status};
+use crate::data::status::{all_projects, r#generated_status, github_issues_url, github_repo_url};
 
 fn status_badge(level: &crate::data::status::StatusLevel, label: &str) -> Html {
     html! {
@@ -150,9 +150,6 @@ pub fn status_page() -> Html {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>{"-"}</td><td>{"-"}</td><td>{"-"}</td>
-                            </tr>
                             <tr>
                                 <td class="gaps-priority-cell">{status_badge(&crate::data::status::StatusLevel::Orange, "High")}</td>
                                 <td>{"Software floating-point library"}</td>
