@@ -184,6 +184,57 @@
     color: var(--color-text-dim);
 }
 
+.reg-grid-wrap {
+    border: 1px solid var(--color-border-dim);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.reg-grid-header {
+    display: grid;
+    grid-template-columns: 5rem 1fr 3.5rem 3.5rem 3.5rem 3.5rem 1fr;
+    background-color: var(--color-surface);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-bright);
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border-dim);
+}
+
+.reg-grid-row {
+    display: grid;
+    grid-template-columns: 5rem 1fr 3.5rem 3.5rem 3.5rem 3.5rem 1fr;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border-dim);
+}
+
+.reg-grid-row:nth-child(even) {
+    background-color: var(--color-surface);
+}
+
+.reg-grid-row:hover {
+    background-color: var(--color-border-dim);
+}
+
+.reg-grid-name,
+.reg-grid-purpose,
+.reg-grid-check,
+.reg-grid-notes {
+    display: flex;
+    align-items: center;
+}
+
+.reg-grid-check {
+    justify-content: center;
+}
+
+.reg-grid-notes {
+    font-size: 0.82rem;
+    color: var(--color-text-dim);
+}
+
 .notes-cell {
     font-size: 0.82rem;
     color: var(--color-text-dim);

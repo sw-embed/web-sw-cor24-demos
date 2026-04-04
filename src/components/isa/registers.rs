@@ -17,38 +17,32 @@ fn register_row(r: &isa::RegisterInfo) -> Html {
         html! { <code class="reg-special">{r.name}</code> }
     };
     html! {
-        <tr>
-            <td>{name_html}</td>
-            <td>{r.purpose}</td>
-            <td class="constraint-cell">{constraint_mark(r.can_load_dest)}</td>
-            <td class="constraint-cell">{constraint_mark(r.can_alu_dest)}</td>
-            <td class="constraint-cell">{constraint_mark(r.can_push_pop)}</td>
-            <td class="constraint-cell">{constraint_mark(r.can_base_reg)}</td>
-            <td class="notes-cell">{r.notes}</td>
-        </tr>
+        <div class="reg-grid-row">
+            <span class="reg-grid-name">{name_html}</span>
+            <span class="reg-grid-purpose">{r.purpose}</span>
+            <span class="reg-grid-check">{constraint_mark(r.can_load_dest)}</span>
+            <span class="reg-grid-check">{constraint_mark(r.can_alu_dest)}</span>
+            <span class="reg-grid-check">{constraint_mark(r.can_push_pop)}</span>
+            <span class="reg-grid-check">{constraint_mark(r.can_base_reg)}</span>
+            <span class="reg-grid-notes">{r.notes}</span>
+        </div>
     }
 }
 
 fn register_table() -> Html {
     let regs = isa::all_registers();
     html! {
-        <div class="isa-table-wrap">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>{"Register"}</th>
-                        <th>{"Purpose"}</th>
-                        <th class="constraint-col">{"Load"}</th>
-                        <th class="constraint-col">{"ALU"}</th>
-                        <th class="constraint-col">{"Push"}</th>
-                        <th class="constraint-col">{"Base"}</th>
-                        <th>{"Notes"}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {regs.iter().map(register_row).collect::<Html>()}
-                </tbody>
-            </table>
+        <div class="reg-grid-wrap">
+            <div class="reg-grid-header">
+                <span class="reg-grid-name">{"Register"}</span>
+                <span class="reg-grid-purpose">{"Purpose"}</span>
+                <span class="reg-grid-check">{"Load"}</span>
+                <span class="reg-grid-check">{"ALU"}</span>
+                <span class="reg-grid-check">{"Push"}</span>
+                <span class="reg-grid-check">{"Base"}</span>
+                <span class="reg-grid-notes">{"Notes"}</span>
+            </div>
+            {regs.iter().map(register_row).collect::<Html>()}
         </div>
     }
 }
