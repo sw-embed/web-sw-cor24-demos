@@ -1137,9 +1137,9 @@
     margin: 0 0 0.75rem;
 }
 
-.pipeline-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+.pipeline-cards {
+    display: flex;
+    flex-direction: column;
     gap: 0.75rem;
 }
 
@@ -1154,14 +1154,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--color-text-bright);
-    margin: 0 0 0.15rem;
-}
-
-.pipeline-card-note {
-    font-size: 0.72rem;
-    font-family: var(--font-mono);
-    color: var(--color-text-dim);
-    margin: 0 0 0.6rem;
+    margin: 0 0 0.5rem;
 }
 
 .pipeline-card-detail {
@@ -1171,23 +1164,24 @@
     margin: 0.5rem 0 0;
 }
 
-.pipeline-flow {
+/* Pipeline flow: process steps + file artifacts */
+
+.pipe-flow {
     display: flex;
     align-items: center;
     gap: 0;
-    overflow-x: auto;
+    flex-wrap: wrap;
     padding: 0.25rem 0;
 }
 
-.pipeline-step {
-    display: flex;
-    flex-direction: column;
+.pipe-step {
+    display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.3rem;
     flex-shrink: 0;
 }
 
-.pipeline-file {
+.pipe-step-label {
     font-size: 0.78rem;
     font-family: var(--font-mono);
     color: var(--color-green);
@@ -1199,37 +1193,48 @@
     white-space: nowrap;
 }
 
-.pipeline-label {
-    font-size: 0.68rem;
+.pipe-step-note {
+    font-size: 0.62rem;
     color: var(--color-text-dim);
+    font-style: italic;
+}
+
+.pipe-file {
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    color: var(--color-yellow);
+    background-color: rgba(249, 226, 175, 0.08);
+    padding: 0.2rem 0.45rem;
+    border-radius: 0.25rem;
+    border: 1px dashed rgba(249, 226, 175, 0.3);
     white-space: nowrap;
 }
 
-.pipeline-arrow {
-    font-size: 1.1rem;
+.pipe-arrow {
+    font-size: 1rem;
     color: var(--color-text-dim);
-    margin: 0 0.35rem;
+    margin: 0 0.3rem;
     flex-shrink: 0;
-    padding-bottom: 1rem;
 }
 
 @media (max-width: 767px) {
-    .pipeline-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .pipeline-flow {
+    .pipe-flow {
         gap: 0;
     }
 
-    .pipeline-arrow {
-        margin: 0 0.2rem;
-        font-size: 0.9rem;
+    .pipe-arrow {
+        margin: 0 0.15rem;
+        font-size: 0.85rem;
     }
 
-    .pipeline-file {
+    .pipe-step-label {
         font-size: 0.7rem;
         padding: 0.2rem 0.4rem;
+    }
+
+    .pipe-file {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.35rem;
     }
 }
 

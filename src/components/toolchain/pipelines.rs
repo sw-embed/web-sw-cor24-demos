@@ -5,112 +5,86 @@ pub fn render_all_pipelines() -> Html {
         <>
             <div class="pipeline-intro">
                 <p>
-                    {"All COR24 tools follow a consistent pattern: "}
+                    {"The COR24 toolchain has two layers. "}
                     <strong>{"Rust-built host tools"}</strong>
-                    {" (emulator, cross-assembler, cross-compiler, web UIs) provide the \
-                     development environment, while "}
+                    {" run on the developer's machine and produce COR24 binaries. "}
                     <strong>{"C-built native tools"}</strong>
-                    {" (languages, monitor, editor) run directly on COR24 hardware. \
-                     The emulator ("}<code>{"cor24-run"}</code>{") is used for testing both."}
+                    {" are cross-compiled with tc24r and run on COR24 hardware (or the emulator)."}
                 </p>
             </div>
-            {render_rust_tools()}
-            {render_c_languages()}
-            {render_pcode_vm()}
+            {render_foundation()}
+            {render_languages()}
         </>
     }
 }
 
-fn render_rust_tools() -> Html {
+fn step(label: &'static str, note: &str) -> Html {
+    html! {
+        <span class="pipe-step">
+            <span class="pipe-step-label">{label}</span>
+            <span class="pipe-step-note">{note}</span>
+        </span>
+    }
+}
+
+fn arrow() -> Html {
+    html! { <span class="pipe-arrow">{"\u{2192}"}</span> }
+}
+
+fn file(f: &str) -> Html {
+    html! { <span class="pipe-file">{f}</span> }
+}
+
+fn render_foundation() -> Html {
     html! {
         <div class="pipeline-group">
-            <h3 class="pipeline-group-title">{"Rust Host Tools"}</h3>
+            <h3 class="pipeline-group-title">{"Rust Toolchain (host-side)"}</h3>
             <p class="pipeline-group-desc">
-                {"Written in Rust, compiled to native binaries. These run on the \
-                 developer's machine and produce COR24 code or provide browser-based \
-                 frontends."}
+                {"These three tools form the backbone. All are written in Rust."}
             </p>
-            <div class="pipeline-grid">
+            <div class="pipeline-cards">
                 <div class="pipeline-card">
-                    <h4>{"COR24 Emulator"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-emulator"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"Rust"}</span>
-                            <span class="pipeline-label">{"native binary"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"assemble + emulate COR24"}</span>
-                        </span>
+                    <h4>{"COR24 Emulator (cor24-run)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                        {arrow()}
+                        {file("execution")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Contains the assembler (as24) and emulator. Also compiles to \
-                         WebAssembly for browser-based execution."}
+                        {"Takes one or more .bin files as input. Loads and executes COR24 binaries \
+                         in a virtual machine with full register and memory inspection. \
+                         Also compiles to WebAssembly for browser-based web UIs."}
                     </p>
                 </div>
                 <div class="pipeline-card">
-                    <h4>{"Cross-Assembler Library"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-x-assembler"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"Rust"}</span>
-                            <span class="pipeline-label">{"library crate"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".s"}</span>
-                            <span class="pipeline-label">{"COR24 machine code"}</span>
-                        </span>
+                    <h4>{"Cross-Assembler"}</h4>
+                    <div class="pipe-flow">
+                        {file(".s")}
+                        {arrow()}
+                        {step("cross-assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Rust API for assembling COR24 code. Used by cross-compilers and \
-                         web UIs that need programmatic assembly."}
+                        {"Takes COR24 assembly (.s) as input, produces .bin machine code. \
+                         Also available as a Rust library crate used by cross-compilers and web UIs."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"Tiny C Cross-Compiler (tc24r)"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-x-tinyc"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"C source"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".s"}</span>
-                            <span class="pipeline-label">{"COR24 assembly"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".c .h")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Restricted C subset (no structs, no heap, 24-bit int). Output feeds \
-                         into cor24-run or the P-code AOT compiler."}
-                    </p>
-                </div>
-                <div class="pipeline-card">
-                    <h4>{"Web UIs"}</h4>
-                    <p class="pipeline-card-note">{"web-sw-cor24-* repos"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"Rust + Yew"}</span>
-                            <span class="pipeline-label">{"WASM binary"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"emulator"}</span>
-                            <span class="pipeline-label">{"runs in browser"}</span>
-                        </span>
-                    </div>
-                    <p class="pipeline-card-detail">
-                        {"9 browser frontends (Assembler IDE, P-code debugger, Tiny C compiler, \
-                         Lisp REPL, Pascal demos, APL environment, Forth IDE, PL/SW IDE, \
-                         landing page). Each embeds the emulator as WebAssembly."}
+                        {"Takes C source and headers as input, produces COR24 assembly (.s). \
+                         Restricted C subset: no structs, no heap, 24-bit int. Output feeds into \
+                         the cross-assembler to produce .bin."}
                     </p>
                 </div>
             </div>
@@ -118,268 +92,179 @@ fn render_rust_tools() -> Html {
     }
 }
 
-fn render_c_languages() -> Html {
+fn render_languages() -> Html {
     html! {
         <div class="pipeline-group">
-            <h3 class="pipeline-group-title">{"Native Languages (C on COR24)"}</h3>
+            <h3 class="pipeline-group-title">{"Native Languages & Tools (COR24-side)"}</h3>
             <p class="pipeline-group-desc">
-                {"Written in C, cross-compiled with tc24r, assembled and tested on cor24-run. \
-                 These run directly on COR24 hardware via the P-code VM or as native code."}
+                {"Written in C, cross-compiled with tc24r, assembled to .bin, loaded by cor24-run."}
             </p>
-            <div class="pipeline-grid">
+            <div class="pipeline-cards">
                 <div class="pipeline-card">
                     <h4>{"Macro Lisp"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-macrolisp"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"Lisp interpreter + GC"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".lisp")}
+                        {arrow()}
+                        {step("interpreter + GC", "C")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Lisp-1 interpreter with lexical scoping, defmacro, closures, and \
-                         mark-sweep garbage collector."}
+                        {"Lisp-1 interpreter with mark-sweep garbage collector, lexical scoping, \
+                         defmacro, and closures."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"Forth"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-forth"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".s"}</span>
-                            <span class="pipeline-label">{"DTC Forth (native asm)"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"as24"}</span>
-                            <span class="pipeline-label">{"assemble"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".forth")}
+                        {arrow()}
+                        {step("DTC Forth IDE", "C")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Direct-threaded code Forth written in COR24 assembly. Interactive IDE \
-                         with dictionary browsing and stack inspection."}
+                        {"Direct-threaded code Forth with interactive IDE, dictionary browsing, \
+                         and stack inspection."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"APL (apl-sw)"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-apl"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"APL interpreter"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".apl")}
+                        {arrow()}
+                        {step("interpreter", "C")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
                         {"Tree-walking evaluator with lazy iota generator, rank <= 2 arrays, \
-                         and ASCII keyword syntax."}
+                         ASCII keyword syntax."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"PL/SW"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-plsw"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"PL/I compiler"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".plsw .msw")}
+                        {arrow()}
+                        {step("compiler", "C")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"PL/I-inspired systems language. Rich types (BIT, BYTE, WORD, INT, CHAR, PTR), \
-                         inline ASM, macro system."}
+                        {"PL/I-inspired systems language. Produces .s directly (not via tc24r). \
+                         Rich types (BIT, BYTE, WORD, INT, CHAR, PTR), inline ASM, macro system."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"SWS"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-script"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"script interpreter"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".sws")}
+                        {arrow()}
+                        {step("interpreter", "C")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Tcl-like scripting language for shell and editor automation. \
-                         Dynamic typing with integer and string values."}
+                        {"Tcl-like scripting language for shell and editor automation."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"Fortran"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-fortran"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"Fortran compiler"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file(".f")}
+                        {arrow()}
+                        {step("compiler", "C")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Planned. Will compile Fortran source to COR24 assembly for scientific \
-                         and numeric computation."}
+                        {"Planned. Will produce .s directly. Scientific and numeric computation."}
                     </p>
                 </div>
                 <div class="pipeline-card">
                     <h4>{"yocto-ed"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-yocto-ed"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".c"}</span>
-                            <span class="pipeline-label">{"modal text editor"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"tc24r"}</span>
-                            <span class="pipeline-label">{"cross-compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
+                    <div class="pipe-flow">
+                        {file("ASCII text")}
+                        {arrow()}
+                        {step("editor", "C")}
+                        {arrow()}
+                        {step("tc24r", "Rust")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Gap-buffer editor with 3-line display, edit/command modes. Dogfooding \
-                         project for the full tc24r toolchain."}
-                    </p>
-                </div>
-            </div>
-        </div>
-    }
-}
-
-fn render_pcode_vm() -> Html {
-    html! {
-        <div class="pipeline-group">
-            <h3 class="pipeline-group-title">{"P-Code VM System"}</h3>
-            <p class="pipeline-group-desc">
-                {"The P-code VM (pvm) is a stack-based virtual machine written in COR24 assembly. \
-                 Pascal and BASIC compile to P-code bytecode and run on this VM. An AOT compiler \
-                 can convert P-code to native COR24 for performance."}
-            </p>
-            <div class="pipeline-grid">
-                <div class="pipeline-card">
-                    <h4>{"Pascal (p24p)"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-pascal"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".pas"}</span>
-                            <span class="pipeline-label">{"Pascal source"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"p24p"}</span>
-                            <span class="pipeline-label">{"compile to .spc"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"pvm"}</span>
-                            <span class="pipeline-label">{"run on P-code VM"}</span>
-                        </span>
-                    </div>
-                    <p class="pipeline-card-detail">
-                        {"C compiler producing P-code bytecode. Runtime library (32 routines) \
-                         provides I/O, string handling, and system calls."}
+                        {"Gap-buffer modal text editor. Reads/writes via UART. \
+                         Dogfooding project for the full tc24r toolchain."}
                     </p>
                 </div>
                 <div class="pipeline-card">
-                    <h4>{"BASIC"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-basic"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".bas"}</span>
-                            <span class="pipeline-label">{"BASIC source"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"interpreter"}</span>
-                            <span class="pipeline-label">{"line-numbered BASIC"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"pvm"}</span>
-                            <span class="pipeline-label">{"run on P-code VM"}</span>
-                        </span>
+                    <h4>{"Pascal + BASIC (via P-code VM)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".pas / .bas")}
+                        {arrow()}
+                        {step("compiler", "C")}
+                        {arrow()}
+                        {file(".spc")}
+                        {arrow()}
+                        {step("pvm", "COR24 asm")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"1970s-style integer BASIC interpreter. Line-numbered, GOTO/GOSUB, \
-                         FOR/NEXT, PRINT/INPUT. Targets the P-code VM."}
-                    </p>
-                </div>
-                <div class="pipeline-card">
-                    <h4>{"P-code AOT Compiler"}</h4>
-                    <p class="pipeline-card-note">{"sw-cor24-x-pc-aotc"}</p>
-                    <div class="pipeline-flow">
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{".p24"}</span>
-                            <span class="pipeline-label">{"P-code bytecode"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"pc-aotc"}</span>
-                            <span class="pipeline-label">{"AOT compile"}</span>
-                        </span>
-                        <span class="pipeline-arrow">{"\u{2192}"}</span>
-                        <span class="pipeline-step">
-                            <span class="pipeline-file">{"cor24-run"}</span>
-                            <span class="pipeline-label">{"native COR24"}</span>
-                        </span>
-                    </div>
-                    <p class="pipeline-card-detail">
-                        {"Converts P-code bytecode to native COR24 assembly for performance \
-                         without the VM overhead."}
+                        {"Pascal compiler (p24p) and BASIC interpreter produce P-code bytecode. \
+                         The P-code VM (pvm) is a stack-based virtual machine written in COR24 \
+                         assembly. An AOT compiler (pc-aotc) can convert .p24 to native .s."}
                     </p>
                 </div>
             </div>
