@@ -10,24 +10,14 @@ pub struct RegisterInfo {
     pub notes: &'static str,
 }
 
-pub fn all_registers() -> &'static [RegisterInfo; 10] {
+pub fn all_registers() -> &'static [RegisterInfo; 9] {
     &REGISTERS
 }
 
-static REGISTERS: [RegisterInfo; 10] = [
+static REGISTERS: [RegisterInfo; 9] = [
     RegisterInfo {
         name: "r0a",
         purpose: "DEBUG TEST ROW A",
-        is_gp: true,
-        can_load_dest: true,
-        can_alu_dest: true,
-        can_push_pop: true,
-        can_base_reg: true,
-        notes: "This row proves the first row renders",
-    },
-    RegisterInfo {
-        name: "r0b",
-        purpose: "DEBUG TEST ROW B",
         is_gp: true,
         can_load_dest: true,
         can_alu_dest: true,
@@ -123,7 +113,7 @@ mod tests {
 
     #[test]
     fn register_count() {
-        assert_eq!(all_registers().len(), 10);
+        assert_eq!(all_registers().len(), 9);
     }
 
     #[test]
