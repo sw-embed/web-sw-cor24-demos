@@ -1,6 +1,10 @@
 use yew::prelude::*;
 
-use crate::data::status::{all_projects, github_issues_url, github_repo_url, r#generated_status};
+use crate::data::status::{all_projects, r#generated_status, github_issues_url, github_repo_url};
+
+mod ecosystem;
+mod gaps;
+mod issue_chart;
 
 fn status_badge(level: &crate::data::status::StatusLevel, label: &str) -> Html {
     html! {
@@ -137,42 +141,9 @@ pub fn status_page() -> Html {
             </p>
             {legend()}
             {status_table()}
-
-            <section class="gaps-section">
-                <h2 class="section-heading">{"Gaps"}</h2>
-                <div class="gaps-grid">
-                    <div class="gaps-grid-header">
-                        <span class="gaps-grid-priority">{"Priority"}</span>
-                        <span class="gaps-grid-gap">{"Gap"}</span>
-                        <span class="gaps-grid-details">{"Details"}</span>
-                    </div>
-                    <div class="gaps-grid-row">
-                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Orange, "High")}</span>
-                        <span class="gaps-grid-gap">{"Software floating-point library"}</span>
-                        <span class="gaps-grid-details">{"No hardware FPU. A software FP library is needed to support APL numeric features, the FORTRAN compiler, and scientific computing workloads."}</span>
-                    </div>
-                    <div class="gaps-grid-row">
-                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</span>
-                        <span class="gaps-grid-gap">{"Missing web UI demos"}</span>
-                        <span class="gaps-grid-details">{"Many native-language and system components lack browser-based demos (BASIC, Fortran, SWS, Debugger, Monitor, etc.)."}</span>
-                    </div>
-                    <div class="gaps-grid-row">
-                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Red, "Wishlist")}</span>
-                        <span class="gaps-grid-gap">{"Native COR24 C compiler"}</span>
-                        <span class="gaps-grid-details">{"tc24r runs on the host. A native C compiler running on COR24 itself would enable self-hosted C development (far future)."}</span>
-                    </div>
-                    <div class="gaps-grid-row">
-                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</span>
-                        <span class="gaps-grid-gap">{"APL operations backlog"}</span>
-                        <span class="gaps-grid-details">{"Many APL operations in the backlog. Some are in-progress, some are gated by floating-point support."}</span>
-                    </div>
-                    <div class="gaps-grid-row">
-                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</span>
-                        <span class="gaps-grid-gap">{"C cross-compiler gaps"}</span>
-                        <span class="gaps-grid-details">{"Many C cross-compiler features in the backlog. Many beej, bgc, chibicc, and C samples do not compile yet."}</span>
-                    </div>
-                </div>
-            </section>
+            {issue_chart::render_issue_chart()}
+            {ecosystem::render_ecosystem()}
+            {gaps::render_gaps()}
         </div>
     }
 }
