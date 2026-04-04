@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::data::status::{all_projects, r#generated_status, github_issues_url, github_repo_url};
+use crate::data::status::{all_projects, github_issues_url, github_repo_url, r#generated_status};
 
 fn status_badge(level: &crate::data::status::StatusLevel, label: &str) -> Html {
     html! {
@@ -160,6 +160,16 @@ pub fn status_page() -> Html {
                         <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Red, "Wishlist")}</span>
                         <span class="gaps-grid-gap">{"Native COR24 C compiler"}</span>
                         <span class="gaps-grid-details">{"tc24r runs on the host. A native C compiler running on COR24 itself would enable self-hosted C development (far future)."}</span>
+                    </div>
+                    <div class="gaps-grid-row">
+                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</span>
+                        <span class="gaps-grid-gap">{"APL operations backlog"}</span>
+                        <span class="gaps-grid-details">{"Many APL operations in the backlog. Some are in-progress, some are gated by floating-point support."}</span>
+                    </div>
+                    <div class="gaps-grid-row">
+                        <span class="gaps-grid-priority">{status_badge(&crate::data::status::StatusLevel::Yellow, "Medium")}</span>
+                        <span class="gaps-grid-gap">{"C cross-compiler gaps"}</span>
+                        <span class="gaps-grid-details">{"Many C cross-compiler features in the backlog. Many beej, bgc, chibicc, and C samples do not compile yet."}</span>
                     </div>
                 </div>
             </section>
