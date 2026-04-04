@@ -20,11 +20,6 @@ pub fn isa_page() -> Html {
     html! { <crate::components::isa::IsaPage /> }
 }
 
-#[function_component(DemosPage)]
-pub fn demos_page() -> Html {
-    html! { <crate::components::demos::DemosPage /> }
-}
-
 #[function_component(ToolchainPage)]
 pub fn toolchain_page() -> Html {
     html! { <crate::components::toolchain::ToolchainPage /> }

@@ -37,7 +37,6 @@ pub fn overview_section() -> Html {
                 </div>
                 <div class="overview-links">
                     <button class="btn btn-secondary" onclick={nav_callback(Route::Isa)}>{"ISA Documentation"}</button>
-                    <button class="btn btn-secondary" onclick={nav_callback(Route::Demos)}>{"Browse Demos"}</button>
                     <button class="btn btn-secondary" onclick={nav_callback(Route::Toolchain)}>{"Toolchain"}</button>
                 </div>
             </div>

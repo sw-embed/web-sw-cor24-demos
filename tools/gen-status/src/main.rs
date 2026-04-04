@@ -24,6 +24,7 @@ const REPOS: &[(&str, &str)] = &[
     ("sw-cor24-script", "Native langs"),
     ("sw-cor24-monitor", "System"),
     ("sw-cor24-debugger", "System"),
+    ("sw-cor24-yocto-ed", "System"),
     ("web-sw-cor24-assembler", "Web UIs"),
     ("web-sw-cor24-pcode", "Web UIs"),
     ("web-sw-cor24-tinyc", "Web UIs"),

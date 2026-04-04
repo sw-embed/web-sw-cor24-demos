@@ -249,6 +249,17 @@ static GROUPS: [ToolGroup; 5] = [
                 live_url_override: None,
                 category: ToolCategory::SystemSoftware,
             },
+            ToolEntry {
+                name: "yocto-ed",
+                repo: "sw-cor24-yocto-ed",
+                description: "Minimal modal text editor with gap buffer, 3-line display, edit/command modes. \
+                 Dogfooding project for the tc24r toolchain (C -> COR24 assembly -> emulator).",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::SystemSoftware,
+            },
         ],
     },
 ];
@@ -265,8 +276,8 @@ mod tests {
         assert_eq!(g[1].items.len(), 2);
         assert_eq!(g[2].items.len(), 3);
         assert_eq!(g[3].items.len(), 7);
-        assert_eq!(g[4].items.len(), 2);
-        assert_eq!(all_tools().len(), 18);
+        assert_eq!(g[4].items.len(), 3);
+        assert_eq!(all_tools().len(), 19);
     }
 
     #[test]

@@ -15,7 +15,7 @@ pub fn hero_section() -> Html {
             </p>
             <div class="hero-actions">
                 <a href="#/isa" class="btn btn-primary">{"ISA Docs"}</a>
-                <a href="#/demos" class="btn btn-secondary">{"Live Demos"}</a>
+                <a href="#" class="btn btn-secondary">{"Browse Demos"}</a>
             </div>
         </div>
     }

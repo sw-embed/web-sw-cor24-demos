@@ -21,6 +21,7 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("sw-cor24-script", 0, true, true),
         ("sw-cor24-monitor", 0, true, true),
         ("sw-cor24-debugger", 0, false, false),
+        ("sw-cor24-yocto-ed", 0, false, false),
         ("web-sw-cor24-assembler", 0, false, false),
         ("web-sw-cor24-pcode", 0, true, true),
         ("web-sw-cor24-tinyc", 0, false, false),
