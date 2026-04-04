@@ -173,6 +173,13 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
         dyadic: "boolean compress (select)",
     },
     GlyphRow {
+        latin: "drop",
+        glyph: "\u{2193}",
+        niladic: "N/A",
+        monadic: "N/A",
+        dyadic: "drop first N elements/rows",
+    },
+    GlyphRow {
         latin: "floor",
         glyph: "\u{230a}",
         niladic: "N/A",
@@ -241,13 +248,6 @@ static APL_GLYPH_TABLE: [GlyphRow; 18] = [
         niladic: "N/A",
         monadic: "N/A",
         dyadic: "take first N elements/rows",
-    },
-    GlyphRow {
-        latin: "drop",
-        glyph: "\u{2193}",
-        niladic: "N/A",
-        monadic: "N/A",
-        dyadic: "drop first N elements/rows",
     },
 ];
 
