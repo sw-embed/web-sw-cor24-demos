@@ -301,6 +301,7 @@
 
 .isa-detail-list strong {
     color: var(--color-text);
+    white-space: nowrap;
 }
 
 .isa-detail-list code {
@@ -309,6 +310,8 @@
     background-color: var(--color-border-dim);
     padding: 0.1rem 0.35rem;
     border-radius: var(--border-radius-sm);
+    white-space: normal;
+    word-break: break-all;
 }
 
 .isa-detail-text {
