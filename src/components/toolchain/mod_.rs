@@ -15,7 +15,7 @@ pub fn toolchain_page() -> Html {
             {pipelines::render_all_pipelines()}
             <div class="toolchain-diagram-wrap">
                 <img
-                    src="images/mermaid-diagram.png"
+                    src="images/mermaid-diagram2.png"
                     alt="COR24 ecosystem architecture diagram"
                     class="toolchain-diagram-img"
                 />
