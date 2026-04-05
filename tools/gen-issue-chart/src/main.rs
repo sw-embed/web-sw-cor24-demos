@@ -179,10 +179,15 @@ fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>) -> String {
         return "<svg xmlns='http://www.w3.org/2000/svg'></svg>".to_string();
     }
 
-    let open_cum = cumulative_counts(timeline, |dc| dc.opened);
+    let opened_cum = cumulative_counts(timeline, |dc| dc.opened);
     let closed_cum = cumulative_counts(timeline, |dc| dc.closed);
+    let open_net: Vec<u32> = opened_cum
+        .iter()
+        .zip(closed_cum.iter())
+        .map(|(&o, &c)| o - c)
+        .collect();
 
-    let max_open = *open_cum.iter().max().unwrap_or(&1).max(&1);
+    let max_open = *open_net.iter().max().unwrap_or(&1).max(&1);
     let max_closed = *closed_cum.iter().max().unwrap_or(&1).max(&1);
     let max_val = max_open.max(max_closed).max(1);
 
@@ -259,7 +264,7 @@ fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>) -> String {
     let first_x = format!("{:.1}", to_x(0));
     let last_x = format!("{:.1}", to_x(n - 1));
 
-    let open_points: Vec<String> = open_cum
+    let open_points: Vec<String> = open_net
         .iter()
         .enumerate()
         .map(|(i, &v)| format!("{:.1},{:.1}", to_x(i), to_y(v)))
@@ -307,7 +312,7 @@ fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>) -> String {
             closed_points.join(" ")).unwrap();
     }
 
-    let last_open = open_cum.last().unwrap_or(&0);
+    let last_open = open_net.last().unwrap_or(&0);
     let last_closed = closed_cum.last().unwrap_or(&0);
     let lx = to_x(n - 1);
     let lx_fmt = format!("{lx:.1}");
