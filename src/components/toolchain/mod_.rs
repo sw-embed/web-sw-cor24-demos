@@ -13,6 +13,13 @@ pub fn toolchain_page() -> Html {
                  emulator, P-code VM, garbage collector, Forth runtime, and web UIs."}
             </p>
             {pipelines::render_all_pipelines()}
+            <div class="toolchain-diagram-wrap">
+                <img
+                    src="docs/mermaid-diagram.png"
+                    alt="COR24 ecosystem architecture diagram"
+                    class="toolchain-diagram-img"
+                />
+            </div>
             {sections::render_pcode_vm()}
             {sections::render_lisp_gc()}
             {sections::render_forth_dtc()}
