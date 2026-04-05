@@ -25,14 +25,14 @@
   <line x1='590.8' y1='35' x2='590.8' y2='265' stroke='#313244'/>
   <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 05</text>
   <line x1='700.0' y1='35' x2='700.0' y2='265' stroke='#313244'/>
-  <polygon fill='rgba(243,139,168,0.08)' points='45.0,252.2 154.2,252.2 263.3,252.2 372.5,35.0 481.7,86.1 590.8,150.0 700.0,226.7 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,252.2 154.2,252.2 263.3,252.2 372.5,35.0 481.7,86.1 590.8,150.0 700.0,226.7'/>
-  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 154.2,265.0 263.3,265.0 372.5,265.0 481.7,213.9 590.8,124.4 700.0,47.8 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 154.2,265.0 263.3,265.0 372.5,265.0 481.7,213.9 590.8,124.4 700.0,47.8'/>
-  <circle cx='700.0' cy='226.7' r='4' fill='#f38ba8'/>
-  <circle cx='700.0' cy='47.8' r='4' fill='#a6e3a1'/>
-  <text x='708.0' y='226.7' fill='#f38ba8' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>3 open</text>
-  <text x='708.0' y='47.8' fill='#a6e3a1' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>17 closed</text>
+  <polygon fill='rgba(243,139,168,0.08)' points='45.0,252.2 154.2,252.2 263.3,252.2 372.5,35.0 481.7,86.1 590.8,150.0 700.0,239.4 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,252.2 154.2,252.2 263.3,252.2 372.5,35.0 481.7,86.1 590.8,150.0 700.0,239.4'/>
+  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 154.2,265.0 263.3,265.0 372.5,265.0 481.7,213.9 590.8,124.4 700.0,35.0 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 154.2,265.0 263.3,265.0 372.5,265.0 481.7,213.9 590.8,124.4 700.0,35.0'/>
+  <circle cx='700.0' cy='239.4' r='4' fill='#f38ba8'/>
+  <circle cx='700.0' cy='35.0' r='4' fill='#a6e3a1'/>
+  <text x='708.0' y='239.4' fill='#f38ba8' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>2 open</text>
+  <text x='708.0' y='35.0' fill='#a6e3a1' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>18 closed</text>
   <text x='360' y='18' fill='#cdd6f4' text-anchor='middle' font-size='13px' font-weight='600'>Issue Progress: sw-cor24-x-tinyc</text>
   <line x1='55' y1='306' x2='71' y2='306' stroke='#f38ba8' stroke-width='2'/>
   <text x='75' y='306' fill='#a6adc8' dominant-baseline='middle'>Open</text>
