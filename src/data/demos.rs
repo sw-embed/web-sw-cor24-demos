@@ -278,7 +278,7 @@ static CATEGORIES: [Category; 12] = [
             has_live_demo: false,
             is_this_site: false,
             source_label: "Planned",
-            badge_image: "",
+            badge_image: "fortran-badge.png",
             repo: "sw-cor24-fortran",
             group_id: "fortran",
             live_url_override: None,
