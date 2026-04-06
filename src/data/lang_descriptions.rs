@@ -46,7 +46,7 @@ pub struct LangDetail {
     pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
-static SUMMARIES: [LangSummary; 9] = [
+static SUMMARIES: [LangSummary; 10] = [
     LangSummary {
         id: "apl",
         label: "apl-sw",
@@ -110,6 +110,14 @@ static SUMMARIES: [LangSummary; 9] = [
         one_liner: "PL/I-inspired systems language with rich types, pointers, and inline ASM",
         repo: "sw-cor24-plsw",
         section_id: "lang-plsw",
+    },
+    LangSummary {
+        id: "snobol4",
+        label: "SNOBOL4",
+        inspired_by: "SNOBOL4",
+        one_liner: "Pattern-matching language for string processing, written in PL/SW",
+        repo: "sw-cor24-snobol4",
+        section_id: "lang-snobol4",
     },
     LangSummary {
         id: "sws",
@@ -521,13 +529,17 @@ static DETAILS: [LangDetail; 10] = [
         section_id: "lang-snobol4",
         history: "SNOBOL4 (String Oriented Symbolic Language) is a classic pattern-matching language from the 1960s. This implementation runs on COR24 and is written in PL/SW, demonstrating PL/SW as a host language for building interpreters.",
         purpose: "String processing and pattern matching. SNOBOL4 excels at text manipulation, parsing, and symbolic computation using its powerful pattern-matching primitives.",
-        usage: "Define patterns with EQ, match with SUBJECT, and branch on success/failure. OUTPUT for printing. Built-in string functions for substring, replacement, and concatenation.",
+        usage: "Assign with =, print with OUTPUT = expr. Pattern match with subject PAT . capture :F(label). Use SPAN, BREAK, REM, and literal patterns. Branch on success/failure with :S(label) and :F(label). Loop with :(label). Arrays with ARRAY() and <> indexing.",
         pros: &[
-            "Powerful pattern matching",
-            "String manipulation primitives",
+            "Powerful pattern matching (SPAN, BREAK, REM)",
             "Success/failure flow control",
+            "String concatenation is implicit",
         ],
-        cons: &["No web UI yet", "Implemented in PL/SW (two-language stack)"],
+        cons: &[
+            "No web UI yet",
+            "No user-defined functions yet",
+            "Implemented in PL/SW (two-language stack)",
+        ],
         glyph_table: None,
         keyword_table: None,
     },
