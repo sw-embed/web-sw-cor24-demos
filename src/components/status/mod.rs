@@ -141,7 +141,7 @@ pub fn status_page() -> Html {
             </p>
             {legend()}
             {status_table()}
-            {issue_chart::render_issue_chart()}
+            {issue_chart::render_issue_charts()}
             {ecosystem::render_ecosystem()}
             {gaps::render_gaps()}
         </div>

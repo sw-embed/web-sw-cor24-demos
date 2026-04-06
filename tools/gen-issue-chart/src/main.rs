@@ -1,12 +1,28 @@
 use std::collections::BTreeMap;
 use std::fmt::Write;
 use std::path::PathBuf;
-use std::process::Command;
+use std::process::{Command, Stdio};
 
 use chrono::Datelike;
 
 const ORG: &str = "sw-embed";
-const REPO: &str = "sw-cor24-x-tinyc";
+
+static REPOS: &[&str] = &[
+    "sw-cor24-x-tinyc",
+    "sw-cor24-pascal",
+    "sw-cor24-pcode",
+    "sw-cor24-plsw",
+];
+
+fn repo_slug(repo: &str) -> &'static str {
+    match repo {
+        "sw-cor24-x-tinyc" => "tinyc",
+        "sw-cor24-pascal" => "pascal",
+        "sw-cor24-pcode" => "pcode",
+        "sw-cor24-plsw" => "plsw",
+        _ => "repo",
+    }
+}
 
 struct Issue {
     created_at: chrono::NaiveDate,
@@ -19,41 +35,51 @@ struct DayCounts {
 }
 
 fn main() {
-    let repo_created = fetch_repo_created();
-    eprintln!("Repo created: {repo_created}");
-
-    let issues = fetch_issues();
-    eprintln!("Fetched {} issues", issues.len());
-
-    let timeline = build_timeline(&repo_created, &issues);
-    let svg = render_svg(&timeline);
-
     let project_root = find_project_root();
-    let dest = project_root.join("images/tinyc-issue-chart.svg");
-    std::fs::write(&dest, &svg).expect("failed to write SVG");
-    println!("Generated {}", dest.display());
+    for &repo in REPOS {
+        eprintln!("Processing {repo}...");
+        let repo_created = fetch_repo_created(repo);
+        eprintln!("  Repo created: {repo_created}");
+
+        let issues = fetch_issues(repo);
+        eprintln!("  Fetched {} issues", issues.len());
+
+        let timeline = build_timeline(&repo_created, &issues);
+        let svg = render_svg(&timeline, repo);
+
+        let slug = repo_slug(repo);
+        let dest = project_root.join(format!("images/{slug}-issue-chart.svg"));
+        std::fs::write(&dest, &svg).expect("failed to write SVG");
+        println!("Generated {}", dest.display());
+    }
 }
 
 fn gh(args: &[&str]) -> String {
     let mut cmd = Command::new("gh");
     cmd.args(args);
-    let output = cmd.output().expect("failed to run gh");
+    cmd.env("GH_PAGER", "cat");
+    cmd.env("NO_COLOR", "1");
+    cmd.stdin(Stdio::null());
+    cmd.stdout(Stdio::piped());
+    cmd.stderr(Stdio::null());
+    let child = cmd.spawn().expect("failed to spawn gh");
+    let output = child.wait_with_output().expect("failed to wait for gh");
     String::from_utf8_lossy(&output.stdout).trim().to_string()
 }
 
-fn fetch_repo_created() -> chrono::NaiveDate {
-    let out = gh(&["api", &format!("repos/{ORG}/{REPO}"), "--jq", ".created_at"]);
+fn fetch_repo_created(repo: &str) -> chrono::NaiveDate {
+    let out = gh(&["api", &format!("repos/{ORG}/{repo}"), "--jq", ".created_at"]);
     parse_date(&out)
 }
 
-fn fetch_issues() -> Vec<Issue> {
+fn fetch_issues(repo: &str) -> Vec<Issue> {
     let mut all = Vec::new();
     let mut page = 1u32;
-    loop {
+    while page <= 10 {
         let out = gh(&[
             "api",
             &format!(
-                "repos/{ORG}/{REPO}/issues?state=all&per_page=100&sort=created&direction=asc&page={page}"
+                "repos/{ORG}/{repo}/issues?state=all&per_page=100&sort=created&direction=asc&page={page}"
             ),
             "--jq",
             "[.[] | {created_at, closed_at}]",
@@ -159,7 +185,7 @@ fn nice_ticks(max: u32, target: usize) -> Vec<u32> {
     } else {
         10.0
     };
-    let step = (nice * mag).round() as u32;
+    let step = (nice * mag).round().max(1.0) as u32;
     let mut ticks = Vec::new();
     let mut v = 0u32;
     while v <= max {
@@ -172,7 +198,7 @@ fn nice_ticks(max: u32, target: usize) -> Vec<u32> {
     ticks
 }
 
-fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>) -> String {
+fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>, repo: &str) -> String {
     let dates: Vec<chrono::NaiveDate> = timeline.keys().copied().collect();
     let n = dates.len();
     if n == 0 {
@@ -333,7 +359,7 @@ fn render_svg(timeline: &BTreeMap<chrono::NaiveDate, DayCounts>) -> String {
     writeln!(svg, "  <text x='{cx:.1}' y='{cy:.1}' fill='#a6e3a1' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>{last_closed} closed</text>",
         cx = lx + 8.0, cy = to_y(*last_closed)).unwrap();
 
-    writeln!(svg, "  <text x='{cx}' y='18' fill='#cdd6f4' text-anchor='middle' font-size='13px' font-weight='600'>Issue Progress: {REPO}</text>",
+    writeln!(svg, "  <text x='{cx}' y='18' fill='#cdd6f4' text-anchor='middle' font-size='13px' font-weight='600'>Issue Progress: {repo}</text>",
         cx = width / 2).unwrap();
 
     let legend_x = pad_left as f64 + 10.0;

@@ -345,7 +345,7 @@ static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     },
 ];
 
-static DETAILS: [LangDetail; 9] = [
+static DETAILS: [LangDetail; 10] = [
     LangDetail {
         id: "apl",
         label: "apl-sw",
@@ -511,6 +511,23 @@ static DETAILS: [LangDetail; 9] = [
             "Steeper learning curve than BASIC/SWS",
             "Type declarations add verbosity",
         ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
+        id: "snobol4",
+        label: "SNOBOL4",
+        inspired_by: "SNOBOL4",
+        section_id: "lang-snobol4",
+        history: "SNOBOL4 (String Oriented Symbolic Language) is a classic pattern-matching language from the 1960s. This implementation runs on COR24 and is written in PL/SW, demonstrating PL/SW as a host language for building interpreters.",
+        purpose: "String processing and pattern matching. SNOBOL4 excels at text manipulation, parsing, and symbolic computation using its powerful pattern-matching primitives.",
+        usage: "Define patterns with EQ, match with SUBJECT, and branch on success/failure. OUTPUT for printing. Built-in string functions for substring, replacement, and concatenation.",
+        pros: &[
+            "Powerful pattern matching",
+            "String manipulation primitives",
+            "Success/failure flow control",
+        ],
+        cons: &["No web UI yet", "Implemented in PL/SW (two-language stack)"],
         glyph_table: None,
         keyword_table: None,
     },

@@ -209,6 +209,17 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
+                name: "SNOBOL4 Interpreter",
+                repo: "sw-cor24-snobol4",
+                description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW. \
+                 Provides powerful string and pattern manipulation capabilities on COR24.",
+                language: ToolLanguage::Mixed("PL/SW"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
                 name: "SWS Scripting Language",
                 repo: "sw-cor24-script",
                 description: "Tcl-like scripting language for shell and editor automation on COR24. \
@@ -275,9 +286,9 @@ mod tests {
         assert_eq!(g[0].items.len(), 4);
         assert_eq!(g[1].items.len(), 2);
         assert_eq!(g[2].items.len(), 3);
-        assert_eq!(g[3].items.len(), 7);
+        assert_eq!(g[3].items.len(), 8);
         assert_eq!(g[4].items.len(), 3);
-        assert_eq!(all_tools().len(), 19);
+        assert_eq!(all_tools().len(), 20);
     }
 
     #[test]

@@ -75,7 +75,7 @@ pub fn all_projects() -> &'static [ProjectRow] {
     &PROJECTS
 }
 
-static PROJECTS: [ProjectRow; 29] = [
+static PROJECTS: [ProjectRow; 31] = [
     ProjectRow {
         repo: "sw-cor24-assembler",
         description: "Native assembler (C)",
@@ -212,6 +212,15 @@ static PROJECTS: [ProjectRow; 29] = [
         group: "Native langs",
     },
     ProjectRow {
+        repo: "sw-cor24-snobol4",
+        description: "SNOBOL4 interpreter (PL/SW)",
+        repo_status: yellow("In dev"),
+        has_web_ui: orange("Planned"),
+        has_saga: false,
+        is_web: false,
+        group: "Native langs",
+    },
+    ProjectRow {
         repo: "sw-cor24-script",
         description: "SWS scripting language (C, Tcl-like)",
         repo_status: yellow("In dev"),
@@ -320,6 +329,15 @@ static PROJECTS: [ProjectRow; 29] = [
         group: "Web UIs",
     },
     ProjectRow {
+        repo: "web-sw-cor24-snobol4",
+        description: "SNOBOL4 interpreter",
+        repo_status: orange("Planned"),
+        has_web_ui: neutral("n/a"),
+        has_saga: false,
+        is_web: true,
+        group: "Web UIs",
+    },
+    ProjectRow {
         repo: "web-sw-cor24-rust",
         description: "Rust MSP430 translator",
         repo_status: yellow("In dev"),
@@ -357,7 +375,7 @@ mod tests {
 
     #[test]
     fn project_count() {
-        assert_eq!(all_projects().len(), 29);
+        assert_eq!(all_projects().len(), 31);
     }
 
     #[test]

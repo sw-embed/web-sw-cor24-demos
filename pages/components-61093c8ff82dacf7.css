@@ -1934,8 +1934,20 @@
     margin: 0 auto;
 }
 
-.issue-chart-section .eco-intro a {
+.issue-chart-label {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--color-text-dim);
+    margin-top: 0.5rem;
+}
+
+.issue-chart-label a {
     color: var(--color-accent);
+}
+
+.issue-chart-wrap + .issue-chart-wrap {
+    margin-top: 1.5rem;
 }
 
 .issue-chart-section .eco-intro code {

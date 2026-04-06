@@ -67,7 +67,7 @@ pub fn all_tags() -> Vec<&'static str> {
     tags
 }
 
-static CATEGORIES: [Category; 11] = [
+static CATEGORIES: [Category; 12] = [
     Category {
         id: "cross-tools",
         label: "Cross-Assembler / Cross-Compiler",
@@ -347,6 +347,26 @@ static CATEGORIES: [Category; 11] = [
         }],
     },
     Category {
+        id: "snobol4",
+        label: "SNOBOL4",
+        items: &[DemoEntry {
+            name: "SNOBOL4 Interpreter",
+            slug: "sw-cor24-snobol4",
+            description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW, running on COR24.",
+            status: DemoStatus::Wip,
+            tags: &["Interpreter", "SNOBOL4", "Pattern Matching"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "PL/SW Source",
+            badge_image: "snobol4-badge.png",
+            repo: "sw-cor24-snobol4",
+            group_id: "snobol4",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
         id: "rust",
         label: "Rust",
         items: &[DemoEntry {
@@ -446,7 +466,7 @@ mod tests {
 
     #[test]
     fn category_count() {
-        assert_eq!(all_categories().len(), 11);
+        assert_eq!(all_categories().len(), 12);
     }
 
     #[test]
@@ -464,6 +484,7 @@ mod tests {
                 "Lisp",
                 "Pascal",
                 "PL/SW",
+                "SNOBOL4",
                 "Rust",
                 "SWS",
             ]

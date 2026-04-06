@@ -29,7 +29,7 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
     "n/a"
 }
 
-static COLUMNS: [LangColumn; 9] = [
+static COLUMNS: [LangColumn; 10] = [
     LangColumn {
         id: "apl",
         label: "apl-sw",
@@ -71,6 +71,11 @@ static COLUMNS: [LangColumn; 9] = [
         default_collapsed: false,
     },
     LangColumn {
+        id: "snobol4",
+        label: "SNOBOL4",
+        default_collapsed: true,
+    },
+    LangColumn {
         id: "sws",
         label: "sws",
         default_collapsed: false,
@@ -90,6 +95,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(+ X (* Y Z))"),
             ("pascal", "X := A + B * C"),
             ("plsw", "X = A + B * C"),
+            ("snobol4", "n/a"),
             ("sws", "set X [expr {$A + $B * $C}]"),
         ],
     },
@@ -105,6 +111,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(SETQ X 42)"),
             ("pascal", "X := 42"),
             ("plsw", "X = 42"),
+            ("snobol4", "n/a"),
             ("sws", "set X 42"),
         ],
     },
@@ -120,6 +127,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(> X 0)"),
             ("pascal", "X > 0"),
             ("plsw", "X > 0"),
+            ("snobol4", "n/a"),
             ("sws", "expr {$X > 0}"),
         ],
     },
@@ -135,6 +143,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(sq 5)"),
             ("pascal", "Y := Sq(5);"),
             ("plsw", "CALL Square(5);"),
+            ("snobol4", "n/a"),
             ("sws", "n/a (v0.1)"),
         ],
     },
@@ -150,6 +159,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "; inline comment"),
             ("pascal", "{ comment }"),
             ("plsw", "/* comment */"),
+            ("snobol4", "n/a"),
             ("sws", "# comment"),
         ],
     },
@@ -165,6 +175,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(IF (> X 0) \"yes\" \"no\")"),
             ("pascal", "IF X > 0 THEN\n  WriteLn('yes');"),
             ("plsw", "IF X > 0 THEN\n  DISPLAY('yes');"),
+            ("snobol4", "n/a"),
             ("sws", "if {$X > 0} {puts yes}"),
         ],
     },
@@ -180,6 +191,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "; runtime error\n; error message shown"),
             ("pascal", "; runtime error\n; halted with message"),
             ("plsw", "ON ERROR GOTO lbl"),
+            ("snobol4", "n/a"),
             ("sws", "catch { script } err {\n  echo $err\n}"),
         ],
     },
@@ -195,6 +207,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(defun sq (x)\n  (* x x))"),
             ("pascal", "function Sq(X: integer)\n  : integer;"),
             ("plsw", "PROC Square;\n  DCL X INT;\n  ... END;"),
+            ("snobol4", "n/a"),
             ("sws", "n/a (v0.1)"),
         ],
     },
@@ -213,6 +226,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(if (s2-pressed?)\n  (begin (set-leds 0)...))"),
             ("pascal", "Port[1] := Port[2]"),
             ("plsw", "n/a"),
+            ("snobol4", "n/a"),
             ("sws", "set led [expr {[read switch]}]"),
         ],
     },
@@ -231,6 +245,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(dotimes (i 10)\n  (print i))"),
             ("pascal", "for I := 1 to 10 do\n  WriteLn(I);"),
             ("plsw", "DO I = 1 TO 10;\n  DISPLAY(I);\nEND;"),
+            ("snobol4", "n/a"),
             ("sws", "set i 0\nwhile {$i < 10} {\n  puts $i; incr i\n}"),
         ],
     },
@@ -246,6 +261,7 @@ static ROWS: [IdiomRow; 11] = [
             ("lisp", "(print 42)"),
             ("pascal", "WriteLn('Hello');"),
             ("plsw", "DISPLAY('Hello');"),
+            ("snobol4", "n/a"),
             ("sws", "echo Hello"),
         ],
     },
@@ -257,7 +273,7 @@ mod tests {
 
     #[test]
     fn column_count() {
-        assert_eq!(columns().len(), 9);
+        assert_eq!(columns().len(), 10);
     }
 
     #[test]
