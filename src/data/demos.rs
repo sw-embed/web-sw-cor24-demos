@@ -177,7 +177,7 @@ static CATEGORIES: [Category; 12] = [
                 has_live_demo: false,
                 is_this_site: false,
                 source_label: "C Source",
-                badge_image: "",
+                badge_image: "yocto-ed-badge.png",
                 repo: "sw-cor24-yocto-ed",
                 group_id: "cross-tools",
                 live_url_override: None,
