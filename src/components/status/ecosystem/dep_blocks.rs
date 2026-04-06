@@ -27,24 +27,36 @@ pub(crate) fn render_cross_compiler_deps() -> Html {
 }
 
 pub(crate) fn render_native_lang_deps() -> Html {
-    let edges: Vec<_> = EDGES
+    let tc24r_edges: Vec<_> = EDGES
         .iter()
         .filter(|e| {
             matches!(
                 e.from,
                 "sw-cor24-macrolisp"
                     | "sw-cor24-apl"
-                    | "sw-cor24-basic"
                     | "sw-cor24-fortran"
                     | "sw-cor24-plsw"
                     | "sw-cor24-script"
                     | "sw-cor24-assembler"
-                    | "sw-cor24-pascal"
                     | "sw-cor24-yocto-ed"
             )
         })
         .collect();
-    dep_block("Native tools compiled by tc24r", &edges)
+    let pascal_edges: Vec<_> = EDGES
+        .iter()
+        .filter(|e| matches!(e.from, "sw-cor24-basic"))
+        .collect();
+    let plsw_edges: Vec<_> = EDGES
+        .iter()
+        .filter(|e| matches!(e.from, "sw-cor24-snobol4"))
+        .collect();
+    html! {
+        <>
+            {dep_block("Native tools compiled by tc24r", &tc24r_edges)}
+            {dep_block("Native tools compiled by p24p (Pascal)", &pascal_edges)}
+            {dep_block("Native tools compiled by PL/SW", &plsw_edges)}
+        </>
+    }
 }
 
 pub(crate) fn render_system_deps() -> Html {

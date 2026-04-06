@@ -46,6 +46,11 @@ pub(crate) static EDGES: &[DepEdge] = &[
         label: "WASM build",
     },
     DepEdge {
+        from: "web-sw-cor24-snobol4",
+        to: "sw-cor24-snobol4",
+        label: "WASM build",
+    },
+    DepEdge {
         from: "web-sw-cor24-rust",
         to: "sw-cor24-rust",
         label: "WASM build",
@@ -81,11 +86,6 @@ pub(crate) static EDGES: &[DepEdge] = &[
         label: "target VM",
     },
     DepEdge {
-        from: "sw-cor24-pascal",
-        to: "sw-cor24-x-tinyc",
-        label: "compiled by",
-    },
-    DepEdge {
         from: "sw-cor24-monitor",
         to: "sw-cor24-emulator",
         label: "ISA defs",
@@ -112,7 +112,7 @@ pub(crate) static EDGES: &[DepEdge] = &[
     },
     DepEdge {
         from: "sw-cor24-basic",
-        to: "sw-cor24-x-tinyc",
+        to: "sw-cor24-pascal",
         label: "compiled by",
     },
     DepEdge {
@@ -128,6 +128,11 @@ pub(crate) static EDGES: &[DepEdge] = &[
     DepEdge {
         from: "sw-cor24-script",
         to: "sw-cor24-x-tinyc",
+        label: "compiled by",
+    },
+    DepEdge {
+        from: "sw-cor24-snobol4",
+        to: "sw-cor24-plsw",
         label: "compiled by",
     },
     DepEdge {
@@ -177,7 +182,9 @@ pub(crate) fn repo_group(name: &str) -> DepGroup {
             "sw-cor24-x-tinyc" | "sw-cor24-rust" => DepGroup::CrossCompiler,
             "sw-cor24-pcode" | "sw-cor24-x-pc-aotc" | "sw-cor24-pascal" => DepGroup::PCode,
             "sw-cor24-macrolisp" | "sw-cor24-apl" | "sw-cor24-basic" | "sw-cor24-forth"
-            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" => DepGroup::NativeLang,
+            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-snobol4" => {
+                DepGroup::NativeLang
+            }
             "sw-cor24-monitor" | "sw-cor24-debugger" | "sw-cor24-yocto-ed" => DepGroup::System,
             _ => DepGroup::Foundation,
         }
@@ -194,7 +201,7 @@ mod tests {
 
     #[test]
     fn edge_count() {
-        assert_eq!(EDGES.len(), 27);
+        assert_eq!(EDGES.len(), 28);
     }
 
     #[test]
