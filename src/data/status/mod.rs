@@ -331,7 +331,7 @@ static PROJECTS: [ProjectRow; 31] = [
     ProjectRow {
         repo: "web-sw-cor24-snobol4",
         description: "SNOBOL4 interpreter",
-        repo_status: orange("Planned"),
+        repo_status: green("Try it"),
         has_web_ui: neutral("n/a"),
         has_saga: false,
         is_web: true,
