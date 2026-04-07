@@ -1561,7 +1561,14 @@
     padding-bottom: 0.4rem;
 }
 
+.lang-details::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .lang-detail-section {
+    width: 60%;
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--color-border-dim);
@@ -1570,6 +1577,24 @@
 
 .lang-detail-section:last-child {
     border-bottom: none;
+}
+
+.lang-detail-left {
+    float: left;
+    clear: both;
+}
+
+.lang-detail-right {
+    float: right;
+    clear: both;
+}
+
+@media (max-width: 767px) {
+    .lang-detail-left,
+    .lang-detail-right {
+        float: none;
+        width: 100%;
+    }
 }
 
 .lang-detail-title {

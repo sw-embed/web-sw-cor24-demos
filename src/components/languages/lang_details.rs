@@ -61,10 +61,11 @@ pub fn lang_details() -> Html {
     html! {
         <div class="lang-details">
             <h2>{"Language Details"}</h2>
-            {details.iter().map(|d| {
+            {details.iter().enumerate().map(|(i, d)| {
                 let onclick = scroll_to(d.section_id);
+                let side = if i % 2 == 0 { "lang-detail-left" } else { "lang-detail-right" };
                 html! {
-                    <section class="lang-detail-section" id={d.section_id}>
+                    <section class={classes!("lang-detail-section", side)} id={d.section_id}>
                         <h3 class="lang-detail-title">
                             <button class="lang-link-btn" onclick={onclick}>
                                 {d.label}
