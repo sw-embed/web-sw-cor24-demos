@@ -101,11 +101,11 @@ fn render_languages() -> Html {
             </p>
             <div class="pipeline-cards">
                 <div class="pipeline-card">
-                    <h4>{"Macro Lisp"}</h4>
+                    <h4>{"APL (apl-sw)"}</h4>
                     <div class="pipe-flow">
-                        {file(".lisp")}
+                        {file(".apl")}
                         {arrow()}
-                        {step("interpreter + GC", "C")}
+                        {step("interpreter", "C")}
                         {arrow()}
                         {step("tc24r", "Rust")}
                         {arrow()}
@@ -118,8 +118,8 @@ fn render_languages() -> Html {
                         {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Lisp-1 interpreter with mark-sweep garbage collector, lexical scoping, \
-                         defmacro, and closures."}
+                        {"Tree-walking evaluator with lazy iota generator, rank <= 2 arrays, \
+                         ASCII keyword syntax."}
                     </p>
                 </div>
                 <div class="pipeline-card">
@@ -145,11 +145,28 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
-                    <h4>{"APL (apl-sw)"}</h4>
+                    <h4>{"Fortran"}</h4>
                     <div class="pipe-flow">
-                        {file(".apl")}
+                        {step("emulator", "Rust")}
                         {arrow()}
-                        {step("interpreter", "C")}
+                        {step("PL/SW", "C")}
+                        {arrow()}
+                        {step("SNOBOL4", "PL/SW")}
+                        {arrow()}
+                        {step("Fortran compiler", "SNOBOL4")}
+                        {arrow()}
+                        {file(".bin")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"In development. Each layer enables the next: emulator → PL/SW → SNOBOL4 → Fortran."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
+                    <h4>{"Macro Lisp"}</h4>
+                    <div class="pipe-flow">
+                        {file(".lisp")}
+                        {arrow()}
+                        {step("interpreter + GC", "C")}
                         {arrow()}
                         {step("tc24r", "Rust")}
                         {arrow()}
@@ -162,8 +179,27 @@ fn render_languages() -> Html {
                         {step("cor24-run", "Rust")}
                     </div>
                     <p class="pipeline-card-detail">
-                        {"Tree-walking evaluator with lazy iota generator, rank <= 2 arrays, \
-                         ASCII keyword syntax."}
+                        {"Lisp-1 interpreter with mark-sweep garbage collector, lexical scoping, \
+                         defmacro, and closures."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
+                    <h4>{"Pascal + BASIC (via P-code VM)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".pas / .bas")}
+                        {arrow()}
+                        {step("compiler", "C")}
+                        {arrow()}
+                        {file(".spc")}
+                        {arrow()}
+                        {step("pvm", "COR24 asm")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"Pascal compiler (p24p) and BASIC interpreter produce P-code bytecode. \
+                         The P-code VM (pvm) is a stack-based virtual machine written in COR24 \
+                         assembly. An AOT compiler (pc-aotc) can convert .p24 to native .s."}
                     </p>
                 </div>
                 <div class="pipeline-card">
@@ -184,6 +220,22 @@ fn render_languages() -> Html {
                     <p class="pipeline-card-detail">
                         {"PL/I-inspired systems language. Produces .s directly (not via tc24r). \
                          Rich types (BIT, BYTE, WORD, INT, CHAR, PTR), inline ASM, macro system."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
+                    <h4>{"SNOBOL4"}</h4>
+                    <div class="pipe-flow">
+                        {step("emulator", "Rust")}
+                        {arrow()}
+                        {step("PL/SW", "C")}
+                        {arrow()}
+                        {step("SNOBOL4 interpreter", "PL/SW")}
+                        {arrow()}
+                        {file(".bin")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"Pattern-matching language interpreter implemented in PL/SW. \
+                         Provides powerful string and pattern manipulation capabilities on COR24."}
                     </p>
                 </div>
                 <div class="pipeline-card">
@@ -208,25 +260,6 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
-                    <h4>{"Fortran"}</h4>
-                    <div class="pipe-flow">
-                        {file(".f")}
-                        {arrow()}
-                        {step("compiler", "C")}
-                        {arrow()}
-                        {file(".s")}
-                        {arrow()}
-                        {step("assembler", "Rust")}
-                        {arrow()}
-                        {file(".bin")}
-                        {arrow()}
-                        {step("cor24-run", "Rust")}
-                    </div>
-                    <p class="pipeline-card-detail">
-                        {"Planned. Will produce .s directly. Scientific and numeric computation."}
-                    </p>
-                </div>
-                <div class="pipeline-card">
                     <h4>{"yocto-ed"}</h4>
                     <div class="pipe-flow">
                         {file("ASCII text")}
@@ -246,25 +279,6 @@ fn render_languages() -> Html {
                     <p class="pipeline-card-detail">
                         {"Gap-buffer modal text editor. Reads/writes via UART. \
                          Dogfooding project for the full tc24r toolchain."}
-                    </p>
-                </div>
-                <div class="pipeline-card">
-                    <h4>{"Pascal + BASIC (via P-code VM)"}</h4>
-                    <div class="pipe-flow">
-                        {file(".pas / .bas")}
-                        {arrow()}
-                        {step("compiler", "C")}
-                        {arrow()}
-                        {file(".spc")}
-                        {arrow()}
-                        {step("pvm", "COR24 asm")}
-                        {arrow()}
-                        {step("cor24-run", "Rust")}
-                    </div>
-                    <p class="pipeline-card-detail">
-                        {"Pascal compiler (p24p) and BASIC interpreter produce P-code bytecode. \
-                         The P-code VM (pvm) is a stack-based virtual machine written in COR24 \
-                         assembly. An AOT compiler (pc-aotc) can convert .p24 to native .s."}
                     </p>
                 </div>
             </div>

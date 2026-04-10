@@ -34,7 +34,6 @@ pub(crate) fn render_native_lang_deps() -> Html {
                 e.from,
                 "sw-cor24-macrolisp"
                     | "sw-cor24-apl"
-                    | "sw-cor24-fortran"
                     | "sw-cor24-plsw"
                     | "sw-cor24-script"
                     | "sw-cor24-assembler"
@@ -48,7 +47,7 @@ pub(crate) fn render_native_lang_deps() -> Html {
         .collect();
     let plsw_edges: Vec<_> = EDGES
         .iter()
-        .filter(|e| matches!(e.from, "sw-cor24-snobol4"))
+        .filter(|e| matches!(e.from, "sw-cor24-snobol4" | "sw-cor24-fortran"))
         .collect();
     html! {
         <>

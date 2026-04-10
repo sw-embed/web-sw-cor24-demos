@@ -5,26 +5,21 @@ use super::sections;
 
 #[function_component(ToolchainPage)]
 pub fn toolchain_page() -> Html {
-    html! {
-        <div class="page-section">
-            <h1>{"Toolchain Documentation"}</h1>
-            <p class="toolchain-intro">
-                {"How COR24 tools are built and used. Implementation details for the \
-                 emulator, P-code VM, garbage collector, Forth runtime, and web UIs."}
-            </p>
-            {pipelines::render_all_pipelines()}
-            <div class="toolchain-diagram-wrap">
-                <img
-                    src="images/mermaid-diagram2.png"
-                    alt="COR24 ecosystem architecture diagram"
-                    class="toolchain-diagram-img"
-                />
-            </div>
-            {sections::render_pcode_vm()}
-            {sections::render_lisp_gc()}
-            {sections::render_forth_dtc()}
-            {sections::render_web_ui()}
-            {sections::render_tc24r_constraints()}
+    let section_classes = [
+        "toolchain-section-left",
+        "toolchain-section-right",
+        "toolchain-section-left",
+        "toolchain-section-right",
+        "toolchain-section-left",
+        "toolchain-section-right",
+    ];
+    let sections: Vec<Html> = vec![
+        sections::render_pcode_vm(),
+        sections::render_lisp_gc(),
+        sections::render_forth_dtc(),
+        sections::render_web_ui(),
+        sections::render_tc24r_constraints(),
+        html! {
             <section class="toolchain-section">
                 <h2 class="toolchain-section-title">{"BASIC on COR24"}</h2>
                 <p class="toolchain-section-desc">
@@ -39,6 +34,33 @@ pub fn toolchain_page() -> Html {
                     />
                 </div>
             </section>
+        },
+    ];
+
+    let section_items = sections
+        .into_iter()
+        .zip(section_classes.iter())
+        .map(|(html, cls)| {
+            html! { <div class={classes!("toolchain-section-float", *cls)}>{html}</div> }
+        })
+        .collect::<Vec<_>>();
+
+    html! {
+        <div class="page-section toolchain-sections-container">
+            <h1>{"Toolchain Documentation"}</h1>
+            <p class="toolchain-intro">
+                {"How COR24 tools are built and used. Implementation details for the \
+                 emulator, P-code VM, garbage collector, Forth runtime, and web UIs."}
+            </p>
+            {pipelines::render_all_pipelines()}
+            <div class="toolchain-diagram-wrap">
+                <img
+                    src="images/mermaid-diagram3.svg?ts=1775850144414"
+                    alt="COR24 ecosystem architecture diagram"
+                    class="toolchain-diagram-img"
+                />
+            </div>
+            {section_items}
         </div>
     }
 }

@@ -169,8 +169,8 @@ static PROJECTS: [ProjectRow; 31] = [
     ProjectRow {
         repo: "sw-cor24-basic",
         description: "BASIC interpreter (C)",
-        repo_status: yellow("In dev"),
-        has_web_ui: orange("Planned"),
+        repo_status: green("Try it"),
+        has_web_ui: green("Try it"),
         has_saga: false,
         is_web: false,
         group: "Native langs",
@@ -186,8 +186,8 @@ static PROJECTS: [ProjectRow; 31] = [
     },
     ProjectRow {
         repo: "sw-cor24-fortran",
-        description: "Fortran compiler (C)",
-        repo_status: orange("In plan"),
+        description: "Fortran compiler (SNOBOL4/PL/SW)",
+        repo_status: yellow("In dev"),
         has_web_ui: orange("Planned"),
         has_saga: false,
         is_web: false,
@@ -214,8 +214,8 @@ static PROJECTS: [ProjectRow; 31] = [
     ProjectRow {
         repo: "sw-cor24-snobol4",
         description: "SNOBOL4 interpreter (PL/SW)",
-        repo_status: yellow("In dev"),
-        has_web_ui: orange("Planned"),
+        repo_status: green("Try it"),
+        has_web_ui: green("Try it"),
         has_saga: false,
         is_web: false,
         group: "Native langs",

@@ -182,15 +182,15 @@ static GROUPS: [ToolGroup; 5] = [
                  numbers, GOTO/GOSUB, PRINT, INPUT, FOR/NEXT loops, and string variables.",
                 language: ToolLanguage::C,
                 target: ToolTarget::Cor24,
-                has_web_ui: false,
-                live_url_override: None,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-basic/"),
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
                 name: "Fortran Compiler",
                 repo: "sw-cor24-fortran",
-                description: "Fortran compiler targeting COR24. Translates Fortran source to COR24 \
-                 assembly. Supports numeric computation and formatted I/O.",
+                description: "Fortran compiler targeting COR24. Compiler written in SNOBOL4, runtime in \
+                 PL/SW. Translates Fortran source to COR24 assembly for scientific and numeric computation.",
                 language: ToolLanguage::C,
                 target: ToolTarget::Cor24,
                 has_web_ui: false,
@@ -215,8 +215,8 @@ static GROUPS: [ToolGroup; 5] = [
                  Provides powerful string and pattern manipulation capabilities on COR24.",
                 language: ToolLanguage::Mixed("PL/SW"),
                 target: ToolTarget::Cor24,
-                has_web_ui: false,
-                live_url_override: None,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-snobol4/"),
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {

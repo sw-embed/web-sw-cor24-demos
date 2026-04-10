@@ -1,0 +1,69 @@
+graph LR
+    subgraph foundation["Foundation"]
+        direction TB
+        emulator["sw-cor24-emulator\nCOR24 Emulator"]
+        xasm["sw-cor24-x-assembler\nCross-Assembler"]
+        asm["sw-cor24-assembler\nNative Assembler"]
+    end
+
+    subgraph cross["Cross-Compilers"]
+        direction TB
+        tc24r["sw-cor24-x-tinyc\nTiny C Cross-Compiler"]
+        xpcAotc["sw-cor24-x-pc-aotc\nP-code AOT Compiler"]
+        rustPipe["sw-cor24-rust\nRust Pipeline"]
+    end
+
+    subgraph pcode["P-code System"]
+        direction TB
+        pvm["sw-cor24-pcode\nP-code VM"]
+        pascal["sw-cor24-pascal\nPascal Compiler"]
+    end
+
+    subgraph langs["Languages and Runtimes"]
+        direction TB
+        forth["sw-cor24-forth\nForth"]
+        lisp["sw-cor24-macrolisp\nMacro Lisp"]
+        apl["sw-cor24-apl\nAPL"]
+        script["sw-cor24-script\nSWS Scripting"]
+        plsw["sw-cor24-plsw\nPL/SW"]
+        snobol4["sw-cor24-snobol4\nSNOBOL4"]
+        fortran["sw-cor24-fortran\nFortran"]
+        basic["sw-cor24-basic\nBASIC"]
+        yoctoed["sw-cor24-yocto-ed\nyocto-ed"]
+    end
+
+    subgraph system["System Software"]
+        direction TB
+        monitor["sw-cor24-monitor\nResident Monitor"]
+    end
+
+    tc24r --> emulator
+    xasm --> emulator
+
+    forth --> tc24r
+    lisp --> tc24r
+    apl --> tc24r
+    script --> tc24r
+    plsw --> tc24r
+    asm --> tc24r
+    yoctoed --> tc24r
+
+    basic --> pascal
+    pascal --> pvm
+
+    xpcAotc --> pvm
+    xpcAotc --> xasm
+
+    rustPipe --> xasm
+
+    snobol4 --> plsw
+    fortran --> snobol4
+
+    monitor --> emulator
+    monitor --> xasm
+
+    style foundation fill:#1e6640,stroke:#a6e3a1,color:#cdd6f4
+    style cross fill:#45475a,stroke:#cba6f7,color:#cdd6f4
+    style pcode fill:#453525,stroke:#fab387,color:#cdd6f4
+    style langs fill:#3b3520,stroke:#f9e2af,color:#cdd6f4
+    style system fill:#452525,stroke:#f38ba8,color:#cdd6f4

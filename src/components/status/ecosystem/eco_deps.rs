@@ -117,7 +117,7 @@ pub(crate) static EDGES: &[DepEdge] = &[
     },
     DepEdge {
         from: "sw-cor24-fortran",
-        to: "sw-cor24-x-tinyc",
+        to: "sw-cor24-snobol4",
         label: "compiled by",
     },
     DepEdge {
