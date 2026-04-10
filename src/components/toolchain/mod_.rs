@@ -12,6 +12,7 @@ pub fn toolchain_page() -> Html {
         "toolchain-section-right",
         "toolchain-section-left",
         "toolchain-section-right",
+        "toolchain-section-left",
     ];
     let sections: Vec<Html> = vec![
         sections::render_pcode_vm(),
@@ -30,6 +31,22 @@ pub fn toolchain_page() -> Html {
                     <img
                         src="images/cargo-container-stack-with-cranes.jpg"
                         alt="COR24 software stack: Hello World, BASIC, Pascal, P-code VM, Assembler, Emulator, COR24 ISA, with C and Rust cranes building the stack"
+                        class="basic-stack-img"
+                    />
+                </div>
+            </section>
+        },
+        html! {
+            <section class="toolchain-section">
+                <h2 class="toolchain-section-title">{"FORTRAN on COR24"}</h2>
+                <p class="toolchain-section-desc">
+                    {"The COR24 software stack, from a simple \"Hello, World\" in FORTRAN \
+                     down through the layers to hardware."}
+                </p>
+                <div class="basic-stack-container">
+                    <img
+                        src="images/cargo-fortran.jpg"
+                        alt="COR24 software stack: FORTRAN, SNOBOL4, PL/SW, Assembler, Emulator, COR24 ISA"
                         class="basic-stack-img"
                     />
                 </div>
