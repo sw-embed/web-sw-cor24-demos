@@ -129,11 +129,13 @@ All COR24 repos live under `~/github/sw-embed/` as siblings. This landing page d
 
 ### Languages (native, run on COR24)
 - `sw-cor24-macrolisp` -- Tiny Macro Lisp (C)
+- `sw-cor24-ocaml` -- OCaml compiler (C, P-code target)
 - `sw-cor24-forth` -- Forth (COR24 assembly)
 - `sw-cor24-apl` -- APL interpreter (C)
 - `sw-cor24-basic` -- BASIC interpreter (C)
 - `sw-cor24-fortran` -- Fortran compiler (C)
 - `sw-cor24-plsw` -- PL/SW compiler (C, PL/I-inspired)
+- `sw-cor24-prolog` -- Prolog interpreter (PL/SW, WAM-like VM)
 - `sw-cor24-script` -- SWS scripting language (C, Tcl-like)
 
 ### System software

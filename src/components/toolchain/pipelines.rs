@@ -184,6 +184,24 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
+                    <h4>{"OCaml (via P-code VM)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".ml")}
+                        {arrow()}
+                        {step("compiler", "C")}
+                        {arrow()}
+                        {file(".spc")}
+                        {arrow()}
+                        {step("pvm", "COR24 asm")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"In development. Compiles a subset of OCaml to P-code bytecode, reusing \
+                         the Pascal P-code VM infrastructure on COR24."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
                     <h4>{"Pascal + BASIC (via P-code VM)"}</h4>
                     <div class="pipe-flow">
                         {file(".pas / .bas")}
@@ -220,6 +238,23 @@ fn render_languages() -> Html {
                     <p class="pipeline-card-detail">
                         {"PL/I-inspired systems language. Produces .s directly (not via tc24r). \
                          Rich types (BIT, BYTE, WORD, INT, CHAR, PTR), inline ASM, macro system."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
+                    <h4>{"Prolog (via WAM-like VM)"}</h4>
+                    <div class="pipe-flow">
+                        {step("emulator", "Rust")}
+                        {arrow()}
+                        {step("PL/SW", "C")}
+                        {arrow()}
+                        {step("WAM 8+8 VM", "PL/SW")}
+                        {arrow()}
+                        {file(".bin")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"In development. WAM-like 8+8 register virtual machine (8 argument + 8 temporary) \
+                         implemented in PL/SW. Provides unification and backtracking for logic programming \
+                         on COR24."}
                     </p>
                 </div>
                 <div class="pipeline-card">

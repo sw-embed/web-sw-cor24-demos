@@ -46,15 +46,7 @@ pub struct LangDetail {
     pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
-static SUMMARIES: [LangSummary; 10] = [
-    LangSummary {
-        id: "apl",
-        label: "apl-sw",
-        inspired_by: "APL",
-        one_liner: "Array-oriented language with concise notation for vector/matrix operations",
-        repo: "sw-cor24-apl",
-        section_id: "lang-apl",
-    },
+static SUMMARIES: [LangSummary; 12] = [
     LangSummary {
         id: "a24",
         label: "a24-sw",
@@ -62,6 +54,14 @@ static SUMMARIES: [LangSummary; 10] = [
         one_liner: "COR24 native assembly language, the foundation all compilers target",
         repo: "sw-cor24-assembler",
         section_id: "lang-assembler",
+    },
+    LangSummary {
+        id: "apl",
+        label: "apl-sw",
+        inspired_by: "APL",
+        one_liner: "Array-oriented language with concise notation for vector/matrix operations",
+        repo: "sw-cor24-apl",
+        section_id: "lang-apl",
     },
     LangSummary {
         id: "basic",
@@ -96,6 +96,14 @@ static SUMMARIES: [LangSummary; 10] = [
         section_id: "lang-lisp",
     },
     LangSummary {
+        id: "ocaml",
+        label: "ocaml-sw",
+        inspired_by: "OCaml",
+        one_liner: "Functional language compiling to P-code via the Pascal P-code VM pipeline",
+        repo: "sw-cor24-ocaml",
+        section_id: "lang-ocaml",
+    },
+    LangSummary {
         id: "pascal",
         label: "pascal-sw",
         inspired_by: "Pascal",
@@ -110,6 +118,14 @@ static SUMMARIES: [LangSummary; 10] = [
         one_liner: "PL/I-inspired systems language with rich types, pointers, and inline ASM",
         repo: "sw-cor24-plsw",
         section_id: "lang-plsw",
+    },
+    LangSummary {
+        id: "prolog",
+        label: "prolog-sw",
+        inspired_by: "Prolog",
+        one_liner: "Logic programming with WAM-like 8+8 register VM implemented in PL/SW",
+        repo: "sw-cor24-prolog",
+        section_id: "lang-prolog",
     },
     LangSummary {
         id: "snobol4",
@@ -353,28 +369,7 @@ static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     },
 ];
 
-static DETAILS: [LangDetail; 10] = [
-    LangDetail {
-        id: "apl",
-        label: "apl-sw",
-        inspired_by: "APL",
-        section_id: "lang-apl",
-        history: "Originally created by Kenneth Iverson in the 1960s as a concise mathematical notation for teaching and computation. COR24 APL uses ASCII surface syntax with lowercase keywords (rho, iota, take, drop) and uppercase user identifiers, adapted for the constrained COR24 environment.",
-        purpose: "Array-oriented computation. APL excels at expressing operations on entire vectors and matrices in a single line, making it ideal for linear algebra, data transformation, and numeric exploration.",
-        usage: "Write expressions directly in the REPL; results display automatically. Vectors are first-class: 2 3 rho iota 6 creates a 2x3 matrix. Shared variables (SVO) provide hardware I/O access.",
-        pros: &[
-            "Extremely concise for array operations",
-            "No boilerplate; results print automatically",
-            "Powerful reduction and scan operators",
-        ],
-        cons: &[
-            "No user-defined functions (deferred)",
-            "Integer-only arithmetic",
-            "Steep learning curve for glyph syntax",
-        ],
-        glyph_table: Some(&APL_GLYPH_TABLE),
-        keyword_table: Some(&APL_KEYWORD_TABLE),
-    },
+static DETAILS: [LangDetail; 12] = [
     LangDetail {
         id: "a24",
         label: "a24-sw",
@@ -395,6 +390,27 @@ static DETAILS: [LangDetail; 10] = [
         ],
         glyph_table: None,
         keyword_table: None,
+    },
+    LangDetail {
+        id: "apl",
+        label: "apl-sw",
+        inspired_by: "APL",
+        section_id: "lang-apl",
+        history: "Originally created by Kenneth Iverson in the 1960s as a concise mathematical notation for teaching and computation. COR24 APL uses ASCII surface syntax with lowercase keywords (rho, iota, take, drop) and uppercase user identifiers, adapted for the constrained COR24 environment.",
+        purpose: "Array-oriented computation. APL excels at expressing operations on entire vectors and matrices in a single line, making it ideal for linear algebra, data transformation, and numeric exploration.",
+        usage: "Write expressions directly in the REPL; results display automatically. Vectors are first-class: 2 3 rho iota 6 creates a 2x3 matrix. Shared variables (SVO) provide hardware I/O access.",
+        pros: &[
+            "Extremely concise for array operations",
+            "No boilerplate; results print automatically",
+            "Powerful reduction and scan operators",
+        ],
+        cons: &[
+            "No user-defined functions (deferred)",
+            "Integer-only arithmetic",
+            "Steep learning curve for glyph syntax",
+        ],
+        glyph_table: Some(&APL_GLYPH_TABLE),
+        keyword_table: Some(&APL_KEYWORD_TABLE),
     },
     LangDetail {
         id: "basic",
@@ -481,6 +497,32 @@ static DETAILS: [LangDetail; 10] = [
         keyword_table: None,
     },
     LangDetail {
+        id: "ocaml",
+        label: "ocaml-sw",
+        inspired_by: "OCaml",
+        section_id: "lang-ocaml",
+        history: "Originally created by INRIA in 1996, OCaml combines functional, imperative, and \
+         object-oriented programming. The COR24 port is implemented in Pascal and compiles a subset \
+         of OCaml to P-code bytecode, reusing the Pascal P-code VM infrastructure on COR24.",
+        purpose: "Functional programming with type inference and pattern matching on COR24. OCaml's \
+         strong static type system and algebraic data types make it well-suited for writing correct, \
+         expressive programs on constrained hardware.",
+        usage: "In development. Implemented in Pascal, compiles OCaml source to .spc P-code via the \
+         Pascal compiler toolchain, running on the P-code VM on COR24.",
+        pros: &[
+            "Type inference reduces annotations",
+            "Pattern matching is natural for COR24's integer arithmetic",
+            "Reuses proven P-code VM infrastructure",
+        ],
+        cons: &[
+            "P-code layer adds runtime overhead",
+            "Subset only — full OCaml is too large for COR24",
+            "No live demo yet",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
         id: "pascal",
         label: "pascal-sw",
         inspired_by: "Pascal",
@@ -497,6 +539,33 @@ static DETAILS: [LangDetail; 10] = [
             "P-code layer adds runtime overhead",
             "Limited string support",
             "No pointer types",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
+        id: "prolog",
+        label: "prolog-sw",
+        inspired_by: "Prolog",
+        section_id: "lang-prolog",
+        history: "Prolog (Programming in Logic) was created by Alain Colmerauer and Robert Kowalski in 1972. \
+         The COR24 implementation uses a WAM-like (Warren Abstract Machine) architecture with an 8+8 \
+         register virtual machine built in PL/SW, providing logic programming on COR24.",
+        purpose: "Logic programming and symbolic AI on COR24. Prolog's declarative style — defining \
+         what is true rather than how to compute it — makes it ideal for rule-based systems, \
+         symbolic computation, and natural language processing.",
+        usage: "In development. Will define facts and rules, query with goals, and use unification \
+         and backtracking via the WAM-like VM. The 8+8 register architecture (8 argument + 8 \
+         temporary registers) maps efficiently to COR24 hardware.",
+        pros: &[
+            "Declarative style is concise for rule-based problems",
+            "WAM-like VM is well-understood and efficient",
+            "Built on PL/SW, leveraging existing infrastructure",
+        ],
+        cons: &[
+            "Implemented in PL/SW (two-language stack)",
+            "No live demo yet",
+            "Backtracking can be expensive on constrained hardware",
         ],
         glyph_table: None,
         keyword_table: None,

@@ -67,7 +67,7 @@ pub fn all_tags() -> Vec<&'static str> {
     tags
 }
 
-static CATEGORIES: [Category; 12] = [
+static CATEGORIES: [Category; 14] = [
     Category {
         id: "cross-tools",
         label: "Cross-Assembler / Cross-Compiler",
@@ -347,6 +347,27 @@ static CATEGORIES: [Category; 12] = [
         }],
     },
     Category {
+        id: "ocaml",
+        label: "OCaml",
+        items: &[DemoEntry {
+            name: "OCaml Compiler",
+            slug: "sw-cor24-ocaml",
+            description: "OCaml compiler targeting the COR24 P-code VM. Compiles a subset of OCaml to P-code bytecode \
+                 via the Pascal P-code pipeline.",
+            status: DemoStatus::Design,
+            tags: &["Compiler", "OCaml"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "Pascal Source",
+            badge_image: "",
+            repo: "sw-cor24-ocaml",
+            group_id: "ocaml",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
         id: "snobol4",
         label: "SNOBOL4",
         items: &[DemoEntry {
@@ -362,6 +383,27 @@ static CATEGORIES: [Category; 12] = [
             repo: "sw-cor24-snobol4",
             group_id: "snobol4",
             live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-snobol4/"),
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
+        id: "prolog",
+        label: "Prolog",
+        items: &[DemoEntry {
+            name: "Prolog Interpreter",
+            slug: "sw-cor24-prolog",
+            description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented in PL/SW, \
+                 running on COR24.",
+            status: DemoStatus::Design,
+            tags: &["Interpreter", "Prolog", "Logic Programming"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "PL/SW Source",
+            badge_image: "",
+            repo: "sw-cor24-prolog",
+            group_id: "prolog",
+            live_url_override: None,
             secondary_live_url: None,
             secondary_live_label: "",
         }],
@@ -418,7 +460,8 @@ pub fn tag_class(tag: &str) -> &'static str {
         "Emulator" => "tag-vm",
         "Docs" => "tag-docs",
         "System" | "Monitor" | "Scripting" => "tag-default",
-        "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" | "Rust" => "tag-lang",
+        "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" | "Rust" | "OCaml"
+        | "Prolog" | "SNOBOL4" => "tag-lang",
         _ => "tag-default",
     }
 }
@@ -455,8 +498,10 @@ pub fn filter_languages() -> Vec<(&'static str, String)> {
         ("Lisp", "lisp".to_string()),
         ("Pascal", "pascal".to_string()),
         ("PL/SW", "plsw".to_string()),
+        ("OCaml", "ocaml".to_string()),
         ("Rust", "rust".to_string()),
         ("SWS", "sws".to_string()),
+        ("Prolog", "prolog".to_string()),
     ]
 }
 
@@ -466,7 +511,7 @@ mod tests {
 
     #[test]
     fn category_count() {
-        assert_eq!(all_categories().len(), 12);
+        assert_eq!(all_categories().len(), 14);
     }
 
     #[test]
@@ -484,7 +529,9 @@ mod tests {
                 "Lisp",
                 "Pascal",
                 "PL/SW",
+                "OCaml",
                 "SNOBOL4",
+                "Prolog",
                 "Rust",
                 "SWS",
             ]

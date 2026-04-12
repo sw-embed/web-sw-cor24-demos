@@ -145,6 +145,16 @@ pub(crate) static EDGES: &[DepEdge] = &[
         to: "sw-cor24-x-tinyc",
         label: "compiled by",
     },
+    DepEdge {
+        from: "sw-cor24-ocaml",
+        to: "sw-cor24-pcode",
+        label: "target VM",
+    },
+    DepEdge {
+        from: "sw-cor24-prolog",
+        to: "sw-cor24-plsw",
+        label: "compiled by",
+    },
 ];
 
 #[derive(Clone, Copy, PartialEq)]
@@ -180,11 +190,12 @@ pub(crate) fn repo_group(name: &str) -> DepGroup {
             | "sw-cor24-assembler"
             | "sw-cor24-project" => DepGroup::Foundation,
             "sw-cor24-x-tinyc" | "sw-cor24-rust" => DepGroup::CrossCompiler,
-            "sw-cor24-pcode" | "sw-cor24-x-pc-aotc" | "sw-cor24-pascal" => DepGroup::PCode,
-            "sw-cor24-macrolisp" | "sw-cor24-apl" | "sw-cor24-basic" | "sw-cor24-forth"
-            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-snobol4" => {
-                DepGroup::NativeLang
+            "sw-cor24-pcode" | "sw-cor24-x-pc-aotc" | "sw-cor24-pascal" | "sw-cor24-ocaml" => {
+                DepGroup::PCode
             }
+            "sw-cor24-macrolisp" | "sw-cor24-apl" | "sw-cor24-basic" | "sw-cor24-forth"
+            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-snobol4"
+            | "sw-cor24-prolog" => DepGroup::NativeLang,
             "sw-cor24-monitor" | "sw-cor24-debugger" | "sw-cor24-yocto-ed" => DepGroup::System,
             _ => DepGroup::Foundation,
         }
@@ -201,7 +212,7 @@ mod tests {
 
     #[test]
     fn edge_count() {
-        assert_eq!(EDGES.len(), 28);
+        assert_eq!(EDGES.len(), 30);
     }
 
     #[test]

@@ -134,6 +134,17 @@ static GROUPS: [ToolGroup; 5] = [
                 live_url_override: None,
                 category: ToolCategory::PCode,
             },
+            ToolEntry {
+                name: "OCaml Compiler",
+                repo: "sw-cor24-ocaml",
+                description: "OCaml compiler targeting the COR24 P-code VM. Implemented in Pascal, compiles \
+                 a subset of OCaml to P-code bytecode, reusing the Pascal P-code pipeline and VM infrastructure.",
+                language: ToolLanguage::Mixed("Pascal"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::PCode,
+            },
         ],
     },
     ToolGroup {
@@ -230,6 +241,17 @@ static GROUPS: [ToolGroup; 5] = [
                 live_url_override: None,
                 category: ToolCategory::NativeLanguage,
             },
+            ToolEntry {
+                name: "Prolog Interpreter",
+                repo: "sw-cor24-prolog",
+                description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented \
+                 in PL/SW. Provides logic programming with unification and backtracking on COR24.",
+                language: ToolLanguage::Mixed("PL/SW"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
         ],
     },
     ToolGroup {
@@ -285,10 +307,10 @@ mod tests {
         assert_eq!(g.len(), 5);
         assert_eq!(g[0].items.len(), 4);
         assert_eq!(g[1].items.len(), 2);
-        assert_eq!(g[2].items.len(), 3);
-        assert_eq!(g[3].items.len(), 8);
+        assert_eq!(g[2].items.len(), 4);
+        assert_eq!(g[3].items.len(), 9);
         assert_eq!(g[4].items.len(), 3);
-        assert_eq!(all_tools().len(), 20);
+        assert_eq!(all_tools().len(), 22);
     }
 
     #[test]

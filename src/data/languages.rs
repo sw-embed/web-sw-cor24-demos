@@ -29,15 +29,15 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
     "n/a"
 }
 
-static COLUMNS: [LangColumn; 10] = [
-    LangColumn {
-        id: "apl",
-        label: "apl-sw",
-        default_collapsed: false,
-    },
+static COLUMNS: [LangColumn; 12] = [
     LangColumn {
         id: "a24",
         label: "a24-sw",
+        default_collapsed: false,
+    },
+    LangColumn {
+        id: "apl",
+        label: "apl-sw",
         default_collapsed: false,
     },
     LangColumn {
@@ -61,6 +61,11 @@ static COLUMNS: [LangColumn; 10] = [
         default_collapsed: false,
     },
     LangColumn {
+        id: "ocaml",
+        label: "ocaml-sw",
+        default_collapsed: true,
+    },
+    LangColumn {
         id: "pascal",
         label: "pascal-sw",
         default_collapsed: false,
@@ -69,6 +74,11 @@ static COLUMNS: [LangColumn; 10] = [
         id: "plsw",
         label: "PL/SW",
         default_collapsed: false,
+    },
+    LangColumn {
+        id: "prolog",
+        label: "prolog-sw",
+        default_collapsed: true,
     },
     LangColumn {
         id: "snobol4",
@@ -93,8 +103,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "X Y + Z *"),
             ("fortran", "n/a"),
             ("lisp", "(+ X (* Y Z))"),
+            ("ocaml", "n/a"),
             ("pascal", "X := A + B * C"),
             ("plsw", "X = A + B * C"),
+            ("prolog", "n/a"),
             ("snobol4", "Y = X * 6"),
             ("sws", "set X 42"),
         ],
@@ -109,8 +121,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "X 0 >"),
             ("fortran", "n/a"),
             ("lisp", "(> X 0)"),
+            ("ocaml", "n/a"),
             ("pascal", "X > 0"),
             ("plsw", "X > 0"),
+            ("prolog", "X > 0"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "expr {$X > 0}"),
         ],
@@ -125,8 +139,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "5 SQUARE"),
             ("fortran", "n/a"),
             ("lisp", "(sq 5)"),
+            ("ocaml", "n/a"),
             ("pascal", "Y := Sq(5);"),
             ("plsw", "CALL Square(5);"),
+            ("prolog", "square(5, Y)."),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
         ],
@@ -141,8 +157,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "\\ line comment"),
             ("fortran", "n/a"),
             ("lisp", "; inline comment"),
+            ("ocaml", "(* comment *)"),
             ("pascal", "{ comment }"),
             ("plsw", "/* comment */"),
+            ("prolog", "% comment"),
             ("snobol4", "* comment"),
             ("sws", "# comment"),
         ],
@@ -157,8 +175,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "X 0 > IF CR .\" yes\" THEN"),
             ("fortran", "n/a"),
             ("lisp", "(IF (> X 0) \"yes\" \"no\")"),
+            ("ocaml", "n/a"),
             ("pascal", "IF X > 0 THEN\n  WriteLn('yes');"),
             ("plsw", "IF X > 0 THEN\n  DISPLAY('yes');"),
+            ("prolog", "X > 0 -> write(yes)"),
             ("snobol4", "TEXT PAT . N :F(NO)"),
             ("sws", "if {$X > 0} {puts yes}"),
         ],
@@ -173,8 +193,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "CATCH THROW"),
             ("fortran", "n/a"),
             ("lisp", "; runtime error\n; error message shown"),
+            ("ocaml", "n/a"),
             ("pascal", "; runtime error\n; halted with message"),
             ("plsw", "ON ERROR GOTO lbl"),
+            ("prolog", "n/a"),
             ("snobol4", ":F(NO)"),
             ("sws", "catch { script } err {\n  echo $err\n}"),
         ],
@@ -189,8 +211,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", ": SQUARE DUP * ;"),
             ("fortran", "n/a"),
             ("lisp", "(defun sq (x)\n  (* x x))"),
+            ("ocaml", "n/a"),
             ("pascal", "function Sq(X: integer)\n  : integer;"),
             ("plsw", "PROC Square;\n  DCL X INT;\n  ... END;"),
+            ("prolog", "square(X, Y) :-\n  Y is X * X."),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
         ],
@@ -208,8 +232,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "IN@ IF 2 OUT@ THEN"),
             ("fortran", "n/a"),
             ("lisp", "(if (s2-pressed?)\n  (begin (set-leds 0)...))"),
+            ("ocaml", "n/a"),
             ("pascal", "Port[1] := Port[2]"),
             ("plsw", "n/a"),
+            ("prolog", "n/a"),
             ("snobol4", "LINE = INPUT"),
             ("sws", "set led [expr {[read switch]}]"),
         ],
@@ -227,8 +253,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "10 0 DO I . LOOP"),
             ("fortran", "n/a"),
             ("lisp", "(dotimes (i 10)\n  (print i))"),
+            ("ocaml", "n/a"),
             ("pascal", "for I := 1 to 10 do\n  WriteLn(I);"),
             ("plsw", "DO I = 1 TO 10;\n  DISPLAY(I);\nEND;"),
+            ("prolog", "between(1, 10, I)"),
             ("snobol4", ":(READ)"),
             ("sws", "set i 0\nwhile {$i < 10} {\n  puts $i; incr i\n}"),
         ],
@@ -243,8 +271,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", "n/a"),
             ("fortran", "n/a"),
             ("lisp", "(scan-to-regex s)"),
+            ("ocaml", "n/a"),
             ("pascal", "n/a"),
             ("plsw", "n/a"),
+            ("prolog", "append([1,2], [3], X)"),
             ("snobol4", "SPAN('0123456789')"),
             ("sws", "regexp {\\d+}"),
         ],
@@ -259,8 +289,10 @@ static ROWS: [IdiomRow; 11] = [
             ("forth", ".\" Hello\" CR"),
             ("fortran", "n/a"),
             ("lisp", "(print 42)"),
+            ("ocaml", "n/a"),
             ("pascal", "WriteLn('Hello');"),
             ("plsw", "DISPLAY('Hello');"),
+            ("prolog", "write('Hello')"),
             ("snobol4", "OUTPUT = 'Hello'"),
             ("sws", "echo Hello"),
         ],
@@ -273,7 +305,7 @@ mod tests {
 
     #[test]
     fn column_count() {
-        assert_eq!(columns().len(), 10);
+        assert_eq!(columns().len(), 12);
     }
 
     #[test]
