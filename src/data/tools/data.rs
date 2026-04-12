@@ -42,23 +42,23 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::Foundation,
             },
             ToolEntry {
-                name: "Native Assembler (as24)",
-                repo: "sw-cor24-assembler",
-                description: "Native assembler written in C that runs directly on COR24 hardware. Part of the \
-                 self-hosting toolchain, assembling COR24 assembly to binary on the target platform.",
-                language: ToolLanguage::C,
-                target: ToolTarget::Cor24,
-                has_web_ui: false,
-                live_url_override: None,
-                category: ToolCategory::Foundation,
-            },
-            ToolEntry {
                 name: "Ecosystem Hub",
                 repo: "sw-cor24-project",
                 description: "Central documentation portal for the entire COR24 ecosystem. Contains ISA specs, \
                  design documents, tooling guides, and project planning resources.",
                 language: ToolLanguage::Docs,
                 target: ToolTarget::Docs,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::Foundation,
+            },
+            ToolEntry {
+                name: "Native Assembler (as24)",
+                repo: "sw-cor24-assembler",
+                description: "Native assembler written in C that runs directly on COR24 hardware. Part of the \
+                 self-hosting toolchain, assembling COR24 assembly to binary on the target platform.",
+                language: ToolLanguage::C,
+                target: ToolTarget::Cor24,
                 has_web_ui: false,
                 live_url_override: None,
                 category: ToolCategory::Foundation,
@@ -72,17 +72,6 @@ static GROUPS: [ToolGroup; 5] = [
          and other languages to COR24 assembly or binary.",
         items: &[
             ToolEntry {
-                name: "Tiny C Cross-Compiler (tc24r)",
-                repo: "sw-cor24-x-tinyc",
-                description: "Tiny C cross-compiler targeting COR24. Compiles a subset of C to COR24 \
-                 assembly. Runs on the host, outputs .s files for the cross-assembler.",
-                language: ToolLanguage::Rust,
-                target: ToolTarget::Host,
-                has_web_ui: true,
-                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-tinyc/"),
-                category: ToolCategory::CrossCompiler,
-            },
-            ToolEntry {
                 name: "Rust-to-COR24 Pipeline",
                 repo: "sw-cor24-rust",
                 description: "Experimental Rust-to-COR24 pipeline. Compiles a subset of Rust via \
@@ -91,6 +80,17 @@ static GROUPS: [ToolGroup; 5] = [
                 target: ToolTarget::Host,
                 has_web_ui: true,
                 live_url_override: None,
+                category: ToolCategory::CrossCompiler,
+            },
+            ToolEntry {
+                name: "Tiny C Cross-Compiler (tc24r)",
+                repo: "sw-cor24-x-tinyc",
+                description: "Tiny C cross-compiler targeting COR24. Compiles a subset of C to COR24 \
+                 assembly. Runs on the host, outputs .s files for the cross-assembler.",
+                language: ToolLanguage::Rust,
+                target: ToolTarget::Host,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-tinyc/"),
                 category: ToolCategory::CrossCompiler,
             },
         ],
@@ -102,13 +102,13 @@ static GROUPS: [ToolGroup; 5] = [
          which runs on the P-code VM. An AOT compiler can convert P-code to native COR24 binary.",
         items: &[
             ToolEntry {
-                name: "P-code VM, Assembler & Linker",
-                repo: "sw-cor24-pcode",
-                description: "P-code virtual machine written in COR24 assembly, with an assembler and \
-                 linker in Rust. Executes .p24 bytecode on COR24 hardware with full stack visualization.",
-                language: ToolLanguage::Mixed("Assembly & Rust"),
-                target: ToolTarget::Cor24Emulated,
-                has_web_ui: true,
+                name: "OCaml Compiler",
+                repo: "sw-cor24-ocaml",
+                description: "OCaml compiler targeting the COR24 P-code VM. Implemented in Pascal, compiles \
+                 a subset of OCaml to P-code bytecode, reusing the Pascal P-code pipeline and VM infrastructure.",
+                language: ToolLanguage::Mixed("Pascal"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
                 live_url_override: None,
                 category: ToolCategory::PCode,
             },
@@ -124,6 +124,17 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::PCode,
             },
             ToolEntry {
+                name: "P-code VM, Assembler & Linker",
+                repo: "sw-cor24-pcode",
+                description: "P-code virtual machine written in COR24 assembly, with an assembler and \
+                 linker in Rust. Executes .p24 bytecode on COR24 hardware with full stack visualization.",
+                language: ToolLanguage::Mixed("Assembly & Rust"),
+                target: ToolTarget::Cor24Emulated,
+                has_web_ui: true,
+                live_url_override: None,
+                category: ToolCategory::PCode,
+            },
+            ToolEntry {
                 name: "Pascal Compiler (p24p)",
                 repo: "sw-cor24-pascal",
                 description: "Pascal compiler and runtime written in C. Compiles Pascal source to .spc \
@@ -131,17 +142,6 @@ static GROUPS: [ToolGroup; 5] = [
                 language: ToolLanguage::C,
                 target: ToolTarget::Cor24,
                 has_web_ui: true,
-                live_url_override: None,
-                category: ToolCategory::PCode,
-            },
-            ToolEntry {
-                name: "OCaml Compiler",
-                repo: "sw-cor24-ocaml",
-                description: "OCaml compiler targeting the COR24 P-code VM. Implemented in Pascal, compiles \
-                 a subset of OCaml to P-code bytecode, reusing the Pascal P-code pipeline and VM infrastructure.",
-                language: ToolLanguage::Mixed("Pascal"),
-                target: ToolTarget::Cor24,
-                has_web_ui: false,
                 live_url_override: None,
                 category: ToolCategory::PCode,
             },
@@ -153,28 +153,6 @@ static GROUPS: [ToolGroup; 5] = [
         description: "Programming languages and interpreters that run directly on COR24 hardware. \
          Written in C or COR24 assembly, these are the software that the COR24 platform was built to host.",
         items: &[
-            ToolEntry {
-                name: "Tiny Macro Lisp",
-                repo: "sw-cor24-macrolisp",
-                description: "Lisp-1 interpreter with lexical scoping, defmacro, closures, and garbage \
-                 collection. A self-contained Lisp environment running on COR24 hardware.",
-                language: ToolLanguage::C,
-                target: ToolTarget::Cor24,
-                has_web_ui: true,
-                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-macrolisp/"),
-                category: ToolCategory::NativeLanguage,
-            },
-            ToolEntry {
-                name: "Forth IDE",
-                repo: "sw-cor24-forth",
-                description: "Direct-threaded code (DTC) Forth interpreter with interactive IDE. \
-                 Clean-room implementation written in COR24 assembly with dictionary browsing and stack inspection.",
-                language: ToolLanguage::Assembly,
-                target: ToolTarget::Cor24,
-                has_web_ui: true,
-                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-forth/"),
-                category: ToolCategory::NativeLanguage,
-            },
             ToolEntry {
                 name: "APL Interpreter (apl-sw)",
                 repo: "sw-cor24-apl",
@@ -195,6 +173,17 @@ static GROUPS: [ToolGroup; 5] = [
                 target: ToolTarget::Cor24,
                 has_web_ui: true,
                 live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-basic/"),
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
+                name: "Forth IDE",
+                repo: "sw-cor24-forth",
+                description: "Direct-threaded code (DTC) Forth interpreter with interactive IDE. \
+                 Clean-room implementation written in COR24 assembly with dictionary browsing and stack inspection.",
+                language: ToolLanguage::Assembly,
+                target: ToolTarget::Cor24,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-forth/"),
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
@@ -220,6 +209,17 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
+                name: "Prolog Interpreter",
+                repo: "sw-cor24-prolog",
+                description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented \
+                 in PL/SW. Provides logic programming with unification and backtracking on COR24.",
+                language: ToolLanguage::Mixed("PL/SW"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
                 name: "SNOBOL4 Interpreter",
                 repo: "sw-cor24-snobol4",
                 description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW. \
@@ -242,14 +242,14 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
-                name: "Prolog Interpreter",
-                repo: "sw-cor24-prolog",
-                description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented \
-                 in PL/SW. Provides logic programming with unification and backtracking on COR24.",
-                language: ToolLanguage::Mixed("PL/SW"),
+                name: "Tiny Macro Lisp",
+                repo: "sw-cor24-macrolisp",
+                description: "Lisp-1 interpreter with lexical scoping, defmacro, closures, and garbage \
+                 collection. A self-contained Lisp environment running on COR24 hardware.",
+                language: ToolLanguage::C,
                 target: ToolTarget::Cor24,
-                has_web_ui: false,
-                live_url_override: None,
+                has_web_ui: true,
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-macrolisp/"),
                 category: ToolCategory::NativeLanguage,
             },
         ],
@@ -328,6 +328,20 @@ mod tests {
                     t.name
                 );
             }
+        }
+    }
+
+    #[test]
+    fn items_alphabetical_within_groups() {
+        for g in all_groups() {
+            let names: Vec<&str> = g.items.iter().map(|t| t.name).collect();
+            let mut sorted = names.clone();
+            sorted.sort();
+            assert_eq!(
+                names, sorted,
+                "tools in group '{}' are not alphabetical",
+                g.label
+            );
         }
     }
 }

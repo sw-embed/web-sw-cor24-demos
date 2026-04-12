@@ -544,6 +544,27 @@ static DETAILS: [LangDetail; 12] = [
         keyword_table: None,
     },
     LangDetail {
+        id: "plsw",
+        label: "PL/SW",
+        inspired_by: "PL/I",
+        section_id: "lang-plsw",
+        history: "PL/SW is a PL/I-inspired language designed specifically for the COR24 ecosystem. It combines PL/I's rich type system with systems programming features like inline assembly, pointers, and level-based data declarations.",
+        purpose: "Systems-level programming with high-level abstractions. PL/SW targets the gap between low-level assembly and high-level languages, providing rich types (BIT, BYTE, WORD, INT, CHAR, PTR) alongside direct hardware access.",
+        usage: "Declare variables with DCL and type specifiers. Use PROC/END for procedures, DO WHILE and counted DO for loops. Inline ASM blocks (ASM DO; ... END;) provide direct hardware control. MACRODEF and ?MACRO() for metaprogramming.",
+        pros: &[
+            "Rich type system (6 types)",
+            "Inline assembly for hardware access",
+            "Macro system with GEN blocks",
+        ],
+        cons: &[
+            "Complex syntax for simple tasks",
+            "Steeper learning curve than BASIC/SWS",
+            "Type declarations add verbosity",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
         id: "prolog",
         label: "prolog-sw",
         inspired_by: "Prolog",
@@ -566,27 +587,6 @@ static DETAILS: [LangDetail; 12] = [
             "Implemented in PL/SW (two-language stack)",
             "No live demo yet",
             "Backtracking can be expensive on constrained hardware",
-        ],
-        glyph_table: None,
-        keyword_table: None,
-    },
-    LangDetail {
-        id: "plsw",
-        label: "PL/SW",
-        inspired_by: "PL/I",
-        section_id: "lang-plsw",
-        history: "PL/SW is a PL/I-inspired language designed specifically for the COR24 ecosystem. It combines PL/I's rich type system with systems programming features like inline assembly, pointers, and level-based data declarations.",
-        purpose: "Systems-level programming with high-level abstractions. PL/SW targets the gap between low-level assembly and high-level languages, providing rich types (BIT, BYTE, WORD, INT, CHAR, PTR) alongside direct hardware access.",
-        usage: "Declare variables with DCL and type specifiers. Use PROC/END for procedures, DO WHILE and counted DO for loops. Inline ASM blocks (ASM DO; ... END;) provide direct hardware control. MACRODEF and ?MACRO() for metaprogramming.",
-        pros: &[
-            "Rich type system (6 types)",
-            "Inline assembly for hardware access",
-            "Macro system with GEN blocks",
-        ],
-        cons: &[
-            "Complex syntax for simple tasks",
-            "Steeper learning curve than BASIC/SWS",
-            "Type declarations add verbosity",
         ],
         glyph_table: None,
         keyword_table: None,
@@ -634,3 +634,34 @@ static DETAILS: [LangDetail; 12] = [
         keyword_table: None,
     },
 ];
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn summaries_alphabetical() {
+        let labels: Vec<&str> = summaries().iter().map(|s| s.label).collect();
+        let mut sorted = labels.clone();
+        sorted.sort_by_key(|a| a.to_lowercase());
+        assert_eq!(labels, sorted, "summaries are not in alphabetical order");
+    }
+
+    #[test]
+    fn details_alphabetical() {
+        let labels: Vec<&str> = all_details().iter().map(|d| d.label).collect();
+        let mut sorted = labels.clone();
+        sorted.sort_by_key(|a| a.to_lowercase());
+        assert_eq!(labels, sorted, "details are not in alphabetical order");
+    }
+
+    #[test]
+    fn summaries_count() {
+        assert_eq!(summaries().len(), 12);
+    }
+
+    #[test]
+    fn details_count() {
+        assert_eq!(all_details().len(), 12);
+    }
+}

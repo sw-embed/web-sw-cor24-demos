@@ -69,6 +69,66 @@ pub fn all_tags() -> Vec<&'static str> {
 
 static CATEGORIES: [Category; 14] = [
     Category {
+        id: "apl",
+        label: "APL",
+        items: &[DemoEntry {
+            name: "APL Environment",
+            slug: "web-sw-cor24-apl",
+            description: "APL interpreter with live array operations. Explore APL's concise array notation.",
+            status: DemoStatus::Active,
+            tags: &["Interpreter", "APL"],
+            has_live_demo: true,
+            is_this_site: false,
+            source_label: "C Source",
+            badge_image: "apl-sw-badge.png",
+            repo: "sw-cor24-apl",
+            group_id: "apl",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
+        id: "basic",
+        label: "BASIC",
+        items: &[DemoEntry {
+            name: "BASIC Interpreter",
+            slug: "web-sw-cor24-basic",
+            description: "BASIC interpreter for COR24. Write and run BASIC programs on the COR24 platform.",
+            status: DemoStatus::Wip,
+            tags: &["Interpreter", "BASIC"],
+            has_live_demo: true,
+            is_this_site: false,
+            source_label: "C Source",
+            badge_image: "basic-badge.png",
+            repo: "sw-cor24-basic",
+            group_id: "basic",
+            live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-basic/"),
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
+        id: "c",
+        label: "C",
+        items: &[DemoEntry {
+            name: "Native C Compiler",
+            slug: "sw-cor24-c-compiler",
+            description: "Native C compiler that runs on COR24 hardware. Long-term goal for self-hosted C.",
+            status: DemoStatus::LongTerm,
+            tags: &["Compiler", "C"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "C Source",
+            badge_image: "c-badge.png",
+            repo: "sw-cor24-c-compiler",
+            group_id: "c",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
         id: "cross-tools",
         label: "Cross-Assembler / Cross-Compiler",
         items: &[
@@ -187,66 +247,6 @@ static CATEGORIES: [Category; 14] = [
         ],
     },
     Category {
-        id: "apl",
-        label: "APL",
-        items: &[DemoEntry {
-            name: "APL Environment",
-            slug: "web-sw-cor24-apl",
-            description: "APL interpreter with live array operations. Explore APL's concise array notation.",
-            status: DemoStatus::Active,
-            tags: &["Interpreter", "APL"],
-            has_live_demo: true,
-            is_this_site: false,
-            source_label: "C Source",
-            badge_image: "apl-sw-badge.png",
-            repo: "sw-cor24-apl",
-            group_id: "apl",
-            live_url_override: None,
-            secondary_live_url: None,
-            secondary_live_label: "",
-        }],
-    },
-    Category {
-        id: "basic",
-        label: "BASIC",
-        items: &[DemoEntry {
-            name: "BASIC Interpreter",
-            slug: "web-sw-cor24-basic",
-            description: "BASIC interpreter for COR24. Write and run BASIC programs on the COR24 platform.",
-            status: DemoStatus::Wip,
-            tags: &["Interpreter", "BASIC"],
-            has_live_demo: true,
-            is_this_site: false,
-            source_label: "C Source",
-            badge_image: "basic-badge.png",
-            repo: "sw-cor24-basic",
-            group_id: "basic",
-            live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-basic/"),
-            secondary_live_url: None,
-            secondary_live_label: "",
-        }],
-    },
-    Category {
-        id: "c",
-        label: "C",
-        items: &[DemoEntry {
-            name: "Native C Compiler",
-            slug: "sw-cor24-c-compiler",
-            description: "Native C compiler that runs on COR24 hardware. Long-term goal for self-hosted C.",
-            status: DemoStatus::LongTerm,
-            tags: &["Compiler", "C"],
-            has_live_demo: false,
-            is_this_site: false,
-            source_label: "C Source",
-            badge_image: "c-badge.png",
-            repo: "sw-cor24-c-compiler",
-            group_id: "c",
-            live_url_override: None,
-            secondary_live_url: None,
-            secondary_live_label: "",
-        }],
-    },
-    Category {
         id: "forth",
         label: "Forth",
         items: &[DemoEntry {
@@ -307,6 +307,27 @@ static CATEGORIES: [Category; 14] = [
         }],
     },
     Category {
+        id: "ocaml",
+        label: "OCaml",
+        items: &[DemoEntry {
+            name: "OCaml Compiler",
+            slug: "sw-cor24-ocaml",
+            description: "OCaml compiler targeting the COR24 P-code VM. Compiles a subset of OCaml to P-code bytecode \
+                 via the Pascal P-code pipeline.",
+            status: DemoStatus::Design,
+            tags: &["Compiler", "OCaml"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "Pascal Source",
+            badge_image: "",
+            repo: "sw-cor24-ocaml",
+            group_id: "ocaml",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
         id: "pascal",
         label: "Pascal",
         items: &[DemoEntry {
@@ -342,47 +363,6 @@ static CATEGORIES: [Category; 14] = [
             repo: "sw-cor24-plsw",
             group_id: "plsw",
             live_url_override: None,
-            secondary_live_url: None,
-            secondary_live_label: "",
-        }],
-    },
-    Category {
-        id: "ocaml",
-        label: "OCaml",
-        items: &[DemoEntry {
-            name: "OCaml Compiler",
-            slug: "sw-cor24-ocaml",
-            description: "OCaml compiler targeting the COR24 P-code VM. Compiles a subset of OCaml to P-code bytecode \
-                 via the Pascal P-code pipeline.",
-            status: DemoStatus::Design,
-            tags: &["Compiler", "OCaml"],
-            has_live_demo: false,
-            is_this_site: false,
-            source_label: "Pascal Source",
-            badge_image: "",
-            repo: "sw-cor24-ocaml",
-            group_id: "ocaml",
-            live_url_override: None,
-            secondary_live_url: None,
-            secondary_live_label: "",
-        }],
-    },
-    Category {
-        id: "snobol4",
-        label: "SNOBOL4",
-        items: &[DemoEntry {
-            name: "SNOBOL4 Interpreter",
-            slug: "sw-cor24-snobol4",
-            description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW, running on COR24.",
-            status: DemoStatus::Wip,
-            tags: &["Interpreter", "SNOBOL4", "Pattern Matching"],
-            has_live_demo: true,
-            is_this_site: false,
-            source_label: "PL/SW Source",
-            badge_image: "snobol4-badge.png",
-            repo: "sw-cor24-snobol4",
-            group_id: "snobol4",
-            live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-snobol4/"),
             secondary_live_url: None,
             secondary_live_label: "",
         }],
@@ -424,6 +404,26 @@ static CATEGORIES: [Category; 14] = [
             repo: "sw-cor24-rust",
             group_id: "rust",
             live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
+        id: "snobol4",
+        label: "SNOBOL4",
+        items: &[DemoEntry {
+            name: "SNOBOL4 Interpreter",
+            slug: "sw-cor24-snobol4",
+            description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW, running on COR24.",
+            status: DemoStatus::Wip,
+            tags: &["Interpreter", "SNOBOL4", "Pattern Matching"],
+            has_live_demo: true,
+            is_this_site: false,
+            source_label: "PL/SW Source",
+            badge_image: "snobol4-badge.png",
+            repo: "sw-cor24-snobol4",
+            group_id: "snobol4",
+            live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-snobol4/"),
             secondary_live_url: None,
             secondary_live_label: "",
         }],
@@ -489,19 +489,20 @@ pub fn status_label(status: &DemoStatus) -> &'static str {
 pub fn filter_languages() -> Vec<(&'static str, String)> {
     vec![
         ("All", "all".to_string()),
-        ("Cross-Tools", "cross-tools".to_string()),
         ("APL", "apl".to_string()),
         ("BASIC", "basic".to_string()),
         ("C", "c".to_string()),
+        ("Cross-Tools", "cross-tools".to_string()),
         ("Forth", "forth".to_string()),
         ("Fortran", "fortran".to_string()),
         ("Lisp", "lisp".to_string()),
+        ("OCaml", "ocaml".to_string()),
         ("Pascal", "pascal".to_string()),
         ("PL/SW", "plsw".to_string()),
-        ("OCaml", "ocaml".to_string()),
-        ("Rust", "rust".to_string()),
-        ("SWS", "sws".to_string()),
         ("Prolog", "prolog".to_string()),
+        ("Rust", "rust".to_string()),
+        ("SNOBOL4", "snobol4".to_string()),
+        ("SWS", "sws".to_string()),
     ]
 }
 
@@ -515,26 +516,22 @@ mod tests {
     }
 
     #[test]
-    fn category_labels_ordered() {
+    fn category_labels_alphabetical() {
         let labels: Vec<&str> = all_categories().iter().map(|c| c.label).collect();
+        let mut sorted = labels.clone();
+        sorted.sort_by_key(|a| a.to_lowercase());
+        assert_eq!(labels, sorted, "categories are not in alphabetical order");
+    }
+
+    #[test]
+    fn filter_languages_alphabetical() {
+        let filters = filter_languages();
+        let labels: Vec<&str> = filters.iter().map(|(l, _)| *l).collect();
+        let mut sorted = labels.clone();
+        sorted.sort_by_key(|a| a.to_lowercase());
         assert_eq!(
-            labels,
-            vec![
-                "Cross-Assembler / Cross-Compiler",
-                "APL",
-                "BASIC",
-                "C",
-                "Forth",
-                "Fortran",
-                "Lisp",
-                "Pascal",
-                "PL/SW",
-                "OCaml",
-                "SNOBOL4",
-                "Prolog",
-                "Rust",
-                "SWS",
-            ]
+            labels, sorted,
+            "filter languages are not in alphabetical order"
         );
     }
 

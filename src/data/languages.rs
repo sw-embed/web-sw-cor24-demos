@@ -337,4 +337,12 @@ mod tests {
         sorted.sort();
         assert_eq!(labels, sorted, "rows are not in alphabetical order");
     }
+
+    #[test]
+    fn columns_alphabetical() {
+        let labels: Vec<&str> = columns().iter().map(|c| c.label).collect();
+        let mut sorted = labels.clone();
+        sorted.sort_by_key(|a| a.to_lowercase());
+        assert_eq!(labels, sorted, "columns are not in alphabetical order");
+    }
 }
