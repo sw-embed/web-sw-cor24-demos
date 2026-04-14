@@ -21,6 +21,7 @@ const REPOS: &[(&str, &str)] = &[
     ("sw-cor24-fortran", "Native langs"),
     ("sw-cor24-macrolisp", "Native langs"),
     ("sw-cor24-plsw", "Native langs"),
+    ("sw-cor24-snobol4", "Native langs"),
     ("sw-cor24-script", "Native langs"),
     ("sw-cor24-debugger", "System"),
     ("sw-cor24-monitor", "System"),
@@ -33,6 +34,7 @@ const REPOS: &[(&str, &str)] = &[
     ("web-sw-cor24-pascal", "Web UIs"),
     ("web-sw-cor24-pcode", "Web UIs"),
     ("web-sw-cor24-plsw", "Web UIs"),
+    ("web-sw-cor24-snobol4", "Web UIs"),
     ("web-sw-cor24-rust", "Web UIs"),
     ("web-sw-cor24-tinyc", "Web UIs"),
 ];

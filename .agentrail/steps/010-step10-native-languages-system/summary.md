@@ -1,0 +1,1 @@
+Added 9 new tools (7 native languages + 2 system software) to toolchain page, tc24r C subset constraints note, live web demos section, fixed APL glyph table to use GlyphRow struct. Total: 18 tools across 5 groups. All quality gates pass, sw-checklist no new FAILs, pages built and deployed.

@@ -1,0 +1,1 @@
+Added ecosystem overview sections to Status page (dependency diagram, getting started, about COR24) and created gen-issue-chart tool that generates an SVG line chart of sw-cor24-x-tinyc issue progress (open vs closed cumulative counts over time)

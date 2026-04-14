@@ -11,8 +11,7 @@ fn makerlisp_links() -> Vec<MakerLispLink> {
         MakerLispLink {
             label: "COR24 Soft CPU",
             url: "https://www.makerlisp.com/cor24-soft-cpu-for-fpga",
-            description:
-                "The COR24 CPU architecture -- 24-bit RISC designed for FPGA embedded systems. \
+            description: "The COR24 CPU architecture -- 24-bit RISC designed for FPGA embedded systems. \
                 Runs at 101 MHz on Lattice MachXO FPGAs.",
         },
         MakerLispLink {
@@ -24,8 +23,7 @@ fn makerlisp_links() -> Vec<MakerLispLink> {
         MakerLispLink {
             label: "Technical Information",
             url: "https://www.makerlisp.com/download",
-            description:
-                "Datasheets, Verilog source, pinouts, and technical documentation for the \
+            description: "Datasheets, Verilog source, pinouts, and technical documentation for the \
                 COR24 CPU and development board.",
         },
         MakerLispLink {

@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::data::isa::{all_regions, MemoryType};
+use crate::data::isa::{MemoryType, all_regions};
 
 use super::io_table::{hex, io_table};
 
