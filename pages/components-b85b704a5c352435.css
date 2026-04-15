@@ -2057,3 +2057,37 @@
     padding: 0.1rem 0.35rem;
     border-radius: var(--border-radius-sm);
 }
+
+/* ── Activity Reports ── */
+
+.activity-section {
+    margin-top: 2rem;
+}
+
+.activity-report-wrap {
+    margin-bottom: 2rem;
+}
+
+.activity-report-wrap:last-child {
+    margin-bottom: 0;
+}
+
+.activity-report-title {
+    font-size: 1.05rem;
+    color: var(--color-text-bright);
+    margin-bottom: 0.5rem;
+}
+
+.activity-report-iframe {
+    width: 100%;
+    height: 600px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background-color: var(--color-surface);
+}
+
+@media (max-width: 767px) {
+    .activity-report-iframe {
+        height: 400px;
+    }
+}
