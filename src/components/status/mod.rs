@@ -2,6 +2,7 @@ use yew::prelude::*;
 
 use crate::data::status::{all_projects, r#generated_status, github_issues_url, github_repo_url};
 
+mod activity;
 mod ecosystem;
 mod gaps;
 mod issue_chart;
@@ -144,6 +145,7 @@ pub fn status_page() -> Html {
             {issue_chart::render_issue_charts()}
             {ecosystem::render_ecosystem()}
             {gaps::render_gaps()}
+            {activity::render_activity_reports()}
         </div>
     }
 }
