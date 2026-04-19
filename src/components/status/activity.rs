@@ -1,5 +1,8 @@
 use yew::prelude::*;
 
+const COMMITS_HTML: &str = include_str!("../../../reports/commits.html");
+const CLOSED_ISSUES_HTML: &str = include_str!("../../../reports/closed-issues.html");
+
 pub fn render_activity_reports() -> Html {
     html! {
         <section class="activity-section">
@@ -14,31 +17,64 @@ pub fn render_activity_reports() -> Html {
                 <code>{"sw-cor24-project"}</code>
                 {"."}
             </p>
-            {render_commits_report()}
-            {render_issues_report()}
+            <ReportTable title="Commits by Repo &amp; Hour" inner_html={COMMITS_HTML} />
+            <ReportTable title="Closed Issues by Repo &amp; Date" inner_html={CLOSED_ISSUES_HTML} />
         </section>
     }
 }
 
-fn iframe_wrap(title: &str, src: &str) -> Html {
+#[function_component(ReportTable)]
+fn report_table(props: &ReportTableProps) -> Html {
+    let scroll_ref = use_node_ref();
+
+    let on_first = {
+        let scroll_ref = scroll_ref.clone();
+        Callback::from(move |_| {
+            let Some(el) = scroll_ref.cast::<web_sys::HtmlElement>() else {
+                return;
+            };
+            el.set_scroll_left(0);
+        })
+    };
+
+    let on_last = {
+        let scroll_ref = scroll_ref.clone();
+        Callback::from(move |_| {
+            let Some(el) = scroll_ref.cast::<web_sys::HtmlElement>() else {
+                return;
+            };
+            el.set_scroll_left(el.scroll_width() - el.client_width());
+        })
+    };
+
+    let body = extract_body(&props.inner_html);
+
     html! {
         <div class="activity-report-wrap">
-            <h3 class="activity-report-title">{title}</h3>
-            <iframe
-                src={src.to_string()}
-                class="activity-report-iframe"
-                title={title.to_string()}
-                loading="lazy"
-                sandbox="allow-scripts"
-            ></iframe>
+            <div class="activity-report-header">
+                <h3 class="activity-report-title">{&props.title}</h3>
+                <div class="activity-report-nav">
+                    <button class="activity-nav-btn" onclick={on_first}>{"\u{2190} First"}</button>
+                    <button class="activity-nav-btn" onclick={on_last}>{"Last \u{2192}"}</button>
+                </div>
+            </div>
+            <div ref={scroll_ref} class="activity-report-scroll">
+                <div class="activity-report-body">
+                    <table class="activity-report-table">{ Html::from_html_unchecked(body.into()) }</table>
+                </div>
+            </div>
         </div>
     }
 }
 
-fn render_commits_report() -> Html {
-    iframe_wrap("Commits by Repo & Hour", "reports/commits.html")
+fn extract_body(html: &str) -> String {
+    let start = html.find("<body>").map(|i| i + 6).unwrap_or(0);
+    let end = html.rfind("</body>").unwrap_or(html.len());
+    html[start..end].trim().to_string()
 }
 
-fn render_issues_report() -> Html {
-    iframe_wrap("Closed Issues by Repo & Date", "reports/closed-issues.html")
+#[derive(Clone, PartialEq, Properties)]
+struct ReportTableProps {
+    title: String,
+    inner_html: String,
 }

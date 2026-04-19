@@ -46,7 +46,7 @@ pub struct LangDetail {
     pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
-static SUMMARIES: [LangSummary; 12] = [
+static SUMMARIES: [LangSummary; 14] = [
     LangSummary {
         id: "a24",
         label: "a24-sw",
@@ -88,6 +88,14 @@ static SUMMARIES: [LangSummary; 12] = [
         section_id: "lang-fortran",
     },
     LangSummary {
+        id: "hlasm",
+        label: "hlasm-sw",
+        inspired_by: "IBM HLASM",
+        one_liner: "High-level assembler with structured macros and symbolic expressions for COR24",
+        repo: "sw-cor24-hlasm",
+        section_id: "lang-hlasm",
+    },
+    LangSummary {
         id: "lisp",
         label: "macrolisp-sw",
         inspired_by: "Lisp",
@@ -126,6 +134,14 @@ static SUMMARIES: [LangSummary; 12] = [
         one_liner: "Logic programming with WAM-like 8+8 register VM implemented in PL/SW",
         repo: "sw-cor24-prolog",
         section_id: "lang-prolog",
+    },
+    LangSummary {
+        id: "rpg-ii",
+        label: "rpg-ii-sw",
+        inspired_by: "RPG II",
+        one_liner: "Simplified RPG-II report generator, compiled via HLASM for COR24",
+        repo: "sw-cor24-rpg-ii",
+        section_id: "lang-rpg-ii",
     },
     LangSummary {
         id: "snobol4",
@@ -369,7 +385,7 @@ static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     },
 ];
 
-static DETAILS: [LangDetail; 12] = [
+static DETAILS: [LangDetail; 14] = [
     LangDetail {
         id: "a24",
         label: "a24-sw",
@@ -471,6 +487,27 @@ static DETAILS: [LangDetail; 12] = [
             "Currently in development",
             "Verbose syntax for simple tasks",
             "Limited string handling",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
+        id: "hlasm",
+        label: "hlasm-sw",
+        inspired_by: "IBM HLASM",
+        section_id: "lang-hlasm",
+        history: "HLASM (High-Level Assembler) extends the COR24 assembly language with structured macros, symbolic expressions, and higher-level constructs. Written in COR24 assembly, it runs natively on the target platform as part of the self-hosting toolchain.",
+        purpose: "Bridge the gap between raw assembly and higher-level languages. HLASM provides structured programming constructs (IF/ELSE, DO/WHILE), macro definitions with parameters, and symbolic expressions that make COR24 assembly more readable and maintainable.",
+        usage: "Write .s source files with HLASM directives and macros. HLASM expands macros and evaluates symbolic expressions, producing pure COR24 assembly for the native assembler.",
+        pros: &[
+            "Structured programming in assembly",
+            "Powerful macro system with parameters",
+            "Runs on COR24 hardware",
+        ],
+        cons: &[
+            "Currently in development",
+            "Adds complexity over raw assembly",
+            "Requires understanding of both HLASM and base assembly",
         ],
         glyph_table: None,
         keyword_table: None,
@@ -592,6 +629,33 @@ static DETAILS: [LangDetail; 12] = [
         keyword_table: None,
     },
     LangDetail {
+        id: "rpg-ii",
+        label: "rpg-ii-sw",
+        inspired_by: "RPG II",
+        section_id: "lang-rpg-ii",
+        history: "RPG II (Report Program Generator) was created by IBM in the 1960s for business data \
+         processing on minicomputers. The COR24 implementation is a simplified RPG-II that compiles \
+         through HLASM, targeting report generation and file processing workloads on COR24.",
+        purpose: "Business data processing and report generation. RPG-II's fixed-format specifications \
+         (input, calculation, output) provide a structured approach to file processing, making it \
+         well-suited for data transformation and reporting tasks.",
+        usage: "In development. Define file descriptions, input specifications, calculation specifications, \
+         and output specifications in RPG-II fixed-format source. Compiles through HLASM to COR24 \
+         assembly for the assembler.",
+        pros: &[
+            "Excellent for report generation",
+            "Fixed-format specifications are self-documenting",
+            "Compiles through HLASM on COR24",
+        ],
+        cons: &[
+            "Currently in development",
+            "Fixed-format syntax is rigid",
+            "Limited to batch/file processing",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
         id: "snobol4",
         label: "SNOBOL4",
         inspired_by: "SNOBOL4",
@@ -657,11 +721,11 @@ mod tests {
 
     #[test]
     fn summaries_count() {
-        assert_eq!(summaries().len(), 12);
+        assert_eq!(summaries().len(), 14);
     }
 
     #[test]
     fn details_count() {
-        assert_eq!(all_details().len(), 12);
+        assert_eq!(all_details().len(), 14);
     }
 }

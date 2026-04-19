@@ -162,6 +162,24 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
+                    <h4>{"HLASM"}</h4>
+                    <div class="pipe-flow">
+                        {file(".s (HLASM source)")}
+                        {arrow()}
+                        {step("HLASM", "COR24 asm")}
+                        {arrow()}
+                        {file(".s (pure asm)")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"High-level assembler written in COR24 assembly. Expands structured macros, \
+                         symbolic expressions, and higher-level constructs to pure COR24 assembly."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
                     <h4>{"Macro Lisp"}</h4>
                     <div class="pipe-flow">
                         {file(".lisp")}
@@ -255,6 +273,25 @@ fn render_languages() -> Html {
                         {"In development. WAM-like 8+8 register virtual machine (8 argument + 8 temporary) \
                          implemented in PL/SW. Provides unification and backtracking for logic programming \
                          on COR24."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
+                    <h4>{"RPG-II"}</h4>
+                    <div class="pipe-flow">
+                        {file(".rpg")}
+                        {arrow()}
+                        {step("RPG-II compiler", "HLASM")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("assembler", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"Simplified RPG-II report generator. Compiled through HLASM, targeting \
+                         business data processing and report generation on COR24. \
+                         Toolchain: .s \u{2192} HLASM \u{2192} RPG-II."}
                     </p>
                 </div>
                 <div class="pipeline-card">

@@ -13,26 +13,28 @@
   <text x='40' y='35.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>19</text>
   <text x='45.0' y='283' fill='#a6adc8' text-anchor='middle'>Mar 30</text>
   <line x1='45.0' y1='35' x2='45.0' y2='265' stroke='#313244'/>
-  <text x='126.9' y='283' fill='#a6adc8' text-anchor='middle'>Apr 01</text>
-  <line x1='126.9' y1='35' x2='126.9' y2='265' stroke='#313244'/>
-  <text x='208.8' y='283' fill='#a6adc8' text-anchor='middle'>Apr 03</text>
-  <line x1='208.8' y1='35' x2='208.8' y2='265' stroke='#313244'/>
-  <text x='290.6' y='283' fill='#a6adc8' text-anchor='middle'>Apr 05</text>
-  <line x1='290.6' y1='35' x2='290.6' y2='265' stroke='#313244'/>
-  <text x='372.5' y='283' fill='#a6adc8' text-anchor='middle'>Apr 07</text>
-  <line x1='372.5' y1='35' x2='372.5' y2='265' stroke='#313244'/>
-  <text x='454.4' y='283' fill='#a6adc8' text-anchor='middle'>Apr 09</text>
-  <line x1='454.4' y1='35' x2='454.4' y2='265' stroke='#313244'/>
-  <text x='536.2' y='283' fill='#a6adc8' text-anchor='middle'>Apr 11</text>
-  <line x1='536.2' y1='35' x2='536.2' y2='265' stroke='#313244'/>
-  <text x='618.1' y='283' fill='#a6adc8' text-anchor='middle'>Apr 13</text>
-  <line x1='618.1' y1='35' x2='618.1' y2='265' stroke='#313244'/>
-  <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 15</text>
+  <text x='117.8' y='283' fill='#a6adc8' text-anchor='middle'>Apr 01</text>
+  <line x1='117.8' y1='35' x2='117.8' y2='265' stroke='#313244'/>
+  <text x='190.6' y='283' fill='#a6adc8' text-anchor='middle'>Apr 03</text>
+  <line x1='190.6' y1='35' x2='190.6' y2='265' stroke='#313244'/>
+  <text x='263.3' y='283' fill='#a6adc8' text-anchor='middle'>Apr 05</text>
+  <line x1='263.3' y1='35' x2='263.3' y2='265' stroke='#313244'/>
+  <text x='336.1' y='283' fill='#a6adc8' text-anchor='middle'>Apr 07</text>
+  <line x1='336.1' y1='35' x2='336.1' y2='265' stroke='#313244'/>
+  <text x='408.9' y='283' fill='#a6adc8' text-anchor='middle'>Apr 09</text>
+  <line x1='408.9' y1='35' x2='408.9' y2='265' stroke='#313244'/>
+  <text x='481.7' y='283' fill='#a6adc8' text-anchor='middle'>Apr 11</text>
+  <line x1='481.7' y1='35' x2='481.7' y2='265' stroke='#313244'/>
+  <text x='554.4' y='283' fill='#a6adc8' text-anchor='middle'>Apr 13</text>
+  <line x1='554.4' y1='35' x2='554.4' y2='265' stroke='#313244'/>
+  <text x='627.2' y='283' fill='#a6adc8' text-anchor='middle'>Apr 15</text>
+  <line x1='627.2' y1='35' x2='627.2' y2='265' stroke='#313244'/>
+  <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 17</text>
   <line x1='700.0' y1='35' x2='700.0' y2='265' stroke='#313244'/>
-  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 85.9,265.0 126.9,265.0 167.8,265.0 208.8,265.0 249.7,265.0 290.6,265.0 331.6,265.0 372.5,265.0 413.4,265.0 454.4,265.0 495.3,265.0 536.2,265.0 577.2,265.0 618.1,252.9 659.1,252.9 700.0,252.9 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 85.9,265.0 126.9,265.0 167.8,265.0 208.8,265.0 249.7,265.0 290.6,265.0 331.6,265.0 372.5,265.0 413.4,265.0 454.4,265.0 495.3,265.0 536.2,265.0 577.2,265.0 618.1,252.9 659.1,252.9 700.0,252.9'/>
-  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 85.9,265.0 126.9,265.0 167.8,265.0 208.8,265.0 249.7,265.0 290.6,265.0 331.6,252.9 372.5,252.9 413.4,228.7 454.4,228.7 495.3,228.7 536.2,228.7 577.2,107.6 618.1,95.5 659.1,71.3 700.0,35.0 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 85.9,265.0 126.9,265.0 167.8,265.0 208.8,265.0 249.7,265.0 290.6,265.0 331.6,252.9 372.5,252.9 413.4,228.7 454.4,228.7 495.3,228.7 536.2,228.7 577.2,107.6 618.1,95.5 659.1,71.3 700.0,35.0'/>
+  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 81.4,265.0 117.8,265.0 154.2,265.0 190.6,265.0 226.9,265.0 263.3,265.0 299.7,265.0 336.1,265.0 372.5,265.0 408.9,265.0 445.3,265.0 481.7,265.0 518.1,265.0 554.4,252.9 590.8,252.9 627.2,252.9 663.6,252.9 700.0,252.9 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 81.4,265.0 117.8,265.0 154.2,265.0 190.6,265.0 226.9,265.0 263.3,265.0 299.7,265.0 336.1,265.0 372.5,265.0 408.9,265.0 445.3,265.0 481.7,265.0 518.1,265.0 554.4,252.9 590.8,252.9 627.2,252.9 663.6,252.9 700.0,252.9'/>
+  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 81.4,265.0 117.8,265.0 154.2,265.0 190.6,265.0 226.9,265.0 263.3,265.0 299.7,252.9 336.1,252.9 372.5,228.7 408.9,228.7 445.3,228.7 481.7,228.7 518.1,107.6 554.4,95.5 590.8,71.3 627.2,35.0 663.6,35.0 700.0,35.0 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 81.4,265.0 117.8,265.0 154.2,265.0 190.6,265.0 226.9,265.0 263.3,265.0 299.7,252.9 336.1,252.9 372.5,228.7 408.9,228.7 445.3,228.7 481.7,228.7 518.1,107.6 554.4,95.5 590.8,71.3 627.2,35.0 663.6,35.0 700.0,35.0'/>
   <circle cx='700.0' cy='252.9' r='4' fill='#f38ba8'/>
   <circle cx='700.0' cy='35.0' r='4' fill='#a6e3a1'/>
   <text x='708.0' y='252.9' fill='#f38ba8' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>1 open</text>
@@ -42,5 +44,5 @@
   <text x='75' y='306' fill='#a6adc8' dominant-baseline='middle'>Open</text>
   <line x1='120' y1='306' x2='136' y2='306' stroke='#a6e3a1' stroke-width='2'/>
   <text x='140' y='306' fill='#a6adc8' dominant-baseline='middle'>Closed</text>
-  <text x='372.5' y='318' fill='#585b70' text-anchor='middle' font-size='9px'>Mar 30 -- Apr 15</text>
+  <text x='372.5' y='318' fill='#585b70' text-anchor='middle' font-size='9px'>Mar 30 -- Apr 17</text>
 </svg>

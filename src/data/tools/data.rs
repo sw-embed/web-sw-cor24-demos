@@ -53,6 +53,17 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::Foundation,
             },
             ToolEntry {
+                name: "High-Level Assembler (HLASM)",
+                repo: "sw-cor24-hlasm",
+                description: "High-level assembler for COR24 providing structured macros, symbolic expressions, \
+                 and higher-level constructs. Written in COR24 assembly, runs natively on the target platform.",
+                language: ToolLanguage::Assembly,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::Foundation,
+            },
+            ToolEntry {
                 name: "Native Assembler (as24)",
                 repo: "sw-cor24-assembler",
                 description: "Native assembler written in C that runs directly on COR24 hardware. Part of the \
@@ -220,6 +231,17 @@ static GROUPS: [ToolGroup; 5] = [
                 category: ToolCategory::NativeLanguage,
             },
             ToolEntry {
+                name: "RPG-II",
+                repo: "sw-cor24-rpg-ii",
+                description: "Simplified RPG-II report generator compiled through HLASM. Targets business \
+                 data processing and report generation on COR24.",
+                language: ToolLanguage::Assembly,
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
+            ToolEntry {
                 name: "SNOBOL4 Interpreter",
                 repo: "sw-cor24-snobol4",
                 description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW. \
@@ -305,12 +327,12 @@ mod tests {
     fn counts() {
         let g = all_groups();
         assert_eq!(g.len(), 5);
-        assert_eq!(g[0].items.len(), 4);
+        assert_eq!(g[0].items.len(), 5);
         assert_eq!(g[1].items.len(), 2);
         assert_eq!(g[2].items.len(), 4);
-        assert_eq!(g[3].items.len(), 9);
+        assert_eq!(g[3].items.len(), 10);
         assert_eq!(g[4].items.len(), 3);
-        assert_eq!(all_tools().len(), 22);
+        assert_eq!(all_tools().len(), 24);
     }
 
     #[test]

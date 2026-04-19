@@ -29,7 +29,7 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
     "n/a"
 }
 
-static COLUMNS: [LangColumn; 12] = [
+static COLUMNS: [LangColumn; 13] = [
     LangColumn {
         id: "a24",
         label: "a24-sw",
@@ -81,6 +81,11 @@ static COLUMNS: [LangColumn; 12] = [
         default_collapsed: true,
     },
     LangColumn {
+        id: "rpg-ii",
+        label: "rpg-ii-sw",
+        default_collapsed: true,
+    },
+    LangColumn {
         id: "snobol4",
         label: "SNOBOL4",
         default_collapsed: false,
@@ -107,6 +112,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "X := A + B * C"),
             ("plsw", "X = A + B * C"),
             ("prolog", "n/a"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "Y = X * 6"),
             ("sws", "set X 42"),
         ],
@@ -125,6 +131,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "X > 0"),
             ("plsw", "X > 0"),
             ("prolog", "X > 0"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "expr {$X > 0}"),
         ],
@@ -143,6 +150,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "Y := Sq(5);"),
             ("plsw", "CALL Square(5);"),
             ("prolog", "square(5, Y)."),
+            ("rpg-ii", "n/a"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
         ],
@@ -161,6 +169,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "{ comment }"),
             ("plsw", "/* comment */"),
             ("prolog", "% comment"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "* comment"),
             ("sws", "# comment"),
         ],
@@ -179,6 +188,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "IF X > 0 THEN\n  WriteLn('yes');"),
             ("plsw", "IF X > 0 THEN\n  DISPLAY('yes');"),
             ("prolog", "X > 0 -> write(yes)"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "TEXT PAT . N :F(NO)"),
             ("sws", "if {$X > 0} {puts yes}"),
         ],
@@ -197,6 +207,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "; runtime error\n; halted with message"),
             ("plsw", "ON ERROR GOTO lbl"),
             ("prolog", "n/a"),
+            ("rpg-ii", "n/a"),
             ("snobol4", ":F(NO)"),
             ("sws", "catch { script } err {\n  echo $err\n}"),
         ],
@@ -215,6 +226,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "function Sq(X: integer)\n  : integer;"),
             ("plsw", "PROC Square;\n  DCL X INT;\n  ... END;"),
             ("prolog", "square(X, Y) :-\n  Y is X * X."),
+            ("rpg-ii", "n/a"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
         ],
@@ -236,6 +248,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "Port[1] := Port[2]"),
             ("plsw", "n/a"),
             ("prolog", "n/a"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "LINE = INPUT"),
             ("sws", "set led [expr {[read switch]}]"),
         ],
@@ -257,6 +270,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "for I := 1 to 10 do\n  WriteLn(I);"),
             ("plsw", "DO I = 1 TO 10;\n  DISPLAY(I);\nEND;"),
             ("prolog", "between(1, 10, I)"),
+            ("rpg-ii", "n/a"),
             ("snobol4", ":(READ)"),
             ("sws", "set i 0\nwhile {$i < 10} {\n  puts $i; incr i\n}"),
         ],
@@ -275,6 +289,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "n/a"),
             ("plsw", "n/a"),
             ("prolog", "append([1,2], [3], X)"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "SPAN('0123456789')"),
             ("sws", "regexp {\\d+}"),
         ],
@@ -293,6 +308,7 @@ static ROWS: [IdiomRow; 11] = [
             ("pascal", "WriteLn('Hello');"),
             ("plsw", "DISPLAY('Hello');"),
             ("prolog", "write('Hello')"),
+            ("rpg-ii", "n/a"),
             ("snobol4", "OUTPUT = 'Hello'"),
             ("sws", "echo Hello"),
         ],
@@ -305,7 +321,7 @@ mod tests {
 
     #[test]
     fn column_count() {
-        assert_eq!(columns().len(), 12);
+        assert_eq!(columns().len(), 13);
     }
 
     #[test]
