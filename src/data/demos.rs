@@ -285,7 +285,7 @@ static CATEGORIES: [Category; 6] = [
                 slug: "web-sw-cor24-ocaml",
                 description: "OCaml compiler targeting the COR24 P-code VM. Compiles a subset of OCaml to P-code bytecode \
                          via the Pascal P-code pipeline.",
-                status: DemoStatus::Design,
+                status: DemoStatus::Wip,
                 tags: &["Compiler", "OCaml"],
                 has_live_demo: true,
                 is_this_site: false,
