@@ -70,6 +70,29 @@ fn intro_closing() -> Html {
     }
 }
 
+fn tech_doc_callout() -> Html {
+    html! {
+        <a
+            href="https://github.com/sw-embed/web-sw-cor24-demos/blob/main/docs/language-building-tech.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="about-doc-callout"
+        >
+            <div class="about-doc-callout-body">
+                <h2 class="about-doc-callout-title">
+                    {"The Approach, Goals, and Rationale"}
+                </h2>
+                <p class="about-doc-callout-desc">
+                    {"A deep-dive on how the COR24 language stack is designed, layered, and \
+                    bootstrapped \u{2014} from ISA up through the language groups, tooling, and \
+                    porting strategy."}
+                </p>
+            </div>
+            <span class="about-doc-callout-cta">{"Read on GitHub \u{2192}"}</span>
+        </a>
+    }
+}
+
 fn intro_text() -> Html {
     html! {
         <div class="about-intro-text">
@@ -115,6 +138,7 @@ fn intro_text() -> Html {
                 {", with the VM implemented in PL/SW and the parser in SNOBOL4."}
             </p>
             {intro_closing()}
+            {tech_doc_callout()}
         </div>
     }
 }
