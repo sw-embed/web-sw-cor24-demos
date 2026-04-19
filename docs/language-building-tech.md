@@ -37,7 +37,8 @@ under `/disk1/github/softwarewrighter/devgroup/work/d<xx>/github/sw-embed/`.
 22. [Memory loading strategies](#22-memory-loading-strategies)
 23. [Web frontends](#23-web-frontends-web-sw-cor24-)
 24. [Status summary](#24-status-summary)
-25. [Design commitments](#25-design-commitments)
+25. [Project commitments](#25-project-commitments)
+26. [Caveats](#26-caveats)
 
 ---
 
@@ -172,7 +173,7 @@ does this today.
 
 The sw-embed org exists to **build a complete language stack against
 COR24** from the ISA up, and to **use the tools it produces to build
-the next tools**. COR24 itself is the author's (mike's) proving
+the next tools**. COR24 itself is my proving
 ground for tools and techniques meant to be ported to *other*
 FPGA-based systems — the motivation is to run tools and applications
 on emulated historical and modern ISAs (IBM 1130, 360, 390, RCA
@@ -272,7 +273,7 @@ actually implemented* — and how to bootstrap language tools for a
 range of ISAs (not just COR24). Where a language has a canonical
 implementation technique or a well-known implementation language,
 the project honours it; where it doesn't, the choice defaults to
-mike's preferred stack (Rust on Linux/Mac for host tools, PL/SW or
+my preferred stack (Rust on Linux/Mac for host tools, PL/SW or
 HLASM for native COR24 tools, C used only where dictated by
 convention or necessity).
 
@@ -306,7 +307,7 @@ inline asm for tight loops), callable from all four language groups.
 
 ### 2.5 Personal preferences that shape the ecosystem
 
-Several choices across the project reflect mike's own tastes rather
+Several choices across the project reflect my own tastes rather
 than strictly technical necessity. Worth stating plainly — they
 explain a lot about why the ecosystem looks the way it does.
 
@@ -316,9 +317,9 @@ explain a lot about why the ecosystem looks the way it does.
   not in the same league as Lisp macros, PL/SW's `MACRODEF` / `GEN`,
   or HLASM's macro facilities. Native tools lean on the
   metaprogramming-rich languages wherever they can.
-- **APL is mike's first programming language.** `sw-cor24-apl`
-  exists in part because mike wanted his own APL to play with.
-- **Adjacent (but separate) work**: mike is developing a new
+- **APL is my first programming language.** `sw-cor24-apl`
+  exists in part because I wanted my own APL to play with.
+- **Adjacent (but separate) work**: I am developing a new
   programming language that **extends APL for machine-learning
   applications**. That project is not part of the sw-embed / COR24
   ecosystem — it's a separate effort — but it shares the APL
@@ -438,12 +439,12 @@ Why it matters:
 
 `wiki-rs` started as a demo: a Rust-backed Markdown wiki that
 multiple agents could read and update. As parallel agent work grew,
-mike added **agent-specific APIs on top of it** — structured
+I added **agent-specific APIs on top of it** — structured
 request/response primitives so agent B could ask agent A for a
 feature or a fix, and agent A could indicate when the request was
 done.
 
-In practice the protocol still required mike to **poke** agents to
+In practice the protocol still required me to **poke** agents to
 get them to ask, respond, or check the wiki for status — the API
 defined the shape of messages but no agent polled on its own. That
 poking-by-hand is what motivated the next layer.
@@ -454,9 +455,9 @@ poking-by-hand is what motivated the next layer.
 coordination layer:
 [github.com/sw-vibe-coding/all-together-now](https://github.com/sw-vibe-coding/all-together-now).
 
-It replaces mike's manual poking with a **coordinator agent** that
+It replaces my manual poking with a **coordinator agent** that
 polls the other agents via a `wiki-rs`-like API with **mailboxes**
-added. The web UI surfaces one pty per agent so mike can still
+added. The web UI surfaces one pty per agent so I can still
 observe and intervene when needed, but the routine asking, answering,
 and status-checking is handled agent-to-agent.
 
@@ -470,7 +471,7 @@ Main capabilities:
   `wiki-rs` didn't have on its own).
 - **Shared wiki pages** — the same `wiki-rs` surface, now written by
   the coordinator and worker agents as part of their routine instead
-  of only by mike.
+  of only by me.
 
 ### 3.7 Vendoring for parallel progress
 
@@ -609,12 +610,12 @@ Once PL/SW is real, pattern-heavy languages become tractable:
   unification, trail, and choice-point stacks. Also implemented in
   PL/SW.
 
-**Why grouped**: PL/SW is mike's preferred native systems language;
+**Why grouped**: PL/SW is my preferred native systems language;
 its records and macros map well onto pattern-oriented abstract
 machines (SIL, WAM). SNOBOL4 and Prolog both land here because
 their canonical implementations (SIL; WAM-family systems-language
 hosts) have the same shape PL/SW provides, and because writing
-them in PL/SW is more to mike's taste than writing them in C.
+them in PL/SW is more to my taste than writing them in C.
 
 **Bootstrapping story**: PL/SW is the answer to "what do we write
 abstract-machine interpreters in." Prolog and SNOBOL4 validate that
@@ -1368,8 +1369,8 @@ installing Rust."
 
 ## 25. Project commitments
 
-The author's stated commitments — not inferred by this doc, but set
-by mike directly:
+My stated commitments — not inferred by this doc, but set by me
+directly:
 
 1. **Learn by educating others.** The project is about history and
    technique; every piece of it is meant to explain how some class
@@ -1397,6 +1398,50 @@ Patterns that emerge from those commitments, visible in the codebase:
 - **The web as a delivery channel.** Web repos are thin Yew wrappers
   over the same Rust crates the native tooling uses. No fork; WASM
   gets zero-install demos of the actual tools.
+
+---
+
+## 26. Caveats
+
+This is a **work in progress**. A few things worth being explicit
+about:
+
+- **Mistakes are being corrected.** Expect to find bugs, half-built
+  pieces, and rough edges. They get fixed as they surface.
+- **Poor naming is being improved and unified.** Names across repos
+  have drifted over time; I'm consolidating conventions as I go.
+- **There will be breaking changes.** Interfaces, file layouts, and
+  repo names are not yet frozen. Expect churn until the bootstrapping
+  story stabilises.
+- **Documentation will drift out of date at times.** This doc and
+  the per-repo READMEs lag behind the code in bursts. I clean both
+  up periodically rather than keeping them in lockstep moment-to-moment.
+- **Code and documentation cleanup is ongoing.** I am actively
+  tidying both, but it happens in waves rather than continuously.
+- **Some earlier projects will be retired** as their replacements
+  become available. Expect deprecations when a newer tool reaches
+  parity with one it's meant to supersede.
+
+### 26.1 Upcoming pivots
+
+Two pivots are planned:
+
+1. **From languages/features to OS-precursor tooling.** I will soon
+   pivot from adding new languages or language features to building
+   better tools — a system monitor or a simple O/S — on top of the
+   stack that already exists.
+2. **From COR24 to additional Soft CPUs on Tang Nano FPGAs.** I will
+   be implementing **IBM 1130** and **RCA 1802** Soft CPUs on Tang
+   Nano FPGAs, and porting a subset of the existing languages onto
+   each:
+
+   - **IBM 1130 FPGA**: APL, FORTH, RPG-II, SNOBOL4, and Fortran.
+   - **RCA 1802 FPGA**: HLASM, Lisp, OCaml, Pascal, and PL/SW.
+
+The motivation for the split is historical fit: the IBM 1130 group
+lines up with languages that were at home on 1130-class machines or
+their contemporaries; the RCA 1802 group is a better fit for the
+more systems-oriented / abstract-machine-hosted set.
 
 ---
 
