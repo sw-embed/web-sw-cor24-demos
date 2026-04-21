@@ -669,9 +669,9 @@ static DETAILS: [LangDetail; 14] = [
             "String concatenation is implicit",
         ],
         cons: &[
-            "No web UI yet",
             "No user-defined functions yet",
-            "Implemented in PL/SW (two-language stack)",
+            "Unfamiliar control flow (explicit GOTO with success/failure branching)",
+            "Terse pattern syntax has a steep learning curve",
         ],
         glyph_table: None,
         keyword_table: None,
