@@ -9,6 +9,7 @@ const ORG: &str = "sw-embed";
 
 static REPOS: &[&str] = &[
     "sw-cor24-emulator",
+    "sw-cor24-forth",
     "sw-cor24-hlasm",
     "sw-cor24-pascal",
     "sw-cor24-pcode",
@@ -20,6 +21,7 @@ static REPOS: &[&str] = &[
 fn repo_slug(repo: &str) -> &'static str {
     match repo {
         "sw-cor24-emulator" => "emulator",
+        "sw-cor24-forth" => "forth",
         "sw-cor24-hlasm" => "hlasm",
         "sw-cor24-x-tinyc" => "tinyc",
         "sw-cor24-pascal" => "pascal",

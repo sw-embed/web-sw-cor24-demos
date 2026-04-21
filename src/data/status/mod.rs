@@ -186,7 +186,7 @@ static PROJECTS: [ProjectRow; 34] = [
     },
     ProjectRow {
         repo: "sw-cor24-forth",
-        description: "Forth (COR24 assembly)",
+        description: "Forth (asm + forth-in-forth / forth-on-forthish)",
         repo_status: green("Try it"),
         has_web_ui: green("Try it"),
         has_saga: false,

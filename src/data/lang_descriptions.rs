@@ -454,9 +454,9 @@ static DETAILS: [LangDetail; 14] = [
         label: "forth-sw",
         inspired_by: "FORTH",
         section_id: "lang-forth",
-        history: "Created by Charles Moore in the 1970s, Forth is a stack-based language known for its extreme extensibility. The COR24 implementation uses direct threaded code on native hardware, with over 2600 lines of definitions.",
-        purpose: "Interactive systems programming and hardware exploration. Forth's word-based architecture lets you extend the language itself at runtime, making it ideal for building domain-specific vocabularies for hardware control.",
-        usage: "Define words with colon definitions (: SQUARE DUP * ;), test them immediately in the REPL. Use BEGIN..WHILE..REPEAT for loops, IF..THEN..ELSE for conditionals. IN@ and OUT@ provide hardware I/O.",
+        history: "Created by Charles Moore in the 1970s, Forth is a stack-based language known for its extreme extensibility. The COR24 implementation uses direct threaded code on native hardware and is explored along four axes of self-hosting: (1) the original all-asm kernel forth.s (~2600 lines, every word in COR24 assembly); (2) forth-in-forth, a tiered kernel where control flow, stack helpers, comments, and diagnostics live in .fth source on top of a slimmed asm kernel; (3) forth-on-forthish, a minimal-primitive kernel (~22 irreducible asm primitives: threading, +, NAND, memory, I/O, SP@/RP@) with :, ;, WORD, FIND, NUMBER, and the outer loop written in Forth; and (4) forth-from-forth, a future self-hosted bootstrap where a Forth cross-compiler emits the kernel .s as a build artifact.",
+        purpose: "Interactive systems programming and hardware exploration. Forth's word-based architecture lets you extend the language itself at runtime, making it ideal for building domain-specific vocabularies for hardware control. The four-approach progression doubles as a teaching artifact for how much of a Forth system can be Forth itself.",
+        usage: "Define words with colon definitions (: SQUARE DUP * ;), test them immediately in the REPL. Use BEGIN..WHILE..REPEAT or DO..LOOP for loops, IF..THEN..ELSE for conditionals. IN@ and OUT@ provide hardware I/O. The web UI exposes tabs for each self-hosting tier so the same demos run on forth.s, forth-in-forth, and forth-on-forthish kernels side-by-side.",
         pros: &[
             "Extremely fast compilation and execution",
             "Infinitely extensible at runtime",

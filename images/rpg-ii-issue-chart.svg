@@ -7,12 +7,20 @@
   <text x='40' y='35.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>1</text>
   <text x='45.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 16</text>
   <line x1='45.0' y1='35' x2='45.0' y2='265' stroke='#313244'/>
-  <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 17</text>
+  <text x='176.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 17</text>
+  <line x1='176.0' y1='35' x2='176.0' y2='265' stroke='#313244'/>
+  <text x='307.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 18</text>
+  <line x1='307.0' y1='35' x2='307.0' y2='265' stroke='#313244'/>
+  <text x='438.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 19</text>
+  <line x1='438.0' y1='35' x2='438.0' y2='265' stroke='#313244'/>
+  <text x='569.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 20</text>
+  <line x1='569.0' y1='35' x2='569.0' y2='265' stroke='#313244'/>
+  <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 21</text>
   <line x1='700.0' y1='35' x2='700.0' y2='265' stroke='#313244'/>
-  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 700.0,265.0 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 700.0,265.0'/>
-  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 700.0,265.0 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 700.0,265.0'/>
+  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 176.0,265.0 307.0,265.0 438.0,265.0 569.0,265.0 700.0,265.0 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 176.0,265.0 307.0,265.0 438.0,265.0 569.0,265.0 700.0,265.0'/>
+  <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 176.0,265.0 307.0,265.0 438.0,265.0 569.0,265.0 700.0,265.0 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 176.0,265.0 307.0,265.0 438.0,265.0 569.0,265.0 700.0,265.0'/>
   <circle cx='700.0' cy='265.0' r='4' fill='#f38ba8'/>
   <circle cx='700.0' cy='265.0' r='4' fill='#a6e3a1'/>
   <text x='708.0' y='265.0' fill='#f38ba8' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>0 open</text>
@@ -22,5 +30,5 @@
   <text x='75' y='306' fill='#a6adc8' dominant-baseline='middle'>Open</text>
   <line x1='120' y1='306' x2='136' y2='306' stroke='#a6e3a1' stroke-width='2'/>
   <text x='140' y='306' fill='#a6adc8' dominant-baseline='middle'>Closed</text>
-  <text x='372.5' y='318' fill='#585b70' text-anchor='middle' font-size='9px'>Apr 16 -- Apr 17</text>
+  <text x='372.5' y='318' fill='#585b70' text-anchor='middle' font-size='9px'>Apr 16 -- Apr 21</text>
 </svg>
