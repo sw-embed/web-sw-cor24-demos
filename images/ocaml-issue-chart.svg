@@ -3,14 +3,18 @@
   <rect width='720' height='320' fill='#1e1e2e' rx='8'/>
   <line x1='45' y1='265.0' x2='700' y2='265.0' stroke='#313244' stroke-dasharray='3,3'/>
   <text x='40' y='265.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>0</text>
-  <line x1='45' y1='207.5' x2='700' y2='207.5' stroke='#313244' stroke-dasharray='3,3'/>
-  <text x='40' y='207.5' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>1</text>
-  <line x1='45' y1='150.0' x2='700' y2='150.0' stroke='#313244' stroke-dasharray='3,3'/>
-  <text x='40' y='150.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>2</text>
-  <line x1='45' y1='92.5' x2='700' y2='92.5' stroke='#313244' stroke-dasharray='3,3'/>
-  <text x='40' y='92.5' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>3</text>
+  <line x1='45' y1='223.2' x2='700' y2='223.2' stroke='#313244' stroke-dasharray='3,3'/>
+  <text x='40' y='223.2' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>2</text>
+  <line x1='45' y1='181.4' x2='700' y2='181.4' stroke='#313244' stroke-dasharray='3,3'/>
+  <text x='40' y='181.4' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>4</text>
+  <line x1='45' y1='139.5' x2='700' y2='139.5' stroke='#313244' stroke-dasharray='3,3'/>
+  <text x='40' y='139.5' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>6</text>
+  <line x1='45' y1='97.7' x2='700' y2='97.7' stroke='#313244' stroke-dasharray='3,3'/>
+  <text x='40' y='97.7' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>8</text>
+  <line x1='45' y1='55.9' x2='700' y2='55.9' stroke='#313244' stroke-dasharray='3,3'/>
+  <text x='40' y='55.9' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>10</text>
   <line x1='45' y1='35.0' x2='700' y2='35.0' stroke='#313244' stroke-dasharray='3,3'/>
-  <text x='40' y='35.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>4</text>
+  <text x='40' y='35.0' fill='#a6adc8' text-anchor='end' dominant-baseline='middle'>11</text>
   <text x='45.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 12</text>
   <line x1='45.0' y1='35' x2='45.0' y2='265' stroke='#313244'/>
   <text x='138.6' y='283' fill='#a6adc8' text-anchor='middle'>Apr 14</text>
@@ -27,14 +31,14 @@
   <line x1='606.4' y1='35' x2='606.4' y2='265' stroke='#313244'/>
   <text x='700.0' y='283' fill='#a6adc8' text-anchor='middle'>Apr 26</text>
   <line x1='700.0' y1='35' x2='700.0' y2='265' stroke='#313244'/>
-  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,207.5 559.6,207.5 606.4,207.5 653.2,35.0 700.0,265.0 700.0,265.0 45.0,265.0'/>
-  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,207.5 559.6,207.5 606.4,207.5 653.2,35.0 700.0,265.0'/>
+  <polygon fill='rgba(243,139,168,0.08)' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,244.1 559.6,244.1 606.4,244.1 653.2,181.4 700.0,265.0 700.0,265.0 45.0,265.0'/>
+  <polyline fill='none' stroke='#f38ba8' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,244.1 559.6,244.1 606.4,244.1 653.2,181.4 700.0,265.0'/>
   <polygon fill='rgba(166,227,161,0.08)' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,265.0 559.6,265.0 606.4,265.0 653.2,265.0 700.0,35.0 700.0,265.0 45.0,265.0'/>
   <polyline fill='none' stroke='#a6e3a1' stroke-width='2' stroke-linejoin='round' points='45.0,265.0 91.8,265.0 138.6,265.0 185.4,265.0 232.1,265.0 278.9,265.0 325.7,265.0 372.5,265.0 419.3,265.0 466.1,265.0 512.9,265.0 559.6,265.0 606.4,265.0 653.2,265.0 700.0,35.0'/>
   <circle cx='700.0' cy='265.0' r='4' fill='#f38ba8'/>
   <circle cx='700.0' cy='35.0' r='4' fill='#a6e3a1'/>
   <text x='708.0' y='265.0' fill='#f38ba8' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>0 open</text>
-  <text x='708.0' y='35.0' fill='#a6e3a1' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>4 closed</text>
+  <text x='708.0' y='35.0' fill='#a6e3a1' text-anchor='start' dominant-baseline='middle' font-size='11px' font-weight='600'>11 closed</text>
   <text x='360' y='18' fill='#cdd6f4' text-anchor='middle' font-size='13px' font-weight='600'>Issue Progress: sw-cor24-ocaml</text>
   <line x1='55' y1='306' x2='71' y2='306' stroke='#f38ba8' stroke-width='2'/>
   <text x='75' y='306' fill='#a6adc8' dominant-baseline='middle'>Open</text>

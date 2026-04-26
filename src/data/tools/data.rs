@@ -285,6 +285,19 @@ static GROUPS: [ToolGroup; 5] = [
                 live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-macrolisp/"),
                 category: ToolCategory::NativeLanguage,
             },
+            ToolEntry {
+                name: "Tuplet",
+                repo: "tuplet",
+                description: "Experimental named-tuple infix language with user-grown constructs. \
+                 A small set of essential special forms is extended via Lisp-style macros, \
+                 most of the surface language being user-minted. Implemented in OCaml with a \
+                 Forth runtime.",
+                language: ToolLanguage::Mixed("OCaml & Forth"),
+                target: ToolTarget::Cor24,
+                has_web_ui: false,
+                live_url_override: None,
+                category: ToolCategory::NativeLanguage,
+            },
         ],
     },
     ToolGroup {
@@ -341,9 +354,9 @@ mod tests {
         assert_eq!(g[0].items.len(), 5);
         assert_eq!(g[1].items.len(), 2);
         assert_eq!(g[2].items.len(), 4);
-        assert_eq!(g[3].items.len(), 11);
+        assert_eq!(g[3].items.len(), 12);
         assert_eq!(g[4].items.len(), 3);
-        assert_eq!(all_tools().len(), 25);
+        assert_eq!(all_tools().len(), 26);
     }
 
     #[test]

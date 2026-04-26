@@ -96,6 +96,7 @@ All COR24 repos live under `sw-embed` on GitHub. This landing page documents all
 - [sw-cor24-plsw](https://github.com/sw-embed/sw-cor24-plsw) -- PL/SW compiler (C, PL/I-inspired)
 - [sw-cor24-script](https://github.com/sw-embed/sw-cor24-script) -- SWS scripting language (C, Tcl-like)
 - [sw-cor24-smalltalk](https://github.com/sw-embed/sw-cor24-smalltalk) -- Smalltalk environment (COR24 BASIC)
+- [tuplet](https://github.com/sw-vibe-coding/tuplet) -- Experimental named-tuple infix language (OCaml + Forth runtime)
 
 ### System Software
 - [sw-cor24-monitor](https://github.com/sw-embed/sw-cor24-monitor) -- Resident monitor/service processor (COR24 asm + C)

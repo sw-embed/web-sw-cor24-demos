@@ -29,7 +29,7 @@ pub fn cell_value(row: &IdiomRow, col_id: &str) -> &'static str {
     "n/a"
 }
 
-static COLUMNS: [LangColumn; 14] = [
+static COLUMNS: [LangColumn; 15] = [
     LangColumn {
         id: "a24",
         label: "a24-sw",
@@ -100,6 +100,11 @@ static COLUMNS: [LangColumn; 14] = [
         label: "sws",
         default_collapsed: false,
     },
+    LangColumn {
+        id: "tuplet",
+        label: "tuplet",
+        default_collapsed: true,
+    },
 ];
 
 static ROWS: [IdiomRow; 11] = [
@@ -121,6 +126,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "X := A + (B * C)"),
             ("snobol4", "Y = X * 6"),
             ("sws", "set X 42"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -141,6 +147,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "X > 0"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "expr {$X > 0}"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -161,6 +168,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "5 squared"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -181,6 +189,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "\"comment\""),
             ("snobol4", "* comment"),
             ("sws", "# comment"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -201,6 +210,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "(X > 0)\n  ifTrue: [Transcript show: 'yes']"),
             ("snobol4", "TEXT PAT . N :F(NO)"),
             ("sws", "if {$X > 0} {puts yes}"),
+            ("tuplet", "essential special form\n+ user-minted macros"),
         ],
     },
     IdiomRow {
@@ -221,6 +231,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "[block]\n  on: Error do: [:e | ...]"),
             ("snobol4", ":F(NO)"),
             ("sws", "catch { script } err {\n  echo $err\n}"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -241,6 +252,10 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "sq := [:x | x * x]"),
             ("snobol4", "n/a (v0.1)"),
             ("sws", "n/a (v0.1)"),
+            (
+                "tuplet",
+                "user-minted (\"verb\")\n2D layout, whitespace-significant",
+            ),
         ],
     },
     IdiomRow {
@@ -264,6 +279,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "Switch read\nLED show: 1"),
             ("snobol4", "LINE = INPUT"),
             ("sws", "set led [expr {[read switch]}]"),
+            ("tuplet", "user-minted"),
         ],
     },
     IdiomRow {
@@ -287,6 +303,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "1 to: 10 do: [:i |\n  Transcript show: i]"),
             ("snobol4", ":(READ)"),
             ("sws", "set i 0\nwhile {$i < 10} {\n  puts $i; incr i\n}"),
+            ("tuplet", "user-minted (macro)"),
         ],
     },
     IdiomRow {
@@ -307,6 +324,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "n/a"),
             ("snobol4", "SPAN('0123456789')"),
             ("sws", "regexp {\\d+}"),
+            ("tuplet", "user-minted (named tuples)"),
         ],
     },
     IdiomRow {
@@ -327,6 +345,7 @@ static ROWS: [IdiomRow; 11] = [
             ("smalltalk", "Transcript show: 'Hello'"),
             ("snobol4", "OUTPUT = 'Hello'"),
             ("sws", "echo Hello"),
+            ("tuplet", "user-minted"),
         ],
     },
 ];
@@ -337,7 +356,7 @@ mod tests {
 
     #[test]
     fn column_count() {
-        assert_eq!(columns().len(), 14);
+        assert_eq!(columns().len(), 15);
     }
 
     #[test]

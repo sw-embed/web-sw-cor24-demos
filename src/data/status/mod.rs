@@ -75,7 +75,7 @@ pub fn all_projects() -> &'static [ProjectRow] {
     &PROJECTS
 }
 
-static PROJECTS: [ProjectRow; 36] = [
+static PROJECTS: [ProjectRow; 37] = [
     ProjectRow {
         repo: "sw-cor24-assembler",
         description: "Native assembler (C)",
@@ -257,6 +257,15 @@ static PROJECTS: [ProjectRow; 36] = [
         group: "Native langs",
     },
     ProjectRow {
+        repo: "tuplet",
+        description: "Tuplet (experimental, sw-vibe-coding/tuplet) -- OCaml + Forth runtime",
+        repo_status: yellow("In dev"),
+        has_web_ui: orange("Planned"),
+        has_saga: false,
+        is_web: false,
+        group: "Native langs",
+    },
+    ProjectRow {
         repo: "sw-cor24-script",
         description: "SWS scripting language (C, Tcl-like)",
         repo_status: yellow("In dev"),
@@ -407,11 +416,15 @@ pub mod generated;
 pub use generated::generated_status;
 
 pub fn github_issues_url(repo: &str) -> String {
-    format!("https://github.com/sw-embed/{}/issues", repo)
+    format!(
+        "https://github.com/{}/{}/issues",
+        super::repo_org(repo),
+        repo
+    )
 }
 
 pub fn github_repo_url(repo: &str) -> String {
-    format!("https://github.com/sw-embed/{}", repo)
+    format!("https://github.com/{}/{}", super::repo_org(repo), repo)
 }
 
 #[cfg(test)]
@@ -420,7 +433,7 @@ mod tests {
 
     #[test]
     fn project_count() {
-        assert_eq!(all_projects().len(), 36);
+        assert_eq!(all_projects().len(), 37);
     }
 
     #[test]

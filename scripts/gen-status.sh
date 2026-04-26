@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 OUTPUT="$PROJECT_DIR/src/data/status_generated.rs"
 
+# Format: repo:Group[:org]   (org defaults to sw-embed when omitted)
 REPOS=(
     sw-cor24-emulator:Foundation
     sw-cor24-x-assembler:Foundation
@@ -23,6 +24,7 @@ REPOS=(
     sw-cor24-plsw:Native-langs
     sw-cor24-smalltalk:Native-langs
     sw-cor24-script:Native-langs
+    tuplet:Native-langs:sw-vibe-coding
     sw-cor24-monitor:System
     sw-cor24-debugger:System
     sw-cor24-yocto-ed:System
@@ -46,9 +48,9 @@ echo ""
 echo "pub fn issue_counts() -> &'static [(&'static str, u32)] {"
 echo "    &["
 for entry in "${REPOS[@]}"; do
-    repo="${entry%%:*}"
-    group="${entry##*:}"
-    count=$(gh api "repos/sw-embed/$repo/issues?state=open&per_page=100" --jq 'length' 2>/dev/null || echo "0")
+    IFS=':' read -r repo group org <<< "$entry"
+    org="${org:-sw-embed}"
+    count=$(gh api "repos/$org/$repo/issues?state=open&per_page=100" --jq 'length' 2>/dev/null || echo "0")
     if ! [[ "$count" =~ ^[0-9]+$ ]]; then
         count="0"
     fi

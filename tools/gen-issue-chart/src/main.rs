@@ -5,20 +5,22 @@ use std::process::{Command, Stdio};
 
 use chrono::Datelike;
 
-const ORG: &str = "sw-embed";
+const DEFAULT_ORG: &str = "sw-embed";
 
-static REPOS: &[&str] = &[
-    "sw-cor24-basic",
-    "sw-cor24-emulator",
-    "sw-cor24-forth",
-    "sw-cor24-hlasm",
-    "sw-cor24-ocaml",
-    "sw-cor24-pascal",
-    "sw-cor24-pcode",
-    "sw-cor24-plsw",
-    "sw-cor24-rpg-ii",
-    "sw-cor24-smalltalk",
-    "sw-cor24-x-tinyc",
+// (repo, org_override). org_override = None means DEFAULT_ORG.
+static REPOS: &[(&str, Option<&str>)] = &[
+    ("sw-cor24-basic", None),
+    ("sw-cor24-emulator", None),
+    ("sw-cor24-forth", None),
+    ("sw-cor24-hlasm", None),
+    ("sw-cor24-ocaml", None),
+    ("sw-cor24-pascal", None),
+    ("sw-cor24-pcode", None),
+    ("sw-cor24-plsw", None),
+    ("sw-cor24-rpg-ii", None),
+    ("sw-cor24-smalltalk", None),
+    ("sw-cor24-x-tinyc", None),
+    ("tuplet", Some("sw-vibe-coding")),
 ];
 
 fn repo_slug(repo: &str) -> &'static str {
@@ -34,6 +36,7 @@ fn repo_slug(repo: &str) -> &'static str {
         "sw-cor24-plsw" => "plsw",
         "sw-cor24-rpg-ii" => "rpg-ii",
         "sw-cor24-smalltalk" => "smalltalk",
+        "tuplet" => "tuplet",
         _ => "repo",
     }
 }
@@ -50,12 +53,13 @@ struct DayCounts {
 
 fn main() {
     let project_root = find_project_root();
-    for &repo in REPOS {
-        eprintln!("Processing {repo}...");
-        let repo_created = fetch_repo_created(repo);
+    for &(repo, org_override) in REPOS {
+        let org = org_override.unwrap_or(DEFAULT_ORG);
+        eprintln!("Processing {org}/{repo}...");
+        let repo_created = fetch_repo_created(org, repo);
         eprintln!("  Repo created: {repo_created}");
 
-        let issues = fetch_issues(repo);
+        let issues = fetch_issues(org, repo);
         eprintln!("  Fetched {} issues", issues.len());
 
         let timeline = build_timeline(&repo_created, &issues);
@@ -81,19 +85,19 @@ fn gh(args: &[&str]) -> String {
     String::from_utf8_lossy(&output.stdout).trim().to_string()
 }
 
-fn fetch_repo_created(repo: &str) -> chrono::NaiveDate {
-    let out = gh(&["api", &format!("repos/{ORG}/{repo}"), "--jq", ".created_at"]);
+fn fetch_repo_created(org: &str, repo: &str) -> chrono::NaiveDate {
+    let out = gh(&["api", &format!("repos/{org}/{repo}"), "--jq", ".created_at"]);
     parse_date(&out)
 }
 
-fn fetch_issues(repo: &str) -> Vec<Issue> {
+fn fetch_issues(org: &str, repo: &str) -> Vec<Issue> {
     let mut all = Vec::new();
     let mut page = 1u32;
     while page <= 10 {
         let out = gh(&[
             "api",
             &format!(
-                "repos/{ORG}/{repo}/issues?state=all&per_page=100&sort=created&direction=asc&page={page}"
+                "repos/{org}/{repo}/issues?state=all&per_page=100&sort=created&direction=asc&page={page}"
             ),
             "--jq",
             "[.[] | {created_at, closed_at}]",

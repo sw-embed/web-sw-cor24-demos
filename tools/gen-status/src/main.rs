@@ -3,42 +3,44 @@ use std::fmt::Write;
 use std::path::PathBuf;
 use std::process::Command;
 
-const ORG: &str = "sw-embed";
+const DEFAULT_ORG: &str = "sw-embed";
 
-const REPOS: &[(&str, &str)] = &[
-    ("sw-cor24-assembler", "Foundation"),
-    ("sw-cor24-emulator", "Foundation"),
-    ("sw-cor24-project", "Foundation"),
-    ("sw-cor24-x-assembler", "Foundation"),
-    ("sw-cor24-rust", "Cross-compilers"),
-    ("sw-cor24-x-tinyc", "Cross-compilers"),
-    ("sw-cor24-pascal", "P-code"),
-    ("sw-cor24-pcode", "P-code"),
-    ("sw-cor24-x-pc-aotc", "P-code"),
-    ("sw-cor24-apl", "Native langs"),
-    ("sw-cor24-basic", "Native langs"),
-    ("sw-cor24-forth", "Native langs"),
-    ("sw-cor24-fortran", "Native langs"),
-    ("sw-cor24-macrolisp", "Native langs"),
-    ("sw-cor24-plsw", "Native langs"),
-    ("sw-cor24-smalltalk", "Native langs"),
-    ("sw-cor24-snobol4", "Native langs"),
-    ("sw-cor24-script", "Native langs"),
-    ("sw-cor24-debugger", "System"),
-    ("sw-cor24-monitor", "System"),
-    ("sw-cor24-yocto-ed", "System"),
-    ("web-sw-cor24-apl", "Web UIs"),
-    ("web-sw-cor24-assembler", "Web UIs"),
-    ("web-sw-cor24-demos", "Web UIs"),
-    ("web-sw-cor24-forth", "Web UIs"),
-    ("web-sw-cor24-macrolisp", "Web UIs"),
-    ("web-sw-cor24-pascal", "Web UIs"),
-    ("web-sw-cor24-pcode", "Web UIs"),
-    ("web-sw-cor24-plsw", "Web UIs"),
-    ("web-sw-cor24-smalltalk", "Web UIs"),
-    ("web-sw-cor24-snobol4", "Web UIs"),
-    ("web-sw-cor24-rust", "Web UIs"),
-    ("web-sw-cor24-tinyc", "Web UIs"),
+// (repo, group, org_override). org_override = None means DEFAULT_ORG.
+const REPOS: &[(&str, &str, Option<&str>)] = &[
+    ("sw-cor24-assembler", "Foundation", None),
+    ("sw-cor24-emulator", "Foundation", None),
+    ("sw-cor24-project", "Foundation", None),
+    ("sw-cor24-x-assembler", "Foundation", None),
+    ("sw-cor24-rust", "Cross-compilers", None),
+    ("sw-cor24-x-tinyc", "Cross-compilers", None),
+    ("sw-cor24-pascal", "P-code", None),
+    ("sw-cor24-pcode", "P-code", None),
+    ("sw-cor24-x-pc-aotc", "P-code", None),
+    ("sw-cor24-apl", "Native langs", None),
+    ("sw-cor24-basic", "Native langs", None),
+    ("sw-cor24-forth", "Native langs", None),
+    ("sw-cor24-fortran", "Native langs", None),
+    ("sw-cor24-macrolisp", "Native langs", None),
+    ("sw-cor24-plsw", "Native langs", None),
+    ("sw-cor24-smalltalk", "Native langs", None),
+    ("sw-cor24-snobol4", "Native langs", None),
+    ("sw-cor24-script", "Native langs", None),
+    ("tuplet", "Native langs", Some("sw-vibe-coding")),
+    ("sw-cor24-debugger", "System", None),
+    ("sw-cor24-monitor", "System", None),
+    ("sw-cor24-yocto-ed", "System", None),
+    ("web-sw-cor24-apl", "Web UIs", None),
+    ("web-sw-cor24-assembler", "Web UIs", None),
+    ("web-sw-cor24-demos", "Web UIs", None),
+    ("web-sw-cor24-forth", "Web UIs", None),
+    ("web-sw-cor24-macrolisp", "Web UIs", None),
+    ("web-sw-cor24-pascal", "Web UIs", None),
+    ("web-sw-cor24-pcode", "Web UIs", None),
+    ("web-sw-cor24-plsw", "Web UIs", None),
+    ("web-sw-cor24-smalltalk", "Web UIs", None),
+    ("web-sw-cor24-snobol4", "Web UIs", None),
+    ("web-sw-cor24-rust", "Web UIs", None),
+    ("web-sw-cor24-tinyc", "Web UIs", None),
 ];
 
 struct Row {
@@ -50,11 +52,12 @@ struct Row {
 fn main() {
     let mut rows: BTreeMap<&str, Row> = BTreeMap::new();
 
-    for &(repo, _group) in REPOS {
-        eprint!("  {repo}... ");
-        let issues = fetch_issues(repo);
-        let has_plan = path_exists(repo, ".agentrail/plan.md");
-        let has_steps = path_exists(repo, ".agentrail/steps");
+    for &(repo, _group, org_override) in REPOS {
+        let org = org_override.unwrap_or(DEFAULT_ORG);
+        eprint!("  {org}/{repo}... ");
+        let issues = fetch_issues(org, repo);
+        let has_plan = path_exists(org, repo, ".agentrail/plan.md");
+        let has_steps = path_exists(org, repo, ".agentrail/steps");
         eprintln!("issues={issues} plan={has_plan} steps={has_steps}");
         rows.insert(
             repo,
@@ -80,18 +83,18 @@ fn gh(args: &[&str]) -> String {
     String::from_utf8_lossy(&output.stdout).trim().to_string()
 }
 
-fn fetch_issues(repo: &str) -> u32 {
+fn fetch_issues(org: &str, repo: &str) -> u32 {
     let out = gh(&[
         "api",
-        &format!("repos/{ORG}/{repo}/issues?state=open&per_page=100"),
+        &format!("repos/{org}/{repo}/issues?state=open&per_page=100"),
         "--jq",
         "length",
     ]);
     out.parse().unwrap_or(0)
 }
 
-fn path_exists(repo: &str, path: &str) -> bool {
-    gh_exit_code(&format!("repos/{ORG}/{repo}/contents/{path}")) == 0
+fn path_exists(org: &str, repo: &str, path: &str) -> bool {
+    gh_exit_code(&format!("repos/{org}/{repo}/contents/{path}")) == 0
 }
 
 fn gh_exit_code(path: &str) -> i32 {
@@ -113,7 +116,7 @@ fn generate(rows: &BTreeMap<&str, Row>) -> String {
     )
     .unwrap();
     writeln!(out, "    &[",).unwrap();
-    for &(repo, _group) in REPOS {
+    for &(repo, _group, _org) in REPOS {
         let row = &rows[repo];
         writeln!(
             out,

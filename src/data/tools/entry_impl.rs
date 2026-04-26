@@ -2,7 +2,11 @@ use super::types::ToolEntry;
 
 impl ToolEntry {
     pub fn repo_url(&self) -> String {
-        format!("https://github.com/sw-embed/{}", self.repo)
+        format!(
+            "https://github.com/{}/{}",
+            crate::data::repo_org(self.repo),
+            self.repo
+        )
     }
 
     pub fn demo_url(&self) -> Option<String> {
@@ -12,7 +16,11 @@ impl ToolEntry {
         if let Some(override_url) = self.live_url_override {
             Some(override_url.to_string())
         } else {
-            Some(format!("https://sw-embed.github.io/{}/", self.repo))
+            Some(format!(
+                "https://{}/{}/",
+                crate::data::repo_pages_host(self.repo),
+                self.repo
+            ))
         }
     }
 }
@@ -27,7 +35,7 @@ mod tests {
             for t in g.items {
                 let url = t.repo_url();
                 assert!(
-                    url.starts_with("https://github.com/sw-embed/"),
+                    url.starts_with("https://github.com/"),
                     "bad repo url for {}: {}",
                     t.name,
                     url

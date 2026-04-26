@@ -37,12 +37,20 @@ impl DemoEntry {
         if let Some(override_url) = self.live_url_override {
             override_url.to_string()
         } else {
-            format!("https://sw-embed.github.io/{}/", self.slug)
+            format!(
+                "https://{}/{}/",
+                super::repo_pages_host(self.repo),
+                self.slug
+            )
         }
     }
 
     pub fn repo_url(&self) -> String {
-        format!("https://github.com/sw-embed/{}", self.repo)
+        format!(
+            "https://github.com/{}/{}",
+            super::repo_org(self.repo),
+            self.repo
+        )
     }
 }
 
@@ -378,6 +386,22 @@ static CATEGORIES: [Category; 6] = [
                 secondary_live_url: None,
                 secondary_live_label: "",
             },
+            DemoEntry {
+                name: "Tuplet",
+                slug: "tuplet",
+                description: "Experimental named-tuple infix language with user-grown constructs (Lisp-like macros over a small set of essential special forms). Implemented in OCaml with a Forth runtime.",
+                status: DemoStatus::Wip,
+                tags: &["Compiler", "Tuplet"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "OCaml & Forth Source",
+                badge_image: "",
+                repo: "tuplet",
+                group_id: "application-pl",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
         ],
     },
     Category {
@@ -483,7 +507,7 @@ pub fn tag_class(tag: &str) -> &'static str {
         "Docs" => "tag-docs",
         "System" | "Monitor" | "Scripting" | "Editor" => "tag-default",
         "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" | "Rust" | "OCaml"
-        | "Prolog" | "SNOBOL4" | "Smalltalk" | "RPG-II" | "HLASM" => "tag-lang",
+        | "Prolog" | "SNOBOL4" | "Smalltalk" | "Tuplet" | "RPG-II" | "HLASM" => "tag-lang",
         _ => "tag-default",
     }
 }
@@ -558,7 +582,7 @@ mod tests {
             for d in cat.items {
                 let url = d.repo_url();
                 assert!(
-                    url.starts_with("https://github.com/sw-embed/"),
+                    url.starts_with("https://github.com/"),
                     "bad repo url for {}: {}",
                     d.name,
                     url
@@ -574,7 +598,7 @@ mod tests {
                 if d.has_live_demo && !d.is_this_site {
                     let url = d.live_url();
                     assert!(
-                        url.starts_with("https://sw-embed.github.io/"),
+                        url.starts_with("https://") && url.contains(".github.io/"),
                         "bad live url for {}: {}",
                         d.name,
                         url
@@ -621,6 +645,7 @@ mod tests {
         assert_eq!(tag_class("Editor"), "tag-default");
         assert_eq!(tag_class("RPG-II"), "tag-lang");
         assert_eq!(tag_class("Smalltalk"), "tag-lang");
+        assert_eq!(tag_class("Tuplet"), "tag-lang");
         assert_eq!(tag_class("HLASM"), "tag-lang");
         assert_eq!(tag_class("Unknown"), "tag-default");
     }

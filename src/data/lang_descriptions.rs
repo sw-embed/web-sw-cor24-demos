@@ -46,7 +46,7 @@ pub struct LangDetail {
     pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
-static SUMMARIES: [LangSummary; 15] = [
+static SUMMARIES: [LangSummary; 16] = [
     LangSummary {
         id: "a24",
         label: "a24-sw",
@@ -166,6 +166,14 @@ static SUMMARIES: [LangSummary; 15] = [
         one_liner: "Tcl-like scripting language for quick automation and glue code",
         repo: "sw-cor24-script",
         section_id: "lang-sws",
+    },
+    LangSummary {
+        id: "tuplet",
+        label: "tuplet",
+        inspired_by: "Lisp + Forth + APL",
+        one_liner: "Experimental named-tuple infix language with user-minted constructs (OCaml + Forth runtime)",
+        repo: "tuplet",
+        section_id: "lang-tuplet",
     },
 ];
 
@@ -393,7 +401,7 @@ static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     },
 ];
 
-static DETAILS: [LangDetail; 15] = [
+static DETAILS: [LangDetail; 16] = [
     LangDetail {
         id: "a24",
         label: "a24-sw",
@@ -736,6 +744,41 @@ static DETAILS: [LangDetail; 15] = [
         glyph_table: None,
         keyword_table: None,
     },
+    LangDetail {
+        id: "tuplet",
+        label: "tuplet",
+        inspired_by: "Lisp + Forth + APL",
+        section_id: "lang-tuplet",
+        history: "An experimental playground for language evolution on the COR24 platform, \
+         created in 2026 outside the sw-embed organization (sw-vibe-coding/tuplet). The PoC is \
+         implemented in OCaml with a Forth runtime, exploring a named-tuple infix surface syntax \
+         where most of the language is grown by users rather than baked into a fixed grammar.",
+        purpose: "Explore what happens when only a handful of \"essential\" special forms are \
+         hard-wired and everything else \u{2014} arithmetic dispatch, control flow, IO, even the \
+         shape of \"verbs\" (functions/methods) \u{2014} is added by user-minted macros, similar \
+         to how Forth dictionaries grow or Lisp preludes elaborate over a small core. Whitespace \
+         and 2D layout are part of the design space: a verb's logical \"start\" may be on a \
+         different line than its visual top.",
+        usage: "In development. Source describes named tuples and \"verbs\" using an infix surface \
+         syntax with rich Unicode (\u{2022}, \u{2192}, \u{2190}, \u{23A7}\u{23A8}\u{23A9}, \
+         \u{2124} for integers, etc.). Verbs are typically multi-line: a single verb's logical \
+         start may sit on a different line than its visual top, with case-arms bracketed by \
+         large left braces. Whitespace is meaningful and the parser may evolve toward Python-/SRFI-\
+         style indentation rules.",
+        pros: &[
+            "Tiny essential core, large user-grown surface (Lisp-like extensibility, infix syntax)",
+            "OCaml frontend + Forth runtime maps cleanly onto COR24's existing toolchain",
+            "2D / whitespace-significant layout opens up ergonomic notations (cases, guards)",
+        ],
+        cons: &[
+            "Experimental playground \u{2014} grammar, semantics, and even whitespace rules may change",
+            "Lives outside the sw-embed organization (sw-vibe-coding/tuplet)",
+            "No live demo yet; idiom comparisons mostly show \"user-minted\" because the language \
+             is intentionally open-ended",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
 ];
 
 #[cfg(test)]
@@ -760,11 +803,11 @@ mod tests {
 
     #[test]
     fn summaries_count() {
-        assert_eq!(summaries().len(), 15);
+        assert_eq!(summaries().len(), 16);
     }
 
     #[test]
     fn details_count() {
-        assert_eq!(all_details().len(), 15);
+        assert_eq!(all_details().len(), 16);
     }
 }

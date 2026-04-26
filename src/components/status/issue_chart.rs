@@ -12,6 +12,7 @@ static CHARTS: &[(&str, &str, &str)] = &[
     ("rpg-ii", "sw-cor24-rpg-ii", "RPG-II"),
     ("smalltalk", "sw-cor24-smalltalk", "Smalltalk"),
     ("tinyc", "sw-cor24-x-tinyc", "Tiny C (tc24r)"),
+    ("tuplet", "tuplet", "Tuplet"),
 ];
 
 pub fn render_issue_charts() -> Html {
@@ -26,7 +27,7 @@ pub fn render_issue_charts() -> Html {
                         {"Issue progress chart"}
                     </object>
                     <span class="issue-chart-label">
-                        <a href={format!("https://github.com/sw-embed/{repo}")}
+                        <a href={format!("https://github.com/{}/{}", crate::data::repo_org(repo), repo)}
                            target="_blank" rel="noopener noreferrer">
                             {label}
                         </a>

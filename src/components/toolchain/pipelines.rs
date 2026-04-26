@@ -353,6 +353,27 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
+                    <h4>{"Tuplet (experimental, sw-vibe-coding/tuplet)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".tup")}
+                        {arrow()}
+                        {step("compiler", "OCaml")}
+                        {arrow()}
+                        {step("Forth runtime", "Forth")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"Experimental named-tuple infix language with user-grown constructs. \
+                         A small set of essential special forms is extended via Lisp-style macros \
+                         (most of the surface language is user-minted). Implemented in OCaml with \
+                         a Forth runtime; whitespace is meaningful and verbs may span multiple \
+                         lines with bracketed case-arms."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
                     <h4>{"yocto-ed"}</h4>
                     <div class="pipe-flow">
                         {file("ASCII text")}
