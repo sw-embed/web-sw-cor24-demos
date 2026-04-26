@@ -331,7 +331,7 @@ static CATEGORIES: [Category; 6] = [
                 has_live_demo: false,
                 is_this_site: false,
                 source_label: "PL/SW Source",
-                badge_image: "",
+                badge_image: "prolog-badge.png",
                 repo: "sw-cor24-prolog",
                 group_id: "application-pl",
                 live_url_override: None,
