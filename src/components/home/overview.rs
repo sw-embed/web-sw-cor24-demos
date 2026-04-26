@@ -6,7 +6,7 @@ pub fn overview_section() -> Html {
         <section class="overview-section">
             <div class="overview-facts">
                 <div class="fact-item">
-                    <span class="fact-value">{"8"}</span>
+                    <span class="fact-value">{"3"}</span>
                     <span class="fact-label">{"General-purpose registers"}</span>
                 </div>
                 <div class="fact-item">

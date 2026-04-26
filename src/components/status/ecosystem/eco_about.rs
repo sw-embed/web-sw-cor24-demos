@@ -16,7 +16,7 @@ pub fn render_about() -> Html {
 fn about_arch() -> Html {
     html! {
         <p class="eco-about-p">
-            {"COR24 (C-Oriented RISC) is a real 24-bit RISC architecture designed for embedded systems education. It features 8 general-purpose registers, variable-length instructions (1/2/4 bytes), and a C-friendly calling convention that maps cleanly to the C abstract machine."}
+            {"COR24 (C-Oriented RISC) is a real 24-bit RISC architecture designed for embedded systems education. It features 3 general-purpose registers (plus fp, sp, z, and interrupt registers iv/ir), variable-length instructions (1/2/4 bytes), and a C-friendly calling convention that maps cleanly to the C abstract machine."}
         </p>
     }
 }
