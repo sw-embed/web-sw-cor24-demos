@@ -8,26 +8,32 @@ use chrono::Datelike;
 const ORG: &str = "sw-embed";
 
 static REPOS: &[&str] = &[
+    "sw-cor24-basic",
     "sw-cor24-emulator",
     "sw-cor24-forth",
     "sw-cor24-hlasm",
+    "sw-cor24-ocaml",
     "sw-cor24-pascal",
     "sw-cor24-pcode",
     "sw-cor24-plsw",
     "sw-cor24-rpg-ii",
+    "sw-cor24-smalltalk",
     "sw-cor24-x-tinyc",
 ];
 
 fn repo_slug(repo: &str) -> &'static str {
     match repo {
+        "sw-cor24-basic" => "basic",
         "sw-cor24-emulator" => "emulator",
         "sw-cor24-forth" => "forth",
         "sw-cor24-hlasm" => "hlasm",
+        "sw-cor24-ocaml" => "ocaml",
         "sw-cor24-x-tinyc" => "tinyc",
         "sw-cor24-pascal" => "pascal",
         "sw-cor24-pcode" => "pcode",
         "sw-cor24-plsw" => "plsw",
         "sw-cor24-rpg-ii" => "rpg-ii",
+        "sw-cor24-smalltalk" => "smalltalk",
         _ => "repo",
     }
 }

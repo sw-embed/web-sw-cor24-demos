@@ -1,13 +1,16 @@
 use yew::prelude::*;
 
 static CHARTS: &[(&str, &str, &str)] = &[
+    ("basic", "sw-cor24-basic", "BASIC"),
     ("emulator", "sw-cor24-emulator", "Emulator"),
     ("forth", "sw-cor24-forth", "Forth"),
     ("hlasm", "sw-cor24-hlasm", "HLASM"),
+    ("ocaml", "sw-cor24-ocaml", "OCaml"),
     ("pascal", "sw-cor24-pascal", "Pascal"),
     ("pcode", "sw-cor24-pcode", "P-code VM"),
     ("plsw", "sw-cor24-plsw", "PL/SW"),
     ("rpg-ii", "sw-cor24-rpg-ii", "RPG-II"),
+    ("smalltalk", "sw-cor24-smalltalk", "Smalltalk"),
     ("tinyc", "sw-cor24-x-tinyc", "Tiny C (tc24r)"),
 ];
 
