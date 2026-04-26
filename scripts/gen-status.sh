@@ -21,6 +21,7 @@ REPOS=(
     sw-cor24-basic:Native-langs
     sw-cor24-fortran:Native-langs
     sw-cor24-plsw:Native-langs
+    sw-cor24-smalltalk:Native-langs
     sw-cor24-script:Native-langs
     sw-cor24-monitor:System
     sw-cor24-debugger:System
@@ -33,6 +34,7 @@ REPOS=(
     web-sw-cor24-apl:Web-UIs
     web-sw-cor24-forth:Web-UIs
     web-sw-cor24-plsw:Web-UIs
+    web-sw-cor24-smalltalk:Web-UIs
     web-sw-cor24-rust:Web-UIs
     web-sw-cor24-demos:Web-UIs
 )

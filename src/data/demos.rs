@@ -166,7 +166,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "Rust MSP430 Translator",
                 slug: "web-sw-cor24-rust",
                 description: "Experimental Rust-to-COR24 pipeline. Compile a subset of Rust via MSP430 translation to COR24 assembly.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Testing,
                 tags: &["Compiler", "Rust"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -220,7 +220,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "BASIC Interpreter",
                 slug: "web-sw-cor24-basic",
                 description: "BASIC interpreter for COR24. Write and run BASIC programs on the COR24 platform.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Active,
                 tags: &["Interpreter", "BASIC"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -236,7 +236,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "Forth Debugger",
                 slug: "web-sw-cor24-forth",
                 description: "Forth language debugger with dictionary browsing, stack inspection, and word definitions.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Active,
                 tags: &["Interpreter", "Forth"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -268,7 +268,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "Macro Lisp",
                 slug: "web-sw-cor24-macrolisp",
                 description: "Tiny Macro Lisp REPL. Write and evaluate Lisp expressions that run on COR24 hardware.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Active,
                 tags: &["Interpreter", "Lisp"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -285,7 +285,7 @@ static CATEGORIES: [Category; 6] = [
                 slug: "web-sw-cor24-ocaml",
                 description: "OCaml compiler targeting the COR24 P-code VM. Compiles a subset of OCaml to P-code bytecode \
                          via the Pascal P-code pipeline.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Testing,
                 tags: &["Compiler", "OCaml"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -347,10 +347,26 @@ static CATEGORIES: [Category; 6] = [
                 secondary_live_label: "",
             },
             DemoEntry {
+                name: "Smalltalk",
+                slug: "sw-cor24-smalltalk",
+                description: "Smalltalk environment implemented in COR24 BASIC. Object-oriented messaging on top of the BASIC/P-code stack.",
+                status: DemoStatus::Wip,
+                tags: &["Interpreter", "Smalltalk"],
+                has_live_demo: true,
+                is_this_site: false,
+                source_label: "BASIC Source",
+                badge_image: "smalltalk-badge.png",
+                repo: "sw-cor24-smalltalk",
+                group_id: "application-pl",
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-smalltalk/"),
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+            DemoEntry {
                 name: "SNOBOL4 Interpreter",
                 slug: "sw-cor24-snobol4",
                 description: "SNOBOL4 pattern-matching language interpreter implemented in PL/SW, running on COR24.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Active,
                 tags: &["Interpreter", "SNOBOL4", "Pattern Matching"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -467,7 +483,7 @@ pub fn tag_class(tag: &str) -> &'static str {
         "Docs" => "tag-docs",
         "System" | "Monitor" | "Scripting" | "Editor" => "tag-default",
         "C" | "Lisp" | "Pascal" | "APL" | "Forth" | "PL/SW" | "BASIC" | "Rust" | "OCaml"
-        | "Prolog" | "SNOBOL4" | "RPG-II" | "HLASM" => "tag-lang",
+        | "Prolog" | "SNOBOL4" | "Smalltalk" | "RPG-II" | "HLASM" => "tag-lang",
         _ => "tag-default",
     }
 }
@@ -604,6 +620,7 @@ mod tests {
         assert_eq!(tag_class("Monitor"), "tag-default");
         assert_eq!(tag_class("Editor"), "tag-default");
         assert_eq!(tag_class("RPG-II"), "tag-lang");
+        assert_eq!(tag_class("Smalltalk"), "tag-lang");
         assert_eq!(tag_class("HLASM"), "tag-lang");
         assert_eq!(tag_class("Unknown"), "tag-default");
     }

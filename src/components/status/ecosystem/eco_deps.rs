@@ -46,6 +46,11 @@ pub(crate) static EDGES: &[DepEdge] = &[
         label: "WASM build",
     },
     DepEdge {
+        from: "web-sw-cor24-smalltalk",
+        to: "sw-cor24-smalltalk",
+        label: "WASM build",
+    },
+    DepEdge {
         from: "web-sw-cor24-snobol4",
         to: "sw-cor24-snobol4",
         label: "WASM build",
@@ -155,6 +160,11 @@ pub(crate) static EDGES: &[DepEdge] = &[
         to: "sw-cor24-plsw",
         label: "compiled by",
     },
+    DepEdge {
+        from: "sw-cor24-smalltalk",
+        to: "sw-cor24-basic",
+        label: "implemented in",
+    },
 ];
 
 #[derive(Clone, Copy, PartialEq)]
@@ -194,8 +204,8 @@ pub(crate) fn repo_group(name: &str) -> DepGroup {
                 DepGroup::PCode
             }
             "sw-cor24-macrolisp" | "sw-cor24-apl" | "sw-cor24-basic" | "sw-cor24-forth"
-            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-snobol4"
-            | "sw-cor24-prolog" => DepGroup::NativeLang,
+            | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-smalltalk"
+            | "sw-cor24-snobol4" | "sw-cor24-prolog" => DepGroup::NativeLang,
             "sw-cor24-monitor" | "sw-cor24-debugger" | "sw-cor24-yocto-ed" => DepGroup::System,
             _ => DepGroup::Foundation,
         }
@@ -212,7 +222,7 @@ mod tests {
 
     #[test]
     fn edge_count() {
-        assert_eq!(EDGES.len(), 30);
+        assert_eq!(EDGES.len(), 32);
     }
 
     #[test]

@@ -18,6 +18,7 @@ pub fn issue_counts() -> &'static [(&'static str, u32)] {
         ("sw-cor24-basic", 0),
         ("sw-cor24-fortran", 0),
         ("sw-cor24-plsw", 0),
+        ("sw-cor24-smalltalk", 0),
         ("sw-cor24-script", 0),
         ("sw-cor24-monitor", 0),
         ("sw-cor24-debugger", 0),
@@ -29,6 +30,7 @@ pub fn issue_counts() -> &'static [(&'static str, u32)] {
         ("web-sw-cor24-apl", 1),
         ("web-sw-cor24-forth", 0),
         ("web-sw-cor24-plsw", 0),
+        ("web-sw-cor24-smalltalk", 0),
         ("web-sw-cor24-rust", 0),
         ("web-sw-cor24-demos", 0),
     ]

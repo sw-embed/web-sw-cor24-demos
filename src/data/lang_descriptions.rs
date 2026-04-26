@@ -46,7 +46,7 @@ pub struct LangDetail {
     pub keyword_table: Option<&'static [KeywordRow]>,
 }
 
-static SUMMARIES: [LangSummary; 14] = [
+static SUMMARIES: [LangSummary; 15] = [
     LangSummary {
         id: "a24",
         label: "a24-sw",
@@ -142,6 +142,14 @@ static SUMMARIES: [LangSummary; 14] = [
         one_liner: "Simplified RPG-II report generator, compiled via HLASM for COR24",
         repo: "sw-cor24-rpg-ii",
         section_id: "lang-rpg-ii",
+    },
+    LangSummary {
+        id: "smalltalk",
+        label: "smalltalk-sw",
+        inspired_by: "Smalltalk",
+        one_liner: "Object-oriented messaging environment, implemented in COR24 BASIC",
+        repo: "sw-cor24-smalltalk",
+        section_id: "lang-smalltalk",
     },
     LangSummary {
         id: "snobol4",
@@ -385,7 +393,7 @@ static APL_KEYWORD_TABLE: [KeywordRow; 10] = [
     },
 ];
 
-static DETAILS: [LangDetail; 14] = [
+static DETAILS: [LangDetail; 15] = [
     LangDetail {
         id: "a24",
         label: "a24-sw",
@@ -656,6 +664,37 @@ static DETAILS: [LangDetail; 14] = [
         keyword_table: None,
     },
     LangDetail {
+        id: "smalltalk",
+        label: "smalltalk-sw",
+        inspired_by: "Smalltalk",
+        section_id: "lang-smalltalk",
+        history: "Smalltalk was developed at Xerox PARC in the 1970s by Alan Kay, Dan Ingalls, \
+         and Adele Goldberg, popularizing object-oriented programming, message passing, and the \
+         modern integrated development environment. The COR24 implementation is a small Smalltalk \
+         environment written in COR24 BASIC, ride-sharing with the BASIC/Pascal P-code stack rather \
+         than introducing a new bytecode VM.",
+        purpose: "Bring object-oriented programming and message passing to COR24 in a low-effort way. \
+         Building on top of BASIC keeps the implementation tractable while still exposing the \
+         classic Smalltalk feel: everything is an object, computation is messages, and code is \
+         live and explorable.",
+        usage: "In development. Source files use familiar Smalltalk syntax: keyword messages \
+         (anObject doSomething: arg), unary messages (5 squared), and blocks ([:x | x * x]). \
+         Programs are compiled by the BASIC-hosted Smalltalk frontend, then run on the P-code VM \
+         the same way a BASIC program would.",
+        pros: &[
+            "Uniform message-passing model is small and elegant",
+            "Reuses the existing BASIC + P-code stack \u{2014} no new VM to maintain",
+            "Closures (blocks) come for free from the Smalltalk model",
+        ],
+        cons: &[
+            "Newer project \u{2014} feature set is small and evolving",
+            "Two-language stack (Smalltalk on top of BASIC on top of P-code) adds overhead",
+            "Subset only \u{2014} no metaclass tower or full image semantics",
+        ],
+        glyph_table: None,
+        keyword_table: None,
+    },
+    LangDetail {
         id: "snobol4",
         label: "SNOBOL4",
         inspired_by: "SNOBOL4",
@@ -721,11 +760,11 @@ mod tests {
 
     #[test]
     fn summaries_count() {
-        assert_eq!(summaries().len(), 14);
+        assert_eq!(summaries().len(), 15);
     }
 
     #[test]
     fn details_count() {
-        assert_eq!(all_details().len(), 14);
+        assert_eq!(all_details().len(), 15);
     }
 }

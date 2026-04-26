@@ -295,6 +295,27 @@ fn render_languages() -> Html {
                     </p>
                 </div>
                 <div class="pipeline-card">
+                    <h4>{"Smalltalk (via BASIC + P-code VM)"}</h4>
+                    <div class="pipe-flow">
+                        {file(".st")}
+                        {arrow()}
+                        {step("interpreter", "BASIC")}
+                        {arrow()}
+                        {step("p24p", "C")}
+                        {arrow()}
+                        {file(".spc")}
+                        {arrow()}
+                        {step("pvm", "COR24 asm")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"In development. Smalltalk environment implemented in COR24 BASIC. \
+                         The BASIC source compiles through p24p to .spc P-code, then runs on the \
+                         P-code VM \u{2014} no new bytecode VM required."}
+                    </p>
+                </div>
+                <div class="pipeline-card">
                     <h4>{"SNOBOL4"}</h4>
                     <div class="pipe-flow">
                         {step("emulator", "Rust")}
