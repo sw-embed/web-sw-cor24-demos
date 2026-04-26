@@ -298,7 +298,7 @@ static CATEGORIES: [Category; 6] = [
                 has_live_demo: true,
                 is_this_site: false,
                 source_label: "Pascal Source",
-                badge_image: "",
+                badge_image: "ocaml-badge.png",
                 repo: "sw-cor24-ocaml",
                 group_id: "application-pl",
                 live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-ocaml/"),
