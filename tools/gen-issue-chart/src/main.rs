@@ -148,7 +148,7 @@ fn build_timeline(
     repo_created: &chrono::NaiveDate,
     issues: &[Issue],
 ) -> BTreeMap<chrono::NaiveDate, DayCounts> {
-    let today = chrono::Utc::now().date_naive();
+    let today = chrono::Local::now().date_naive();
     let mut days: BTreeMap<chrono::NaiveDate, DayCounts> = BTreeMap::new();
     let mut d = *repo_created;
     while d <= today {
