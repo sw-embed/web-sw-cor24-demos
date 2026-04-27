@@ -27,6 +27,13 @@ pub fn render_activity_reports() -> Html {
 fn report_table(props: &ReportTableProps) -> Html {
     let scroll_ref = use_node_ref();
 
+    use_effect_with(scroll_ref.clone(), move |scroll_ref| {
+        if let Some(el) = scroll_ref.cast::<web_sys::HtmlElement>() {
+            el.set_scroll_left(el.scroll_width() - el.client_width());
+        }
+        || ()
+    });
+
     let on_first = {
         let scroll_ref = scroll_ref.clone();
         Callback::from(move |_| {
