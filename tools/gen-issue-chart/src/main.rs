@@ -134,7 +134,8 @@ fn parse_date(s: &str) -> chrono::NaiveDate {
                 .map(|d| d.and_hms_opt(0, 0, 0).unwrap())
                 .unwrap()
         });
-    dt.date()
+    let utc = dt.and_utc();
+    utc.with_timezone(&chrono::Local).date_naive()
 }
 
 fn format_date(d: chrono::NaiveDate) -> String {
