@@ -137,7 +137,7 @@ pub fn status_page() -> Html {
             <p class="about-intro">
                 {"Status of all repositories in the sw-embed organization. \
                 Run "}
-                <code>{"cargo run -p gen-status"}</code>
+                <code>{"cargo run --manifest-path tools/gen-status/Cargo.toml"}</code>
                 {" to refresh issue counts and agentrail status."}
             </p>
             {legend()}

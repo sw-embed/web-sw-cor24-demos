@@ -41,7 +41,7 @@ pub fn render_issue_charts() -> Html {
             <h2 class="section-heading">{"Issue Progress"}</h2>
             <p class="eco-intro">
                 {"Cumulative open and closed issue counts. Regenerate with "}
-                <code>{"cargo run -p gen-issue-chart"}</code>
+                <code>{"cargo run --manifest-path tools/gen-issue-chart/Cargo.toml"}</code>
                 {"."}
             </p>
             {charts}
