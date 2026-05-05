@@ -232,7 +232,7 @@ static CATEGORIES: [Category; 6] = [
                 tags: &["Interpreter", "BASIC"],
                 has_live_demo: true,
                 is_this_site: false,
-                source_label: "C Source",
+                source_label: "Pascal Source",
                 badge_image: "basic-badge.png",
                 repo: "sw-cor24-basic",
                 group_id: "application-pl",
