@@ -40,7 +40,7 @@ const REPOS: &[(&str, &str, Option<&str>)] = &[
     ("web-sw-cor24-smalltalk", "Web UIs", None),
     ("web-sw-cor24-snobol4", "Web UIs", None),
     ("web-sw-cor24-rust", "Web UIs", None),
-    ("web-sw-cor24-tinyc", "Web UIs", None),
+    ("web-sw-cor24-x-tinyc", "Web UIs", None),
 ];
 
 struct Row {

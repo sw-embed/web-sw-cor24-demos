@@ -16,7 +16,7 @@ pub(crate) static EDGES: &[DepEdge] = &[
         label: "WASM build",
     },
     DepEdge {
-        from: "web-sw-cor24-tinyc",
+        from: "web-sw-cor24-x-tinyc",
         to: "sw-cor24-x-tinyc",
         label: "WASM build",
     },

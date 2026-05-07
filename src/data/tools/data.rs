@@ -101,7 +101,7 @@ static GROUPS: [ToolGroup; 5] = [
                 language: ToolLanguage::Rust,
                 target: ToolTarget::Host,
                 has_web_ui: true,
-                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-tinyc/"),
+                live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-x-tinyc/"),
                 category: ToolCategory::CrossCompiler,
             },
         ],

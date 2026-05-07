@@ -30,7 +30,7 @@ REPOS=(
     sw-cor24-yocto-ed:System
     web-sw-cor24-assembler:Web-UIs
     web-sw-cor24-pcode:Web-UIs
-    web-sw-cor24-tinyc:Web-UIs
+    web-sw-cor24-x-tinyc:Web-UIs
     web-sw-cor24-macrolisp:Web-UIs
     web-sw-cor24-pascal:Web-UIs
     web-sw-cor24-apl:Web-UIs

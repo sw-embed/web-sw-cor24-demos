@@ -26,7 +26,7 @@ pub fn issue_counts() -> &'static [(&'static str, u32)] {
         ("sw-cor24-yocto-ed", 0),
         ("web-sw-cor24-assembler", 0),
         ("web-sw-cor24-pcode", 0),
-        ("web-sw-cor24-tinyc", 0),
+        ("web-sw-cor24-x-tinyc", 0),
         ("web-sw-cor24-macrolisp", 0),
         ("web-sw-cor24-pascal", 0),
         ("web-sw-cor24-apl", 1),

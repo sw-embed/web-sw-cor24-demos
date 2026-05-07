@@ -401,8 +401,8 @@ static PROJECTS: [ProjectRow; 37] = [
         group: "Web UIs",
     },
     ProjectRow {
-        repo: "web-sw-cor24-tinyc",
-        description: "Tiny C compiler IDE",
+        repo: "web-sw-cor24-x-tinyc",
+        description: "Tiny C cross-transpiler IDE",
         repo_status: green("Try it"),
         has_web_ui: neutral("n/a"),
         has_saga: false,

@@ -36,6 +36,6 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("web-sw-cor24-smalltalk", 1, false, false),
         ("web-sw-cor24-snobol4", 0, true, true),
         ("web-sw-cor24-rust", 0, false, false),
-        ("web-sw-cor24-tinyc", 0, false, false),
+        ("web-sw-cor24-x-tinyc", 0, false, false),
     ]
 }

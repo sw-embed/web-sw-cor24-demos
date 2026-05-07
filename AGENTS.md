@@ -304,7 +304,7 @@ All COR24 repos live under `~/github/sw-embed/` as siblings. This landing page d
 ### Web UIs (live browser demos)
 - `web-sw-cor24-assembler` -- COR24 assembly IDE
 - `web-sw-cor24-pcode` -- P-code VM debugger
-- `web-sw-cor24-tinyc` -- Tiny C compiler
+- `web-sw-cor24-x-tinyc` -- Tiny C cross-transpiler
 - `web-sw-cor24-macrolisp` -- Lisp REPL
 - `web-sw-cor24-pascal` -- Pascal demos
 - `web-sw-cor24-apl` -- APL environment
