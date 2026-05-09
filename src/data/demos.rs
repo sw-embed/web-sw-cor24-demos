@@ -264,7 +264,7 @@ static CATEGORIES: [Category; 6] = [
                 tags: &["Compiler", "Fortran"],
                 has_live_demo: false,
                 is_this_site: false,
-                source_label: "C Source",
+                source_label: "SNOBOL4 Source",
                 badge_image: "fortran-badge.png",
                 repo: "sw-cor24-fortran",
                 group_id: "application-pl",

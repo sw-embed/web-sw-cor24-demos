@@ -61,6 +61,11 @@ pub(crate) static EDGES: &[DepEdge] = &[
         label: "WASM build",
     },
     DepEdge {
+        from: "web-sw-cor24-fortran",
+        to: "sw-cor24-fortran",
+        label: "WASM build",
+    },
+    DepEdge {
         from: "web-sw-cor24-demos",
         to: "sw-cor24-emulator",
         label: "docs",
@@ -227,7 +232,7 @@ mod tests {
 
     #[test]
     fn edge_count() {
-        assert_eq!(EDGES.len(), 33);
+        assert_eq!(EDGES.len(), 34);
     }
 
     #[test]

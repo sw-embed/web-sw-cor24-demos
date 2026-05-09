@@ -9,6 +9,7 @@ const DEFAULT_ORG: &str = "sw-embed";
 const REPOS: &[(&str, &str, Option<&str>)] = &[
     ("sw-cor24-assembler", "Foundation", None),
     ("sw-cor24-emulator", "Foundation", None),
+    ("sw-cor24-isa", "Foundation", None),
     ("sw-cor24-project", "Foundation", None),
     ("sw-cor24-x-assembler", "Foundation", None),
     ("sw-cor24-rust", "Cross-compilers", None),
@@ -33,6 +34,7 @@ const REPOS: &[(&str, &str, Option<&str>)] = &[
     ("web-sw-cor24-assembler", "Web UIs", None),
     ("web-sw-cor24-demos", "Web UIs", None),
     ("web-sw-cor24-forth", "Web UIs", None),
+    ("web-sw-cor24-fortran", "Web UIs", None),
     ("web-sw-cor24-macrolisp", "Web UIs", None),
     ("web-sw-cor24-pascal", "Web UIs", None),
     ("web-sw-cor24-pcode", "Web UIs", None),
