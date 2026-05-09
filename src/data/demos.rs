@@ -273,7 +273,7 @@ static CATEGORIES: [Category; 6] = [
                 secondary_live_label: "",
             },
             DemoEntry {
-                name: "Macro Lisp",
+                name: "Macro Lisp (& Scheme)",
                 slug: "web-sw-cor24-macrolisp",
                 description: "Tiny Macro Lisp REPL. Write and evaluate Lisp expressions that run on COR24 hardware.",
                 status: DemoStatus::Active,
