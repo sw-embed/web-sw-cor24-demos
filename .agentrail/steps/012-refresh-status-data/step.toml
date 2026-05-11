@@ -1,6 +1,6 @@
 number = 12
 slug = "refresh-status-data"
-status = "pending"
+status = "in-progress"
 description = "Refresh all status page data through today's date. Run all three data generat..."
 role = "production"
 context_files = []
