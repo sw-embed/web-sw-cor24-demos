@@ -1,6 +1,6 @@
 profile = "default"
-content_hash = "436bd4a3f891018a"
-updated_at = "2026-04-29T11:44:58"
+content_hash = "f3f09c2f37be48a3"
+updated_at = "2026-05-11T13:15:00"
 targets = [
     "CLAUDE.md",
     "AGENTS.md",
