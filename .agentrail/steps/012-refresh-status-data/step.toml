@@ -1,9 +1,10 @@
 number = 12
 slug = "refresh-status-data"
-status = "in-progress"
+status = "completed"
 description = "Refresh all status page data through today's date. Run all three data generat..."
 role = "production"
 context_files = []
 created_at = "2026-05-11T13:15:12"
+completed_at = "2026-05-11T13:21:00"
 task_type = "content"
-commits = []
+commits = ["aa00b1dc014aa4fa69c3d40470a89a53ecd03611"]
