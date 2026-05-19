@@ -393,7 +393,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "yocto-ed",
                 slug: "sw-cor24-yocto-ed",
                 description: "Minimal modal text editor with gap buffer, edit/command modes, and UART I/O. Dogfooding project for tc24r.",
-                status: DemoStatus::Active,
+                status: DemoStatus::Testing,
                 tags: &["Editor", "Application"],
                 has_live_demo: false,
                 is_this_site: false,
