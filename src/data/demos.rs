@@ -168,7 +168,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "Tiny C Cross-Transpiler",
                 slug: "web-sw-cor24-x-tinyc",
                 description: "Tiny C cross-compiler for COR24. Compile C code to COR24 assembly in the browser.",
-                status: DemoStatus::Testing,
+                status: DemoStatus::Active,
                 tags: &["Compiler", "C"],
                 has_live_demo: true,
                 is_this_site: false,
