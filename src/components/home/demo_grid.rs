@@ -63,6 +63,59 @@ fn filter_languages() -> Vec<(&'static str, String)> {
     demos::filter_languages()
 }
 
+fn category_count(categories: &[demos::Category], filter: &FilterState) -> usize {
+    categories
+        .iter()
+        .flat_map(|c| c.items.iter())
+        .filter(|d| filter.matches(d))
+        .count()
+}
+
+fn category_sections(categories: &[demos::Category], filter: &FilterState) -> Html {
+    categories
+        .iter()
+        .map(|cat| {
+            let matching: Vec<_> = cat.items.iter().filter(|d| filter.matches(d)).collect();
+            if matching.is_empty() {
+                return html! {};
+            }
+            html! {
+                <div class="demo-category">
+                    <h2 class="demo-category-title">{cat.label}</h2>
+                    <div class="demo-grid">
+                        {matching.iter().map(|d| {
+                            html! { <DemoCard info={(*d).clone()} /> }
+                        }).collect::<Html>()}
+                    </div>
+                </div>
+            }
+        })
+        .collect::<Html>()
+}
+
+fn collapsible_panel(
+    title: &'static str,
+    note: &'static str,
+    categories: &[demos::Category],
+    filter: &FilterState,
+) -> Html {
+    let count = category_count(categories, filter);
+    if count == 0 {
+        return html! {};
+    }
+
+    html! {
+        <details class="demo-panel">
+            <summary>
+                <span class="demo-panel-title">{title}</span>
+                <span class="demo-panel-count">{count}</span>
+            </summary>
+            <p class="demo-panel-note">{note}</p>
+            {category_sections(categories, filter)}
+        </details>
+    }
+}
+
 fn filter_statuses() -> Vec<(&'static str, StatusFilter)> {
     vec![
         ("All", StatusFilter::All),
@@ -71,6 +124,11 @@ fn filter_statuses() -> Vec<(&'static str, StatusFilter)> {
         ("Testing", StatusFilter::Specific(DemoStatus::Testing)),
         ("Design", StatusFilter::Specific(DemoStatus::Design)),
         ("Long-term", StatusFilter::Specific(DemoStatus::LongTerm)),
+        ("Deprecated", StatusFilter::Specific(DemoStatus::Deprecated)),
+        (
+            "Experimental",
+            StatusFilter::Specific(DemoStatus::Experimental),
+        ),
     ]
 }
 
@@ -80,11 +138,9 @@ pub fn demo_grid() -> Html {
     let categories = demos::all_categories();
     let total = demos::all_demos().len();
 
-    let count: usize = categories
-        .iter()
-        .flat_map(|c| c.items.iter())
-        .filter(|d| filter.matches(d))
-        .count();
+    let count = category_count(categories, &*filter)
+        + category_count(demos::deprecated_categories(), &*filter)
+        + category_count(demos::future_categories(), &*filter);
 
     let search_cb = {
         let filter = filter.clone();
@@ -148,25 +204,19 @@ pub fn demo_grid() -> Html {
     let langs = filter_languages();
     let statuses = filter_statuses();
 
-    let sections_html = categories
-        .iter()
-        .map(|cat| {
-            let matching: Vec<_> = cat.items.iter().filter(|d| filter.matches(d)).collect();
-            if matching.is_empty() {
-                return html! {};
-            }
-            html! {
-                <div class="demo-category">
-                    <h2 class="demo-category-title">{cat.label}</h2>
-                    <div class="demo-grid">
-                        {matching.iter().map(|d| {
-                            html! { <DemoCard info={(*d).clone()} /> }
-                        }).collect::<Html>()}
-                    </div>
-                </div>
-            }
-        })
-        .collect::<Html>();
+    let sections_html = category_sections(categories, &*filter);
+    let deprecated_html = collapsible_panel(
+        "Deprecated Projects",
+        "Older combined demos and repos kept for historical reference. Prefer the current split repos above.",
+        demos::deprecated_categories(),
+        &*filter,
+    );
+    let future_html = collapsible_panel(
+        "Future Projects",
+        "Planned or early-stage projects are kept here so active demos stay prominent.",
+        demos::future_categories(),
+        &*filter,
+    );
 
     html! {
         <section class="demo-grid-section">
@@ -207,6 +257,8 @@ pub fn demo_grid() -> Html {
                 <span class="demos-count-label">{" demos"}</span>
             </div>
             {sections_html}
+            {deprecated_html}
+            {future_html}
         </section>
     }
 }
@@ -219,5 +271,7 @@ fn status_to_val(sf: &StatusFilter) -> &'static str {
         StatusFilter::Specific(DemoStatus::Testing) => "testing",
         StatusFilter::Specific(DemoStatus::Design) => "design",
         StatusFilter::Specific(DemoStatus::LongTerm) => "longterm",
+        StatusFilter::Specific(DemoStatus::Deprecated) => "deprecated",
+        StatusFilter::Specific(DemoStatus::Experimental) => "experimental",
     }
 }

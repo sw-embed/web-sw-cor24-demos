@@ -23,6 +23,8 @@ pub enum DemoStatus {
     Testing,
     Design,
     LongTerm,
+    Deprecated,
+    Experimental,
 }
 
 #[derive(Clone, PartialEq, Debug, yew::Properties)]
@@ -58,9 +60,19 @@ pub fn all_categories() -> &'static [Category] {
     &CATEGORIES
 }
 
+pub fn deprecated_categories() -> &'static [Category] {
+    &DEPRECATED_CATEGORIES
+}
+
+pub fn future_categories() -> &'static [Category] {
+    &FUTURE_CATEGORIES
+}
+
 pub fn all_demos() -> Vec<DemoEntry> {
     all_categories()
         .iter()
+        .chain(deprecated_categories().iter())
+        .chain(future_categories().iter())
         .flat_map(|c| c.items.iter().cloned())
         .collect()
 }
@@ -82,9 +94,9 @@ static CATEGORIES: [Category; 6] = [
         items: &[DemoEntry {
             name: "COR24 Emulator",
             slug: "sw-cor24-emulator",
-            description: "Assembler and emulator for the COR24 processor. Runs COR24 binaries on the host.",
+            description: "Current COR24 24-bit RISC emulator trimmed out of the deprecated cor24-rs combined repo.",
             status: DemoStatus::Active,
-            tags: &["Emulator", "Assembler"],
+            tags: &["Emulator"],
             has_live_demo: false,
             is_this_site: false,
             source_label: "Rust Source",
@@ -98,67 +110,33 @@ static CATEGORIES: [Category; 6] = [
     },
     Category {
         id: "assemblers",
-        label: "Assemblers",
-        items: &[
-            DemoEntry {
-                name: "Assembly IDE",
-                slug: "web-sw-cor24-assembler",
-                description: "Full COR24 assembly IDE with syntax highlighting, real-time assembly, and register view.",
-                status: DemoStatus::Active,
-                tags: &["IDE", "Assembler"],
-                has_live_demo: true,
-                is_this_site: false,
-                source_label: "Rust Source",
-                badge_image: "asm-badge.png",
-                repo: "sw-cor24-emulator",
-                group_id: "assemblers",
-                live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
-                secondary_live_url: Some("https://sw-embed.github.io/web-sw-cor24-assembler/"),
-                secondary_live_label: "Assembler-Only Port",
-            },
-            DemoEntry {
-                name: "High-Level Assembler (HLASM)",
-                slug: "sw-cor24-hlasm",
-                description: "High-level assembler for COR24 with structured macros and symbolic expressions. Written in COR24 assembly.",
-                status: DemoStatus::Wip,
-                tags: &["Assembler", "HLASM"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "COR24 Asm Source",
-                badge_image: "hlasm-badge.png",
-                repo: "sw-cor24-hlasm",
-                group_id: "assemblers",
-                live_url_override: None,
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
-        ],
+        label: "Assembler",
+        items: &[DemoEntry {
+            name: "Cross-Assembler",
+            slug: "web-sw-cor24-x-assembler",
+            description: "Current COR24 cross-assembler library and CLI. Assembly source to machine code; behavioral reference for the COR24 ISA.",
+            status: DemoStatus::Active,
+            tags: &["Assembler", "Rust"],
+            has_live_demo: true,
+            is_this_site: false,
+            source_label: "Rust Source",
+            badge_image: "asm-badge.png",
+            repo: "sw-cor24-x-assembler",
+            group_id: "assemblers",
+            live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-x-assembler/"),
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
     },
     Category {
         id: "system-pl",
         label: "System Programming Languages",
         items: &[
             DemoEntry {
-                name: "Native C Compiler",
-                slug: "sw-cor24-c-compiler",
-                description: "Native C compiler that runs on COR24 hardware. Long-term goal for self-hosted C.",
-                status: DemoStatus::LongTerm,
-                tags: &["Compiler", "C"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "C Source",
-                badge_image: "c-badge.png",
-                repo: "sw-cor24-c-compiler",
-                group_id: "system-pl",
-                live_url_override: None,
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
-            DemoEntry {
                 name: "PL/SW IDE",
                 slug: "web-sw-cor24-plsw",
                 description: "PL/SW development environment for the PL/I-inspired PL/SW language running on COR24.",
-                status: DemoStatus::Active,
+                status: DemoStatus::Testing,
                 tags: &["Compiler", "PL/SW"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -174,7 +152,7 @@ static CATEGORIES: [Category; 6] = [
                 name: "Rust MSP430 Translator",
                 slug: "web-sw-cor24-rust",
                 description: "Experimental Rust-to-COR24 pipeline. Compile a subset of Rust via MSP430 translation to COR24 assembly.",
-                status: DemoStatus::Testing,
+                status: DemoStatus::Experimental,
                 tags: &["Compiler", "Rust"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -182,7 +160,7 @@ static CATEGORIES: [Category; 6] = [
                 badge_image: "rust-gear-logo-red.png",
                 repo: "sw-cor24-rust",
                 group_id: "system-pl",
-                live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
+                live_url_override: None,
                 secondary_live_url: None,
                 secondary_live_label: "",
             },
@@ -322,43 +300,10 @@ static CATEGORIES: [Category; 6] = [
                 secondary_live_label: "",
             },
             DemoEntry {
-                name: "Prolog Interpreter",
-                slug: "sw-cor24-prolog",
-                description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented in PL/SW, \
-                         running on COR24.",
-                status: DemoStatus::Design,
-                tags: &["Interpreter", "Prolog", "Logic Programming"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "PL/SW Source",
-                badge_image: "prolog-badge.png",
-                repo: "sw-cor24-prolog",
-                group_id: "application-pl",
-                live_url_override: None,
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
-            DemoEntry {
-                name: "RPG-II",
-                slug: "sw-cor24-rpg-ii",
-                description: "Simplified RPG-II report generator compiled through HLASM. Business data processing on COR24.",
-                status: DemoStatus::Wip,
-                tags: &["Compiler", "RPG-II"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "HLASM Source",
-                badge_image: "rpg-ii-badge.png",
-                repo: "sw-cor24-rpg-ii",
-                group_id: "application-pl",
-                live_url_override: None,
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
-            DemoEntry {
                 name: "Smalltalk",
                 slug: "sw-cor24-smalltalk",
                 description: "Smalltalk environment implemented in COR24 BASIC. Object-oriented messaging on top of the BASIC/P-code stack.",
-                status: DemoStatus::Wip,
+                status: DemoStatus::Testing,
                 tags: &["Interpreter", "Smalltalk"],
                 has_live_demo: true,
                 is_this_site: false,
@@ -383,22 +328,6 @@ static CATEGORIES: [Category; 6] = [
                 repo: "sw-cor24-snobol4",
                 group_id: "application-pl",
                 live_url_override: Some("https://sw-embed.github.io/web-sw-cor24-snobol4/"),
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
-            DemoEntry {
-                name: "Tuplet",
-                slug: "tuplet",
-                description: "Experimental named-tuple infix language with user-grown constructs (Lisp-like macros over a small set of essential special forms). Implemented in OCaml with a Forth runtime.",
-                status: DemoStatus::Wip,
-                tags: &["Compiler", "Tuplet"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "OCaml & Forth Source",
-                badge_image: "tuplet-badge.png",
-                repo: "tuplet",
-                group_id: "application-pl",
-                live_url_override: None,
                 secondary_live_url: None,
                 secondary_live_label: "",
             },
@@ -428,22 +357,6 @@ static CATEGORIES: [Category; 6] = [
         id: "tools",
         label: "Tools",
         items: &[
-            DemoEntry {
-                name: "Source-Level Debugger",
-                slug: "sw-cor24-debugger",
-                description: "Source-level debugger for COR24. Step through code, inspect registers and memory.",
-                status: DemoStatus::Design,
-                tags: &["Debugger", "IDE"],
-                has_live_demo: false,
-                is_this_site: false,
-                source_label: "Planned",
-                badge_image: "",
-                repo: "sw-cor24-debugger",
-                group_id: "tools",
-                live_url_override: None,
-                secondary_live_url: None,
-                secondary_live_label: "",
-            },
             DemoEntry {
                 name: "Resident Monitor",
                 slug: "sw-cor24-monitor",
@@ -496,6 +409,162 @@ static CATEGORIES: [Category; 6] = [
     },
 ];
 
+static DEPRECATED_CATEGORIES: [Category; 1] = [Category {
+    id: "deprecated",
+    label: "Deprecated Projects",
+    items: &[DemoEntry {
+        name: "cor24-rs Combined Emulator / Assembler",
+        slug: "cor24-rs",
+        description: "Deprecated combined COR24 emulator, cross-assembler, Tiny C compiler, and browser demo. Replaced by COR24 Emulator, Cross-Assembler, and Tiny C Cross-Compiler.",
+        status: DemoStatus::Deprecated,
+        tags: &["Emulator", "Assembler"],
+        has_live_demo: true,
+        is_this_site: false,
+        source_label: "Deprecated Source",
+        badge_image: "asm-badge.png",
+        repo: "cor24-rs",
+        group_id: "deprecated",
+        live_url_override: Some("https://sw-embed.github.io/cor24-rs/"),
+        secondary_live_url: None,
+        secondary_live_label: "",
+    }],
+}];
+
+static FUTURE_CATEGORIES: [Category; 4] = [
+    Category {
+        id: "future-assemblers",
+        label: "Future Assemblers",
+        items: &[
+            DemoEntry {
+                name: "Native Assembler",
+                slug: "sw-cor24-assembler",
+                description: "COR24 native assembler written in C. Intended to run on COR24 FPGA hardware.",
+                status: DemoStatus::LongTerm,
+                tags: &["Assembler", "C"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "C Source",
+                badge_image: "asm-badge.png",
+                repo: "sw-cor24-assembler",
+                group_id: "future-assemblers",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+            DemoEntry {
+                name: "High-Level Assembler (HLASM)",
+                slug: "sw-cor24-hlasm",
+                description: "High-level assembler for COR24 with structured macros and symbolic expressions. Written in COR24 assembly.",
+                status: DemoStatus::Wip,
+                tags: &["Assembler", "HLASM"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "COR24 Asm Source",
+                badge_image: "hlasm-badge.png",
+                repo: "sw-cor24-hlasm",
+                group_id: "future-assemblers",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+        ],
+    },
+    Category {
+        id: "future-system-pl",
+        label: "Future System Programming Languages",
+        items: &[DemoEntry {
+            name: "Native C Compiler",
+            slug: "sw-cor24-tinyc",
+            description: "Native C compiler written in C. Future self-hosted compiler that runs on COR24 FPGA hardware.",
+            status: DemoStatus::LongTerm,
+            tags: &["Compiler", "C"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "C Source",
+            badge_image: "c-badge.png",
+            repo: "sw-cor24-tinyc",
+            group_id: "future-system-pl",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+    Category {
+        id: "future-application-pl",
+        label: "Future Application Programming Languages",
+        items: &[
+            DemoEntry {
+                name: "Prolog Interpreter",
+                slug: "sw-cor24-prolog",
+                description: "Prolog interpreter with a WAM-like 8+8 register virtual machine implemented in PL/SW, running on COR24.",
+                status: DemoStatus::Design,
+                tags: &["Interpreter", "Prolog", "Logic Programming"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "PL/SW Source",
+                badge_image: "prolog-badge.png",
+                repo: "sw-cor24-prolog",
+                group_id: "future-application-pl",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+            DemoEntry {
+                name: "RPG-II",
+                slug: "sw-cor24-rpg-ii",
+                description: "Simplified RPG-II report generator compiled through HLASM. Business data processing on COR24.",
+                status: DemoStatus::Wip,
+                tags: &["Compiler", "RPG-II"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "HLASM Source",
+                badge_image: "rpg-ii-badge.png",
+                repo: "sw-cor24-rpg-ii",
+                group_id: "future-application-pl",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+            DemoEntry {
+                name: "Tuplet",
+                slug: "tuplet",
+                description: "Experimental named-tuple infix language with user-grown constructs. Implemented in OCaml with a Forth runtime.",
+                status: DemoStatus::Wip,
+                tags: &["Compiler", "Tuplet"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "OCaml & Forth Source",
+                badge_image: "tuplet-badge.png",
+                repo: "tuplet",
+                group_id: "future-application-pl",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+        ],
+    },
+    Category {
+        id: "future-tools",
+        label: "Future Tools",
+        items: &[DemoEntry {
+            name: "Source-Level Debugger",
+            slug: "sw-cor24-debugger",
+            description: "Source-level debugger for COR24. Step through code, inspect registers and memory.",
+            status: DemoStatus::Design,
+            tags: &["Debugger", "IDE"],
+            has_live_demo: false,
+            is_this_site: false,
+            source_label: "Planned",
+            badge_image: "",
+            repo: "sw-cor24-debugger",
+            group_id: "future-tools",
+            live_url_override: None,
+            secondary_live_url: None,
+            secondary_live_label: "",
+        }],
+    },
+];
+
 pub fn tag_class(tag: &str) -> &'static str {
     match tag {
         "IDE" => "tag-ide",
@@ -519,6 +588,8 @@ pub fn status_badge_class(status: &DemoStatus) -> &'static str {
         DemoStatus::Testing => "badge-testing",
         DemoStatus::Design => "badge-design",
         DemoStatus::LongTerm => "badge-longterm",
+        DemoStatus::Deprecated => "badge-deprecated",
+        DemoStatus::Experimental => "badge-experimental",
     }
 }
 
@@ -529,6 +600,8 @@ pub fn status_label(status: &DemoStatus) -> &'static str {
         DemoStatus::Testing => "Testing",
         DemoStatus::Design => "Design",
         DemoStatus::LongTerm => "Long-term",
+        DemoStatus::Deprecated => "Deprecated",
+        DemoStatus::Experimental => "Experimental",
     }
 }
 
@@ -537,7 +610,15 @@ pub fn filter_languages() -> Vec<(&'static str, String)> {
         ("All", "all".to_string()),
         ("Application PLs", "application-pl".to_string()),
         ("Assemblers", "assemblers".to_string()),
+        ("Deprecated", "deprecated".to_string()),
         ("Emulator", "emulator".to_string()),
+        (
+            "Future Application PLs",
+            "future-application-pl".to_string(),
+        ),
+        ("Future Assemblers", "future-assemblers".to_string()),
+        ("Future System PLs", "future-system-pl".to_string()),
+        ("Future Tools", "future-tools".to_string()),
         ("Scripting / Shell", "scripting".to_string()),
         ("System PLs", "system-pl".to_string()),
         ("Tools", "tools".to_string()),
@@ -548,6 +629,14 @@ pub fn filter_languages() -> Vec<(&'static str, String)> {
 mod tests {
     use super::*;
 
+    fn all_catalog_categories() -> Vec<&'static Category> {
+        all_categories()
+            .iter()
+            .chain(deprecated_categories().iter())
+            .chain(future_categories().iter())
+            .collect()
+    }
+
     #[test]
     fn category_count() {
         assert_eq!(all_categories().len(), 6);
@@ -556,12 +645,12 @@ mod tests {
     #[test]
     fn filter_languages_count() {
         let filters = filter_languages();
-        assert_eq!(filters.len(), 7);
+        assert_eq!(filters.len(), 12);
     }
 
     #[test]
     fn all_entries_have_required_fields() {
-        for cat in all_categories() {
+        for cat in all_catalog_categories() {
             for d in cat.items {
                 assert!(!d.name.is_empty(), "name empty in {}", cat.label);
                 assert!(!d.slug.is_empty(), "slug empty for {}", d.name);
@@ -578,7 +667,7 @@ mod tests {
 
     #[test]
     fn repo_urls_valid() {
-        for cat in all_categories() {
+        for cat in all_catalog_categories() {
             for d in cat.items {
                 let url = d.repo_url();
                 assert!(
@@ -593,7 +682,7 @@ mod tests {
 
     #[test]
     fn live_urls_valid() {
-        for cat in all_categories() {
+        for cat in all_catalog_categories() {
             for d in cat.items {
                 if d.has_live_demo && !d.is_this_site {
                     let url = d.live_url();
@@ -610,7 +699,7 @@ mod tests {
 
     #[test]
     fn group_ids_match_category() {
-        for cat in all_categories() {
+        for cat in all_catalog_categories() {
             for d in cat.items {
                 assert_eq!(
                     d.group_id, cat.id,
@@ -628,6 +717,8 @@ mod tests {
         assert_eq!(status_label(&DemoStatus::Testing), "Testing");
         assert_eq!(status_label(&DemoStatus::Design), "Design");
         assert_eq!(status_label(&DemoStatus::LongTerm), "Long-term");
+        assert_eq!(status_label(&DemoStatus::Deprecated), "Deprecated");
+        assert_eq!(status_label(&DemoStatus::Experimental), "Experimental");
     }
 
     #[test]

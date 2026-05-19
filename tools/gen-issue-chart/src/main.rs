@@ -133,12 +133,16 @@ fn fetch_issues(org: &str, repo: &str) -> Vec<Issue> {
 }
 
 fn parse_date(s: &str) -> chrono::NaiveDate {
+    if let Ok(dt) = chrono::DateTime::parse_from_rfc3339(s) {
+        return dt.with_timezone(&chrono::Local).date_naive();
+    }
+
     let dt = chrono::NaiveDateTime::parse_from_str(s, "%Y-%m-%dT%H:%M:%SZ")
         .or_else(|_| chrono::NaiveDateTime::parse_from_str(s, "%Y-%m-%dT%H:%M:%S%:z"))
         .unwrap_or_else(|_| {
             chrono::NaiveDate::parse_from_str(s, "%Y-%m-%d")
                 .map(|d| d.and_hms_opt(0, 0, 0).unwrap())
-                .unwrap()
+                .unwrap_or_else(|err| panic!("failed to parse date {s:?}: {err}"))
         });
     let utc = dt.and_utc();
     utc.with_timezone(&chrono::Local).date_naive()

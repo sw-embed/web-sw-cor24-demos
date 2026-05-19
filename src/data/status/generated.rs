@@ -20,7 +20,7 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("sw-cor24-macrolisp", 0, false, false),
         ("sw-cor24-plsw", 0, true, true),
         ("sw-cor24-smalltalk", 4, true, true),
-        ("sw-cor24-snobol4", 1, true, true),
+        ("sw-cor24-snobol4", 1, false, false),
         ("sw-cor24-script", 0, true, true),
         ("tuplet", 0, true, true),
         ("sw-cor24-debugger", 0, false, false),
