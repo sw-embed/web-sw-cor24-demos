@@ -114,7 +114,7 @@ static CATEGORIES: [Category; 6] = [
         items: &[DemoEntry {
             name: "Cross-Assembler",
             slug: "web-sw-cor24-x-assembler",
-            description: "Current COR24 cross-assembler library and CLI. Assembly source to machine code; behavioral reference for the COR24 ISA.",
+            description: "Current COR24 cross-assembler library and CLI, now with I2C and SPI device demos. Assembly source to machine code; behavioral reference for the COR24 ISA.",
             status: DemoStatus::Active,
             tags: &["Assembler", "Rust"],
             has_live_demo: true,
@@ -167,7 +167,7 @@ static CATEGORIES: [Category; 6] = [
             DemoEntry {
                 name: "Tiny C Cross-Transpiler",
                 slug: "web-sw-cor24-x-tinyc",
-                description: "Tiny C cross-compiler for COR24, now with I2C and SPI devices. Compile C code to COR24 assembly in the browser.",
+                description: "Tiny C cross-compiler for COR24. Compile C code to COR24 assembly in the browser.",
                 status: DemoStatus::Active,
                 tags: &["Compiler", "C"],
                 has_live_demo: true,
