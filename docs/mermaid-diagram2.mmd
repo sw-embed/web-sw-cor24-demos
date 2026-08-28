@@ -37,6 +37,11 @@ graph LR
         monitor["sw-cor24-monitor\nResident Monitor"]
     end
 
+    subgraph os["Operating System"]
+        direction TB
+        swtos["sw-tos\nSWTOS Microkernel"]
+    end
+
     tc24r --> emulator
     xasm --> emulator
 
@@ -62,8 +67,12 @@ graph LR
     monitor --> emulator
     monitor --> xasm
 
+    swtos --> plsw
+    swtos --> emulator
+
     style foundation fill:#1e6640,stroke:#a6e3a1,color:#cdd6f4
     style cross fill:#45475a,stroke:#cba6f7,color:#cdd6f4
     style pcode fill:#453525,stroke:#fab387,color:#cdd6f4
     style langs fill:#3b3520,stroke:#f9e2af,color:#cdd6f4
     style system fill:#452525,stroke:#f38ba8,color:#cdd6f4
+    style os fill:#1e4540,stroke:#94e2d5,color:#cdd6f4
