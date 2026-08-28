@@ -122,7 +122,7 @@ fn render_operating_system() -> Html {
                     <p class="pipeline-card-detail">
                         {"MINIX-inspired microkernel: synchronous message-passing IPC, a resident \
                          program catalog fixed at build time, and preemptive scheduling driven by a \
-                         UART heartbeat. No MMU, no hardware multiply, no floating point. Kernel, \
+                         UART heartbeat. No MMU, no hardware divide, no floating point. Kernel, \
                          resident services, and applications are compiled and linked together into \
                          one image. The te-rs tiled terminal frontend drives the shell, debugger, \
                          and resource monitor over a framed UART transport; "}

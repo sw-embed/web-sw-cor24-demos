@@ -360,7 +360,7 @@ static CATEGORIES: [Category; 7] = [
             DemoEntry {
                 name: "SWTOS",
                 slug: "sw-tos",
-                description: "Clean-room microkernel inspired by MINIX IPC principles. Synchronous message-passing IPC, a resident program catalog, and preemptive scheduling with no MMU, no hardware multiply, and no floating point. Written in PL/SW.",
+                description: "Clean-room microkernel inspired by MINIX IPC principles. Synchronous message-passing IPC, a resident program catalog, and preemptive scheduling with no MMU, no hardware divide, and no floating point. Written in PL/SW.",
                 status: DemoStatus::Active,
                 tags: &["System", "PL/SW"],
                 has_live_demo: false,
