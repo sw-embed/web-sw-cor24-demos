@@ -16,6 +16,7 @@ pub enum ToolCategory {
     CrossCompiler,
     PCode,
     NativeLanguage,
+    OperatingSystem,
     SystemSoftware,
 }
 

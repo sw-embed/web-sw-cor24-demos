@@ -14,6 +14,7 @@ pub fn render_all_pipelines() -> Html {
             </div>
             {render_foundation()}
             {render_languages()}
+            {render_operating_system()}
         </>
     }
 }
@@ -85,6 +86,49 @@ fn render_foundation() -> Html {
                         {"Takes C source and headers as input, produces COR24 assembly (.s). \
                          Restricted C subset: no structs, no heap, 24-bit int. Output feeds into \
                          the cross-assembler to produce .bin."}
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+fn render_operating_system() -> Html {
+    html! {
+        <div class="pipeline-group">
+            <h3 class="pipeline-group-title">{"Operating System (COR24-side)"}</h3>
+            <p class="pipeline-group-desc">
+                {"A microkernel that links into a single flat binary with its services and \
+                 applications, then runs on the COR24-TB board or the emulator."}
+            </p>
+            <div class="pipeline-cards">
+                <div class="pipeline-card">
+                    <h4>{"SWTOS"}</h4>
+                    <div class="pipe-flow">
+                        {file(".plsw")}
+                        {arrow()}
+                        {step("plsw", "C")}
+                        {arrow()}
+                        {file(".s")}
+                        {arrow()}
+                        {step("cor24-asm", "Rust")}
+                        {arrow()}
+                        {step("link24", "Rust")}
+                        {arrow()}
+                        {file(".bin")}
+                        {arrow()}
+                        {step("cor24-run", "Rust")}
+                    </div>
+                    <p class="pipeline-card-detail">
+                        {"MINIX-inspired microkernel: synchronous message-passing IPC, a resident \
+                         program catalog fixed at build time, and preemptive scheduling driven by a \
+                         UART heartbeat. No MMU, no hardware multiply, no floating point. Kernel, \
+                         resident services, and applications are compiled and linked together into \
+                         one image. The te-rs tiled terminal frontend drives the shell, debugger, \
+                         and resource monitor over a framed UART transport; "}
+                        <a href="https://sw-embed.github.io/web-sw-tos/"
+                           target="_blank" rel="noopener noreferrer">{"the web demo"}</a>
+                        {" bundles all three into one WebAssembly module."}
                     </p>
                 </div>
             </div>

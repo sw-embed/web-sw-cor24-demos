@@ -2087,6 +2087,11 @@
     color: var(--ctp-red);
 }
 
+.dep-teal .dep-node code {
+    background-color: rgba(148, 226, 213, 0.15);
+    color: var(--ctp-teal);
+}
+
 .dep-arrow {
     display: flex;
     align-items: center;
@@ -2151,6 +2156,10 @@
 
 .dep-legend-dot.dep-red {
     background-color: var(--ctp-red);
+}
+
+.dep-legend-dot.dep-teal {
+    background-color: var(--ctp-teal);
 }
 
 .issue-chart-wrap {

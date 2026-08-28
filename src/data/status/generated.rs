@@ -18,7 +18,7 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("sw-cor24-forth", 2, true, true),
         ("sw-cor24-fortran", 0, true, true),
         ("sw-cor24-macrolisp", 0, false, false),
-        ("sw-cor24-plsw", 0, true, true),
+        ("sw-cor24-plsw", 0, false, false),
         ("sw-cor24-smalltalk", 4, true, true),
         ("sw-cor24-snobol4", 1, false, false),
         ("sw-cor24-script", 0, true, true),
@@ -26,6 +26,7 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("sw-cor24-debugger", 0, false, false),
         ("sw-cor24-monitor", 0, true, true),
         ("sw-cor24-yocto-ed", 0, true, true),
+        ("sw-tos", 0, false, false),
         ("web-sw-cor24-apl", 1, true, true),
         ("web-sw-cor24-assembler", 0, false, false),
         ("web-sw-cor24-demos", 0, true, true),
@@ -39,5 +40,6 @@ pub fn generated_status() -> &'static [(&'static str, u32, bool, bool)] {
         ("web-sw-cor24-snobol4", 0, true, true),
         ("web-sw-cor24-rust", 0, false, false),
         ("web-sw-cor24-x-tinyc", 0, false, false),
+        ("web-sw-tos", 0, true, true),
     ]
 }

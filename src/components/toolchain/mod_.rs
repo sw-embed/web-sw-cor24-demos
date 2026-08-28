@@ -72,7 +72,7 @@ pub fn toolchain_page() -> Html {
             {pipelines::render_all_pipelines()}
             <div class="toolchain-diagram-wrap">
                 <img
-                    src="images/mermaid-diagram3.svg?ts=1775850144414"
+                    src="images/mermaid-diagram3.svg?ts=1787938953302"
                     alt="COR24 ecosystem architecture diagram"
                     class="toolchain-diagram-img"
                 />

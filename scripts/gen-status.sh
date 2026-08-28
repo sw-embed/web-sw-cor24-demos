@@ -28,6 +28,7 @@ REPOS=(
     sw-cor24-monitor:System
     sw-cor24-debugger:System
     sw-cor24-yocto-ed:System
+    sw-tos:Operating-System
     web-sw-cor24-assembler:Web-UIs
     web-sw-cor24-pcode:Web-UIs
     web-sw-cor24-x-tinyc:Web-UIs
@@ -39,6 +40,7 @@ REPOS=(
     web-sw-cor24-smalltalk:Web-UIs
     web-sw-cor24-rust:Web-UIs
     web-sw-cor24-demos:Web-UIs
+    web-sw-tos:Web-UIs
 )
 
 {

@@ -76,6 +76,14 @@ pub(crate) fn render_system_deps() -> Html {
     dep_block("Monitor depends on", &edges)
 }
 
+pub(crate) fn render_os_deps() -> Html {
+    let edges: Vec<_> = EDGES
+        .iter()
+        .filter(|e| matches!(e.from, "sw-tos"))
+        .collect();
+    dep_block("SWTOS depends on", &edges)
+}
+
 pub(crate) fn render_pcode_deps() -> Html {
     let edges: Vec<_> = EDGES
         .iter()

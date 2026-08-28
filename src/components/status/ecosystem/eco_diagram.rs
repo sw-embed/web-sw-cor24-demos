@@ -16,6 +16,7 @@ pub fn render_dependency_diagram() -> Html {
                 {dep_blocks::render_cross_compiler_deps()}
                 {dep_blocks::render_native_lang_deps()}
                 {dep_blocks::render_system_deps()}
+                {dep_blocks::render_os_deps()}
                 {dep_blocks::render_pcode_deps()}
             </div>
         </section>
@@ -30,6 +31,7 @@ fn render_legend() -> Html {
         (DepGroup::PCode, "P-code"),
         (DepGroup::NativeLang, "Native Languages"),
         (DepGroup::System, "System"),
+        (DepGroup::OperatingSystem, "Operating System"),
     ];
     let items = groups
         .iter()
