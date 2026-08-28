@@ -1,0 +1,11 @@
+{
+  "task_type": "bug-fix",
+  "state": {
+    "number": 14,
+    "step": "fix-swtos-hardware-multiply"
+  },
+  "action": "grep across src/docs to find every occurrence (one was split across a line continuation and needed a broader 'multiply' search to surface); python3 heredoc for the three exact-match replacements; cross-checked ISA instruction data for mul/div to confirm scope; cargo fmt/clippy/test/check + scripts/build-pages.sh; sw-checklist diffed against baseline; plain git checkout/merge --no-ff/push for the merge.",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-08-28T10:51:42"
+}
