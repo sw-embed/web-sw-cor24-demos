@@ -1,0 +1,11 @@
+{
+  "task_type": "rust-yew",
+  "state": {
+    "number": 13,
+    "step": "add-swtos-projects"
+  },
+  "action": "Bash-driven exploration and edits (python3 heredocs for structured Rust/CSS edits, sed for one-liners); gh api for repo metadata and issue counts; cargo fmt/clippy/test/check + scripts/build-pages.sh for the gate; sw-checklist diffed against main to prove no new FAIL; npx mermaid-cli 11 to re-render the architecture SVG; claude-in-chrome against the local trunk dev server to visually verify Home, Status (project table, dep diagram, About COR24), and Toolchain.",
+  "result": "success",
+  "reward": 1,
+  "timestamp": "2026-08-28T10:43:19"
+}
