@@ -311,7 +311,7 @@ static GROUPS: [ToolGroup; 6] = [
             description: "Clean-room microkernel inspired by MINIX IPC principles: synchronous \
              message-passing IPC (send, receive, sendrec), a build-time resident program catalog, \
              and preemptive scheduling driven by a UART heartbeat. Needs no MMU, no hardware \
-             multiply, and no floating point; kernel, services, and apps link into one flat binary. \
+             divide, and no floating point; kernel, services, and apps link into one flat binary. \
              Written in PL/SW. The web demo bundles the microkernel, the COR24 emulator, and the \
              te-rs tiled terminal into a single WebAssembly module.",
             language: ToolLanguage::Mixed("PL/SW & Rust"),
