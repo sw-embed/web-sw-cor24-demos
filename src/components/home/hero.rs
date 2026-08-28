@@ -13,7 +13,7 @@ pub fn hero_section() -> Html {
                     <p>
                         {"COR24 is a 24-bit RISC processor designed for FPGA-based embedded systems. \
                         It provides a clean, orthogonal instruction set optimized for code density and simplicity, \
-                        supporting a full software ecosystem of cross-compilers, interpreters, and live browser-based tools. "}
+                        supporting a full software ecosystem of cross-compilers, interpreters, a microkernel operating system, and live browser-based tools. "}
                         <a href="https://makerlisp.com" target="_blank" rel="noopener noreferrer">
                             {"makerlisp.com"}
                         </a>

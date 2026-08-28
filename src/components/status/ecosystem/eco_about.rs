@@ -28,7 +28,7 @@ fn about_ecosystem() -> Html {
             <a href="https://makerlisp.com" target="_blank" rel="noopener noreferrer">
                 {"MakerLisp COR24"}
             </a>
-            {" implementation. The software ecosystem includes cross-compilers (C, Pascal, Rust), native-language interpreters (APL, Lisp, Forth, BASIC), a p-code VM system, a resident monitor, and browser-based live demos for most tools."}
+            {" implementation. The software ecosystem includes cross-compilers (C, Pascal, Rust), native-language interpreters (APL, Lisp, Forth, BASIC), a p-code VM system, a resident monitor, the SWTOS microkernel operating system, and browser-based live demos for most tools."}
         </p>
     }
 }

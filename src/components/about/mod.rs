@@ -40,7 +40,7 @@ static LINKS: [LinkEntry; 4] = [
     },
     LinkEntry {
         label: "sw-embed on GitHub",
-        description: "Browse the full COR24 ecosystem: emulators, cross-compilers, interpreters, and web demos.",
+        description: "Browse the full COR24 ecosystem: emulators, cross-compilers, interpreters, an operating system, and web demos.",
         url: "https://github.com/sw-embed",
         image: "images/sw-embed-git-org-logo.jpeg",
     },
@@ -135,7 +135,13 @@ fn intro_text() -> Html {
                 {ext_link("https://github.com/sw-embed/sw-cor24-ocaml", "OCaml REPL")}
                 {". My latest work is a WAM-like register VM for "}
                 {ext_link("https://github.com/sw-embed/sw-cor24-prolog", "Prolog")}
-                {", with the VM implemented in PL/SW and the parser in SNOBOL4."}
+                {", with the VM implemented in PL/SW and the parser in SNOBOL4. PL/SW also \
+                turned out to be a capable systems language, so I used it to write "}
+                {ext_link("https://github.com/sw-embed/sw-tos", "SWTOS")}
+                {", a MINIX-inspired microkernel with message-passing IPC and preemptive \
+                scheduling, which now "}
+                {ext_link("https://sw-embed.github.io/web-sw-tos/", "runs in the browser")}
+                {" alongside its tiled terminal frontend."}
             </p>
             {intro_closing()}
             {tech_doc_callout()}

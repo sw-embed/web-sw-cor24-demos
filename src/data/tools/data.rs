@@ -11,7 +11,7 @@ pub fn all_tools() -> Vec<ToolEntry> {
         .collect()
 }
 
-static GROUPS: [ToolGroup; 5] = [
+static GROUPS: [ToolGroup; 6] = [
     ToolGroup {
         id: "foundation",
         label: "Foundation",
@@ -301,6 +301,27 @@ static GROUPS: [ToolGroup; 5] = [
         ],
     },
     ToolGroup {
+        id: "operating-systems",
+        label: "Operating Systems",
+        description: "A microkernel operating system for the COR24 platform, running on the COR24-TB \
+         FPGA board and in the emulator, with a browser demo of the full tiled-terminal frontend.",
+        items: &[ToolEntry {
+            name: "SWTOS",
+            repo: "sw-tos",
+            description: "Clean-room microkernel inspired by MINIX IPC principles: synchronous \
+             message-passing IPC (send, receive, sendrec), a build-time resident program catalog, \
+             and preemptive scheduling driven by a UART heartbeat. Needs no MMU, no hardware \
+             multiply, and no floating point; kernel, services, and apps link into one flat binary. \
+             Written in PL/SW. The web demo bundles the microkernel, the COR24 emulator, and the \
+             te-rs tiled terminal into a single WebAssembly module.",
+            language: ToolLanguage::Mixed("PL/SW & Rust"),
+            target: ToolTarget::Cor24,
+            has_web_ui: true,
+            live_url_override: Some("https://sw-embed.github.io/web-sw-tos/"),
+            category: ToolCategory::OperatingSystem,
+        }],
+    },
+    ToolGroup {
         id: "system-software",
         label: "System Software",
         description: "Low-level system software for the COR24 platform: the resident monitor that boots \
@@ -350,13 +371,14 @@ mod tests {
     #[test]
     fn counts() {
         let g = all_groups();
-        assert_eq!(g.len(), 5);
+        assert_eq!(g.len(), 6);
         assert_eq!(g[0].items.len(), 5);
         assert_eq!(g[1].items.len(), 2);
         assert_eq!(g[2].items.len(), 4);
         assert_eq!(g[3].items.len(), 12);
-        assert_eq!(g[4].items.len(), 3);
-        assert_eq!(all_tools().len(), 26);
+        assert_eq!(g[4].items.len(), 1);
+        assert_eq!(g[5].items.len(), 3);
+        assert_eq!(all_tools().len(), 27);
     }
 
     #[test]

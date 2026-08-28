@@ -175,6 +175,21 @@ pub(crate) static EDGES: &[DepEdge] = &[
         to: "sw-cor24-forth",
         label: "Forth runtime",
     },
+    DepEdge {
+        from: "web-sw-tos",
+        to: "sw-tos",
+        label: "WASM build",
+    },
+    DepEdge {
+        from: "sw-tos",
+        to: "sw-cor24-plsw",
+        label: "compiled by",
+    },
+    DepEdge {
+        from: "sw-tos",
+        to: "sw-cor24-emulator",
+        label: "runs on",
+    },
 ];
 
 #[derive(Clone, Copy, PartialEq)]
@@ -185,6 +200,7 @@ pub(crate) enum DepGroup {
     PCode,
     NativeLang,
     System,
+    OperatingSystem,
 }
 
 impl DepGroup {
@@ -196,6 +212,7 @@ impl DepGroup {
             Self::PCode => "dep-peach",
             Self::NativeLang => "dep-yellow",
             Self::System => "dep-red",
+            Self::OperatingSystem => "dep-teal",
         }
     }
 }
@@ -217,6 +234,7 @@ pub(crate) fn repo_group(name: &str) -> DepGroup {
             | "sw-cor24-fortran" | "sw-cor24-plsw" | "sw-cor24-script" | "sw-cor24-smalltalk"
             | "sw-cor24-snobol4" | "sw-cor24-prolog" | "tuplet" => DepGroup::NativeLang,
             "sw-cor24-monitor" | "sw-cor24-debugger" | "sw-cor24-yocto-ed" => DepGroup::System,
+            "sw-tos" => DepGroup::OperatingSystem,
             _ => DepGroup::Foundation,
         }
     }
@@ -232,7 +250,7 @@ mod tests {
 
     #[test]
     fn edge_count() {
-        assert_eq!(EDGES.len(), 34);
+        assert_eq!(EDGES.len(), 37);
     }
 
     #[test]

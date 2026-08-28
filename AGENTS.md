@@ -377,6 +377,10 @@ All COR24 repos live under `~/github/sw-embed/` as siblings. This landing page d
 - `sw-cor24-monitor` -- Resident monitor/service processor (COR24 asm + C)
 - `sw-cor24-debugger` -- Source-level debugger (planned)
 
+### Operating system
+- `sw-tos` -- SWTOS microkernel: message-passing IPC, resident catalog, preemptive
+  scheduling, no MMU (PL/SW). NOT a programming language.
+
 ### Web UIs (live browser demos)
 - `web-sw-cor24-assembler` -- COR24 assembly IDE
 - `web-sw-cor24-pcode` -- P-code VM debugger
@@ -386,6 +390,7 @@ All COR24 repos live under `~/github/sw-embed/` as siblings. This landing page d
 - `web-sw-cor24-apl` -- APL environment
 - `web-sw-cor24-forth` -- Forth debugger
 - `web-sw-cor24-plsw` -- PL/SW development environment
+- `web-sw-tos` -- SWTOS tiled terminal demo (Rust/WASM)
 - `web-sw-cor24-demos` -- THIS REPO (landing page)
 
 ### GitHub Pages URLs
@@ -403,7 +408,7 @@ data sections and all must be refreshed together.
 cargo run --manifest-path tools/gen-status/Cargo.toml
 ```
 
-Fetches open issue counts and agentrail plan/steps presence for 34 repos via `gh api`.
+Fetches open issue counts and agentrail plan/steps presence for 38 repos via `gh api`.
 Writes `src/data/status/generated.rs`.
 
 ### Step 2: Issue progress SVG charts

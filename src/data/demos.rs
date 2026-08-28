@@ -87,7 +87,7 @@ pub fn all_tags() -> Vec<&'static str> {
     tags
 }
 
-static CATEGORIES: [Category; 6] = [
+static CATEGORIES: [Category; 7] = [
     Category {
         id: "emulator",
         label: "Emulator",
@@ -352,6 +352,44 @@ static CATEGORIES: [Category; 6] = [
             secondary_live_url: None,
             secondary_live_label: "",
         }],
+    },
+    Category {
+        id: "operating-system",
+        label: "Operating System",
+        items: &[
+            DemoEntry {
+                name: "SWTOS",
+                slug: "sw-tos",
+                description: "Clean-room microkernel inspired by MINIX IPC principles. Synchronous message-passing IPC, a resident program catalog, and preemptive scheduling with no MMU, no hardware multiply, and no floating point. Written in PL/SW.",
+                status: DemoStatus::Active,
+                tags: &["System", "PL/SW"],
+                has_live_demo: false,
+                is_this_site: false,
+                source_label: "PL/SW Source",
+                badge_image: "",
+                repo: "sw-tos",
+                group_id: "operating-system",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+            DemoEntry {
+                name: "SWTOS Web Terminal",
+                slug: "web-sw-tos",
+                description: "The SWTOS microkernel, the COR24 emulator, and the te-rs tiled terminal frontend collapsed into one WebAssembly module. Drive the shell, debugger, and resource monitor from Ctrl-A pane commands, and watch cpu-hog get preempted.",
+                status: DemoStatus::Active,
+                tags: &["System", "Rust"],
+                has_live_demo: true,
+                is_this_site: false,
+                source_label: "Rust Source",
+                badge_image: "",
+                repo: "web-sw-tos",
+                group_id: "operating-system",
+                live_url_override: None,
+                secondary_live_url: None,
+                secondary_live_label: "",
+            },
+        ],
     },
     Category {
         id: "tools",
@@ -619,6 +657,7 @@ pub fn filter_languages() -> Vec<(&'static str, String)> {
         ("Future Assemblers", "future-assemblers".to_string()),
         ("Future System PLs", "future-system-pl".to_string()),
         ("Future Tools", "future-tools".to_string()),
+        ("Operating System", "operating-system".to_string()),
         ("Scripting / Shell", "scripting".to_string()),
         ("System PLs", "system-pl".to_string()),
         ("Tools", "tools".to_string()),
@@ -639,13 +678,13 @@ mod tests {
 
     #[test]
     fn category_count() {
-        assert_eq!(all_categories().len(), 6);
+        assert_eq!(all_categories().len(), 7);
     }
 
     #[test]
     fn filter_languages_count() {
         let filters = filter_languages();
-        assert_eq!(filters.len(), 12);
+        assert_eq!(filters.len(), 13);
     }
 
     #[test]

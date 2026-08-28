@@ -101,6 +101,9 @@ All COR24 repos live under `sw-embed` on GitHub. This landing page documents all
 ### System Software
 - [sw-cor24-monitor](https://github.com/sw-embed/sw-cor24-monitor) -- Resident monitor/service processor (COR24 asm + C)
 
+### Operating System
+- [sw-tos](https://github.com/sw-embed/sw-tos) -- SWTOS, a MINIX-inspired microkernel with message-passing IPC and preemptive scheduling (PL/SW)
+
 ### Live Web Demos
 - [web-sw-cor24-assembler](https://sw-embed.github.io/web-sw-cor24-assembler/) -- COR24 assembly IDE
 - [web-sw-cor24-pcode](https://sw-embed.github.io/web-sw-cor24-pcode/) -- P-code VM debugger
@@ -111,6 +114,7 @@ All COR24 repos live under `sw-embed` on GitHub. This landing page documents all
 - [web-sw-cor24-forth](https://sw-embed.github.io/web-sw-cor24-forth/) -- Forth debugger
 - [web-sw-cor24-plsw](https://sw-embed.github.io/web-sw-cor24-plsw/) -- PL/SW development environment
 - [web-sw-cor24-smalltalk](https://sw-embed.github.io/web-sw-cor24-smalltalk/) -- Smalltalk environment
+- [web-sw-tos](https://sw-embed.github.io/web-sw-tos/) -- SWTOS tiled terminal demo
 - **web-sw-cor24-demos** -- THIS REPO (landing page)
 
 ## Tech Stack

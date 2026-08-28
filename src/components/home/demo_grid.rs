@@ -138,9 +138,9 @@ pub fn demo_grid() -> Html {
     let categories = demos::all_categories();
     let total = demos::all_demos().len();
 
-    let count = category_count(categories, &*filter)
-        + category_count(demos::deprecated_categories(), &*filter)
-        + category_count(demos::future_categories(), &*filter);
+    let count = category_count(categories, &filter)
+        + category_count(demos::deprecated_categories(), &filter)
+        + category_count(demos::future_categories(), &filter);
 
     let search_cb = {
         let filter = filter.clone();
@@ -204,18 +204,18 @@ pub fn demo_grid() -> Html {
     let langs = filter_languages();
     let statuses = filter_statuses();
 
-    let sections_html = category_sections(categories, &*filter);
+    let sections_html = category_sections(categories, &filter);
     let deprecated_html = collapsible_panel(
         "Deprecated Projects",
         "Older combined demos and repos kept for historical reference. Prefer the current split repos above.",
         demos::deprecated_categories(),
-        &*filter,
+        &filter,
     );
     let future_html = collapsible_panel(
         "Future Projects",
         "Planned or early-stage projects are kept here so active demos stay prominent.",
         demos::future_categories(),
-        &*filter,
+        &filter,
     );
 
     html! {

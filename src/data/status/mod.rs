@@ -75,7 +75,7 @@ pub fn all_projects() -> &'static [ProjectRow] {
     &PROJECTS
 }
 
-static PROJECTS: [ProjectRow; 39] = [
+static PROJECTS: [ProjectRow; 41] = [
     ProjectRow {
         repo: "sw-cor24-assembler",
         description: "Native assembler (C)",
@@ -311,6 +311,15 @@ static PROJECTS: [ProjectRow; 39] = [
         group: "System",
     },
     ProjectRow {
+        repo: "sw-tos",
+        description: "SWTOS microkernel (PL/SW)",
+        repo_status: green("Try it"),
+        has_web_ui: green("Try it"),
+        has_saga: false,
+        is_web: false,
+        group: "Operating System",
+    },
+    ProjectRow {
         repo: "web-sw-cor24-apl",
         description: "APL environment",
         repo_status: green("Try it"),
@@ -427,6 +436,15 @@ static PROJECTS: [ProjectRow; 39] = [
         is_web: true,
         group: "Web UIs",
     },
+    ProjectRow {
+        repo: "web-sw-tos",
+        description: "SWTOS tiled terminal demo",
+        repo_status: green("Try it"),
+        has_web_ui: neutral("n/a"),
+        has_saga: true,
+        is_web: true,
+        group: "Web UIs",
+    },
 ];
 
 pub mod generated;
@@ -451,7 +469,7 @@ mod tests {
 
     #[test]
     fn project_count() {
-        assert_eq!(all_projects().len(), 39);
+        assert_eq!(all_projects().len(), 41);
     }
 
     #[test]
